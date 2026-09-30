@@ -49,34 +49,40 @@ class _ThemeScreenState extends State<ThemeScreen> {
 
   final List<Map<String, dynamic>> _sceneryThemes = const [
     {
-      'title': 'Cyber Midnight',
-      'colors': [Color(0xFF0F172A), Color(0xFF1E1B4B)],
-      'icon': Icons.nightlight_round,
-    },
-    {
-      'title': 'Aurora Borealis',
-      'colors': [Color(0xFF06B6D4), Color(0xFF10B981)],
-      'icon': Icons.flare_rounded,
-    },
-    {
-      'title': 'Sunset Horizon',
-      'colors': [Color(0xFFF43F5E), Color(0xFFF59E0B)],
+      'title': 'Blue Sky & Clouds',
+      'subtitle': 'Clean daylight theme',
+      'colors': [Color(0xFF0284C7), Color(0xFF38BDF8), Color(0xFFBAE6FD)],
       'icon': Icons.wb_sunny_rounded,
     },
     {
-      'title': 'Electric Violet',
-      'colors': [Color(0xFF8B5CF6), Color(0xFF4F46E5)],
-      'icon': Icons.bolt_rounded,
+      'title': 'Green Meadow',
+      'subtitle': 'Fresh natural greenery',
+      'colors': [Color(0xFF15803D), Color(0xFF22C55E), Color(0xFF86EFAC)],
+      'icon': Icons.park_rounded,
     },
     {
-      'title': 'Cherry Blossom',
-      'colors': [Color(0xFFEC4899), Color(0xFFF472B6)],
+      'title': 'Mountain Sunrise',
+      'subtitle': 'Morning warm sunrise',
+      'colors': [Color(0xFFEA580C), Color(0xFFF97316), Color(0xFFFDE047)],
+      'icon': Icons.landscape_rounded,
+    },
+    {
+      'title': 'Sunny Beach',
+      'subtitle': 'Ocean water & golden sand',
+      'colors': [Color(0xFF0D9488), Color(0xFF14B8A6), Color(0xFFFDE68A)],
+      'icon': Icons.beach_access_rounded,
+    },
+    {
+      'title': 'Lavender Valley',
+      'subtitle': 'Soft floral purple fields',
+      'colors': [Color(0xFF7E22CE), Color(0xFFA855F7), Color(0xFFE9D5FF)],
       'icon': Icons.local_florist_rounded,
     },
     {
-      'title': 'Emerald Rainforest',
-      'colors': [Color(0xFF059669), Color(0xFF34D399)],
-      'icon': Icons.park_rounded,
+      'title': 'Golden Autumn',
+      'subtitle': 'Warm maple forest',
+      'colors': [Color(0xFFB45309), Color(0xFFD97706), Color(0xFFFED7AA)],
+      'icon': Icons.eco_rounded,
     },
   ];
 
@@ -244,20 +250,21 @@ class _ThemeScreenState extends State<ThemeScreen> {
           ),
           const SizedBox(height: 14),
 
-          // Scenery Cards Grid
+          // Scenery Cards Grid (Rich Photographic Artwork Cards)
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: _sceneryThemes.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 14,
-              mainAxisSpacing: 14,
-              childAspectRatio: 1.5,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: 1.35,
             ),
             itemBuilder: (context, index) {
               final scene = _sceneryThemes[index];
               final isSelected = _selectedSceneryIndex == index;
+              final colors = scene['colors'] as List<Color>;
 
               return InkWell(
                 onTap: () {
@@ -266,55 +273,96 @@ class _ThemeScreenState extends State<ThemeScreen> {
                     _selectedColorIndex = -1;
                     _selectedTextureIndex = null;
                   });
-                  final primaryColor = (scene['colors'] as List<Color>).first;
+                  final primaryColor = colors[1];
                   taskProvider.setThemeColor(primaryColor);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('${scene['title']} Wallpaper Theme Applied!')),
+                    SnackBar(
+                      content: Text('✨ ${scene['title']} Wallpaper Theme Applied!'),
+                      behavior: SnackBarBehavior.floating,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
                   );
                 },
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(20),
                 child: Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: scene['colors'] as List<Color>,
+                      colors: colors,
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(18),
                     border: Border.all(
-                      color: isSelected ? AppTheme.primaryBlue : Colors.transparent,
-                      width: isSelected ? 2.5 : 0,
+                      color: isSelected ? AppTheme.primaryBlue : const Color(0xFFE2E8F0),
+                      width: isSelected ? 3.0 : 1.0,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 8,
-                        offset: const Offset(0, 3),
+                        color: colors.first.withValues(alpha: 0.18),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
                       ),
                     ],
                   ),
-                  child: Stack(
+                  padding: const EdgeInsets.all(14),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Center(
-                        child: Icon(
-                          scene['icon'] as IconData,
-                          size: 38,
-                          color: Colors.white.withValues(alpha: 0.8),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 8,
-                        left: 10,
-                        child: Text(
-                          scene['title'] as String,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              Shadow(blurRadius: 4, color: Colors.black45),
-                            ],
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.9),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              scene['icon'] as IconData,
+                              size: 22,
+                              color: colors.first,
+                            ),
                           ),
+                          if (isSelected)
+                            Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(Icons.check, size: 16, color: AppTheme.primaryBlue),
+                            ),
+                        ],
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.92),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              scene['title'] as String,
+                              style: const TextStyle(
+                                color: Color(0xFF0F172A),
+                                fontSize: 13,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                            Text(
+                              scene['subtitle'] as String,
+                              style: const TextStyle(
+                                color: Color(0xFF64748B),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -323,7 +371,6 @@ class _ThemeScreenState extends State<ThemeScreen> {
               );
             },
           ),
-
           const SizedBox(height: 32),
         ],
       ),
