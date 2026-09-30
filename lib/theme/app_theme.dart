@@ -32,13 +32,13 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: background,
-      primaryColor: primaryBlue,
+      primaryColor: primary,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryBlue,
-        primary: primaryBlue,
+        seedColor: primary,
+        primary: primary,
         secondary: accentBlue,
         surface: surfaceLight,
-        background: background,
+        surfaceContainerHighest: chipInactiveBg,
       ),
       textTheme: GoogleFonts.outfitTextTheme().apply(
         bodyColor: textPrimary,
@@ -58,7 +58,7 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          backgroundColor: primaryBlue,
+          backgroundColor: primary,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           textStyle: GoogleFonts.outfit(fontWeight: FontWeight.w600, fontSize: 16),
@@ -67,7 +67,7 @@ class AppTheme {
       datePickerTheme: DatePickerThemeData(
         backgroundColor: Colors.white,
         surfaceTintColor: Colors.transparent,
-        headerBackgroundColor: primaryBlue,
+        headerBackgroundColor: primary,
         headerForegroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
         dayStyle: GoogleFonts.outfit(fontSize: 14, fontWeight: FontWeight.w500),
@@ -78,7 +78,7 @@ class AppTheme {
           textStyle: WidgetStateProperty.all(GoogleFonts.outfit(fontWeight: FontWeight.w600, fontSize: 15)),
         ),
         confirmButtonStyle: ButtonStyle(
-          foregroundColor: WidgetStateProperty.all(primaryBlue),
+          foregroundColor: WidgetStateProperty.all(primary),
           textStyle: WidgetStateProperty.all(GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 15)),
         ),
       ),

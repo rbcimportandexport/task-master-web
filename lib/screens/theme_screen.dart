@@ -15,55 +15,68 @@ class _ThemeScreenState extends State<ThemeScreen> {
   int? _selectedTextureIndex;
   int? _selectedSceneryIndex;
 
+  @override
+  void initState() {
+    super.initState();
+    final currentColor = context.read<TaskProvider>().selectedThemeColor;
+    final foundIndex = _pureColors.indexWhere((c) => c.value == currentColor.value);
+    if (foundIndex != -1) {
+      _selectedColorIndex = foundIndex;
+    }
+  }
+
   final List<Color> _pureColors = const [
-    Color(0xFF60A5FA), // Light Blue (Default)
-    Color(0xFFF472B6), // Light Pink
-    Color(0xFF14B8A6), // Teal / Emerald
-    Color(0xFF334155), // Dark Slate
-    Color(0xFFF87171), // Coral Red
-    Color(0xFFFACC15), // Mustard Yellow
-    Color(0xFF10B981), // Green
-    Color(0xFFFB923C), // Orange
-    Color(0xFFA855F7), // Purple
+    Color(0xFF4F46E5), // Royal Indigo
+    Color(0xFF2563EB), // Deep Electric Blue
+    Color(0xFF06B6D4), // Cyan Teal
+    Color(0xFF10B981), // Emerald Mint
+    Color(0xFF8B5CF6), // Royal Purple
+    Color(0xFFEC4899), // Neon Pink
+    Color(0xFFF43F5E), // Rose Red
+    Color(0xFFF59E0B), // Golden Amber
+    Color(0xFF0F172A), // Midnight Dark Slate
+    Color(0xFF14B8A6), // Premium Teal
+    Color(0xFFEA580C), // Sunset Orange
+    Color(0xFF6366F1), // Soft Iris
   ];
 
   final List<Color> _textureDots = const [
-    Color(0xFF60A5FA),
-    Color(0xFFEF4444),
-    Color(0xFFA855F7),
+    Color(0xFF4F46E5),
+    Color(0xFFEC4899),
     Color(0xFF10B981),
+    Color(0xFFF59E0B),
   ];
 
   final List<Map<String, dynamic>> _sceneryThemes = const [
     {
-      'title': 'Lighthouse',
-      'colors': [Color(0xFF38BDF8), Color(0xFFE0F2FE)],
-      'icon': Icons.wb_sunny_rounded,
-    },
-    {
-      'title': 'Spring Park',
-      'colors': [Color(0xFF86EFAC), Color(0xFFDCFCE7)],
-      'icon': Icons.park_rounded,
-    },
-    {
-      'title': 'Starry Night',
-      'colors': [Color(0xFF1E1B4B), Color(0xFF312E81)],
+      'title': 'Cyber Midnight',
+      'colors': [Color(0xFF0F172A), Color(0xFF1E1B4B)],
       'icon': Icons.nightlight_round,
     },
     {
+      'title': 'Aurora Borealis',
+      'colors': [Color(0xFF06B6D4), Color(0xFF10B981)],
+      'icon': Icons.flare_rounded,
+    },
+    {
+      'title': 'Sunset Horizon',
+      'colors': [Color(0xFFF43F5E), Color(0xFFF59E0B)],
+      'icon': Icons.wb_sunny_rounded,
+    },
+    {
+      'title': 'Electric Violet',
+      'colors': [Color(0xFF8B5CF6), Color(0xFF4F46E5)],
+      'icon': Icons.bolt_rounded,
+    },
+    {
       'title': 'Cherry Blossom',
-      'colors': [Color(0xFFFBCFE8), Color(0xFFFDF2F8)],
+      'colors': [Color(0xFFEC4899), Color(0xFFF472B6)],
       'icon': Icons.local_florist_rounded,
     },
     {
-      'title': 'Green Valley',
-      'colors': [Color(0xFF4ADE80), Color(0xFFBBF7D0)],
-      'icon': Icons.terrain_rounded,
-    },
-    {
-      'title': 'Cycling Day',
-      'colors': [Color(0xFF38BDF8), Color(0xFFBAE6FD)],
-      'icon': Icons.directions_bike_rounded,
+      'title': 'Emerald Rainforest',
+      'colors': [Color(0xFF059669), Color(0xFF34D399)],
+      'icon': Icons.park_rounded,
     },
   ];
 

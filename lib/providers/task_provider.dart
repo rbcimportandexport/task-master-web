@@ -132,6 +132,7 @@ class TaskProvider extends ChangeNotifier {
 
   void setThemeColor(Color color) {
     _selectedThemeColor = color;
+    _saveToPrefs();
     notifyListeners();
   }
 
@@ -238,6 +239,10 @@ class TaskProvider extends ChangeNotifier {
       
       _showSubtasks = prefs.getBool('show_subtasks') ?? false;
       _taskCompletionTone = prefs.getBool('task_tone') ?? true;
+      final savedThemeColor = prefs.getInt('selected_theme_color');
+      if (savedThemeColor != null) {
+        _selectedThemeColor = Color(savedThemeColor);
+      }
       notifyListeners();
     } catch (e) {
       debugPrint('Error loading preferences: $e');
@@ -250,6 +255,7 @@ class TaskProvider extends ChangeNotifier {
       await prefs.setBool('show_subtasks', _showSubtasks);
       await prefs.setBool('hasCompletedFirstTask', _hasCompletedFirstTask);
       await prefs.setBool('task_tone', _taskCompletionTone);
+      await prefs.setInt('selected_theme_color', _selectedThemeColor.value);
     } catch (e) {
       debugPrint('Error saving preferences: $e');
     }
@@ -856,7 +862,11 @@ class TaskProvider extends ChangeNotifier {
       final empDoc = await FirebaseFirestore.instance.collection('users').doc(employeeId).get();
       if (empDoc.exists && empDoc.data()!.containsKey('fcmToken')) {
         final fcmToken = empDoc.data()!['fcmToken'];
-        await FCMService.sendPushNotification(fcmToken, 'New Task Assigned', 'You have been assigned a new task: $title');
+        await FCMService.sendPushNotification(
+          fcmToken: fcmToken,
+          title: 'New Task Assigned',
+          body: 'You have been assigned a new task: $title',
+        );
       }
     } catch (e) {
       debugPrint('Error assigning task to employee: $e');
@@ -920,9 +930,9 @@ class TaskProvider extends ChangeNotifier {
       if (empDoc.exists && empDoc.data()!.containsKey('fcmToken')) {
         final fcmToken = empDoc.data()!['fcmToken'];
         await FCMService.sendPushNotification(
-          fcmToken,
-          'Task Transferred To You',
-          '$_userName transferred task "${task.title}" to you.',
+          fcmToken: fcmToken,
+          title: 'Task Transferred To You',
+          body: '$_userName transferred task "${task.title}" to you.',
         );
       }
       
