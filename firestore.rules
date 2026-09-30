@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isSuperAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email.lower() == 'rbcitsupport@gmail.com' ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'super_admin'
+      );
+    }
+    
+    function isManager() {
+      return isAuthenticated() && (
+        isSuperAdmin() ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'manager'
+      );
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // 1. Users collection
+    match /users/{userId} {
+      // User can read their own profile; Managers and Admins can view employee directory
+      allow read: if isAuthenticated();
+      
+      // User can update their own profile; Super Admin / Manager can manage roles/metadata
+      allow create: if isAuthenticated() && (isOwner(userId) || isManager());
+      allow update: if isAuthenticated() && (isOwner(userId) || isManager());
+      allow delete: if isSuperAdmin();
+
+      // Tasks sub-collection
+      match /tasks/{taskId} {
+        allow read, write: if isAuthenticated() && (isOwner(userId) || isManager());
+      }
+      
+      // Notifications sub-collection
+      match /notifications/{notifId} {
+        allow read, write: if isAuthenticated() && (isOwner(userId) || isManager());
+      }
+    }
+
+    // 2. Attendance collection (Selfie & GPS Protected)
+    match /attendance/{attendanceId} {
+      // Employee can read only their own attendance; Managers & Admins can read team attendance
+      allow read: if isAuthenticated() && (
+        isSuperAdmin() ||
+        isManager() ||
+        resource.data.uid == request.auth.uid
+      );
+      
+      // Punch-in / Punch-out: Authenticated user can create/update only their own attendance record
+      allow create, update: if isAuthenticated() && request.resource.data.uid == request.auth.uid;
+      allow delete: if isSuperAdmin();
+    }
+
+    // 3. Leaves collection
+    match /leaves/{leaveId} {
+      // Employee can read own leave; Manager/Admin can read department leaves
+      allow read: if isAuthenticated() && (
+        isSuperAdmin() ||
+        isManager() ||
+        resource.data.uid == request.auth.uid
+      );
+      
+      // Employee can apply for leave
+      allow create: if isAuthenticated() && request.resource.data.uid == request.auth.uid;
+      
+      // Manager/Admin can approve/reject with remarks
+      allow update: if isAuthenticated() && (isManager() || isSuperAdmin());
+      allow delete: if isSuperAdmin();
+    }
+  }
+}
