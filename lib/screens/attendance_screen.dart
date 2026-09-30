@@ -108,18 +108,24 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         }
       }
 
-      // 2. Pick/Take Front Camera Selfie
-      final ImagePicker picker = ImagePicker();
-      final XFile? image = await picker.pickImage(
-        source: ImageSource.camera,
-        preferredCameraDevice: CameraDevice.front,
-        imageQuality: 50,
-      );
-
+      // 2. Pick/Take Front Camera Selfie with resilient fallback
       String base64String = '';
-      if (image != null) {
-        final bytes = await image.readAsBytes();
-        base64String = base64Encode(bytes);
+      try {
+        final ImagePicker picker = ImagePicker();
+        final XFile? image = await picker.pickImage(
+          source: ImageSource.camera,
+          preferredCameraDevice: CameraDevice.front,
+          imageQuality: 50,
+          maxWidth: 800,
+          maxHeight: 800,
+        );
+
+        if (image != null) {
+          final bytes = await image.readAsBytes();
+          base64String = base64Encode(bytes);
+        }
+      } catch (camErr) {
+        debugPrint('Camera capture issue: $camErr');
       }
 
       // 3. Punch In

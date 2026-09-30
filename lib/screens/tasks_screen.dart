@@ -928,7 +928,7 @@ class _TasksScreenState extends State<TasksScreen> {
       // Yellow Speech Tooltip pointing directly down towards the FAB (Only on Mobile)
       if (tasks.isEmpty && isAll && !isDesktop)
         Positioned(
-          bottom: 190,
+          bottom: 148,
           right: 16,
           child: SpeechBubbleTooltip(
             text: 'Click here to create your first task.',

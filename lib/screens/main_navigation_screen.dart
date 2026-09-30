@@ -571,25 +571,22 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
       ),
       floatingActionButton: _currentIndex != 2
-          ? Center(
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 600),
-                alignment: Alignment.bottomRight,
-                padding: const EdgeInsets.only(bottom: 12, right: 16),
-                child: FloatingActionButton(
-                  onPressed: _openAddTaskModal,
-                  backgroundColor: AppTheme.fabBlue,
-                  elevation: 6,
-                  shape: const CircleBorder(),
-                  child: const Icon(
-                    Icons.add_rounded,
-                    color: Colors.white,
-                    size: 32,
-                  ),
+          ? Padding(
+              padding: const EdgeInsets.only(bottom: 80),
+              child: FloatingActionButton(
+                onPressed: _openAddTaskModal,
+                backgroundColor: AppTheme.fabBlue,
+                elevation: 6,
+                shape: const CircleBorder(),
+                child: const Icon(
+                  Icons.add_rounded,
+                  color: Colors.white,
+                  size: 30,
                 ),
               ),
             )
           : null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: SafeArea(
         child: Align(
           alignment: Alignment.bottomCenter,

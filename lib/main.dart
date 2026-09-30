@@ -101,16 +101,6 @@ class TodoApp extends StatelessWidget {
             scrollBehavior: const SmoothAppScrollBehavior(),
             theme: AppTheme.dynamicTheme(taskProvider.selectedThemeColor),
             builder: (context, child) {
-              final isDesktop = MediaQuery.of(context).size.width >= 850;
-              if (isDesktop) {
-                // High-DPI Desktop Scaling: Magnify entire UI by 1.50x for rich, large, filling view
-                return MediaQuery(
-                  data: MediaQuery.of(context).copyWith(
-                    textScaler: const TextScaler.linear(1.50),
-                  ),
-                  child: child!,
-                );
-              }
               return child!;
             },
             home: StreamBuilder<User?>(
