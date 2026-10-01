@@ -35,6 +35,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
+      isDismissible: true,
+      enableDrag: true,
       builder: (_) => const TaskAddSheet(),
     );
   }
@@ -44,6 +46,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
+      isDismissible: true,
+      enableDrag: true,
       builder: (_) => const AssignTaskSheet(),
     );
   }

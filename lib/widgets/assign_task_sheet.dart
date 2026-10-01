@@ -635,13 +635,21 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
       ),
     );
 
-    if (isDesktop) {
-      return Center(child: sheetContent);
-    }
-
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: sheetContent,
+    return PopScope(
+      canPop: true,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => Navigator.of(context).pop(),
+        child: Container(
+          color: Colors.transparent,
+          alignment: isDesktop ? Alignment.center : Alignment.bottomCenter,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {}, // Prevent taps inside the sheet from dismissing
+            child: sheetContent,
+          ),
+        ),
+      ),
     );
   }
 }

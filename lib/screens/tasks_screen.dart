@@ -34,6 +34,8 @@ class _TasksScreenState extends State<TasksScreen> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
+      isDismissible: true,
+      enableDrag: true,
       builder: (_) => const TaskAddSheet(),
     );
   }

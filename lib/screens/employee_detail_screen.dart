@@ -46,6 +46,8 @@ class _EmployeeDetailScreenState extends State<EmployeeDetailScreen> {
                 context: context,
                 isScrollControlled: true,
                 backgroundColor: Colors.transparent,
+                isDismissible: true,
+                enableDrag: true,
                 builder: (context) => AssignTaskSheet(employeeId: widget.employeeId),
               );
             },
@@ -149,6 +151,8 @@ class _EmployeeDetailScreenState extends State<EmployeeDetailScreen> {
             context: context,
             isScrollControlled: true,
             backgroundColor: Colors.transparent,
+            isDismissible: true,
+            enableDrag: true,
             builder: (context) => TaskAddSheet(targetEmployeeId: widget.employeeId),
           );
         },

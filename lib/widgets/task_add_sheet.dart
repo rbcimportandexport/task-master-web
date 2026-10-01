@@ -645,6 +645,39 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // Top Bar: Drag Handle & Quick Close ("✕") Button
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(width: 32),
+                Container(
+                  width: 38,
+                  height: 4,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFCBD5E1),
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+                InkWell(
+                  onTap: () => Navigator.of(context).pop(),
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFF1F5F9),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.close_rounded,
+                      size: 18,
+                      color: Color(0xFF64748B),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+
             // Input Box with rounded background
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
@@ -957,13 +990,21 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
     ),
   );
 
-  if (isDesktop) {
-    return Center(child: sheetContent);
-  }
-
-  return Align(
-    alignment: Alignment.bottomCenter,
-    child: sheetContent,
-  );
+    return PopScope(
+      canPop: true,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => Navigator.of(context).pop(),
+        child: Container(
+          color: Colors.transparent,
+          alignment: isDesktop ? Alignment.center : Alignment.bottomCenter,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {}, // Prevent taps inside the sheet from dismissing
+            child: sheetContent,
+          ),
+        ),
+      ),
+    );
   }
 }
