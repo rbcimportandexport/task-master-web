@@ -641,7 +641,40 @@ class TaskProvider extends ChangeNotifier {
         'isRead': false,
       });
     } catch (e) {
-      debugPrint('Error sending notification: ');
+      debugPrint('Error sending notification: $e');
+    }
+  }
+
+  Future<void> broadcastNotificationToAllUsers({
+    required String title,
+    required String message,
+  }) async {
+    try {
+      final usersSnap = await FirebaseFirestore.instance.collection('users').get();
+      for (var userDoc in usersSnap.docs) {
+        final uId = userDoc.id;
+        final uData = userDoc.data();
+
+        // 1. Add Firestore Notification in user's inbox
+        await FirebaseFirestore.instance.collection('users').doc(uId).collection('notifications').add({
+          'title': title,
+          'message': message,
+          'timestamp': FieldValue.serverTimestamp(),
+          'isRead': false,
+        });
+
+        // 2. Send FCM Push Notification if token exists
+        if (uData.containsKey('fcmToken') && uData['fcmToken'] != null && uData['fcmToken'].toString().isNotEmpty) {
+          final fcmToken = uData['fcmToken'].toString();
+          await FCMService.sendPushNotification(
+            fcmToken: fcmToken,
+            title: title,
+            body: message,
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint('Error broadcasting notification: $e');
     }
   }
 

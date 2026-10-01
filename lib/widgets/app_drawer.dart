@@ -17,6 +17,8 @@ import '../screens/notifications_screen.dart';
 import '../screens/leaves_screen.dart';
 import '../screens/profile_screen.dart';
 import '../screens/recycle_bin_screen.dart';
+import '../screens/holiday_policy_screen.dart';
+import '../screens/manage_users_screen.dart';
 import 'assign_task_sheet.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -403,8 +405,8 @@ class _AppDrawerState extends State<AppDrawer> {
               },
             ),
             
-          // Super Admin Dashboard
-          if (taskProvider.userRole == 'super_admin')
+          // Super Admin Dashboard & Controls
+          if (taskProvider.userRole == 'super_admin') ...[
             _buildDrawerItem(
               icon: Icons.admin_panel_settings_rounded,
               iconColor: const Color(0xFFF59E0B),
@@ -413,10 +415,35 @@ class _AppDrawerState extends State<AppDrawer> {
                 Navigator.pop(context);
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => const ManagerDashboardScreen()), // Routes to same screen, but UI handles role
+                  MaterialPageRoute(builder: (_) => const ManagerDashboardScreen()),
                 );
               },
             ),
+            _buildDrawerItem(
+              icon: Icons.people_alt_rounded,
+              iconColor: const Color(0xFF3B82F6),
+              title: 'All Staff & Role Controller',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ManageUsersScreen()),
+                );
+              },
+            ),
+            _buildDrawerItem(
+              icon: Icons.wb_sunny_rounded,
+              iconColor: const Color(0xFFF59E0B),
+              title: 'Holiday & Sunday Policy',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const HolidayPolicyScreen()),
+                );
+              },
+            ),
+          ],
 
           // 4. Theme (Screenshot 16)
           _buildDrawerItem(

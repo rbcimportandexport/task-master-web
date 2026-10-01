@@ -5,6 +5,7 @@ import '../providers/task_provider.dart';
 import '../theme/app_theme.dart';
 import 'employee_detail_screen.dart';
 import 'manage_users_screen.dart';
+import 'holiday_policy_screen.dart';
 
 import 'dart:convert';
 
@@ -89,8 +90,15 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
             ],
           ),
           IconButton(
+            icon: const Icon(Icons.wb_sunny_rounded, color: Color(0xFFF59E0B)),
+            tooltip: 'Holiday & Sunday Policy',
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => const HolidayPolicyScreen()));
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.manage_accounts, color: AppTheme.primaryBlue),
-            tooltip: 'Manage Users & Roles',
+            tooltip: 'All Employees & Role Controller',
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (_) => const ManageUsersScreen()));
             },

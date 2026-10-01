@@ -13,6 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../widgets/super_admin_attendance_flow.dart';
 import 'leaves_screen.dart';
+import 'holiday_policy_screen.dart';
 
 class AttendanceScreen extends StatefulWidget {
   const AttendanceScreen({super.key});
@@ -354,6 +355,17 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           centerTitle: false,
           iconTheme: const IconThemeData(color: AppTheme.textPrimary),
           actions: [
+            if (role == 'super_admin')
+              Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: IconButton(
+                  icon: const Icon(Icons.wb_sunny_rounded, color: Color(0xFFF59E0B)),
+                  tooltip: 'Sunday & Holiday Policy',
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const HolidayPolicyScreen()));
+                  },
+                ),
+              ),
             if (role == 'super_admin' || role == 'manager')
               Padding(
                 padding: const EdgeInsets.only(right: 12.0),
@@ -1228,94 +1240,138 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   }
 
   Widget _buildMonthlyCalendarView(TaskProvider taskProvider) {
-    return StreamBuilder<List<Map<String, dynamic>>>(
-      stream: taskProvider.getMyAttendanceStream(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: FirebaseFirestore.instance.collection('company_settings').doc('holiday_policy').snapshots(),
+      builder: (context, policySnap) {
+        final sundayPolicy = policySnap.data?.data()?['sundayPolicy'] ?? 'Full Day Off';
 
-        final records = snapshot.data ?? [];
-        final Map<String, Map<String, dynamic>> dateRecordMap = {};
-        for (var r in records) {
-          final d = r['date'] as String?;
-          if (d != null && d.isNotEmpty) {
-            dateRecordMap[d] = r;
-          }
-        }
-
-        final selectedMonth = _selectedCalendarMonth;
-        final daysInMonth = DateTime(selectedMonth.year, selectedMonth.month + 1, 0).day;
-        
-        int presentCount = 0;
-        int offCount = 0;
-        int leaveCount = 0;
-
-        List<Map<String, dynamic>> monthDays = [];
-        for (int day = 1; day <= daysInMonth; day++) {
-          final date = DateTime(selectedMonth.year, selectedMonth.month, day);
-          final dateKey = DateFormat('yyyy-MM-dd').format(date);
-          final isSunday = date.weekday == DateTime.sunday;
-          final isFuture = date.isAfter(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
-
-          String status = 'Absent';
-          Color badgeColor = const Color(0xFFEF4444);
-          String hoursInfo = '--';
-
-          if (dateRecordMap.containsKey(dateKey)) {
-            final rec = dateRecordMap[dateKey]!;
-            final inTs = rec['checkIn'] as Timestamp?;
-            final outTs = rec['checkOut'] as Timestamp?;
-            
-            if (inTs != null && outTs != null) {
-              final inDt = inTs.toDate();
-              final outDt = outTs.toDate();
-              int seconds = outDt.difference(inDt).inSeconds;
-              if (seconds <= 0) {
-                final inSec = inDt.hour * 3600 + inDt.minute * 60 + inDt.second;
-                final outSec = outDt.hour * 3600 + outDt.minute * 60 + outDt.second;
-                seconds = outSec - inSec;
-                if (seconds < 0) seconds += 24 * 3600;
+        return StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('public_holidays').snapshots(),
+          builder: (context, holidaysSnap) {
+            final holidayDocs = holidaysSnap.data?.docs ?? [];
+            final Map<String, String> publicHolidayMap = {};
+            for (var h in holidayDocs) {
+              final hData = h.data() as Map<String, dynamic>;
+              final title = hData['title'] ?? 'Holiday';
+              final startStr = hData['startDate'];
+              final endStr = hData['endDate'];
+              if (startStr != null && endStr != null) {
+                try {
+                  DateTime s = DateTime.parse(startStr);
+                  DateTime e = DateTime.parse(endStr);
+                  for (var d = s; !d.isAfter(e); d = d.add(const Duration(days: 1))) {
+                    final key = DateFormat('yyyy-MM-dd').format(d);
+                    publicHolidayMap[key] = title;
+                  }
+                } catch (_) {}
               }
-              final dur = Duration(seconds: seconds < 0 ? 0 : seconds);
-              hoursInfo = '${dur.inHours}h ${dur.inMinutes.remainder(60)}m';
-            } else if (inTs != null) {
-              hoursInfo = 'In Progress';
             }
 
-            status = 'Present';
-            badgeColor = const Color(0xFF10B981);
-            presentCount++;
-          } else if (isSunday) {
-            status = 'Weekly Off';
-            badgeColor = const Color(0xFF64748B);
-            hoursInfo = 'Holiday';
-            if (!isFuture) offCount++;
-          } else if (isFuture) {
-            status = 'Upcoming';
-            badgeColor = const Color(0xFF94A3B8);
-            hoursInfo = '--';
-          } else {
-            status = 'Absent / Leave';
-            badgeColor = const Color(0xFFEF4444);
-            hoursInfo = 'Off/Leave';
-            leaveCount++;
-          }
+            return StreamBuilder<List<Map<String, dynamic>>>(
+              stream: taskProvider.getMyAttendanceStream(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
 
-          monthDays.add({
-            'date': date,
-            'dateKey': dateKey,
-            'dayName': DateFormat('EEEE').format(date),
-            'formattedDate': DateFormat('d MMM yyyy').format(date),
-            'status': status,
-            'color': badgeColor,
-            'hours': hoursInfo,
-            'record': dateRecordMap[dateKey],
-          });
-        }
+                final records = snapshot.data ?? [];
+                final Map<String, Map<String, dynamic>> dateRecordMap = {};
+                for (var r in records) {
+                  final d = r['date'] as String?;
+                  if (d != null && d.isNotEmpty) {
+                    dateRecordMap[d] = r;
+                  }
+                }
 
-        // Show latest dates first
-        monthDays = monthDays.reversed.toList();
+                final selectedMonth = _selectedCalendarMonth;
+                final daysInMonth = DateTime(selectedMonth.year, selectedMonth.month + 1, 0).day;
+                
+                int presentCount = 0;
+                int offCount = 0;
+                int leaveCount = 0;
+
+                List<Map<String, dynamic>> monthDays = [];
+                for (int day = 1; day <= daysInMonth; day++) {
+                  final date = DateTime(selectedMonth.year, selectedMonth.month, day);
+                  final dateKey = DateFormat('yyyy-MM-dd').format(date);
+                  final isSunday = date.weekday == DateTime.sunday;
+                  final isFuture = date.isAfter(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day));
+                  final hasPublicHoliday = publicHolidayMap.containsKey(dateKey);
+                  final publicHolidayName = publicHolidayMap[dateKey];
+
+                  String status = 'Absent';
+                  Color badgeColor = const Color(0xFFEF4444);
+                  String hoursInfo = '--';
+
+                  if (dateRecordMap.containsKey(dateKey)) {
+                    final rec = dateRecordMap[dateKey]!;
+                    final inTs = rec['checkIn'] as Timestamp?;
+                    final outTs = rec['checkOut'] as Timestamp?;
+                    
+                    if (inTs != null && outTs != null) {
+                      final inDt = inTs.toDate();
+                      final outDt = outTs.toDate();
+                      int seconds = outDt.difference(inDt).inSeconds;
+                      if (seconds <= 0) {
+                        final inSec = inDt.hour * 3600 + inDt.minute * 60 + inDt.second;
+                        final outSec = outDt.hour * 3600 + outDt.minute * 60 + outDt.second;
+                        seconds = outSec - inSec;
+                        if (seconds < 0) seconds += 24 * 3600;
+                      }
+                      final dur = Duration(seconds: seconds < 0 ? 0 : seconds);
+                      hoursInfo = '${dur.inHours}h ${dur.inMinutes.remainder(60)}m';
+                    } else if (inTs != null) {
+                      hoursInfo = 'In Progress';
+                    }
+
+                    status = 'Present';
+                    badgeColor = const Color(0xFF10B981);
+                    presentCount++;
+                  } else if (hasPublicHoliday) {
+                    status = publicHolidayName ?? 'Public Holiday';
+                    badgeColor = const Color(0xFFEC4899);
+                    hoursInfo = 'Festival Off';
+                    if (!isFuture) offCount++;
+                  } else if (isSunday) {
+                    if (sundayPolicy == 'Half Day Working') {
+                      status = 'Sunday (Half Day)';
+                      badgeColor = const Color(0xFFF59E0B);
+                      hoursInfo = 'Half Day Duty';
+                    } else if (sundayPolicy == 'Full Day Working') {
+                      status = 'Sunday (Working)';
+                      badgeColor = const Color(0xFF3B82F6);
+                      hoursInfo = 'Full Day Duty';
+                    } else {
+                      status = 'Weekly Off';
+                      badgeColor = const Color(0xFF64748B);
+                      hoursInfo = 'Holiday';
+                    }
+                    if (!isFuture) offCount++;
+                  } else if (isFuture) {
+                    status = 'Upcoming';
+                    badgeColor = const Color(0xFF94A3B8);
+                    hoursInfo = '--';
+                  } else {
+                    status = 'Absent / Leave';
+                    badgeColor = const Color(0xFFEF4444);
+                    hoursInfo = 'Off/Leave';
+                    leaveCount++;
+                  }
+
+                  monthDays.add({
+                    'date': date,
+                    'dateKey': dateKey,
+                    'dayName': DateFormat('EEEE').format(date),
+                    'formattedDate': DateFormat('d MMM yyyy').format(date),
+                    'status': status,
+                    'color': badgeColor,
+                    'hours': hoursInfo,
+                    'record': dateRecordMap[dateKey],
+                  });
+                }
+
+                // Show latest dates first
+                monthDays = monthDays.reversed.toList();
 
         return Column(
           children: [
@@ -1428,6 +1484,10 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
               ),
             ),
           ],
+        );
+              },
+            );
+          },
         );
       },
     );
