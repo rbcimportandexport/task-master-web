@@ -1342,6 +1342,51 @@ class _TasksScreenState extends State<TasksScreen> {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
+                    if (task.estimatedTime != null && task.estimatedTime!.isNotEmpty)
+                      Padding(
+                        padding: EdgeInsets.only(top: 4, left: isSuperNarrow ? 2 : 4),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFFEF3C7),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(color: const Color(0xFFFDE68A)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.timer_outlined, size: 11, color: Color(0xFFD97706)),
+                              const SizedBox(width: 3),
+                              Text(
+                                task.estimatedTime!,
+                                style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Color(0xFF92400E)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    if (task.attachments.isNotEmpty)
+                      Padding(
+                        padding: EdgeInsets.only(top: 4, left: isSuperNarrow ? 2 : 4),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF1F5F9),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.attach_file_rounded, size: 11, color: Color(0xFF64748B)),
+                              const SizedBox(width: 2),
+                              Text(
+                                '${task.attachments.length}',
+                                style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Color(0xFF475569)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     if (task.progress > 0)
                       Padding(
                         padding: const EdgeInsets.only(top: 4, left: 2),

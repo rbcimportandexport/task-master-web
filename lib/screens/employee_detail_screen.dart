@@ -271,6 +271,48 @@ class _EmployeeDetailScreenState extends State<EmployeeDetailScreen> {
                   ],
                 ),
               ),
+            if (task.assignedBy != null && task.assignedBy!.isNotEmpty)
+              Container(
+                margin: const EdgeInsets.only(top: 6, right: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(color: const Color(0xFFEFF6FF), borderRadius: BorderRadius.circular(8)),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.person, size: 12, color: Color(0xFF3B82F6)),
+                    const SizedBox(width: 4),
+                    Text('By: ${task.assignedBy}', style: const TextStyle(fontSize: 11, color: Color(0xFF3B82F6), fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+            if (task.estimatedTime != null && task.estimatedTime!.isNotEmpty)
+              Container(
+                margin: const EdgeInsets.only(top: 6, right: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(color: const Color(0xFFFEF3C7), borderRadius: BorderRadius.circular(8)),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.timer_outlined, size: 12, color: Color(0xFFD97706)),
+                    const SizedBox(width: 4),
+                    Text(task.estimatedTime!, style: const TextStyle(fontSize: 11, color: Color(0xFF92400E), fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ),
+            if (task.attachments.isNotEmpty)
+              Container(
+                margin: const EdgeInsets.only(top: 6, right: 6),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(color: const Color(0xFFF1F5F9), borderRadius: BorderRadius.circular(8)),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.attach_file_rounded, size: 12, color: Color(0xFF64748B)),
+                    const SizedBox(width: 2),
+                    Text('${task.attachments.length} files', style: const TextStyle(fontSize: 11, color: Color(0xFF475569), fontWeight: FontWeight.w600)),
+                  ],
+                ),
+              ),
             if (task.voiceNoteUrl != null && task.voiceNoteUrl!.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 6),

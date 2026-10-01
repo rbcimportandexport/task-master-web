@@ -405,6 +405,7 @@ class TaskProvider extends ChangeNotifier {
     int progress = 0,
     int flagColor = 0,
     List<Subtask>? subtasks,
+    String? estimatedTime,
     String? voiceNoteUrl,
     int? voiceDurationSeconds,
   }) {
@@ -417,6 +418,7 @@ class TaskProvider extends ChangeNotifier {
       progress: progress,
       flagColor: flagColor,
       subtasks: subtasks ?? [],
+      estimatedTime: estimatedTime,
       voiceNoteUrl: voiceNoteUrl,
       voiceDurationSeconds: voiceDurationSeconds,
       createdAt: DateTime.now(),
@@ -911,6 +913,7 @@ class TaskProvider extends ChangeNotifier {
     int progress = 0,
     int flagColor = 0,
     List<Subtask>? subtasks,
+    String? estimatedTime,
     String? voiceNoteUrl,
     int? voiceDurationSeconds,
   }) async {
@@ -927,6 +930,7 @@ class TaskProvider extends ChangeNotifier {
         flagColor: flagColor,
         subtasks: subtasks ?? [],
         assignedBy: _userName,
+        estimatedTime: estimatedTime,
         voiceNoteUrl: voiceNoteUrl,
         voiceDurationSeconds: voiceDurationSeconds,
       );
@@ -946,7 +950,9 @@ class TaskProvider extends ChangeNotifier {
         'title': voiceNoteUrl != null ? '🎤 Voice Task Assigned' : 'New Task Assigned',
         'message': voiceNoteUrl != null
             ? 'Voice note task assigned by $_userName: $title'
-            : 'You have been assigned a new task: $title',
+            : (estimatedTime != null && estimatedTime.isNotEmpty
+                ? 'Assigned by $_userName: $title (Est. Time: $estimatedTime)'
+                : 'You have been assigned a new task: $title'),
         'timestamp': FieldValue.serverTimestamp(),
         'isRead': false,
       });

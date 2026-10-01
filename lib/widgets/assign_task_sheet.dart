@@ -20,6 +20,7 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
   final _titleController = TextEditingController();
   final _categoryController = TextEditingController(text: 'Work');
   final _descriptionController = TextEditingController();
+  final _estimatedTimeController = TextEditingController();
   
   DateTime? _dueDate = DateTime.now();
   int _priority = 1; // 0: None, 1: Low, 2: Medium, 3: High
@@ -104,6 +105,7 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
         category: _categoryController.text.trim().isNotEmpty ? _categoryController.text.trim() : 'Work',
         dueDate: _dueDate,
         priority: _priority,
+        estimatedTime: _estimatedTimeController.text.trim().isNotEmpty ? _estimatedTimeController.text.trim() : null,
         voiceNoteUrl: _voiceNotePath,
         voiceDurationSeconds: _voiceNoteDuration,
       );
@@ -560,6 +562,52 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
                       ),
                     ),
                   ],
+                  // Estimated Time / Duration input
+                  const SizedBox(height: 12),
+                  TextField(
+                    controller: _estimatedTimeController,
+                    decoration: InputDecoration(
+                      labelText: 'Estimated Time / Duration (Kitna time lagega)',
+                      hintText: 'e.g. 2 hours, 45 mins, 1 day',
+                      prefixIcon: const Icon(Icons.timer_outlined, color: AppTheme.primaryBlue),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: ['30 mins', '1 hour', '2 hours', '4 hours', '1 day', '2 days'].map((opt) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 6),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _estimatedTimeController.text = opt;
+                              });
+                            },
+                            borderRadius: BorderRadius.circular(8),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                              decoration: BoxDecoration(
+                                color: _estimatedTimeController.text == opt ? const Color(0xFFEFF6FF) : const Color(0xFFF1F5F9),
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: _estimatedTimeController.text == opt ? AppTheme.primaryBlue : const Color(0xFFE2E8F0)),
+                              ),
+                              child: Text(
+                                opt,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: _estimatedTimeController.text == opt ? AppTheme.primaryBlue : const Color(0xFF475569),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ),
                   const SizedBox(height: 12),
 
                   // Category & Due Date Row

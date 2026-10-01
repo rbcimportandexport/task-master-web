@@ -173,7 +173,7 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Options for ', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Text('Options for $managerName', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const SizedBox(height: 20),
             ListTile(
               leading: const CircleAvatar(backgroundColor: Color(0xFFE2E8F0), child: Icon(Icons.assignment, color: AppTheme.primaryBlue)),
@@ -188,7 +188,7 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
               title: const Text('View Manager Team'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ManagerTeamScreen(managerId: managerId, title: '\'s Team')));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ManagerTeamScreen(managerId: managerId, title: "$managerName's Team")));
               },
             ),
           ],
@@ -202,7 +202,7 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        title: Text('\ Managers', style: const TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.bold, fontSize: 16)),
+        title: Text('${widget.department} Managers', style: const TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.bold, fontSize: 16)),
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF0F172A)),

@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,6 +32,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
   late List<String> _attachments;
   String? _voiceNoteUrl;
   int? _voiceDurationSeconds;
+  String? _estimatedTime;
 
   @override
   void initState() {
@@ -40,6 +44,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     _attachments = List<String>.from(widget.task.attachments);
     _voiceNoteUrl = widget.task.voiceNoteUrl;
     _voiceDurationSeconds = widget.task.voiceDurationSeconds;
+    _estimatedTime = widget.task.estimatedTime;
   }
 
   @override
@@ -56,6 +61,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     widget.task.attachments = _attachments;
     widget.task.voiceNoteUrl = _voiceNoteUrl;
     widget.task.voiceDurationSeconds = _voiceDurationSeconds;
+    widget.task.estimatedTime = _estimatedTime;
     context.read<TaskProvider>().updateTask(widget.task);
   }
 
@@ -205,6 +211,93 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     );
   }
 
+  void _showEstimatedTimeDialog() {
+    final timeController = TextEditingController(text: _estimatedTime ?? '');
+    final quickOptions = ['30 mins', '1 hour', '2 hours', '4 hours', '1 day', '2 days', '1 week'];
+
+    showDialog(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (context, setDialogState) => AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          title: const Row(
+            children: [
+              Icon(Icons.timer_outlined, color: AppTheme.primaryBlue),
+              SizedBox(width: 8),
+              Text('Estimated Time / Duration', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Kitna time lagega is task ko complete karne me?', style: TextStyle(fontSize: 13, color: Color(0xFF64748B))),
+              const SizedBox(height: 12),
+              TextField(
+                controller: timeController,
+                decoration: const InputDecoration(
+                  hintText: 'e.g. 2 hours, 45 mins, 1 day',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.schedule, color: AppTheme.primaryBlue),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: quickOptions.map((opt) {
+                  return InkWell(
+                    onTap: () {
+                      timeController.text = opt;
+                      setDialogState(() {});
+                    },
+                    borderRadius: BorderRadius.circular(8),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: timeController.text == opt ? const Color(0xFFEFF6FF) : const Color(0xFFF1F5F9),
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: timeController.text == opt ? AppTheme.primaryBlue : const Color(0xFFE2E8F0)),
+                      ),
+                      child: Text(
+                        opt,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: timeController.text == opt ? AppTheme.primaryBlue : const Color(0xFF475569),
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() => _estimatedTime = null);
+                _saveChanges();
+                Navigator.pop(ctx);
+              },
+              child: const Text('Clear', style: TextStyle(color: Colors.red)),
+            ),
+            TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryBlue, foregroundColor: Colors.white),
+              onPressed: () {
+                setState(() => _estimatedTime = timeController.text.trim().isNotEmpty ? timeController.text.trim() : null);
+                _saveChanges();
+                Navigator.pop(ctx);
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   void _showNotesDialog() {
     final notesController = TextEditingController(text: _notes);
     showDialog(
@@ -261,15 +354,32 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                 ),
                 title: const Text('Photo / Image'),
                 subtitle: const Text('Attach photo or camera capture', style: TextStyle(fontSize: 12)),
-                onTap: () {
+                onTap: () async {
                   Navigator.pop(ctx);
-                  setState(() {
-                    _attachments.add('Photo_${DateTime.now().millisecondsSinceEpoch % 1000}.jpg');
-                  });
-                  _saveChanges();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Photo attached successfully!')),
-                  );
+                  try {
+                    final picker = ImagePicker();
+                    final XFile? image = await picker.pickImage(source: ImageSource.gallery, imageQuality: 85);
+                    if (image != null) {
+                      setState(() {
+                        _attachments.add(image.path);
+                      });
+                      _saveChanges();
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Attached image: ${image.name}'),
+                            backgroundColor: const Color(0xFF10B981),
+                          ),
+                        );
+                      }
+                    }
+                  } catch (e) {
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Could not pick image: $e'), backgroundColor: Colors.red),
+                      );
+                    }
+                  }
                 },
               ),
               ListTile(
@@ -280,15 +390,38 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                 ),
                 title: const Text('Document / PDF File'),
                 subtitle: const Text('Attach PDF, DOC, or Spreadsheet', style: TextStyle(fontSize: 12)),
-                onTap: () {
+                onTap: () async {
                   Navigator.pop(ctx);
-                  setState(() {
-                    _attachments.add('Document_${DateTime.now().millisecondsSinceEpoch % 1000}.pdf');
-                  });
-                  _saveChanges();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Document attached successfully!')),
-                  );
+                  try {
+                    final result = await FilePicker.platform.pickFiles(
+                      type: FileType.custom,
+                      allowedExtensions: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'txt', 'csv', 'png', 'jpg', 'jpeg'],
+                    );
+                    if (result != null && result.files.isNotEmpty) {
+                      final pickedPath = result.files.first.path;
+                      final pickedName = result.files.first.name;
+                      if (pickedPath != null) {
+                        setState(() {
+                          _attachments.add(pickedPath);
+                        });
+                        _saveChanges();
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Attached document: $pickedName'),
+                              backgroundColor: const Color(0xFF10B981),
+                            ),
+                          );
+                        }
+                      }
+                    }
+                  } catch (e) {
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Could not pick document: $e'), backgroundColor: Colors.red),
+                      );
+                    }
+                  }
                 },
               ),
               ListTile(
@@ -634,6 +767,14 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
             onTap: _pickDueDate,
           ),
 
+          // 1.5 Estimated Time / Duration
+          _buildPropertyTile(
+            icon: Icons.timer_outlined,
+            title: 'Estimated Time',
+            value: _estimatedTime != null && _estimatedTime!.isNotEmpty ? _estimatedTime! : 'Set Time',
+            onTap: _showEstimatedTimeDialog,
+          ),
+
           // 2. Time & Reminder
           _buildPropertyTile(
             icon: Icons.access_time_rounded,
@@ -736,43 +877,84 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
               padding: const EdgeInsets.only(top: 8),
               child: Column(
                 children: _attachments.map((file) {
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 6),
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF8FAFC),
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: const Color(0xFFE2E8F0)),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          file.endsWith('.jpg') || file.endsWith('.png')
-                              ? Icons.image_rounded
-                              : (file.endsWith('.pdf') ? Icons.picture_as_pdf_rounded : (file.startsWith('http') ? Icons.link_rounded : Icons.insert_drive_file_rounded)),
-                          color: AppTheme.primaryBlue,
-                          size: 20,
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            file,
-                            style: const TextStyle(fontSize: 13, color: Color(0xFF334155), fontWeight: FontWeight.w500),
-                            overflow: TextOverflow.ellipsis,
+                  final isImg = file.toLowerCase().endsWith('.jpg') || file.toLowerCase().endsWith('.jpeg') || file.toLowerCase().endsWith('.png');
+                  final isPdf = file.toLowerCase().endsWith('.pdf');
+                  final isUrl = file.startsWith('http://') || file.startsWith('https://');
+                  final displayName = isUrl ? file : file.split(Platform.isWindows ? '\\' : '/').last;
+
+                  return InkWell(
+                    onTap: () async {
+                      if (isUrl) {
+                        final uri = Uri.parse(file);
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri, mode: LaunchMode.externalApplication);
+                        }
+                      } else {
+                        // Open file preview / share
+                        final f = File(file);
+                        if (await f.exists()) {
+                          await Share.shareXFiles([XFile(file)], text: 'Attachment: $displayName');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('File path: $file')),
+                          );
+                        }
+                      }
+                    },
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      margin: const EdgeInsets.only(bottom: 6),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF8FAFC),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: const Color(0xFFE2E8F0)),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            isImg
+                                ? Icons.image_rounded
+                                : (isPdf
+                                    ? Icons.picture_as_pdf_rounded
+                                    : (isUrl ? Icons.link_rounded : Icons.insert_drive_file_rounded)),
+                            color: isImg
+                                ? const Color(0xFF3B82F6)
+                                : (isPdf
+                                    ? const Color(0xFFEF4444)
+                                    : (isUrl ? const Color(0xFFD97706) : const Color(0xFF10B981))),
+                            size: 22,
                           ),
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.close_rounded, size: 18, color: Color(0xFF94A3B8)),
-                          onPressed: () {
-                            setState(() {
-                              _attachments.remove(file);
-                            });
-                            _saveChanges();
-                          },
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(),
-                        ),
-                      ],
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  displayName,
+                                  style: const TextStyle(fontSize: 13, color: Color(0xFF1E293B), fontWeight: FontWeight.w600),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  isUrl ? 'Web Link' : (isImg ? 'Image attachment' : (isPdf ? 'PDF Document' : 'File attachment')),
+                                  style: const TextStyle(fontSize: 11, color: Color(0xFF64748B)),
+                                ),
+                              ],
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close_rounded, size: 18, color: Color(0xFF94A3B8)),
+                            onPressed: () {
+                              setState(() {
+                                _attachments.remove(file);
+                              });
+                              _saveChanges();
+                            },
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }).toList(),

@@ -38,6 +38,7 @@ class Task {
   int progress; // 0, 25, 50, 75, 100
   int flagColor; // 0=none, 1=pink, 2=yellow, 3=purple, 4=blue, 5=green
   String? assignedBy;
+  String? estimatedTime; // e.g. "2 hours", "45 mins", "1 day"
   String? voiceNoteUrl;
   int? voiceDurationSeconds;
 
@@ -57,6 +58,7 @@ class Task {
     this.progress = 0,
     this.flagColor = 0,
     this.assignedBy,
+    this.estimatedTime,
     this.voiceNoteUrl,
     this.voiceDurationSeconds,
   })  : subtasks = subtasks ?? [],
@@ -79,6 +81,7 @@ class Task {
         'progress': progress,
         'flagColor': flagColor,
         'assignedBy': assignedBy,
+        'estimatedTime': estimatedTime,
         'voiceNoteUrl': voiceNoteUrl,
         'voiceDurationSeconds': voiceDurationSeconds,
       };
@@ -111,6 +114,7 @@ class Task {
         progress: json['progress'] as int? ?? 0,
         flagColor: json['flagColor'] as int? ?? 0,
         assignedBy: json['assignedBy'] as String?,
+        estimatedTime: json['estimatedTime'] as String?,
         voiceNoteUrl: json['voiceNoteUrl'] as String?,
         voiceDurationSeconds: json['voiceDurationSeconds'] as int?,
       );
