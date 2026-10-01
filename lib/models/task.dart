@@ -41,6 +41,8 @@ class Task {
   String? estimatedTime; // e.g. "2 hours", "45 mins", "1 day"
   String? voiceNoteUrl;
   int? voiceDurationSeconds;
+  bool isDeleted;
+  DateTime? deletedAt;
 
   Task({
     required this.id,
@@ -61,6 +63,8 @@ class Task {
     this.estimatedTime,
     this.voiceNoteUrl,
     this.voiceDurationSeconds,
+    this.isDeleted = false,
+    this.deletedAt,
   })  : subtasks = subtasks ?? [],
         attachments = attachments ?? [],
         createdAt = createdAt ?? DateTime.now();
@@ -84,6 +88,8 @@ class Task {
         'estimatedTime': estimatedTime,
         'voiceNoteUrl': voiceNoteUrl,
         'voiceDurationSeconds': voiceDurationSeconds,
+        'isDeleted': isDeleted,
+        'deletedAt': deletedAt?.toIso8601String(),
       };
 
   factory Task.fromJson(Map<String, dynamic> json) => Task(
@@ -117,5 +123,9 @@ class Task {
         estimatedTime: json['estimatedTime'] as String?,
         voiceNoteUrl: json['voiceNoteUrl'] as String?,
         voiceDurationSeconds: json['voiceDurationSeconds'] as int?,
+        isDeleted: json['isDeleted'] as bool? ?? false,
+        deletedAt: json['deletedAt'] != null
+            ? DateTime.parse(json['deletedAt'] as String)
+            : null,
       );
 }

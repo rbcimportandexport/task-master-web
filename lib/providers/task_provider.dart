@@ -34,7 +34,8 @@ class TaskProvider extends ChangeNotifier {
 
   Color _selectedThemeColor = const Color(0xFF3B82F6);
 
-  List<Task> get tasks => _tasks;
+  List<Task> get tasks => _tasks.where((t) => !t.isDeleted).toList();
+  List<Task> get deletedTasks => _tasks.where((t) => t.isDeleted).toList();
   List<CategoryItem> get categories => _categories;
   String get selectedCategory => _selectedCategory;
   DateTime get selectedCalendarDate => _selectedCalendarDate;
@@ -356,11 +357,12 @@ class TaskProvider extends ChangeNotifier {
   }
 
   List<Task> get filteredTasks {
+    final activeTasks = _tasks.where((t) => !t.isDeleted).toList();
     List<Task> list;
     if (_selectedCategory == 'All') {
-      list = List.from(_tasks);
+      list = List.from(activeTasks);
     } else {
-      list = _tasks.where((t) => t.category.toLowerCase() == _selectedCategory.toLowerCase()).toList();
+      list = activeTasks.where((t) => t.category.toLowerCase() == _selectedCategory.toLowerCase()).toList();
     }
 
     if (_filterStatus == 'pending') {
@@ -386,6 +388,7 @@ class TaskProvider extends ChangeNotifier {
 
   List<Task> tasksForDate(DateTime date) {
     return _tasks.where((t) {
+      if (t.isDeleted) return false;
       if (t.dueDate == null) return false;
       return t.dueDate!.year == date.year &&
           t.dueDate!.month == date.month &&
@@ -393,9 +396,9 @@ class TaskProvider extends ChangeNotifier {
     }).toList();
   }
 
-  int get completedTasksCount => _tasks.where((t) => t.isCompleted).length;
-  int get pendingTasksCount => _tasks.where((t) => !t.isCompleted).length;
-  List<Task> get starredTasks => _tasks.where((t) => t.isStarred).toList();
+  int get completedTasksCount => _tasks.where((t) => !t.isDeleted && t.isCompleted).length;
+  int get pendingTasksCount => _tasks.where((t) => !t.isDeleted && !t.isCompleted).length;
+  List<Task> get starredTasks => _tasks.where((t) => !t.isDeleted && t.isStarred).toList();
 
   void addTask({
     required String title,
@@ -448,8 +451,37 @@ class TaskProvider extends ChangeNotifier {
   }
 
   void deleteTask(String id) {
+    final index = _tasks.indexWhere((t) => t.id == id);
+    if (index != -1) {
+      _tasks[index].isDeleted = true;
+      _tasks[index].deletedAt = DateTime.now();
+      _saveTaskToFirestore(_tasks[index]);
+      notifyListeners();
+    }
+  }
+
+  void restoreTask(String id) {
+    final index = _tasks.indexWhere((t) => t.id == id);
+    if (index != -1) {
+      _tasks[index].isDeleted = false;
+      _tasks[index].deletedAt = null;
+      _saveTaskToFirestore(_tasks[index]);
+      notifyListeners();
+    }
+  }
+
+  void permanentlyDeleteTask(String id) {
     _tasks.removeWhere((t) => t.id == id);
     _deleteTaskFromFirestore(id);
+    notifyListeners();
+  }
+
+  void emptyRecycleBin() {
+    final toDelete = _tasks.where((t) => t.isDeleted).map((t) => t.id).toList();
+    for (var id in toDelete) {
+      _deleteTaskFromFirestore(id);
+    }
+    _tasks.removeWhere((t) => t.isDeleted);
     notifyListeners();
   }
 

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -353,7 +352,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                   child: const Icon(Icons.image_outlined, color: Color(0xFF3B82F6)),
                 ),
                 title: const Text('Photo / Image'),
-                subtitle: const Text('Attach photo or camera capture', style: TextStyle(fontSize: 12)),
+                subtitle: const Text('Attach photo or gallery image', style: TextStyle(fontSize: 12)),
                 onTap: () async {
                   Navigator.pop(ctx);
                   try {
@@ -388,37 +387,32 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                   decoration: BoxDecoration(color: const Color(0xFFECFDF5), borderRadius: BorderRadius.circular(10)),
                   child: const Icon(Icons.description_outlined, color: Color(0xFF10B981)),
                 ),
-                title: const Text('Document / PDF File'),
-                subtitle: const Text('Attach PDF, DOC, or Spreadsheet', style: TextStyle(fontSize: 12)),
+                title: const Text('Document / PDF / Media File'),
+                subtitle: const Text('Attach document, PDF, or file capture', style: TextStyle(fontSize: 12)),
                 onTap: () async {
                   Navigator.pop(ctx);
                   try {
-                    final result = await FilePicker.platform.pickFiles(
-                      type: FileType.custom,
-                      allowedExtensions: ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'txt', 'csv', 'png', 'jpg', 'jpeg'],
-                    );
-                    if (result != null && result.files.isNotEmpty) {
-                      final pickedPath = result.files.first.path;
-                      final pickedName = result.files.first.name;
-                      if (pickedPath != null) {
-                        setState(() {
-                          _attachments.add(pickedPath);
-                        });
-                        _saveChanges();
-                        if (mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Attached document: $pickedName'),
-                              backgroundColor: const Color(0xFF10B981),
-                            ),
-                          );
-                        }
+                    // Try picking via ImagePicker as media first or FilePicker
+                    final picker = ImagePicker();
+                    final XFile? file = await picker.pickMedia();
+                    if (file != null) {
+                      setState(() {
+                        _attachments.add(file.path);
+                      });
+                      _saveChanges();
+                      if (mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Attached file: ${file.name}'),
+                            backgroundColor: const Color(0xFF10B981),
+                          ),
+                        );
                       }
                     }
                   } catch (e) {
                     if (mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Could not pick document: $e'), backgroundColor: Colors.red),
+                        SnackBar(content: Text('Could not pick file: $e'), backgroundColor: Colors.red),
                       );
                     }
                   }

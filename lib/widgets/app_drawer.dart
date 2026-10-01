@@ -16,6 +16,7 @@ import '../screens/attendance_screen.dart';
 import '../screens/notifications_screen.dart';
 import '../screens/leaves_screen.dart';
 import '../screens/profile_screen.dart';
+import '../screens/recycle_bin_screen.dart';
 import 'assign_task_sheet.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -453,6 +454,21 @@ class _AppDrawerState extends State<AppDrawer> {
             onTap: () {
               Navigator.pop(context);
               _showFaqDialog(context);
+            },
+          ),
+
+          // 7. Recycle Bin (Restore Deleted Tasks)
+          _buildDrawerItem(
+            icon: Icons.delete_outline_rounded,
+            iconColor: const Color(0xFFEF4444),
+            title: 'Recycle Bin',
+            badgeCount: taskProvider.deletedTasks.length,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const RecycleBinScreen()),
+              );
             },
           ),
 
