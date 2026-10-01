@@ -263,16 +263,16 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         backgroundColor: isDesktop ? const Color(0xFFF8FAFC) : AppTheme.background,
         appBar: AppBar(
           title: Text(
-            'Attendance & Timesheet',
+            'Attendance',
             style: TextStyle(
               color: AppTheme.textPrimary,
               fontWeight: FontWeight.w800,
-              fontSize: isDesktop ? 22 : 18,
+              fontSize: isDesktop ? 20 : 17,
             ),
           ),
           backgroundColor: Colors.white,
           elevation: isDesktop ? 1 : 0,
-          centerTitle: !isDesktop,
+          centerTitle: false,
           iconTheme: const IconThemeData(color: AppTheme.textPrimary),
           actions: [
             if (role == 'super_admin' || role == 'manager')

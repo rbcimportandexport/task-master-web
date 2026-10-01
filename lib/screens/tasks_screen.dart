@@ -385,7 +385,7 @@ class _TasksScreenState extends State<TasksScreen> {
     final isMultiSelect = taskProvider.isMultiSelectMode;
     final isAll = currentCategory.toLowerCase() == 'all';
 
-    final isDesktop = MediaQuery.of(context).size.width >= 850;
+    final isDesktop = MediaQuery.of(context).size.width >= 900;
 
     return Scaffold(
       backgroundColor: isDesktop ? const Color(0xFFF8FAFC) : Colors.white,
@@ -395,12 +395,12 @@ class _TasksScreenState extends State<TasksScreen> {
             child: Container(
               width: double.infinity,
               height: double.infinity,
-              padding: isDesktop ? const EdgeInsets.fromLTRB(28, 20, 28, 20) : EdgeInsets.zero,
+              padding: isDesktop ? const EdgeInsets.fromLTRB(20, 16, 20, 16) : EdgeInsets.zero,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (isDesktop) ...[
-                    // Desktop Header Bar (Extra Large & Imposing)
+                    // Desktop Header Bar (Compact & Sleek)
                     Row(
                       children: [
                         Column(
@@ -409,19 +409,19 @@ class _TasksScreenState extends State<TasksScreen> {
                             Text(
                               isAll ? 'All Tasks' : currentCategory,
                               style: const TextStyle(
-                                fontSize: 38,
+                                fontSize: 24,
                                 fontWeight: FontWeight.w900,
                                 color: Color(0xFF0F172A),
-                                letterSpacing: -1.0,
+                                letterSpacing: -0.5,
                               ),
                             ),
-                            const SizedBox(height: 8),
+                            const SizedBox(height: 4),
                             Text(
                               '${taskProvider.pendingTasksCount} pending tasks • ${taskProvider.completedTasksCount} completed',
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 13,
                                 color: Color(0xFF64748B),
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w600,
                               ),
                             ),
                           ],
@@ -436,152 +436,152 @@ class _TasksScreenState extends State<TasksScreen> {
                             );
                           },
                           style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.8),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
+                            side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.2),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                           ),
-                          icon: const Icon(Icons.search, size: 24, color: Color(0xFF475569)),
-                          label: const Text('Search tasks...', style: TextStyle(color: Color(0xFF475569), fontSize: 17, fontWeight: FontWeight.w600)),
+                          icon: const Icon(Icons.search, size: 18, color: Color(0xFF475569)),
+                          label: const Text('Search tasks...', style: TextStyle(color: Color(0xFF475569), fontSize: 13, fontWeight: FontWeight.w600)),
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 10),
                         // Filter button
                         OutlinedButton.icon(
                           onPressed: () => _showFilterDialog(taskProvider),
                           style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.8),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
+                            side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.2),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                           ),
-                          icon: const Icon(Icons.filter_list_rounded, size: 24, color: Color(0xFF475569)),
+                          icon: const Icon(Icons.filter_list_rounded, size: 18, color: Color(0xFF475569)),
                           label: Text(
                             taskProvider.filterStatus.toUpperCase(),
-                            style: const TextStyle(color: Color(0xFF1E293B), fontSize: 16, fontWeight: FontWeight.w800),
+                            style: const TextStyle(color: Color(0xFF1E293B), fontSize: 12, fontWeight: FontWeight.w800),
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 10),
                         // Sort Button
                         IconButton(
-                          icon: const Icon(Icons.sort_rounded, color: Color(0xFF475569), size: 30),
+                          icon: const Icon(Icons.sort_rounded, color: Color(0xFF475569), size: 22),
                           tooltip: 'Sort tasks',
                           onPressed: _showSortDialog,
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 14),
 
-                    // Quick Desktop Metric Cards (Dashboard Web Feel)
+                    // Quick Desktop Metric Cards
                     Row(
                       children: [
                         Expanded(
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(12),
                               border: Border.all(color: const Color(0xFFE2E8F0)),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withValues(alpha: 0.02),
-                                  blurRadius: 10,
-                                  offset: const Offset(0, 3),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
                                 ),
                               ],
                             ),
                             child: Row(
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.all(12),
+                                  padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFEEF2FF),
-                                    borderRadius: BorderRadius.circular(14),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: const Icon(Icons.assignment_rounded, color: Color(0xFF4F46E5), size: 28),
+                                  child: const Icon(Icons.assignment_rounded, color: Color(0xFF4F46E5), size: 20),
                                 ),
-                                const SizedBox(width: 16),
+                                const SizedBox(width: 12),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text('Total Tasks', style: TextStyle(fontSize: 14, color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
-                                    const SizedBox(height: 4),
-                                    Text('${tasks.length}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Color(0xFF0F172A))),
+                                    const Text('Total Tasks', style: TextStyle(fontSize: 11, color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
+                                    const SizedBox(height: 2),
+                                    Text('${tasks.length}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF0F172A))),
                                   ],
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(12),
                               border: Border.all(color: const Color(0xFFE2E8F0)),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withValues(alpha: 0.02),
-                                  blurRadius: 10,
-                                  offset: const Offset(0, 3),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
                                 ),
                               ],
                             ),
                             child: Row(
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.all(12),
+                                  padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFFEF3C7),
-                                    borderRadius: BorderRadius.circular(14),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: const Icon(Icons.pending_actions_rounded, color: Color(0xFFD97706), size: 28),
+                                  child: const Icon(Icons.pending_actions_rounded, color: Color(0xFFD97706), size: 20),
                                 ),
-                                const SizedBox(width: 16),
+                                const SizedBox(width: 12),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text('Pending Tasks', style: TextStyle(fontSize: 14, color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
-                                    const SizedBox(height: 4),
-                                    Text('${taskProvider.pendingTasksCount}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Color(0xFF0F172A))),
+                                    const Text('Pending Tasks', style: TextStyle(fontSize: 11, color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
+                                    const SizedBox(height: 2),
+                                    Text('${taskProvider.pendingTasksCount}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF0F172A))),
                                   ],
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        const SizedBox(width: 16),
+                        const SizedBox(width: 12),
                         Expanded(
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
+                              borderRadius: BorderRadius.circular(12),
                               border: Border.all(color: const Color(0xFFE2E8F0)),
                               boxShadow: [
                                 BoxShadow(
                                   color: Colors.black.withValues(alpha: 0.02),
-                                  blurRadius: 10,
-                                  offset: const Offset(0, 3),
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 2),
                                 ),
                               ],
                             ),
                             child: Row(
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.all(12),
+                                  padding: const EdgeInsets.all(8),
                                   decoration: BoxDecoration(
                                     color: const Color(0xFFDCFCE7),
-                                    borderRadius: BorderRadius.circular(14),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: const Icon(Icons.check_circle_rounded, color: Color(0xFF16A34A), size: 28),
+                                  child: const Icon(Icons.check_circle_rounded, color: Color(0xFF16A34A), size: 20),
                                 ),
-                                const SizedBox(width: 16),
+                                const SizedBox(width: 12),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text('Completed Tasks', style: TextStyle(fontSize: 14, color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
-                                    const SizedBox(height: 4),
-                                    Text('${taskProvider.completedTasksCount}', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: Color(0xFF0F172A))),
+                                    const Text('Completed Tasks', style: TextStyle(fontSize: 11, color: Color(0xFF64748B), fontWeight: FontWeight.w600)),
+                                    const SizedBox(height: 2),
+                                    Text('${taskProvider.completedTasksCount}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: Color(0xFF0F172A))),
                                   ],
                                 ),
                               ],
@@ -590,7 +590,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 14),
                   ],
             // Top Bar: Categories horizontally scrollable + 3-dots popup menu
             if (isMultiSelect)
@@ -627,15 +627,15 @@ class _TasksScreenState extends State<TasksScreen> {
                 child: Row(
                   children: [
                     
-                    // Categories Scrollable List (Extra Large Pills)
+                    // Categories Scrollable List
                     Expanded(
                       child: SizedBox(
-                        height: isDesktop ? 60 : 44,
+                        height: isDesktop ? 42 : 40,
                         child: ListView.separated(
-                          physics: const BouncingScrollPhysics(),
+                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount: taskProvider.categories.length,
-                          separatorBuilder: (context, index) => SizedBox(width: isDesktop ? 16 : 10),
+                          separatorBuilder: (context, index) => SizedBox(width: isDesktop ? 10 : 8),
                           itemBuilder: (context, index) {
                             final cat = taskProvider.categories[index];
                             final isSelected = cat.name.toLowerCase() == currentCategory.toLowerCase();
@@ -644,22 +644,22 @@ class _TasksScreenState extends State<TasksScreen> {
                               onTap: () {
                                 taskProvider.setSelectedCategory(cat.name);
                               },
-                              borderRadius: BorderRadius.circular(30),
+                              borderRadius: BorderRadius.circular(24),
                               mouseCursor: SystemMouseCursors.click,
                               child: Container(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: isDesktop ? 34 : 24,
-                                  vertical: isDesktop ? 14 : 10,
+                                  horizontal: isDesktop ? 20 : 18,
+                                  vertical: isDesktop ? 8 : 8,
                                 ),
                                 decoration: BoxDecoration(
                                   color: isSelected ? AppTheme.chipActiveBg : AppTheme.chipInactiveBg,
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(24),
                                   boxShadow: isSelected && isDesktop
                                       ? [
                                           BoxShadow(
-                                            color: AppTheme.primaryBlue.withValues(alpha: 0.35),
-                                            blurRadius: 14,
-                                            offset: const Offset(0, 5),
+                                            color: AppTheme.primaryBlue.withValues(alpha: 0.25),
+                                            blurRadius: 8,
+                                            offset: const Offset(0, 3),
                                           )
                                         ]
                                       : null,
@@ -669,8 +669,8 @@ class _TasksScreenState extends State<TasksScreen> {
                                   cat.name,
                                   style: TextStyle(
                                     color: isSelected ? Colors.white : AppTheme.chipInactiveText,
-                                    fontSize: isDesktop ? 20 : 15,
-                                    fontWeight: isSelected ? FontWeight.w900 : FontWeight.w700,
+                                    fontSize: isDesktop ? 14 : 14,
+                                    fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
                                   ),
                                 ),
                               ),
@@ -990,73 +990,73 @@ class _TasksScreenState extends State<TasksScreen> {
       builder: (context, constraints) {
         final screenHeight = MediaQuery.of(context).size.height;
         final illustrationSize = isDesktop
-            ? (screenHeight * 0.40).clamp(340.0, 520.0)
-            : (screenHeight * 0.32).clamp(240.0, 380.0);
+            ? (screenHeight * 0.28).clamp(200.0, 280.0)
+            : (screenHeight * 0.28).clamp(200.0, 300.0);
 
         return SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: Center(
               child: Container(
-                constraints: BoxConstraints(maxWidth: isDesktop ? 900 : 700),
+                constraints: BoxConstraints(maxWidth: isDesktop ? 600 : 500),
                 padding: EdgeInsets.symmetric(
-                  horizontal: isDesktop ? 48 : 32,
-                  vertical: isDesktop ? 60 : 40,
+                  horizontal: isDesktop ? 24 : 20,
+                  vertical: isDesktop ? 28 : 24,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Dynamic Auto-Scaling Illustration (Bigger Scale)
+                    // Dynamic Auto-Scaling Illustration
                     if (isAll)
                       PersonWithPhoneIllustration(size: illustrationSize)
                     else
                       GirlWithLaptopIllustration(size: illustrationSize),
 
-                    SizedBox(height: isDesktop ? 36 : 28),
+                    SizedBox(height: isDesktop ? 20 : 18),
 
                     Text(
                       isAll ? 'No Tasks in Workspace' : 'No tasks in "$currentCategory"',
                       style: TextStyle(
-                        fontSize: isDesktop ? 34 : 28,
+                        fontSize: isDesktop ? 22 : 20,
                         fontWeight: FontWeight.w900,
                         color: const Color(0xFF0F172A),
-                        letterSpacing: -0.8,
+                        letterSpacing: -0.5,
                       ),
                     ),
-                    SizedBox(height: isDesktop ? 16 : 12),
+                    SizedBox(height: isDesktop ? 8 : 8),
                     Text(
                       isAll
                           ? 'Your workspace is all clear! Create your first task to plan, track, and manage your day effortlessly.'
                           : 'Add tasks to this category or select "All" from the categories above.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: isDesktop ? 20 : 17,
+                        fontSize: isDesktop ? 14 : 14,
                         color: const Color(0xFF64748B),
-                        height: 1.6,
+                        height: 1.5,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(height: isDesktop ? 40 : 32),
+                    SizedBox(height: isDesktop ? 20 : 20),
                     ElevatedButton.icon(
                       onPressed: () => _openAddTaskModal(context),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppTheme.primaryBlue,
                         foregroundColor: Colors.white,
                         padding: EdgeInsets.symmetric(
-                          horizontal: isDesktop ? 48 : 36,
-                          vertical: isDesktop ? 24 : 20,
+                          horizontal: isDesktop ? 28 : 24,
+                          vertical: isDesktop ? 14 : 12,
                         ),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-                        elevation: 8,
-                        shadowColor: AppTheme.primaryBlue.withValues(alpha: 0.45),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                        elevation: 4,
+                        shadowColor: AppTheme.primaryBlue.withValues(alpha: 0.35),
                       ),
-                      icon: Icon(Icons.add_rounded, size: isDesktop ? 32 : 28),
+                      icon: Icon(Icons.add_rounded, size: isDesktop ? 20 : 20),
                       label: Text(
                         'Create New Task',
                         style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: isDesktop ? 22 : 18,
+                          fontWeight: FontWeight.w800,
+                          fontSize: isDesktop ? 15 : 15,
                         ),
                       ),
                     ),

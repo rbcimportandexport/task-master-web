@@ -58,11 +58,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final isDesktop = kIsWeb ||
-        Theme.of(context).platform == TargetPlatform.windows ||
-        Theme.of(context).platform == TargetPlatform.macOS ||
-        Theme.of(context).platform == TargetPlatform.linux ||
-        screenWidth >= 768;
+    // Responsive desktop breakpoint: If screen width >= 900, render desktop sidebar layout.
+    // On phones / mobile browsers (width < 900), always render clean native mobile layout.
+    final isDesktop = screenWidth >= 900;
 
     if (isDesktop) {
       return _buildDesktopLayout(context);
@@ -77,14 +75,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     final isManagerOrAdmin = taskProvider.userRole.toLowerCase() == 'manager' ||
         taskProvider.userRole.toLowerCase() == 'super admin';
     final screenWidth = MediaQuery.of(context).size.width;
-    // Auto-adjust sidebar width dynamically from 360 to 480 for prominent, clear desktop proportions
-    final sidebarWidth = (screenWidth * 0.24).clamp(360.0, 480.0);
+    // Auto-adjust sidebar width dynamically from 260 to 300 for crisp, standard desktop proportions
+    final sidebarWidth = (screenWidth * 0.20).clamp(260.0, 300.0);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       body: Row(
         children: [
-          // 1. Sleek Left Desktop Sidebar (Noticeably Large, Spacious & Bold)
+          // 1. Sleek Left Desktop Sidebar (Clean, Compact & Modern)
           Container(
             width: sidebarWidth,
             decoration: BoxDecoration(
@@ -94,58 +92,58 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.04),
-                  blurRadius: 20,
-                  offset: const Offset(4, 0),
+                  color: Colors.black.withValues(alpha: 0.03),
+                  blurRadius: 16,
+                  offset: const Offset(2, 0),
                 ),
               ],
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Workspace Brand Header (Large)
+                // Workspace Brand Header
                 Container(
-                  padding: const EdgeInsets.fromLTRB(32, 36, 32, 32),
+                  padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
                   child: Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
                             colors: [Color(0xFF3B82F6), Color(0xFF6366F1)],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(14),
                           boxShadow: [
                             BoxShadow(
-                              color: const Color(0xFF3B82F6).withValues(alpha: 0.35),
-                              blurRadius: 16,
-                              offset: const Offset(0, 6),
+                              color: const Color(0xFF3B82F6).withValues(alpha: 0.30),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
                             ),
                           ],
                         ),
-                        child: const Icon(Icons.check_circle_outline_rounded, color: Colors.white, size: 36),
+                        child: const Icon(Icons.check_circle_outline_rounded, color: Colors.white, size: 24),
                       ),
-                      const SizedBox(width: 18),
+                      const SizedBox(width: 12),
                       const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Task Master',
                             style: TextStyle(
-                              fontSize: 28,
+                              fontSize: 18,
                               fontWeight: FontWeight.w900,
                               color: Color(0xFF0F172A),
-                              letterSpacing: -0.8,
+                              letterSpacing: -0.5,
                             ),
                           ),
-                          SizedBox(height: 4),
+                          SizedBox(height: 2),
                           Text(
                             'Warehouse Workspace',
                             style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
                               color: Color(0xFF64748B),
                             ),
                           ),
@@ -157,25 +155,25 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
                 const Divider(height: 1, color: Color(0xFFF1F5F9)),
 
-                // Quick Action: Add Task / Assign Task Button (Extra Large & Imposing)
+                // Quick Action: Add Task / Assign Task Button
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(28, 28, 28, 20),
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
                   child: ElevatedButton.icon(
                     onPressed: _openAddTaskModal,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppTheme.primaryBlue,
                       foregroundColor: Colors.white,
-                      elevation: 6,
-                      shadowColor: AppTheme.primaryBlue.withValues(alpha: 0.40),
-                      minimumSize: const Size(double.infinity, 64),
+                      elevation: 3,
+                      shadowColor: AppTheme.primaryBlue.withValues(alpha: 0.35),
+                      minimumSize: const Size(double.infinity, 48),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    icon: const Icon(Icons.add_rounded, size: 32),
+                    icon: const Icon(Icons.add_rounded, size: 22),
                     label: const Text(
                       'Create Task',
-                      style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+                      style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
                     ),
                   ),
                 ),
@@ -183,16 +181,16 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 // Main Nav List
                 Expanded(
                   child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                     children: [
                       const Padding(
-                        padding: EdgeInsets.fromLTRB(14, 14, 14, 8),
+                        padding: EdgeInsets.fromLTRB(10, 8, 10, 4),
                         child: Text(
                           'MAIN NAVIGATION',
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 11,
                             fontWeight: FontWeight.w800,
-                            letterSpacing: 1.0,
+                            letterSpacing: 0.8,
                             color: Color(0xFF94A3B8),
                           ),
                         ),
@@ -217,15 +215,15 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                         onTap: () => setState(() => _currentIndex = 2),
                       ),
 
-                      const SizedBox(height: 18),
+                      const SizedBox(height: 12),
                       const Padding(
-                        padding: EdgeInsets.fromLTRB(14, 14, 14, 8),
+                        padding: EdgeInsets.fromLTRB(10, 8, 10, 4),
                         child: Text(
                           'OPERATIONS & HR',
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 11,
                             fontWeight: FontWeight.w800,
-                            letterSpacing: 1.0,
+                            letterSpacing: 0.8,
                             color: Color(0xFF94A3B8),
                           ),
                         ),
@@ -355,7 +353,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                   ),
                 ),
 
-                // User profile footer (Noticeably Large & Clickable)
+                // User profile footer (Compact & Sleek)
                 Material(
                   color: const Color(0xFFF8FAFC),
                   child: InkWell(
@@ -371,7 +369,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                     },
                     hoverColor: const Color(0xFFEFF6FF),
                     child: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                       decoration: const BoxDecoration(
                         border: Border(
                           top: BorderSide(color: Color(0xFFE2E8F0)),
@@ -380,20 +378,20 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                       child: Row(
                         children: [
                           Container(
-                            width: 52,
-                            height: 52,
+                            width: 38,
+                            height: 38,
                             decoration: BoxDecoration(
                               color: const Color(0xFFEEF2FF),
                               shape: BoxShape.circle,
-                              border: Border.all(color: const Color(0xFFC7D2FE), width: 2),
+                              border: Border.all(color: const Color(0xFFC7D2FE), width: 1.5),
                             ),
                             child: taskProvider.isLoggedIn && taskProvider.userProfilePic.isNotEmpty
                                 ? ClipOval(
                                     child: Image.memory(
                                       base64Decode(taskProvider.userProfilePic),
                                       fit: BoxFit.cover,
-                                      width: 52,
-                                      height: 52,
+                                      width: 38,
+                                      height: 38,
                                     ),
                                   )
                                 : Center(
@@ -402,14 +400,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                                           ? taskProvider.userName[0].toUpperCase()
                                           : 'U',
                                       style: const TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 22,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 16,
                                         color: AppTheme.primaryBlue,
                                       ),
                                     ),
                                   ),
                           ),
-                          const SizedBox(width: 14),
+                          const SizedBox(width: 10),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -418,8 +416,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                                 Text(
                                   taskProvider.isLoggedIn ? taskProvider.userName : 'Guest User',
                                   style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w900,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w800,
                                     color: Color(0xFF0F172A),
                                   ),
                                   maxLines: 1,
@@ -429,7 +427,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                                 Text(
                                   taskProvider.isLoggedIn ? taskProvider.userRole.toUpperCase() : 'TAP TO LOG IN',
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w700,
                                     color: taskProvider.isLoggedIn ? const Color(0xFF64748B) : AppTheme.primaryBlue,
                                   ),
@@ -437,10 +435,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                               ],
                             ),
                           ),
-                          Icon(
+                          const Icon(
                             Icons.chevron_right_rounded,
-                            size: 22,
-                            color: const Color(0xFF94A3B8),
+                            size: 18,
+                            color: Color(0xFF94A3B8),
                           ),
                         ],
                       ),
@@ -493,45 +491,45 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     final bgColor = isSelected ? const Color(0xFFEEF2FF) : Colors.transparent;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+      margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
       child: Material(
         color: bgColor,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         child: InkWell(
           onTap: onTap,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
           hoverColor: const Color(0xFFF1F5F9),
           splashColor: AppTheme.primaryBlue.withValues(alpha: 0.1),
           highlightColor: AppTheme.primaryBlue.withValues(alpha: 0.05),
           mouseCursor: SystemMouseCursors.click,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
             child: Row(
               children: [
-                Icon(icon, color: color, size: 32),
-                const SizedBox(width: 18),
+                Icon(icon, color: color, size: 20),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Text(
                     label,
                     style: TextStyle(
                       color: isSelected ? activeColor : const Color(0xFF1E293B),
-                      fontSize: 19,
-                      fontWeight: isSelected ? FontWeight.w900 : FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
                     ),
                   ),
                 ),
                 if (badgeCount != null && badgeCount > 0)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
                       color: isSelected ? activeColor : const Color(0xFFE2E8F0),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
                       badgeCount.toString(),
                       style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w900,
+                        fontSize: 11,
+                        fontWeight: FontWeight.w800,
                         color: isSelected ? Colors.white : const Color(0xFF475569),
                       ),
                     ),
@@ -548,27 +546,12 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   Widget _buildMobileLayout(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: AppTheme.background,
+      backgroundColor: Colors.white,
       extendBody: true,
       drawer: const AppDrawer(),
-      body: Center(
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 600),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
-                blurRadius: 24,
-                offset: const Offset(0, 0),
-              ),
-            ],
-          ),
-          child: IndexedStack(
-            index: _currentIndex.clamp(0, _mobileScreens.length - 1),
-            children: _mobileScreens,
-          ),
-        ),
+      body: IndexedStack(
+        index: _currentIndex.clamp(0, _mobileScreens.length - 1),
+        children: _mobileScreens,
       ),
       floatingActionButton: _currentIndex != 2
           ? Padding(
