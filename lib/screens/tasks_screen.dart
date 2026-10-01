@@ -6,7 +6,6 @@ import '../models/task.dart';
 import '../models/category.dart';
 import '../theme/app_theme.dart';
 import '../widgets/custom_illustrations.dart';
-import '../widgets/speech_bubble_tooltip.dart';
 import '../widgets/pie_progress_indicator.dart';
 import '../widgets/task_add_sheet.dart';
 import '../widgets/task_coachmark_overlay.dart';
@@ -993,16 +992,6 @@ class _TasksScreenState extends State<TasksScreen> {
           onDismiss: () {
             setState(() => _showCoachmark = false);
           },
-        ),
-
-      if (tasks.isEmpty && isAll && !isDesktop)
-        Positioned(
-          bottom: 96,
-          right: 16,
-          child: SpeechBubbleTooltip(
-            text: 'Click here to create your first task.',
-            onTap: () => _openAddTaskModal(context),
-          ),
         ),
     ],              // closes Stack children
   ),                // closes Stack
