@@ -12,6 +12,7 @@ import 'package:csv/csv.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import '../widgets/super_admin_attendance_flow.dart';
+import 'leaves_screen.dart';
 
 class AttendanceScreen extends StatefulWidget {
   const AttendanceScreen({super.key});
@@ -192,6 +193,80 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     }
   }
 
+  Future<void> _handleHourlyLeaveOut(TaskProvider taskProvider) async {
+    setState(() => _isLoading = true);
+    try {
+      double lat = 0.0;
+      double lng = 0.0;
+      try {
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.medium,
+          timeLimit: const Duration(seconds: 5),
+        );
+        lat = position.latitude;
+        lng = position.longitude;
+      } catch (_) {}
+
+      await taskProvider.punchHourlyLeaveOut(lat, lng);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Punched Out for Hourly Leave! Have a safe break.'),
+            backgroundColor: Color(0xFF6366F1),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Hourly Leave Punch Out Error: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _handleHourlyLeaveIn(TaskProvider taskProvider) async {
+    setState(() => _isLoading = true);
+    try {
+      double lat = 0.0;
+      double lng = 0.0;
+      try {
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.medium,
+          timeLimit: const Duration(seconds: 5),
+        );
+        lat = position.latitude;
+        lng = position.longitude;
+      } catch (_) {}
+
+      await taskProvider.punchHourlyLeaveIn(lat, lng);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Punched In! Welcome back from Hourly Leave.'),
+            backgroundColor: Color(0xFF10B981),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Hourly Leave Punch In Error: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
   Future<void> _exportAttendanceCsv(BuildContext context, TaskProvider taskProvider) async {
     try {
       final snapshot = await FirebaseFirestore.instance.collection('attendance').get();
@@ -255,7 +330,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     final taskProvider = context.watch<TaskProvider>();
     final role = taskProvider.userRole;
 
-    final isDesktop = MediaQuery.of(context).size.width >= 850;
+    final isDesktop = MediaQuery.of(context).size.width >= 950;
 
     return DefaultTabController(
       length: (role == 'super_admin') ? 3 : (role == 'manager' ? 3 : 2),
@@ -337,119 +412,436 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   }
 
   Widget _buildMyAttendance(BuildContext context, TaskProvider taskProvider) {
-    final isDesktop = MediaQuery.of(context).size.width >= 850;
+    final isDesktop = MediaQuery.of(context).size.width >= 950;
 
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.all(isDesktop ? 20 : 16),
-          padding: EdgeInsets.symmetric(horizontal: isDesktop ? 36 : 20, vertical: isDesktop ? 32 : 20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(isDesktop ? 22 : 18),
-            border: Border.all(color: const Color(0xFFE2E8F0)),
-            boxShadow: [
-              BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 16, offset: const Offset(0, 4)),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: taskProvider.getTodayAttendanceStream(),
+      builder: (context, todaySnap) {
+        final todayData = todaySnap.data?.data();
+        final hasCheckIn = todayData?['checkIn'] != null;
+        final hasCheckOut = todayData?['checkOut'] != null;
+        final onHourlyLeave = todayData?['onHourlyLeave'] == true;
+        final durationMode = todayData?['durationMode'] as String?;
+        final halfDayType = todayData?['halfDayType'] as String?;
+        final hourlyHours = todayData?['hourlyHours'];
+        final hourlyTimeSlot = todayData?['hourlyTimeSlot'] as String?;
+        final leaveStatus = todayData?['leaveStatus'] as String?;
+        final inTs = todayData?['checkIn'] as Timestamp?;
+        final outTs = todayData?['checkOut'] as Timestamp?;
+
+        return Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(isDesktop ? 20 : 16),
+              padding: EdgeInsets.symmetric(horizontal: isDesktop ? 36 : 20, vertical: isDesktop ? 30 : 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(isDesktop ? 22 : 18),
+                border: Border.all(color: const Color(0xFFE2E8F0)),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 16, offset: const Offset(0, 4)),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        'Mark Today\'s Attendance',
-                        style: TextStyle(fontSize: isDesktop ? 24 : 18, fontWeight: FontWeight.w900, color: const Color(0xFF0F172A)),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Mark Today\'s Attendance',
+                              style: TextStyle(fontSize: isDesktop ? 24 : 18, fontWeight: FontWeight.w900, color: const Color(0xFF0F172A)),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'Record your presence with GPS verification & selfie punch',
+                              style: TextStyle(fontSize: isDesktop ? 15 : 12, color: Colors.grey.shade600, fontWeight: FontWeight.w500),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Record your presence with GPS verification & selfie punch',
-                        style: TextStyle(fontSize: isDesktop ? 15 : 13, color: Colors.grey.shade600, fontWeight: FontWeight.w500),
-                      ),
+                      if (isDesktop)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEEF2FF),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.access_time_filled_rounded, size: 20, color: Color(0xFF4F46E5)),
+                              const SizedBox(width: 8),
+                              Text(
+                                DateFormat('EEEE, dd MMMM yyyy').format(DateTime.now()),
+                                style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: Color(0xFF4F46E5)),
+                              ),
+                            ],
+                          ),
+                        ),
                     ],
                   ),
-                  if (isDesktop)
+
+                  // Active Hourly or Half Day Leave Banner
+                  if (durationMode == 'Hourly') ...[
+                    const SizedBox(height: 16),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                      padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFEEF2FF),
-                        borderRadius: BorderRadius.circular(12),
+                        color: const Color(0xFFF5F3FF),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: const Color(0xFFC7D2FE)),
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.access_time_filled_rounded, size: 20, color: Color(0xFF4F46E5)),
-                          const SizedBox(width: 8),
-                          Text(
-                            DateFormat('EEEE, dd MMMM yyyy').format(DateTime.now()),
-                            style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15, color: Color(0xFF4F46E5)),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF6366F1).withOpacity(0.15),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.timer_rounded, color: Color(0xFF4F46E5), size: 22),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Hourly Leave Pass (${hourlyHours ?? 1} hr${(hourlyHours ?? 1) > 1 ? "s" : ""})',
+                                      style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14, color: Color(0xFF312E81)),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: (leaveStatus == 'Approved' ? const Color(0xFF10B981) : const Color(0xFFF59E0B)).withOpacity(0.15),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Text(
+                                        leaveStatus ?? 'Pending',
+                                        style: TextStyle(
+                                          color: leaveStatus == 'Approved' ? const Color(0xFF047857) : const Color(0xFFB45309),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 3),
+                                Text(
+                                  hourlyTimeSlot != null && hourlyTimeSlot.isNotEmpty
+                                      ? 'Time Slot: $hourlyTimeSlot • ${onHourlyLeave ? "🔴 On Hourly Leave Break Now" : "Hourly pass recorded"}'
+                                      : (onHourlyLeave ? "🔴 Currently On Hourly Leave Break" : "Short Permission Pass"),
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: onHourlyLeave ? const Color(0xFFDC2626) : const Color(0xFF4338CA),
+                                    fontWeight: onHourlyLeave ? FontWeight.w700 : FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
+                  ] else if (durationMode == 'Half Day') ...[
+                    const SizedBox(height: 16),
+                    Container(
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFFFFBEB),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(color: const Color(0xFFFDE68A)),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFF59E0B).withOpacity(0.15),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(Icons.tonality_rounded, color: Color(0xFFD97706), size: 22),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Half Day Leave (${halfDayType ?? "First Half"})',
+                                      style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14, color: Color(0xFF78350F)),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                                      decoration: BoxDecoration(
+                                        color: (leaveStatus == 'Approved' ? const Color(0xFF10B981) : const Color(0xFFF59E0B)).withOpacity(0.15),
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Text(
+                                        leaveStatus ?? 'Approved',
+                                        style: TextStyle(
+                                          color: leaveStatus == 'Approved' ? const Color(0xFF047857) : const Color(0xFFB45309),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 3),
+                                const Text(
+                                  'Your punch-in will be marked as Half Day Present alongside your leave.',
+                                  style: TextStyle(fontSize: 12, color: Color(0xFF92400E)),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+
+                  SizedBox(height: isDesktop ? 22 : 18),
+
+                  _isLoading
+                      ? const Center(child: Padding(padding: EdgeInsets.all(16.0), child: CircularProgressIndicator()))
+                      : Column(
+                          children: [
+                            // Primary Punch In & Punch Out Controls
+                            LayoutBuilder(
+                              builder: (context, btnConstraints) {
+                                final isNarrow = btnConstraints.maxWidth < 460;
+
+                                if (isNarrow) {
+                                  return Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                      ElevatedButton.icon(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: hasCheckIn ? const Color(0xFF94A3B8) : const Color(0xFF10B981),
+                                          foregroundColor: Colors.white,
+                                          padding: const EdgeInsets.symmetric(vertical: 14),
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                        ),
+                                        icon: const Icon(Icons.camera_alt_rounded, size: 20),
+                                        label: Text(
+                                          hasCheckIn ? 'Already Punched In Today' : 'Punch In (Selfie Camera)',
+                                          style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
+                                        ),
+                                        onPressed: hasCheckIn ? null : () => _handlePunchIn(taskProvider),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      ElevatedButton.icon(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: hasCheckOut ? const Color(0xFF94A3B8) : const Color(0xFFEF4444),
+                                          foregroundColor: Colors.white,
+                                          padding: const EdgeInsets.symmetric(vertical: 14),
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                        ),
+                                        icon: const Icon(Icons.logout_rounded, size: 20),
+                                        label: Text(
+                                          hasCheckOut ? 'Shift Completed (Punched Out)' : 'Punch Out',
+                                          style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
+                                        ),
+                                        onPressed: (!hasCheckIn || hasCheckOut) ? null : () => _handlePunchOut(taskProvider),
+                                      ),
+                                    ],
+                                  );
+                                }
+
+                                return Row(
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton.icon(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: hasCheckIn ? const Color(0xFF94A3B8) : const Color(0xFF10B981),
+                                          foregroundColor: Colors.white,
+                                          padding: EdgeInsets.symmetric(vertical: isDesktop ? 22 : 16),
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                        ),
+                                        icon: Icon(Icons.camera_alt_rounded, size: isDesktop ? 26 : 20),
+                                        label: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          child: Text(
+                                            hasCheckIn ? 'Already Punched In Today' : 'Punch In (Selfie Camera)',
+                                            style: TextStyle(fontWeight: FontWeight.w800, fontSize: isDesktop ? 18 : 15),
+                                          ),
+                                        ),
+                                        onPressed: hasCheckIn ? null : () => _handlePunchIn(taskProvider),
+                                      ),
+                                    ),
+                                    SizedBox(width: isDesktop ? 20 : 16),
+                                    Expanded(
+                                      child: ElevatedButton.icon(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: hasCheckOut ? const Color(0xFF94A3B8) : const Color(0xFFEF4444),
+                                          foregroundColor: Colors.white,
+                                          padding: EdgeInsets.symmetric(vertical: isDesktop ? 22 : 16),
+                                          elevation: 0,
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                                        ),
+                                        icon: Icon(Icons.logout_rounded, size: isDesktop ? 26 : 20),
+                                        label: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          child: Text(
+                                            hasCheckOut ? 'Shift Completed' : 'Punch Out',
+                                            style: TextStyle(fontWeight: FontWeight.w800, fontSize: isDesktop ? 18 : 15),
+                                          ),
+                                        ),
+                                        onPressed: (!hasCheckIn || hasCheckOut) ? null : () => _handlePunchOut(taskProvider),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+
+                            // Hourly Leave Break Controls (if checked in and haven't fully checked out)
+                            if (hasCheckIn && !hasCheckOut) ...[
+                              const SizedBox(height: 12),
+                              Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(14),
+                                  color: onHourlyLeave ? const Color(0xFFEEF2FF) : const Color(0xFFF8FAFC),
+                                  border: Border.all(color: onHourlyLeave ? const Color(0xFF818CF8) : const Color(0xFFE2E8F0)),
+                                ),
+                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      onHourlyLeave ? Icons.timer_rounded : Icons.timer_outlined,
+                                      color: onHourlyLeave ? const Color(0xFF4F46E5) : const Color(0xFF64748B),
+                                      size: 20,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Text(
+                                        onHourlyLeave
+                                            ? 'Currently on Hourly Leave Break'
+                                            : (durationMode == 'Hourly'
+                                                ? 'Hourly Pass Approved: Ready for Break?'
+                                                : 'Need short break / hourly pass?'),
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w700,
+                                          color: onHourlyLeave ? const Color(0xFF312E81) : const Color(0xFF334155),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    if (!onHourlyLeave)
+                                      ElevatedButton.icon(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(0xFF6366F1),
+                                          foregroundColor: Colors.white,
+                                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                          elevation: 0,
+                                        ),
+                                        icon: const Icon(Icons.pause_circle_outline_rounded, size: 16),
+                                        label: const Text('Hourly Punch Out', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                                        onPressed: () => _handleHourlyLeaveOut(taskProvider),
+                                      )
+                                    else
+                                      ElevatedButton.icon(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(0xFF10B981),
+                                          foregroundColor: Colors.white,
+                                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                          elevation: 0,
+                                        ),
+                                        icon: const Icon(Icons.play_circle_fill_rounded, size: 16),
+                                        label: const Text('Hourly Punch In (Return)', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                                        onPressed: () => _handleHourlyLeaveIn(taskProvider),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ],
+
+                            // Quick Link to Apply Hourly / Half Day Leave
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                TextButton.icon(
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: AppTheme.primaryBlue,
+                                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                  ),
+                                  icon: const Icon(Icons.beach_access_rounded, size: 16),
+                                  label: const Text(
+                                    'Apply Hourly Pass / Half Day Leave →',
+                                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (_) => const LeavesScreen()),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                 ],
               ),
-              SizedBox(height: isDesktop ? 24 : 20),
-              _isLoading
-                  ? const Center(child: CircularProgressIndicator())
-                  : Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF10B981),
-                              foregroundColor: Colors.white,
-                              padding: EdgeInsets.symmetric(vertical: isDesktop ? 22 : 16),
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                            ),
-                            icon: Icon(Icons.camera_alt_rounded, size: isDesktop ? 26 : 20),
-                            label: Text('Punch In (Selfie Camera)', style: TextStyle(fontWeight: FontWeight.w800, fontSize: isDesktop ? 18 : 15)),
-                            onPressed: () => _handlePunchIn(taskProvider),
-                          ),
-                        ),
-                        SizedBox(width: isDesktop ? 20 : 16),
-                        Expanded(
-                          child: ElevatedButton.icon(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFFEF4444),
-                              foregroundColor: Colors.white,
-                              padding: EdgeInsets.symmetric(vertical: isDesktop ? 22 : 16),
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                            ),
-                            icon: Icon(Icons.logout_rounded, size: isDesktop ? 26 : 20),
-                            label: Text('Punch Out', style: TextStyle(fontWeight: FontWeight.w800, fontSize: isDesktop ? 18 : 15)),
-                            onPressed: () => _handlePunchOut(taskProvider),
-                          ),
-                        ),
-                      ],
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: isDesktop ? 24.0 : 16.0, vertical: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Recent Attendance Records',
+                      style: TextStyle(
+                        fontSize: isDesktop ? 20 : 15,
+                        fontWeight: FontWeight.w900,
+                        color: const Color(0xFF0F172A),
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: isDesktop ? 24.0 : 16.0, vertical: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Recent Attendance Records',
-                style: TextStyle(fontSize: isDesktop ? 20 : 16, fontWeight: FontWeight.w900, color: const Color(0xFF0F172A)),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Live Sync',
+                    style: TextStyle(
+                      fontSize: isDesktop ? 14 : 11,
+                      color: Colors.grey.shade500,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                'Auto-updated real time',
-                style: TextStyle(fontSize: isDesktop ? 14 : 12, color: Colors.grey.shade500, fontWeight: FontWeight.w600),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 4),
-        Expanded(child: _buildAttendanceList(taskProvider.getMyAttendanceStream())),
-      ],
+            ),
+            const SizedBox(height: 4),
+            Expanded(child: _buildAttendanceList(taskProvider.getMyAttendanceStream())),
+          ],
+        );
+      },
     );
   }
 
@@ -464,7 +856,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           return Center(child: Text('Error loading attendance.\n${snapshot.error}'));
         }
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          final isDesktop = MediaQuery.of(context).size.width >= 850;
+          final isDesktop = MediaQuery.of(context).size.width >= 950;
           return Center(
             child: Container(
               constraints: BoxConstraints(maxWidth: isDesktop ? 650 : double.infinity),
@@ -562,6 +954,12 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
           final checkInStr = checkInTs != null ? DateFormat('hh:mm a').format(checkInTs.toDate()) : '--:--';
           final checkOutStr = checkOutTs != null ? DateFormat('hh:mm a').format(checkOutTs.toDate()) : '--:--';
 
+          final durationMode = rec['durationMode'] as String?;
+          final halfDayType = rec['halfDayType'] as String?;
+          final hourlyHours = rec['hourlyHours'];
+          final hourlyTimeSlot = rec['hourlyTimeSlot'] as String?;
+          final onHourlyLeave = rec['onHourlyLeave'] == true;
+
           // Calculate daily working duration safely
           String durationStr = '';
           if (checkInTs != null && checkOutTs != null) {
@@ -570,7 +968,17 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             final minutes = dur.inMinutes.remainder(60);
             durationStr = '⏱️ ${hours}h ${minutes}m worked';
           } else if (checkInTs != null) {
-            durationStr = '🟡 Currently Logged In';
+            durationStr = onHourlyLeave ? '🔴 On Hourly Leave Break' : '🟡 Currently Logged In';
+          }
+
+          String displayStatus = rec['status'] ?? (checkOutTs != null ? 'Present' : 'Punch In');
+          Color statusColor = checkOutTs != null ? const Color(0xFF10B981) : const Color(0xFFD97706);
+          if (onHourlyLeave) {
+            displayStatus = 'On Hourly Leave';
+            statusColor = const Color(0xFF6366F1);
+          } else if (durationMode == 'Half Day') {
+            displayStatus = 'Half Day';
+            statusColor = const Color(0xFFF59E0B);
           }
 
           return Card(
@@ -578,7 +986,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             elevation: 1,
             child: Padding(
-              padding: const EdgeInsets.all(14.0),
+              padding: const EdgeInsets.all(12.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -601,16 +1009,16 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                         borderRadius: BorderRadius.circular(12),
                         child: Image.memory(
                           base64Decode(photoBase64),
-                          width: 60,
-                          height: 60,
+                          width: 54,
+                          height: 54,
                           fit: BoxFit.cover,
                         ),
                       ),
                     )
                   else
                     Container(
-                      width: 60,
-                      height: 60,
+                      width: 54,
+                      height: 54,
                       decoration: BoxDecoration(
                         color: AppTheme.primaryBlue.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
@@ -618,60 +1026,105 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       child: Center(
                         child: Text(
                           name.isNotEmpty ? name.substring(0, 1).toUpperCase() : 'U',
-                          style: const TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.bold, fontSize: 24),
+                          style: const TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.bold, fontSize: 22),
                         ),
                       ),
                     ),
-                  const SizedBox(width: 14),
+                  const SizedBox(width: 12),
                   // Details
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           dayStr.isNotEmpty ? dayStr : dateStr,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xFF0F172A)),
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF0F172A)),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 6),
-                        Row(
+                        const SizedBox(height: 4),
+                        Wrap(
+                          spacing: 10,
+                          runSpacing: 2,
+                          crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
-                            const Icon(Icons.login_rounded, size: 15, color: Color(0xFF10B981)),
-                            const SizedBox(width: 4),
-                            Text(checkInStr, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
-                            const SizedBox(width: 12),
-                            const Icon(Icons.logout_rounded, size: 15, color: Color(0xFFEF4444)),
-                            const SizedBox(width: 4),
-                            Text(checkOutStr, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.login_rounded, size: 14, color: Color(0xFF10B981)),
+                                const SizedBox(width: 3),
+                                Text(checkInStr, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Icon(Icons.logout_rounded, size: 14, color: Color(0xFFEF4444)),
+                                const SizedBox(width: 3),
+                                Text(checkOutStr, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12)),
+                              ],
+                            ),
                           ],
                         ),
                         if (durationStr.isNotEmpty) ...[
-                          const SizedBox(height: 6),
+                          const SizedBox(height: 3),
                           Text(
                             durationStr,
                             style: TextStyle(
-                              color: checkOutTs != null ? const Color(0xFF64748B) : const Color(0xFFD97706),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
+                              color: onHourlyLeave
+                                  ? const Color(0xFFDC2626)
+                                  : (checkOutTs != null ? const Color(0xFF64748B) : const Color(0xFFD97706)),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
                             ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ]
+                        ],
+                        if (durationMode == 'Hourly') ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            '⏱️ Hourly Pass: ${hourlyHours ?? 1}h${hourlyTimeSlot != null ? " ($hourlyTimeSlot)" : ""}',
+                            style: const TextStyle(
+                              color: Color(0xFF4F46E5),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ] else if (durationMode == 'Half Day') ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            '🌗 Half Day: ${halfDayType ?? "First Half"}',
+                            style: const TextStyle(
+                              color: Color(0xFFD97706),
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ],
                     ),
                   ),
+                  const SizedBox(width: 8),
                   // Status Badge
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
                     decoration: BoxDecoration(
-                      color: (checkOutTs != null ? const Color(0xFF10B981) : const Color(0xFFF59E0B)).withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(20),
+                      color: statusColor.withOpacity(0.12),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Text(
-                      rec['status'] ?? (checkOutTs != null ? 'Present' : 'Punch In'),
+                      displayStatus,
                       style: TextStyle(
-                        color: checkOutTs != null ? const Color(0xFF10B981) : const Color(0xFFD97706),
+                        color: statusColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 12,
+                        fontSize: 11,
                       ),
                     ),
                   ),
@@ -731,7 +1184,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
 
         return LayoutBuilder(
           builder: (context, constraints) {
-            final isDesktop = constraints.maxWidth >= 850;
+            final isDesktop = constraints.maxWidth >= 950;
 
             if (isDesktop) {
               return Padding(
@@ -745,7 +1198,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                           crossAxisCount: 2,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 12,
-                          mainAxisExtent: 96,
+                          mainAxisExtent: 135,
                         ),
                         itemCount: records.length,
                         itemBuilder: (context, idx) => buildCard(records[idx]),

@@ -33,7 +33,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     final taskProvider = context.watch<TaskProvider>();
     final selectedDate = taskProvider.selectedCalendarDate;
     final tasksForSelectedDay = taskProvider.tasksForDate(selectedDate);
-    final isDesktop = MediaQuery.of(context).size.width >= 850;
+    final isDesktop = MediaQuery.of(context).size.width >= 950;
 
     return Scaffold(
       backgroundColor: isDesktop ? const Color(0xFFF8FAFC) : Colors.white,
@@ -446,6 +446,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             childCount: tasksForSelectedDay.length,
                           ),
                         ),
+                ),
+                SliverToBoxAdapter(
+                  child: SizedBox(height: isDesktop ? 32 : 100),
                 ),
               ],
             ),

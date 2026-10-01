@@ -685,6 +685,19 @@ class TaskProvider extends ChangeNotifier {
       throw 'Aapne aaj ki attendance pehle hi Punch In kar li hai!';
     }
 
+    // Check if doc exists to preserve or adapt status for Half Day or Hourly leave
+    String defaultStatus = 'Present';
+    if (existingDoc.exists) {
+      final data = existingDoc.data();
+      if (data != null) {
+        if (data['durationMode'] == 'Half Day') {
+          defaultStatus = 'Half Day Present';
+        } else if (data['durationMode'] == 'Hourly') {
+          defaultStatus = 'Present (${data['hourlyHours'] ?? 2}h Leave)';
+        }
+      }
+    }
+
     // We fetch the latest profile data to ensure managerId is correct
     final userDoc = await FirebaseFirestore.instance.collection('users').doc(_uid).get();
     final mId = userDoc.data()?['managerId'] ?? '';
@@ -696,7 +709,7 @@ class TaskProvider extends ChangeNotifier {
       'managerId': mId,
       'date': today,
       'checkIn': FieldValue.serverTimestamp(),
-      'status': 'Present',
+      'status': defaultStatus,
       'photo': base64Photo,
       'latIn': lat,
       'lngIn': lng,
@@ -713,6 +726,41 @@ class TaskProvider extends ChangeNotifier {
       'latOut': lat,
       'lngOut': lng,
     }, SetOptions(merge: true));
+  }
+
+  Future<void> punchHourlyLeaveOut(double lat, double lng, {String? reason}) async {
+    if (_uid == null) return;
+    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final docId = '${_uid}_$today';
+    
+    await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
+      'hourlyBreakOut': FieldValue.serverTimestamp(),
+      'hourlyBreakOutLat': lat,
+      'hourlyBreakOutLng': lng,
+      if (reason != null) 'hourlyLeaveReason': reason,
+      'onHourlyLeave': true,
+      'status': 'On Hourly Leave',
+    }, SetOptions(merge: true));
+  }
+
+  Future<void> punchHourlyLeaveIn(double lat, double lng) async {
+    if (_uid == null) return;
+    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final docId = '${_uid}_$today';
+    
+    await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
+      'hourlyBreakIn': FieldValue.serverTimestamp(),
+      'hourlyBreakInLat': lat,
+      'hourlyBreakInLng': lng,
+      'onHourlyLeave': false,
+      'status': 'Present (Hourly Leave Taken)',
+    }, SetOptions(merge: true));
+  }
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>> getTodayAttendanceStream() {
+    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final docId = '${_uid}_$today';
+    return FirebaseFirestore.instance.collection('attendance').doc(docId).snapshots();
   }
 
   Future<void> upgradeToSuperAdmin() async {
@@ -951,26 +999,51 @@ class TaskProvider extends ChangeNotifier {
     required String startDate,
     required String endDate,
     required String reason,
+    String durationMode = 'Full Day',
+    String? halfDayType,
+    int? hourlyHours,
+    String? hourlyTimeSlot,
   }) async {
     if (_uid == null) return;
     try {
       final userDoc = await FirebaseFirestore.instance.collection('users').doc(_uid).get();
       final mId = userDoc.data()?['managerId'] ?? '';
 
-      await FirebaseFirestore.instance.collection('leaves').add({
+      final docRef = await FirebaseFirestore.instance.collection('leaves').add({
         'uid': _uid,
         'userName': _userName,
         'userEmail': _userEmail,
         'managerId': mId,
         'leaveType': leaveType,
+        'durationMode': durationMode,
+        if (halfDayType != null) 'halfDayType': halfDayType,
+        if (hourlyHours != null) 'hourlyHours': hourlyHours,
+        if (hourlyTimeSlot != null) 'hourlyTimeSlot': hourlyTimeSlot,
         'startDate': startDate,
         'endDate': endDate,
         'reason': reason,
         'status': 'Pending',
         'appliedAt': FieldValue.serverTimestamp(),
       });
+
+      // If applied for today, record in today's attendance document as well
+      final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+      if (startDate == today) {
+        final docId = '${_uid}_$today';
+        await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
+          'leaveId': docRef.id,
+          'leaveType': leaveType,
+          'durationMode': durationMode,
+          if (halfDayType != null) 'halfDayType': halfDayType,
+          if (hourlyHours != null) 'hourlyHours': hourlyHours,
+          if (hourlyTimeSlot != null) 'hourlyTimeSlot': hourlyTimeSlot,
+          'leaveStatus': 'Pending',
+          'leaveReason': reason,
+        }, SetOptions(merge: true));
+      }
     } catch (e) {
       debugPrint('Error applying leave: $e');
+      rethrow;
     }
   }
 }

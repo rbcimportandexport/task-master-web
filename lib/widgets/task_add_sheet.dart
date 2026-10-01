@@ -478,7 +478,7 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
   @override
   Widget build(BuildContext context) {
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-    final isDesktop = MediaQuery.of(context).size.width >= 850;
+    final isDesktop = MediaQuery.of(context).size.width >= 950;
 
     return Center(
       child: Container(

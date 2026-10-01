@@ -1,7 +1,5 @@
-import 'dart:convert';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'character_base64.dart';
 
 /// Empty state illustration for "All" tab: Person looking at smartphone
 class PersonWithPhoneIllustration extends StatelessWidget {
@@ -10,34 +8,18 @@ class PersonWithPhoneIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    try {
-      final bytes = base64Decode(kCharacterImageBase64);
-      return Image.memory(
-        bytes,
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return CustomPaint(
-            size: Size(size, size),
-            painter: _PersonWithPhonePainter(),
-          );
-        },
-      );
-    } catch (_) {
-      return Image.asset(
-        'assets/images/empty_tasks_character.png',
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return CustomPaint(
-            size: Size(size, size),
-            painter: _PersonWithPhonePainter(),
-          );
-        },
-      );
-    }
+    return Image.asset(
+      'assets/images/empty_tasks_character.png',
+      width: size,
+      height: size,
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        return CustomPaint(
+          size: Size(size, size),
+          painter: _PersonWithPhonePainter(),
+        );
+      },
+    );
   }
 }
 
@@ -149,34 +131,18 @@ class GirlWithLaptopIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    try {
-      final bytes = base64Decode(kGirlWithLaptopImageBase64);
-      return Image.memory(
-        bytes,
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return CustomPaint(
-            size: Size(size, size),
-            painter: _GirlWithLaptopPainter(),
-          );
-        },
-      );
-    } catch (_) {
-      return Image.asset(
-        'assets/images/girl_laptop_character.png',
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return CustomPaint(
-            size: Size(size, size),
-            painter: _GirlWithLaptopPainter(),
-          );
-        },
-      );
-    }
+    return Image.asset(
+      'assets/images/girl_laptop_character.png',
+      width: size,
+      height: size,
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        return CustomPaint(
+          size: Size(size, size),
+          painter: _GirlWithLaptopPainter(),
+        );
+      },
+    );
   }
 }
 
@@ -417,34 +383,18 @@ class CelebrationIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    try {
-      final bytes = base64Decode(kCelebrationImageBase64);
-      return Image.memory(
-        bytes,
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return CustomPaint(
-            size: Size(size, size * 0.9),
-            painter: _CelebrationPainter(),
-          );
-        },
-      );
-    } catch (_) {
-      return Image.asset(
-        'assets/images/celebration_first_task.png',
-        width: size,
-        height: size,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return CustomPaint(
-            size: Size(size, size * 0.9),
-            painter: _CelebrationPainter(),
-          );
-        },
-      );
-    }
+    return Image.asset(
+      'assets/images/celebration_first_task.png',
+      width: size,
+      height: size,
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        return CustomPaint(
+          size: Size(size, size * 0.9),
+          painter: _CelebrationPainter(),
+        );
+      },
+    );
   }
 }
 
@@ -580,34 +530,18 @@ class VoiceCreateIllustration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    try {
-      final bytes = base64Decode(kVoiceCreateImageBase64);
-      return Image.memory(
-        bytes,
-        width: size * 1.3,
-        height: size * 0.9,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return CustomPaint(
-            size: Size(size, size * 0.75),
-            painter: _VoiceCreatePainter(),
-          );
-        },
-      );
-    } catch (_) {
-      return Image.asset(
-        'assets/images/voice_create_character.png',
-        width: size * 1.3,
-        height: size * 0.9,
-        fit: BoxFit.contain,
-        errorBuilder: (context, error, stackTrace) {
-          return CustomPaint(
-            size: Size(size, size * 0.75),
-            painter: _VoiceCreatePainter(),
-          );
-        },
-      );
-    }
+    return Image.asset(
+      'assets/images/voice_create_character.png',
+      width: size * 1.3,
+      height: size * 0.9,
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        return CustomPaint(
+          size: Size(size, size * 0.75),
+          painter: _VoiceCreatePainter(),
+        );
+      },
+    );
   }
 }
 

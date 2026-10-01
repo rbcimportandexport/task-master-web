@@ -38,7 +38,7 @@ class _ManagerDashboardScreenState extends State<ManagerDashboardScreen> {
     
     if (mounted) {
       setState(() {
-        _allUsers = users;
+        _allUsers = users; 
         _departments = depts.toList();
         _isLoading = false;
       });
@@ -49,7 +49,7 @@ class _ManagerDashboardScreenState extends State<ManagerDashboardScreen> {
     showDialog(
       context: context,
       builder: (context) => const AddEmployeeDialog(),
-    ).then((_) => _loadData());
+    ).then((_) => _loadData());                
   }
   
   @override
@@ -148,14 +148,15 @@ class _ManagerDashboardScreenState extends State<ManagerDashboardScreen> {
                                 children: [
                                   Text(email, style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
                                   const SizedBox(height: 4),
-                                  Row(
+                                  Wrap(
+                                    spacing: 8,
+                                    runSpacing: 4,
                                     children: [
                                       Container(
                                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                         decoration: BoxDecoration(color: AppTheme.primaryBlue.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
                                         child: Text(department, style: const TextStyle(fontSize: 10, color: AppTheme.primaryBlue, fontWeight: FontWeight.bold)),
                                       ),
-                                      const SizedBox(width: 8),
                                       Container(
                                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                                         decoration: BoxDecoration(color: (role == 'MANAGER' || role == 'SUPER_ADMIN') ? const Color(0xFFF59E0B).withOpacity(0.1) : const Color(0xFF10B981).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
@@ -179,7 +180,7 @@ class _ManagerDashboardScreenState extends State<ManagerDashboardScreen> {
                                         children: [
                                           Text('Options for ', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                                           const SizedBox(height: 20),
-                                          ListTile(
+                                          ListTile(          
                                             leading: const CircleAvatar(backgroundColor: Color(0xFFE2E8F0), child: Icon(Icons.assignment, color: AppTheme.primaryBlue)),
                                             title: const Text('View Manager Work'),
                                             onTap: () {

@@ -18,8 +18,6 @@ import 'theme_screen.dart';
 import 'profile_screen.dart';
 import '../widgets/assign_task_sheet.dart';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
-
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
 
@@ -29,13 +27,8 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
+  bool _isSidebarCollapsed = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final List<Widget> _mobileScreens = const [
-    TasksScreen(),
-    CalendarScreen(),
-    MineScreen(),
-  ];
 
   void _openAddTaskModal() {
     showModalBottomSheet(
@@ -58,9 +51,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    // Responsive desktop breakpoint: If screen width >= 900, render desktop sidebar layout.
-    // On phones / mobile browsers (width < 900), always render clean native mobile layout.
-    final isDesktop = screenWidth >= 900;
+    // Responsive desktop breakpoint: If screen width >= 950, render desktop sidebar layout.
+    // On phones / mobile browsers / resized narrow windows (width < 950), always render clean native mobile layout.
+    final isDesktop = screenWidth >= 950;
 
     if (isDesktop) {
       return _buildDesktopLayout(context);
@@ -75,15 +68,18 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     final isManagerOrAdmin = taskProvider.userRole.toLowerCase() == 'manager' ||
         taskProvider.userRole.toLowerCase() == 'super admin';
     final screenWidth = MediaQuery.of(context).size.width;
-    // Auto-adjust sidebar width dynamically from 260 to 300 for crisp, standard desktop proportions
-    final sidebarWidth = (screenWidth * 0.20).clamp(260.0, 300.0);
+    
+    // Auto-adjust sidebar width: 72px when collapsed, 260-300px when expanded
+    final sidebarWidth = _isSidebarCollapsed ? 72.0 : (screenWidth * 0.20).clamp(260.0, 300.0);
 
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       body: Row(
         children: [
-          // 1. Sleek Left Desktop Sidebar (Clean, Compact & Modern)
-          Container(
+          // 1. Sleek Left Desktop Sidebar (Clean, Collapsible & Modern)
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 250),
+            curve: Curves.easeInOutCubic,
             width: sidebarWidth,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -101,9 +97,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Workspace Brand Header
+                // Workspace Brand Header with Collapse/Expand Toggle
                 Container(
-                  padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
+                  padding: EdgeInsets.fromLTRB(
+                    _isSidebarCollapsed ? 12 : 16,
+                    20,
+                    _isSidebarCollapsed ? 12 : 16,
+                    16,
+                  ),
                   child: Row(
                     children: [
                       Container(
@@ -123,31 +124,53 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                             ),
                           ],
                         ),
-                        child: const Icon(Icons.check_circle_outline_rounded, color: Colors.white, size: 24),
+                        child: const Icon(Icons.check_circle_outline_rounded, color: Colors.white, size: 22),
                       ),
-                      const SizedBox(width: 12),
-                      const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Task Master',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
-                              color: Color(0xFF0F172A),
-                              letterSpacing: -0.5,
-                            ),
+                      if (!_isSidebarCollapsed) ...[
+                        const SizedBox(width: 12),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Task Master',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w900,
+                                  color: Color(0xFF0F172A),
+                                  letterSpacing: -0.5,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              SizedBox(height: 2),
+                              Text(
+                                'Warehouse Workspace',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF64748B),
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
-                          SizedBox(height: 2),
-                          Text(
-                            'Warehouse Workspace',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF64748B),
-                            ),
-                          ),
-                        ],
+                        ),
+                      ],
+                      IconButton(
+                        icon: Icon(
+                          _isSidebarCollapsed ? Icons.chevron_right_rounded : Icons.chevron_left_rounded,
+                          color: const Color(0xFF64748B),
+                          size: 22,
+                        ),
+                        tooltip: _isSidebarCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar',
+                        onPressed: () {
+                          setState(() {
+                            _isSidebarCollapsed = !_isSidebarCollapsed;
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -157,44 +180,67 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
                 // Quick Action: Add Task / Assign Task Button
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
-                  child: ElevatedButton.icon(
-                    onPressed: _openAddTaskModal,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppTheme.primaryBlue,
-                      foregroundColor: Colors.white,
-                      elevation: 3,
-                      shadowColor: AppTheme.primaryBlue.withValues(alpha: 0.35),
-                      minimumSize: const Size(double.infinity, 48),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    icon: const Icon(Icons.add_rounded, size: 22),
-                    label: const Text(
-                      'Create Task',
-                      style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
-                    ),
+                  padding: EdgeInsets.fromLTRB(
+                    _isSidebarCollapsed ? 10 : 16,
+                    14,
+                    _isSidebarCollapsed ? 10 : 16,
+                    10,
                   ),
+                  child: _isSidebarCollapsed
+                      ? Center(
+                          child: IconButton.filled(
+                            onPressed: _openAddTaskModal,
+                            style: IconButton.styleFrom(
+                              backgroundColor: AppTheme.primaryBlue,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                              padding: const EdgeInsets.all(12),
+                            ),
+                            icon: const Icon(Icons.add_rounded, size: 24),
+                            tooltip: 'Create Task',
+                          ),
+                        )
+                      : ElevatedButton.icon(
+                          onPressed: _openAddTaskModal,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppTheme.primaryBlue,
+                            foregroundColor: Colors.white,
+                            elevation: 3,
+                            shadowColor: AppTheme.primaryBlue.withValues(alpha: 0.35),
+                            minimumSize: const Size(double.infinity, 46),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          icon: const Icon(Icons.add_rounded, size: 20),
+                          label: const Text(
+                            'Create Task',
+                            style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
+                          ),
+                        ),
                 ),
 
                 // Main Nav List
                 Expanded(
                   child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: _isSidebarCollapsed ? 6 : 10,
+                      vertical: 8,
+                    ),
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(10, 8, 10, 4),
-                        child: Text(
-                          'MAIN NAVIGATION',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: 0.8,
-                            color: Color(0xFF94A3B8),
+                      if (!_isSidebarCollapsed)
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(10, 8, 10, 4),
+                          child: Text(
+                            'MAIN NAVIGATION',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 0.8,
+                              color: Color(0xFF94A3B8),
+                            ),
                           ),
                         ),
-                      ),
                       _buildDesktopSidebarItem(
                         icon: Icons.article_rounded,
                         label: 'Tasks & Boards',
@@ -216,18 +262,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                       ),
 
                       const SizedBox(height: 12),
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(10, 8, 10, 4),
-                        child: Text(
-                          'OPERATIONS & HR',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: 0.8,
-                            color: Color(0xFF94A3B8),
+                      if (!_isSidebarCollapsed)
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(10, 8, 10, 4),
+                          child: Text(
+                            'OPERATIONS & HR',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: 0.8,
+                              color: Color(0xFF94A3B8),
+                            ),
                           ),
                         ),
-                      ),
                       _buildDesktopSidebarItem(
                         icon: Icons.fingerprint_rounded,
                         label: 'Attendance & Punch',
@@ -245,18 +292,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
                       if (isManagerOrAdmin) ...[
                         const SizedBox(height: 12),
-                        const Padding(
-                          padding: EdgeInsets.fromLTRB(12, 12, 12, 6),
-                          child: Text(
-                            'MANAGEMENT',
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 0.8,
-                              color: Color(0xFF94A3B8),
+                        if (!_isSidebarCollapsed)
+                          const Padding(
+                            padding: EdgeInsets.fromLTRB(12, 12, 12, 6),
+                            child: Text(
+                              'MANAGEMENT',
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 0.8,
+                                color: Color(0xFF94A3B8),
+                              ),
                             ),
                           ),
-                        ),
                         _buildDesktopSidebarItem(
                           icon: Icons.assignment_ind_rounded,
                           label: 'Assign Task to Staff',
@@ -293,18 +341,19 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                       ],
 
                       const SizedBox(height: 12),
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(12, 12, 12, 6),
-                        child: Text(
-                          'PREFERENCES',
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: 0.8,
-                            color: Color(0xFF94A3B8),
+                      if (!_isSidebarCollapsed)
+                        const Padding(
+                          padding: EdgeInsets.fromLTRB(12, 12, 12, 6),
+                          child: Text(
+                            'PREFERENCES',
+                            style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 0.8,
+                              color: Color(0xFF94A3B8),
+                            ),
                           ),
                         ),
-                      ),
                       _buildDesktopSidebarItem(
                         icon: Icons.notifications_rounded,
                         label: 'Notifications',
@@ -369,13 +418,17 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                     },
                     hoverColor: const Color(0xFFEFF6FF),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: _isSidebarCollapsed ? 10 : 14,
+                        vertical: 12,
+                      ),
                       decoration: const BoxDecoration(
                         border: Border(
                           top: BorderSide(color: Color(0xFFE2E8F0)),
                         ),
                       ),
                       child: Row(
+                        mainAxisAlignment: _isSidebarCollapsed ? MainAxisAlignment.center : MainAxisAlignment.start,
                         children: [
                           Container(
                             width: 38,
@@ -407,39 +460,41 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                                     ),
                                   ),
                           ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  taskProvider.isLoggedIn ? taskProvider.userName : 'Guest User',
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w800,
-                                    color: Color(0xFF0F172A),
+                          if (!_isSidebarCollapsed) ...[
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    taskProvider.isLoggedIn ? taskProvider.userName : 'Guest User',
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w800,
+                                      color: Color(0xFF0F172A),
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  taskProvider.isLoggedIn ? taskProvider.userRole.toUpperCase() : 'TAP TO LOG IN',
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w700,
-                                    color: taskProvider.isLoggedIn ? const Color(0xFF64748B) : AppTheme.primaryBlue,
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    taskProvider.isLoggedIn ? taskProvider.userRole.toUpperCase() : 'TAP TO LOG IN',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w700,
+                                      color: taskProvider.isLoggedIn ? const Color(0xFF64748B) : AppTheme.primaryBlue,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          const Icon(
-                            Icons.chevron_right_rounded,
-                            size: 18,
-                            color: Color(0xFF94A3B8),
-                          ),
+                            const Icon(
+                              Icons.chevron_right_rounded,
+                              size: 18,
+                              color: Color(0xFF94A3B8),
+                            ),
+                          ],
                         ],
                       ),
                     ),
@@ -478,6 +533,23 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     }
   }
 
+  Widget _buildCurrentMobileScreen() {
+    switch (_currentIndex) {
+      case 0:
+        return const TasksScreen();
+      case 1:
+        return const CalendarScreen();
+      case 2:
+        return const MineScreen();
+      case 3:
+        return const AttendanceScreen();
+      case 4:
+        return const LeavesScreen();
+      default:
+        return const TasksScreen();
+    }
+  }
+
   Widget _buildDesktopSidebarItem({
     required IconData icon,
     required String label,
@@ -490,7 +562,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     final color = isSelected ? activeColor : (iconColor ?? const Color(0xFF475569));
     final bgColor = isSelected ? const Color(0xFFEEF2FF) : Colors.transparent;
 
-    return Container(
+    final itemWidget = Container(
       margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
       child: Material(
         color: bgColor,
@@ -503,59 +575,73 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           highlightColor: AppTheme.primaryBlue.withValues(alpha: 0.05),
           mouseCursor: SystemMouseCursors.click,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            padding: EdgeInsets.symmetric(
+              horizontal: _isSidebarCollapsed ? 12 : 14,
+              vertical: 10,
+            ),
             child: Row(
+              mainAxisAlignment: _isSidebarCollapsed ? MainAxisAlignment.center : MainAxisAlignment.start,
               children: [
                 Icon(icon, color: color, size: 20),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    label,
-                    style: TextStyle(
-                      color: isSelected ? activeColor : const Color(0xFF1E293B),
-                      fontSize: 14,
-                      fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
-                    ),
-                  ),
-                ),
-                if (badgeCount != null && badgeCount > 0)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                    decoration: BoxDecoration(
-                      color: isSelected ? activeColor : const Color(0xFFE2E8F0),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                if (!_isSidebarCollapsed) ...[
+                  const SizedBox(width: 12),
+                  Expanded(
                     child: Text(
-                      badgeCount.toString(),
+                      label,
                       style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w800,
-                        color: isSelected ? Colors.white : const Color(0xFF475569),
+                        color: isSelected ? activeColor : const Color(0xFF1E293B),
+                        fontSize: 14,
+                        fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
                       ),
                     ),
                   ),
+                  if (badgeCount != null && badgeCount > 0)
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: isSelected ? activeColor : const Color(0xFFE2E8F0),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        badgeCount.toString(),
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w800,
+                          color: isSelected ? Colors.white : const Color(0xFF475569),
+                        ),
+                      ),
+                    ),
+                ],
               ],
             ),
           ),
         ),
       ),
     );
+
+    if (_isSidebarCollapsed) {
+      return Tooltip(
+        message: label,
+        waitDuration: const Duration(milliseconds: 300),
+        child: itemWidget,
+      );
+    }
+
+    return itemWidget;
   }
 
   // --- MOBILE VIEW (EXACT MOBILE ORIGINAL LAYOUT) ---
   Widget _buildMobileLayout(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
-      extendBody: true,
       drawer: const AppDrawer(),
-      body: IndexedStack(
-        index: _currentIndex.clamp(0, _mobileScreens.length - 1),
-        children: _mobileScreens,
-      ),
+      body: _buildCurrentMobileScreen(),
       floatingActionButton: _currentIndex != 2
           ? Padding(
-              padding: const EdgeInsets.only(bottom: 80),
+              padding: EdgeInsets.only(bottom: screenWidth < 360 ? 6 : 16),
               child: FloatingActionButton(
                 onPressed: _openAddTaskModal,
                 backgroundColor: AppTheme.fabBlue,
@@ -573,9 +659,15 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       bottomNavigationBar: SafeArea(
         child: Align(
           alignment: Alignment.bottomCenter,
+          heightFactor: 1.0,
           child: Container(
             constraints: const BoxConstraints(maxWidth: 560),
-            margin: const EdgeInsets.fromLTRB(24, 0, 24, 20),
+            margin: EdgeInsets.fromLTRB(
+              screenWidth < 360 ? 10 : 24,
+              0,
+              screenWidth < 360 ? 10 : 24,
+              screenWidth < 360 ? 10 : 20,
+            ),
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             decoration: BoxDecoration(
               color: Colors.white,

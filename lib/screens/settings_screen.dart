@@ -242,7 +242,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     final taskProvider = context.watch<TaskProvider>();
-    final isDesktop = MediaQuery.of(context).size.width >= 850;
+    final isDesktop = MediaQuery.of(context).size.width >= 950;
 
     if (isDesktop) {
       return Scaffold(

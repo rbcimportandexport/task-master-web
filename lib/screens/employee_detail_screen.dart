@@ -159,7 +159,6 @@ class _EmployeeDetailScreenState extends State<EmployeeDetailScreen> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -169,7 +168,11 @@ class _EmployeeDetailScreenState extends State<EmployeeDetailScreen> {
           ),
         ],
       ),
-      child: ListTile(
+      child: Material(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        clipBehavior: Clip.antiAlias,
+        child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: Icon(
           task.isCompleted ? Icons.check_circle : Icons.radio_button_unchecked,
@@ -265,6 +268,7 @@ class _EmployeeDetailScreenState extends State<EmployeeDetailScreen> {
               ),
           ],
         ),
+      ),
       ),
     );
   }

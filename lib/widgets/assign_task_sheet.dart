@@ -144,7 +144,7 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
       teamMembers = _allUsers.where((u) => (u['role'] ?? '').toString().toLowerCase() == 'employee').toList();
     }
 
-    final isDesktop = MediaQuery.of(context).size.width >= 850;
+    final isDesktop = MediaQuery.of(context).size.width >= 950;
 
     return Center(
       child: Container(

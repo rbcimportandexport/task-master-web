@@ -13,14 +13,16 @@ class MineScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final taskProvider = context.watch<TaskProvider>();
-    final isDesktop = MediaQuery.of(context).size.width >= 850;
+    final isDesktop = MediaQuery.of(context).size.width >= 950;
 
     return Scaffold(
       backgroundColor: isDesktop ? const Color(0xFFF8FAFC) : Colors.white,
       body: SafeArea(
         child: ListView(
           physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
-          padding: isDesktop ? const EdgeInsets.fromLTRB(36, 32, 36, 36) : const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: isDesktop
+              ? const EdgeInsets.fromLTRB(36, 32, 36, 36)
+              : const EdgeInsets.fromLTRB(16, 16, 16, 100),
           children: [
               // 1. Desktop Profile Header (Full-width banner card with tall height)
               Container(
@@ -81,15 +83,17 @@ class MineScreen extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Text(
-                                taskProvider.isLoggedIn ? taskProvider.userName : 'Kept to your plan for 1 day!',
-                                style: TextStyle(
-                                  fontSize: isDesktop ? 22 : 18,
-                                  fontWeight: FontWeight.w800,
-                                  color: AppTheme.textPrimary,
+                              Flexible(
+                                child: Text(
+                                  taskProvider.isLoggedIn ? taskProvider.userName : 'Kept to your plan for 1 day!',
+                                  style: TextStyle(
+                                    fontSize: isDesktop ? 22 : 18,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppTheme.textPrimary,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
                               ),
                               if (taskProvider.isLoggedIn && isDesktop) ...[
                                 const SizedBox(width: 10),
@@ -158,171 +162,213 @@ class MineScreen extends StatelessWidget {
               const SizedBox(height: 28),
 
               // 2. Task Metric Highlights (Large, Imposing Metric Cards with generous height)
-              Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      constraints: const BoxConstraints(minHeight: 190),
-                      padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 36),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF6366F1), Color(0xFF4F46E5)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(24),
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xFF4F46E5).withValues(alpha: 0.35),
-                            blurRadius: 26,
-                            offset: const Offset(0, 10),
-                          ),
-                        ],
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final isCompact = constraints.maxWidth < 650;
+                  final card1 = Container(
+                    constraints: BoxConstraints(minHeight: isCompact ? 120 : 190),
+                    padding: EdgeInsets.symmetric(
+                      vertical: isCompact ? 24 : 48,
+                      horizontal: isCompact ? 24 : 36,
+                    ),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFF6366F1), Color(0xFF4F46E5)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
+                      borderRadius: BorderRadius.circular(24),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFF4F46E5).withValues(alpha: 0.35),
+                          blurRadius: 26,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
+                              Text(
                                 'Completed Tasks',
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: isCompact ? 16 : 18,
                                   color: Colors.white70,
                                   fontWeight: FontWeight.w700,
                                 ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              const SizedBox(height: 14),
+                              SizedBox(height: isCompact ? 8 : 14),
                               Text(
                                 '${taskProvider.completedTasksCount}',
-                                style: const TextStyle(
-                                  fontSize: 54,
+                                style: TextStyle(
+                                  fontSize: isCompact ? 38 : 54,
                                   fontWeight: FontWeight.w900,
                                   color: Colors.white,
                                 ),
                               ),
                             ],
                           ),
-                          Container(
-                            padding: const EdgeInsets.all(22),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.18),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(Icons.task_alt_rounded, color: Colors.white, size: 46),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(isCompact ? 14 : 22),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.18),
+                            shape: BoxShape.circle,
                           ),
-                        ],
-                      ),
+                          child: Icon(Icons.task_alt_rounded, color: Colors.white, size: isCompact ? 32 : 46),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(width: 24),
-                  Expanded(
-                    child: Container(
-                      constraints: const BoxConstraints(minHeight: 190),
-                      padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 36),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: const Color(0xFFE2E8F0)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppTheme.primaryBlue.withValues(alpha: 0.08),
-                            blurRadius: 26,
-                            offset: const Offset(0, 10),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
+                  );
+
+                  final card2 = Container(
+                    constraints: BoxConstraints(minHeight: isCompact ? 120 : 190),
+                    padding: EdgeInsets.symmetric(
+                      vertical: isCompact ? 24 : 48,
+                      horizontal: isCompact ? 24 : 36,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(color: const Color(0xFFE2E8F0)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppTheme.primaryBlue.withValues(alpha: 0.08),
+                          blurRadius: 26,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
+                              Text(
                                 'Pending Tasks',
                                 style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: isCompact ? 16 : 18,
                                   color: AppTheme.textSecondary,
                                   fontWeight: FontWeight.w700,
                                 ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              const SizedBox(height: 14),
+                              SizedBox(height: isCompact ? 8 : 14),
                               Text(
                                 '${taskProvider.pendingTasksCount}',
-                                style: const TextStyle(
-                                  fontSize: 54,
+                                style: TextStyle(
+                                  fontSize: isCompact ? 38 : 54,
                                   fontWeight: FontWeight.w900,
                                   color: AppTheme.textPrimary,
                                 ),
                               ),
                             ],
                           ),
-                          Container(
-                            padding: const EdgeInsets.all(22),
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFFEF3C7),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(Icons.pending_actions_rounded, color: Color(0xFFD97706), size: 46),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(isCompact ? 14 : 22),
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFFEF3C7),
+                            shape: BoxShape.circle,
                           ),
-                        ],
-                      ),
+                          child: Icon(Icons.pending_actions_rounded, color: Color(0xFFD97706), size: isCompact ? 32 : 46),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                  );
+
+                  if (isCompact) {
+                    return Column(
+                      children: [
+                        card1,
+                        const SizedBox(height: 16),
+                        card2,
+                      ],
+                    );
+                  }
+
+                  return Row(
+                    children: [
+                      Expanded(child: card1),
+                      const SizedBox(width: 24),
+                      Expanded(child: card2),
+                    ],
+                  );
+                },
               ),
 
               const SizedBox(height: 28),
 
               // 3. Analytics Cards in Responsive Grid Layout for Desktop
-              if (isDesktop) ...[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: CompletedTasksOverviewCard(
-                        completedCount: taskProvider.completedTasksCount,
-                        pendingCount: taskProvider.pendingTasksCount,
-                      ),
-                    ),
-                    const SizedBox(width: 24),
-                    Expanded(
-                      flex: 1,
-                      child: DailyCompletedCard(taskCount: taskProvider.completedTasksCount),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 28),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Expanded(
-                      flex: 1,
-                      child: FocusTrackerCard(),
-                    ),
-                    const SizedBox(width: 20),
-                    const Expanded(
-                      flex: 1,
-                      child: TasksNext7DaysCard(),
-                    ),
-                  ],
-                ),
-              ] else ...[
-                CompletedTasksOverviewCard(
-                  completedCount: taskProvider.completedTasksCount,
-                  pendingCount: taskProvider.pendingTasksCount,
-                ),
-                const SizedBox(height: 16),
-                DailyCompletedCard(taskCount: taskProvider.completedTasksCount),
-                const SizedBox(height: 16),
-                const FocusTrackerCard(),
-                const SizedBox(height: 16),
-                const TasksNext7DaysCard(),
-              ],
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final useTwoColumns = constraints.maxWidth >= 760;
+                  if (useTwoColumns) {
+                    return Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: CompletedTasksOverviewCard(
+                                completedCount: taskProvider.completedTasksCount,
+                                pendingCount: taskProvider.pendingTasksCount,
+                              ),
+                            ),
+                            const SizedBox(width: 24),
+                            Expanded(
+                              flex: 1,
+                              child: DailyCompletedCard(taskCount: taskProvider.completedTasksCount),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 28),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Expanded(
+                              flex: 1,
+                              child: FocusTrackerCard(),
+                            ),
+                            const SizedBox(width: 20),
+                            const Expanded(
+                              flex: 1,
+                              child: TasksNext7DaysCard(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        CompletedTasksOverviewCard(
+                          completedCount: taskProvider.completedTasksCount,
+                          pendingCount: taskProvider.pendingTasksCount,
+                        ),
+                        const SizedBox(height: 16),
+                        DailyCompletedCard(taskCount: taskProvider.completedTasksCount),
+                        const SizedBox(height: 16),
+                        const FocusTrackerCard(),
+                        const SizedBox(height: 16),
+                        const TasksNext7DaysCard(),
+                      ],
+                    );
+                  }
+                },
+              ),
 
               const SizedBox(height: 40),
             ],

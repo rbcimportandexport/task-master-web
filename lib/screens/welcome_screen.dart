@@ -109,12 +109,8 @@ class WelcomeScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(28),
                           ),
                         ),
-                        onPressed: () async {
+                        onPressed: () {
                           context.read<TaskProvider>().completeOnboarding();
-                          await showDialog(
-                            context: context,
-                            builder: (_) => const HabitDialog(),
-                          );
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
