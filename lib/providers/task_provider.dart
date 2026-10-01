@@ -30,6 +30,7 @@ class TaskProvider extends ChangeNotifier {
   String _filterStatus = 'all'; // 'all', 'pending', 'completed'
   String? _uid;
   String _userRole = 'employee';
+  String _managerId = '';
 
   Color _selectedThemeColor = const Color(0xFF3B82F6);
 
@@ -45,6 +46,7 @@ class TaskProvider extends ChangeNotifier {
   String get userName => _userName;
   String get userEmail => _userEmail;
   String get userProfilePic => _userProfilePic;
+  String get managerId => _managerId;
   String get userRole {
     if (_userEmail.trim().toLowerCase() == 'rbcitsupport@gmail.com') return 'super_admin';
     if (_userEmail.trim().toLowerCase().contains('inquiry')) return 'manager';
@@ -143,13 +145,20 @@ class TaskProvider extends ChangeNotifier {
 
   Future<void> _loadUserProfile(String uid) async {
     try {
-      final doc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
-      if (doc.exists) {
-        if (doc.data()!.containsKey('profilePic')) {
-          _userProfilePic = doc.data()!['profilePic'];
+      final doc = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(uid)
+          .get(const GetOptions(source: Source.serverAndCache));
+      if (doc.exists && doc.data() != null) {
+        final data = doc.data()!;
+        if (data.containsKey('profilePic')) {
+          _userProfilePic = data['profilePic'] ?? '';
         }
-        if (doc.data()!.containsKey('role')) {
-          _userRole = doc.data()!['role'];
+        if (data.containsKey('role')) {
+          _userRole = data['role'] ?? 'employee';
+        }
+        if (data.containsKey('managerId')) {
+          _managerId = data['managerId'] ?? '';
         }
         
         // Ensure support email is always super admin
@@ -160,7 +169,7 @@ class TaskProvider extends ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
-      debugPrint('Error loading profile pic: $e');
+      debugPrint('Error loading profile: $e');
     }
   }
 
@@ -683,15 +692,29 @@ class TaskProvider extends ChangeNotifier {
     final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
     final docId = '${_uid}_$today';
     
-    // Check if already punched in today
-    final existingDoc = await FirebaseFirestore.instance.collection('attendance').doc(docId).get();
-    if (existingDoc.exists && existingDoc.data()?['checkIn'] != null) {
+    // Check if doc exists locally or on server
+    DocumentSnapshot<Map<String, dynamic>>? existingDoc;
+    try {
+      existingDoc = await FirebaseFirestore.instance
+          .collection('attendance')
+          .doc(docId)
+          .get(const GetOptions(source: Source.serverAndCache));
+    } catch (_) {
+      try {
+        existingDoc = await FirebaseFirestore.instance
+            .collection('attendance')
+            .doc(docId)
+            .get(const GetOptions(source: Source.cache));
+      } catch (_) {}
+    }
+
+    if (existingDoc != null && existingDoc.exists && existingDoc.data()?['checkIn'] != null) {
       throw 'Aapne aaj ki attendance pehle hi Punch In kar li hai!';
     }
 
     // Check if doc exists to preserve or adapt status for Half Day or Hourly leave
     String defaultStatus = 'Present';
-    if (existingDoc.exists) {
+    if (existingDoc != null && existingDoc.exists) {
       final data = existingDoc.data();
       if (data != null) {
         if (data['durationMode'] == 'Half Day') {
@@ -702,10 +725,22 @@ class TaskProvider extends ChangeNotifier {
       }
     }
 
-    // We fetch the latest profile data to ensure managerId is correct
-    final userDoc = await FirebaseFirestore.instance.collection('users').doc(_uid).get();
-    final mId = userDoc.data()?['managerId'] ?? '';
+    // Use cached managerId if offline
+    String mId = _managerId;
+    if (mId.isEmpty) {
+      try {
+        final userDoc = await FirebaseFirestore.instance
+            .collection('users')
+            .doc(_uid)
+            .get(const GetOptions(source: Source.serverAndCache));
+        if (userDoc.exists && userDoc.data() != null) {
+          mId = userDoc.data()!['managerId'] ?? '';
+          _managerId = mId;
+        }
+      } catch (_) {}
+    }
     
+    // Firestore set with persistence enabled will immediately succeed locally and sync to cloud
     await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
       'uid': _uid,
       'userName': _userName,

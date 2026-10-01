@@ -142,10 +142,14 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       }
     } catch (e) {
       if (mounted) {
+        String msg = e.toString().replaceAll('Exception: ', '');
+        if (msg.contains('client is offline') || msg.contains('unavailable')) {
+          msg = 'Attendance recorded offline! Internet aane par server se sync ho jayega.';
+        }
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error: $e'),
-            backgroundColor: Colors.red,
+            content: Text(msg),
+            backgroundColor: msg.contains('offline') ? const Color(0xFFF59E0B) : Colors.red,
           ),
         );
       }
