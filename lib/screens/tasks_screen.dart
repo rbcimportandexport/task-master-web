@@ -400,74 +400,90 @@ class _TasksScreenState extends State<TasksScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (isDesktop) ...[
-                    // Desktop Header Bar (Compact & Sleek)
-                    Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    // Desktop Header Bar (Compact, Responsive & Sleek)
+                    LayoutBuilder(
+                      builder: (context, headerConstraints) {
+                        final isCompactHeader = headerConstraints.maxWidth < 650;
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              isAll ? 'All Tasks' : currentCategory,
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w900,
-                                color: Color(0xFF0F172A),
-                                letterSpacing: -0.5,
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    isAll ? 'All Tasks' : currentCategory,
+                                    style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w900,
+                                      color: Color(0xFF0F172A),
+                                      letterSpacing: -0.5,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    '${taskProvider.pendingTasksCount} pending • ${taskProvider.completedTasksCount} completed',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Color(0xFF64748B),
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ],
                               ),
                             ),
-                            const SizedBox(height: 4),
-                            Text(
-                              '${taskProvider.pendingTasksCount} pending tasks • ${taskProvider.completedTasksCount} completed',
-                              style: const TextStyle(
-                                fontSize: 13,
-                                color: Color(0xFF64748B),
-                                fontWeight: FontWeight.w600,
+                            const SizedBox(width: 8),
+                            // Search Button
+                            OutlinedButton.icon(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (_) => const SearchScreen()),
+                                );
+                              },
+                              style: OutlinedButton.styleFrom(
+                                side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.2),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                padding: EdgeInsets.symmetric(horizontal: isCompactHeader ? 10 : 14, vertical: 8),
                               ),
+                              icon: const Icon(Icons.search, size: 18, color: Color(0xFF475569)),
+                              label: Text(
+                                isCompactHeader ? 'Search' : 'Search tasks...',
+                                style: const TextStyle(color: Color(0xFF475569), fontSize: 13, fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            // Filter button
+                            OutlinedButton.icon(
+                              onPressed: () => _showFilterDialog(taskProvider),
+                              style: OutlinedButton.styleFrom(
+                                side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.2),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                padding: EdgeInsets.symmetric(horizontal: isCompactHeader ? 10 : 12, vertical: 8),
+                              ),
+                              icon: const Icon(Icons.filter_list_rounded, size: 18, color: Color(0xFF475569)),
+                              label: Text(
+                                taskProvider.filterStatus.toUpperCase(),
+                                style: const TextStyle(color: Color(0xFF1E293B), fontSize: 12, fontWeight: FontWeight.w800),
+                              ),
+                            ),
+                            const SizedBox(width: 6),
+                            // Sort Button
+                            IconButton(
+                              icon: const Icon(Icons.sort_rounded, color: Color(0xFF475569), size: 22),
+                              tooltip: 'Sort tasks',
+                              onPressed: _showSortDialog,
                             ),
                           ],
-                        ),
-                        const Spacer(),
-                        // Search Button
-                        OutlinedButton.icon(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (_) => const SearchScreen()),
-                            );
-                          },
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.2),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                          ),
-                          icon: const Icon(Icons.search, size: 18, color: Color(0xFF475569)),
-                          label: const Text('Search tasks...', style: TextStyle(color: Color(0xFF475569), fontSize: 13, fontWeight: FontWeight.w600)),
-                        ),
-                        const SizedBox(width: 10),
-                        // Filter button
-                        OutlinedButton.icon(
-                          onPressed: () => _showFilterDialog(taskProvider),
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.2),
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                          ),
-                          icon: const Icon(Icons.filter_list_rounded, size: 18, color: Color(0xFF475569)),
-                          label: Text(
-                            taskProvider.filterStatus.toUpperCase(),
-                            style: const TextStyle(color: Color(0xFF1E293B), fontSize: 12, fontWeight: FontWeight.w800),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        // Sort Button
-                        IconButton(
-                          icon: const Icon(Icons.sort_rounded, color: Color(0xFF475569), size: 22),
-                          tooltip: 'Sort tasks',
-                          onPressed: _showSortDialog,
-                        ),
-                      ],
+                        );
+                      },
                     ),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 12),
 
                     // Quick Desktop Metric Cards
                     Row(
