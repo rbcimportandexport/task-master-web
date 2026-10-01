@@ -2,6 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_list/theme/app_theme.dart';
 import 'package:todo_list/widgets/analytics_charts.dart';
+import 'package:todo_list/models/task.dart';
+import 'package:todo_list/widgets/voice_note_player.dart';
 
 void main() {
   test('AppTheme color token test', () {
@@ -478,6 +480,43 @@ void main() {
       await tester.pumpAndSettle();
       debugPrint('Task item test passed at width: $width');
     }
+  });
+
+  test('Task voice note serialization and deserialization test', () {
+    final task = Task(
+      id: 'task_voice_1',
+      title: 'Voice Instruction Meeting',
+      voiceNoteUrl: '/data/user/0/com.example.todo/cache/voice_123.m4a',
+      voiceDurationSeconds: 15,
+    );
+
+    final json = task.toJson();
+    expect(json['voiceNoteUrl'], equals('/data/user/0/com.example.todo/cache/voice_123.m4a'));
+    expect(json['voiceDurationSeconds'], equals(15));
+
+    final reconstructed = Task.fromJson(json);
+    expect(reconstructed.id, equals('task_voice_1'));
+    expect(reconstructed.voiceNoteUrl, equals('/data/user/0/com.example.todo/cache/voice_123.m4a'));
+    expect(reconstructed.voiceDurationSeconds, equals(15));
+  });
+
+  testWidgets('VoiceNotePlayerWidget renders cleanly', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: Center(
+            child: VoiceNotePlayerWidget(
+              audioPathOrUrl: 'mock_voice.m4a',
+              durationSeconds: 25,
+              isCompact: true,
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.textContaining('Voice Note'), findsOneWidget);
+    expect(find.byIcon(Icons.graphic_eq_rounded), findsOneWidget);
   });
 }
 

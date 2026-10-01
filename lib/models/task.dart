@@ -38,6 +38,8 @@ class Task {
   int progress; // 0, 25, 50, 75, 100
   int flagColor; // 0=none, 1=pink, 2=yellow, 3=purple, 4=blue, 5=green
   String? assignedBy;
+  String? voiceNoteUrl;
+  int? voiceDurationSeconds;
 
   Task({
     required this.id,
@@ -55,6 +57,8 @@ class Task {
     this.progress = 0,
     this.flagColor = 0,
     this.assignedBy,
+    this.voiceNoteUrl,
+    this.voiceDurationSeconds,
   })  : subtasks = subtasks ?? [],
         attachments = attachments ?? [],
         createdAt = createdAt ?? DateTime.now();
@@ -75,6 +79,8 @@ class Task {
         'progress': progress,
         'flagColor': flagColor,
         'assignedBy': assignedBy,
+        'voiceNoteUrl': voiceNoteUrl,
+        'voiceDurationSeconds': voiceDurationSeconds,
       };
 
   factory Task.fromJson(Map<String, dynamic> json) => Task(
@@ -105,5 +111,7 @@ class Task {
         progress: json['progress'] as int? ?? 0,
         flagColor: json['flagColor'] as int? ?? 0,
         assignedBy: json['assignedBy'] as String?,
+        voiceNoteUrl: json['voiceNoteUrl'] as String?,
+        voiceDurationSeconds: json['voiceDurationSeconds'] as int?,
       );
 }

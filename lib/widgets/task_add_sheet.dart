@@ -7,6 +7,8 @@ import '../theme/app_theme.dart';
 import 'smart_voice_create_dialog.dart';
 import 'custom_date_picker_modal.dart';
 import 'pie_progress_indicator.dart';
+import 'voice_record_sheet.dart';
+import 'voice_note_player.dart';
 
 class TaskAddSheet extends StatefulWidget {
   final String? targetEmployeeId;
@@ -25,25 +27,149 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
   int _progress = 0;
   int _flagColor = 0;
   final List<String> _subtasks = [];
+  String? _voiceNotePath;
+  int? _voiceNoteDuration;
 
   @override
   void initState() {
     super.initState();
+    _controller.addListener(_onTextChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _focusNode.requestFocus();
     });
   }
 
+  void _onTextChanged() {
+    if (mounted) setState(() {});
+  }
+
   @override
   void dispose() {
+    _controller.removeListener(_onTextChanged);
     _controller.dispose();
     _focusNode.dispose();
     super.dispose();
   }
 
+  Future<void> _openVoiceRecorder() async {
+    final result = await showModalBottomSheet<Map<String, dynamic>>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => const VoiceRecordSheet(),
+    );
+    if (result != null && result['path'] != null) {
+      setState(() {
+        _voiceNotePath = result['path'] as String;
+        _voiceNoteDuration = result['duration'] as int?;
+        if (_controller.text.trim().isEmpty) {
+          _controller.text = 'Voice Note (${DateFormat('dd MMM, h:mm a').format(DateTime.now())})';
+        }
+      });
+    }
+  }
+
+  void _showVoiceOptionsModal() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFCBD5E1),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Voice Message Options',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Color(0xFF0F172A)),
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                'Record actual audio or transcribe speech to text',
+                style: TextStyle(fontSize: 13, color: Color(0xFF64748B)),
+              ),
+              const SizedBox(height: 20),
+              ListTile(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                tileColor: const Color(0xFFEFF6FF),
+                leading: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                    color: AppTheme.primaryBlue,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.mic_rounded, color: Colors.white, size: 22),
+                ),
+                title: const Text(
+                  'Record Voice Message (Audio)',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xFF1E3A8A)),
+                ),
+                subtitle: const Text(
+                  'Record your voice note directly (no typing needed)',
+                  style: TextStyle(fontSize: 12, color: Color(0xFF3B82F6)),
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded, color: AppTheme.primaryBlue, size: 16),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  _openVoiceRecorder();
+                },
+              ),
+              const SizedBox(height: 12),
+              ListTile(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                tileColor: const Color(0xFFF8FAFC),
+                leading: Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFE2E8F0),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(Icons.auto_awesome_rounded, color: Color(0xFF475569), size: 22),
+                ),
+                title: const Text(
+                  'Voice to Text (AI Transcribe)',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xFF1E293B)),
+                ),
+                subtitle: const Text(
+                  'Speak words to auto-fill title, date & category',
+                  style: TextStyle(fontSize: 12, color: Color(0xFF64748B)),
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded, color: Color(0xFF94A3B8), size: 16),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  showDialog(
+                    context: context,
+                    builder: (_) => const SmartVoiceCreateDialog(),
+                  );
+                },
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   void _submitTask() {
     final text = _controller.text.trim();
-    if (text.isEmpty) return;
+    if (text.isEmpty && _voiceNotePath == null) return;
+
+    final finalTitle = text.isNotEmpty
+        ? text
+        : 'Voice Note (${DateFormat('dd MMM, h:mm a').format(DateTime.now())})';
 
     final provider = context.read<TaskProvider>();
     final List<Subtask> subtaskModels = _subtasks
@@ -53,23 +179,27 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
     if (widget.targetEmployeeId != null) {
       provider.assignTaskToEmployee(
         widget.targetEmployeeId!,
-        title: text,
+        title: finalTitle,
         category: _selectedCategory,
         dueDate: _selectedDate,
         priority: _priority,
         progress: _progress,
         flagColor: _flagColor,
         subtasks: subtaskModels,
+        voiceNoteUrl: _voiceNotePath,
+        voiceDurationSeconds: _voiceNoteDuration,
       );
     } else {
       provider.addTask(
-        title: text,
+        title: finalTitle,
         category: _selectedCategory,
         dueDate: _selectedDate,
         priority: _priority,
         progress: _progress,
         flagColor: _flagColor,
         subtasks: subtaskModels,
+        voiceNoteUrl: _voiceNotePath,
+        voiceDurationSeconds: _voiceNoteDuration,
       );
     }
 
@@ -548,19 +678,53 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
                     onSubmitted: (_) => _submitTask(),
                   ),
                 ),
-                // Mic + Sparkle Icon (Screenshot)
+                // Mic + Sparkle Icon
                 IconButton(
-                  icon: const Icon(Icons.mic_none_rounded, color: Color(0xFF64748B), size: 24),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (_) => const SmartVoiceCreateDialog(),
-                    );
-                  },
+                  icon: Icon(
+                    _voiceNotePath != null ? Icons.mic_rounded : Icons.mic_none_rounded,
+                    color: _voiceNotePath != null ? AppTheme.primaryBlue : const Color(0xFF64748B),
+                    size: 24,
+                  ),
+                  onPressed: _showVoiceOptionsModal,
+                  tooltip: 'Voice Message or Speech to Text',
                 ),
               ],
             ),
           ),
+          if (_voiceNotePath != null) ...[
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                color: const Color(0xFFEFF6FF),
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: const Color(0xFFBFDBFE)),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: VoiceNotePlayerWidget(
+                      audioPathOrUrl: _voiceNotePath!,
+                      durationSeconds: _voiceNoteDuration,
+                      isCompact: false,
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.close_rounded, size: 18, color: Color(0xFF64748B)),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    onPressed: () {
+                      setState(() {
+                        _voiceNotePath = null;
+                        _voiceNoteDuration = null;
+                      });
+                    },
+                    tooltip: 'Remove voice note',
+                  ),
+                ],
+              ),
+            ),
+          ],
           if (_subtasks.isNotEmpty) ...[
             const SizedBox(height: 8),
             Wrap(
@@ -713,26 +877,78 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
                   ),
                 ),
               ),
+              const SizedBox(width: 10),
+
+              // 5. Voice Note Button (Direct Record Voice Note)
+              InkWell(
+                onTap: _openVoiceRecorder,
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: _voiceNotePath != null ? 8 : 4, vertical: 4),
+                  decoration: _voiceNotePath != null
+                      ? BoxDecoration(
+                          color: const Color(0xFFEFF6FF),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: const Color(0xFFBFDBFE)),
+                        )
+                      : null,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        _voiceNotePath != null ? Icons.mic_rounded : Icons.mic_none_rounded,
+                        color: _voiceNotePath != null ? AppTheme.primaryBlue : const Color(0xFF64748B),
+                        size: 22,
+                      ),
+                      if (_voiceNotePath != null) ...[
+                        const SizedBox(width: 4),
+                        const Text(
+                          'Voice',
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: AppTheme.primaryBlue,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+              ),
 
               const Spacer(),
 
-              // 5. Send / Submit Button
-              InkWell(
-                onTap: _submitTask,
-                borderRadius: BorderRadius.circular(24),
-                child: Container(
-                  width: 44,
-                  height: 44,
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF94A3B8),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.navigation_rounded,
-                    color: Colors.white,
-                    size: 22,
-                  ),
-                ),
+              // 6. Send / Submit Button
+              Builder(
+                builder: (context) {
+                  final hasContent = _controller.text.trim().isNotEmpty || _voiceNotePath != null;
+                  return InkWell(
+                    onTap: _submitTask,
+                    borderRadius: BorderRadius.circular(24),
+                    child: Container(
+                      width: 44,
+                      height: 44,
+                      decoration: BoxDecoration(
+                        color: hasContent ? AppTheme.primaryBlue : const Color(0xFF94A3B8),
+                        shape: BoxShape.circle,
+                        boxShadow: hasContent
+                            ? [
+                                BoxShadow(
+                                  color: AppTheme.primaryBlue.withValues(alpha: 0.35),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ]
+                            : null,
+                      ),
+                      child: const Icon(
+                        Icons.navigation_rounded,
+                        color: Colors.white,
+                        size: 22,
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

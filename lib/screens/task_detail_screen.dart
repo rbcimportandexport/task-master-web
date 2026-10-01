@@ -8,6 +8,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/task.dart';
 import '../providers/task_provider.dart';
 import '../theme/app_theme.dart';
+import '../widgets/voice_record_sheet.dart';
+import '../widgets/voice_note_player.dart';
 
 class TaskDetailScreen extends StatefulWidget {
   final Task task;
@@ -25,6 +27,9 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
   String _repeat = 'No';
   late String _notes;
   late List<String> _attachments;
+  String? _voiceNoteUrl;
+  int? _voiceDurationSeconds;
+
   @override
   void initState() {
     super.initState();
@@ -33,6 +38,8 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     _dueDate = widget.task.dueDate ?? DateUtils.dateOnly(DateTime.now());
     _notes = widget.task.notes;
     _attachments = List<String>.from(widget.task.attachments);
+    _voiceNoteUrl = widget.task.voiceNoteUrl;
+    _voiceDurationSeconds = widget.task.voiceDurationSeconds;
   }
 
   @override
@@ -47,6 +54,8 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     widget.task.dueDate = _dueDate;
     widget.task.notes = _notes;
     widget.task.attachments = _attachments;
+    widget.task.voiceNoteUrl = _voiceNoteUrl;
+    widget.task.voiceDurationSeconds = _voiceDurationSeconds;
     context.read<TaskProvider>().updateTask(widget.task);
   }
 
@@ -286,19 +295,31 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                 leading: Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(color: const Color(0xFFFAF5FF), borderRadius: BorderRadius.circular(10)),
-                  child: const Icon(Icons.mic_none_rounded, color: Color(0xFFA855F7)),
+                  child: const Icon(Icons.mic_rounded, color: Color(0xFFA855F7)),
                 ),
                 title: const Text('Voice Memo / Audio'),
-                subtitle: const Text('Attach recorded voice note', style: TextStyle(fontSize: 12)),
-                onTap: () {
+                subtitle: const Text('Record and attach real voice note', style: TextStyle(fontSize: 12)),
+                onTap: () async {
                   Navigator.pop(ctx);
-                  setState(() {
-                    _attachments.add('VoiceNote_${DateTime.now().millisecondsSinceEpoch % 1000}.m4a');
-                  });
-                  _saveChanges();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Voice memo attached successfully!')),
+                  final res = await showModalBottomSheet<Map<String, dynamic>>(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (_) => const VoiceRecordSheet(),
                   );
+                  if (res != null && res['path'] != null) {
+                    setState(() {
+                      _voiceNoteUrl = res['path'] as String;
+                      _voiceDurationSeconds = res['duration'] as int?;
+                    });
+                    _saveChanges();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Voice note recorded & attached successfully!'),
+                        backgroundColor: Color(0xFF10B981),
+                      ),
+                    );
+                  }
                 },
               ),
               ListTile(
@@ -644,6 +665,70 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
             value: _attachments.isEmpty ? 'Add' : '${_attachments.length} files',
             onTap: _showAttachmentPicker,
           ),
+
+          // 6. Voice Note (Audio Message)
+          _buildPropertyTile(
+            icon: Icons.mic_rounded,
+            title: 'Voice Note',
+            value: _voiceNoteUrl != null ? 'Recorded' : 'Record',
+            onTap: () async {
+              final res = await showModalBottomSheet<Map<String, dynamic>>(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (_) => const VoiceRecordSheet(),
+              );
+              if (res != null && res['path'] != null) {
+                setState(() {
+                  _voiceNoteUrl = res['path'] as String;
+                  _voiceDurationSeconds = res['duration'] as int?;
+                });
+                _saveChanges();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Voice note recorded & attached successfully!'),
+                    backgroundColor: Color(0xFF10B981),
+                  ),
+                );
+              }
+            },
+          ),
+          if (_voiceNoteUrl != null && _voiceNoteUrl!.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 6),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFEFF6FF),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: const Color(0xFFBFDBFE)),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: VoiceNotePlayerWidget(
+                        audioPathOrUrl: _voiceNoteUrl!,
+                        durationSeconds: _voiceDurationSeconds,
+                        isCompact: false,
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.close_rounded, size: 18, color: Color(0xFF64748B)),
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
+                      onPressed: () {
+                        setState(() {
+                          _voiceNoteUrl = null;
+                          _voiceDurationSeconds = null;
+                        });
+                        _saveChanges();
+                      },
+                      tooltip: 'Remove voice note',
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
           // Render Attached Files List
           if (_attachments.isNotEmpty)

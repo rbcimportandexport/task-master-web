@@ -8,6 +8,7 @@ import '../widgets/pie_progress_indicator.dart';
 import '../widgets/task_add_sheet.dart';
 import 'dart:convert';
 import '../widgets/assign_task_sheet.dart';
+import '../widgets/voice_note_player.dart';
 
 class EmployeeDetailScreen extends StatefulWidget {
   final String employeeId;
@@ -262,8 +263,17 @@ class _EmployeeDetailScreenState extends State<EmployeeDetailScreen> {
                       color: AppTheme.primaryBlue,
                     ),
                     const SizedBox(width: 4),
-                    Text('\%', style: const TextStyle(fontSize: 10, color: Color(0xFF94A3B8), fontWeight: FontWeight.bold)),
+                    Text('${task.progress}%', style: const TextStyle(fontSize: 10, color: Color(0xFF94A3B8), fontWeight: FontWeight.bold)),
                   ],
+                ),
+              ),
+            if (task.voiceNoteUrl != null && task.voiceNoteUrl!.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: VoiceNotePlayerWidget(
+                  audioPathOrUrl: task.voiceNoteUrl!,
+                  durationSeconds: task.voiceDurationSeconds,
+                  isCompact: true,
                 ),
               ),
           ],

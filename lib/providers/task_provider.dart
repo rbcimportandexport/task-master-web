@@ -396,6 +396,8 @@ class TaskProvider extends ChangeNotifier {
     int progress = 0,
     int flagColor = 0,
     List<Subtask>? subtasks,
+    String? voiceNoteUrl,
+    int? voiceDurationSeconds,
   }) {
     final newTask = Task(
       id: FirebaseFirestore.instance.collection('users').doc().id, // Generate a unique ID
@@ -406,6 +408,8 @@ class TaskProvider extends ChangeNotifier {
       progress: progress,
       flagColor: flagColor,
       subtasks: subtasks ?? [],
+      voiceNoteUrl: voiceNoteUrl,
+      voiceDurationSeconds: voiceDurationSeconds,
       createdAt: DateTime.now(),
     );
     _tasks.insert(0, newTask);
@@ -872,6 +876,8 @@ class TaskProvider extends ChangeNotifier {
     int progress = 0,
     int flagColor = 0,
     List<Subtask>? subtasks,
+    String? voiceNoteUrl,
+    int? voiceDurationSeconds,
   }) async {
     try {
       final taskId = FirebaseFirestore.instance.collection('users').doc().id;
@@ -886,6 +892,8 @@ class TaskProvider extends ChangeNotifier {
         flagColor: flagColor,
         subtasks: subtasks ?? [],
         assignedBy: _userName,
+        voiceNoteUrl: voiceNoteUrl,
+        voiceDurationSeconds: voiceDurationSeconds,
       );
       await FirebaseFirestore.instance
           .collection('users')
@@ -900,8 +908,10 @@ class TaskProvider extends ChangeNotifier {
           .doc(employeeId)
           .collection('notifications')
           .add({
-        'title': 'New Task Assigned',
-        'message': 'You have been assigned a new task: $title',
+        'title': voiceNoteUrl != null ? '🎤 Voice Task Assigned' : 'New Task Assigned',
+        'message': voiceNoteUrl != null
+            ? 'Voice note task assigned by $_userName: $title'
+            : 'You have been assigned a new task: $title',
         'timestamp': FieldValue.serverTimestamp(),
         'isRead': false,
       });

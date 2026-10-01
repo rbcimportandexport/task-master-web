@@ -5,6 +5,8 @@ import '../providers/task_provider.dart';
 import '../models/task.dart';
 import '../theme/app_theme.dart';
 import 'custom_date_picker_modal.dart';
+import 'voice_record_sheet.dart';
+import 'voice_note_player.dart';
 
 class AssignTaskSheet extends StatefulWidget {
   final String? employeeId;
@@ -23,6 +25,9 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
   int _priority = 1; // 0: None, 1: Low, 2: Medium, 3: High
   bool _isLoading = false;
   bool _isFetchingData = true;
+
+  String? _voiceNotePath;
+  int? _voiceNoteDuration;
 
   List<String> _departments = ['All'];
   List<Map<String, dynamic>> _allUsers = [];
@@ -77,8 +82,12 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
   }
 
   Future<void> _submit() async {
-    if (_titleController.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter a task title')));
+    final title = _titleController.text.trim().isNotEmpty
+        ? _titleController.text.trim()
+        : (_voiceNotePath != null ? 'Voice Instructions (${DateFormat('dd MMM, h:mm a').format(DateTime.now())})' : '');
+
+    if (title.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please enter a task title or record voice instructions')));
       return;
     }
 
@@ -91,10 +100,12 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
     try {
       await context.read<TaskProvider>().assignTaskToEmployee(
         _selectedTargetUserId!,
-        title: _titleController.text.trim(),
+        title: title,
         category: _categoryController.text.trim().isNotEmpty ? _categoryController.text.trim() : 'Work',
         dueDate: _dueDate,
         priority: _priority,
+        voiceNoteUrl: _voiceNotePath,
+        voiceDurationSeconds: _voiceNoteDuration,
       );
 
       if (mounted) {
@@ -446,9 +457,109 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
                       labelText: 'Task Title *',
                       hintText: 'e.g. Audit IT infrastructure & submit report',
                       prefixIcon: const Icon(Icons.title_rounded, color: AppTheme.primaryBlue),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _voiceNotePath != null ? Icons.mic_rounded : Icons.mic_none_rounded,
+                          color: _voiceNotePath != null ? AppTheme.primaryBlue : const Color(0xFF64748B),
+                        ),
+                        tooltip: 'Record Voice Instructions',
+                        onPressed: () async {
+                          final res = await showModalBottomSheet<Map<String, dynamic>>(
+                            context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) => const VoiceRecordSheet(),
+                          );
+                          if (res != null && res['path'] != null) {
+                            setState(() {
+                              _voiceNotePath = res['path'] as String;
+                              _voiceNoteDuration = res['duration'] as int?;
+                              if (_titleController.text.trim().isEmpty) {
+                                _titleController.text = 'Voice Instructions (${DateFormat('dd MMM, h:mm a').format(DateTime.now())})';
+                              }
+                            });
+                          }
+                        },
+                      ),
                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                     ),
                   ),
+
+                  // Voice Instructions Player / Attachment Card
+                  if (_voiceNotePath != null) ...[
+                    const SizedBox(height: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFEFF6FF),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: const Color(0xFFBFDBFE)),
+                      ),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: VoiceNotePlayerWidget(
+                              audioPathOrUrl: _voiceNotePath!,
+                              durationSeconds: _voiceNoteDuration,
+                              isCompact: false,
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close_rounded, size: 18, color: Color(0xFF64748B)),
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
+                            onPressed: () {
+                              setState(() {
+                                _voiceNotePath = null;
+                                _voiceNoteDuration = null;
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ] else ...[
+                    const SizedBox(height: 8),
+                    InkWell(
+                      onTap: () async {
+                        final res = await showModalBottomSheet<Map<String, dynamic>>(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (_) => const VoiceRecordSheet(),
+                        );
+                        if (res != null && res['path'] != null) {
+                          setState(() {
+                            _voiceNotePath = res['path'] as String;
+                            _voiceNoteDuration = res['duration'] as int?;
+                            if (_titleController.text.trim().isEmpty) {
+                              _titleController.text = 'Voice Instructions (${DateFormat('dd MMM, h:mm a').format(DateTime.now())})';
+                            }
+                          });
+                        }
+                      },
+                      borderRadius: BorderRadius.circular(10),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF1F5F9),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: const Color(0xFFE2E8F0)),
+                        ),
+                        child: const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.mic_rounded, size: 16, color: AppTheme.primaryBlue),
+                            SizedBox(width: 6),
+                            Text(
+                              '+ Attach Voice Instructions (Audio)',
+                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppTheme.primaryBlue),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 12),
 
                   // Category & Due Date Row

@@ -10,6 +10,7 @@ import '../widgets/pie_progress_indicator.dart';
 import '../widgets/task_add_sheet.dart';
 import '../widgets/task_coachmark_overlay.dart';
 import '../widgets/celebration_dialog.dart';
+import '../widgets/voice_note_player.dart';
 import 'search_screen.dart';
 import 'task_detail_screen.dart';
 
@@ -1367,6 +1368,15 @@ class _TasksScreenState extends State<TasksScreen> {
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    if (task.voiceNoteUrl != null && task.voiceNoteUrl!.isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4),
+                        child: VoiceNotePlayerWidget(
+                          audioPathOrUrl: task.voiceNoteUrl!,
+                          durationSeconds: task.voiceDurationSeconds,
+                          isCompact: true,
                         ),
                       ),
                   ],
