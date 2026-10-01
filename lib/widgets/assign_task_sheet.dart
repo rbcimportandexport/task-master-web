@@ -146,33 +146,40 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
 
     final isDesktop = MediaQuery.of(context).size.width >= 950;
 
-    return Center(
-      child: Container(
-        constraints: BoxConstraints(
-          maxWidth: isDesktop ? 680 : double.infinity,
-          maxHeight: MediaQuery.of(context).size.height * 0.90,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: isDesktop
-              ? BorderRadius.circular(24)
-              : const BorderRadius.vertical(top: Radius.circular(24)),
-          boxShadow: isDesktop
-              ? [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
-                    blurRadius: 30,
-                    offset: const Offset(0, 10),
-                  ),
-                ]
-              : null,
-        ),
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-          left: isDesktop ? 28 : 20,
-          right: isDesktop ? 28 : 20,
-          top: isDesktop ? 24 : 20,
-        ),
+    final sheetContent = Container(
+      constraints: BoxConstraints(
+        maxWidth: isDesktop ? 680 : double.infinity,
+        maxHeight: MediaQuery.of(context).size.height * 0.90,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: isDesktop
+            ? BorderRadius.circular(24)
+            : const BorderRadius.vertical(top: Radius.circular(24)),
+        boxShadow: isDesktop
+            ? [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.15),
+                  blurRadius: 30,
+                  offset: const Offset(0, 10),
+                ),
+              ]
+            : [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.12),
+                  blurRadius: 20,
+                  offset: const Offset(0, -4),
+                ),
+              ],
+      ),
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+        left: isDesktop ? 28 : 20,
+        right: isDesktop ? 28 : 20,
+        top: isDesktop ? 24 : 20,
+      ),
+      child: SafeArea(
+        top: false,
         child: _isFetchingData
             ? const Center(child: Padding(padding: EdgeInsets.all(32), child: CircularProgressIndicator()))
             : SingleChildScrollView(
@@ -515,6 +522,15 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
               ),
             ),
       ),
+    );
+
+    if (isDesktop) {
+      return Center(child: sheetContent);
+    }
+
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: sheetContent,
     );
   }
 }

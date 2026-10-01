@@ -480,30 +480,37 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
     final isDesktop = MediaQuery.of(context).size.width >= 950;
 
-    return Center(
-      child: Container(
-        constraints: BoxConstraints(maxWidth: isDesktop ? 680 : double.infinity),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: isDesktop
-              ? BorderRadius.circular(24)
-              : const BorderRadius.vertical(top: Radius.circular(24)),
-          boxShadow: isDesktop
-              ? [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
-                    blurRadius: 30,
-                    offset: const Offset(0, 10),
-                  ),
-                ]
-              : null,
-        ),
-        padding: EdgeInsets.only(
-          top: isDesktop ? 24 : 20,
-          left: isDesktop ? 28 : 20,
-          right: isDesktop ? 28 : 20,
-          bottom: bottomInset + (isDesktop ? 24 : 16),
-        ),
+    final sheetContent = Container(
+      constraints: BoxConstraints(maxWidth: isDesktop ? 680 : double.infinity),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: isDesktop
+            ? BorderRadius.circular(24)
+            : const BorderRadius.vertical(top: Radius.circular(24)),
+        boxShadow: isDesktop
+            ? [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.15),
+                  blurRadius: 30,
+                  offset: const Offset(0, 10),
+                ),
+              ]
+            : [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.12),
+                  blurRadius: 20,
+                  offset: const Offset(0, -4),
+                ),
+              ],
+      ),
+      padding: EdgeInsets.only(
+        top: isDesktop ? 24 : 20,
+        left: isDesktop ? 28 : 20,
+        right: isDesktop ? 28 : 20,
+        bottom: bottomInset + (isDesktop ? 24 : 16),
+      ),
+      child: SafeArea(
+        top: false,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -732,6 +739,15 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
         ],
       ),
     ),
-    );
+  );
+
+  if (isDesktop) {
+    return Center(child: sheetContent);
+  }
+
+  return Align(
+    alignment: Alignment.bottomCenter,
+    child: sheetContent,
+  );
   }
 }
