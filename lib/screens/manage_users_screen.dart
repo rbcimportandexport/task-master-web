@@ -21,11 +21,23 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
   String _selectedRoleFilter = 'All';
   String _selectedDeptFilter = 'All';
 
-  void _showRoleManagerSheet(BuildContext context, Map<String, dynamic> userData, String uid) {
-    String currentRole = userData['role'] ?? 'employee';
-    String currentDepartment = userData['department'] ?? '';
+  void _showRoleManagerSheet(BuildContext context, Map<String, dynamic> userData, String uid) async {
+    String currentRole = (userData['role'] ?? 'employee').toString().toLowerCase();
+    String currentDepartment = (userData['department'] ?? '').toString().trim();
+    String currentManagerId = (userData['managerId'] ?? '').toString().trim();
+    
+    final taskProvider = context.read<TaskProvider>();
+    final List<String> availableDepts = await taskProvider.getDepartments();
+    final List<Map<String, dynamic>> allUsers = await taskProvider.getEmployees();
+    final List<Map<String, dynamic>> potentialManagers = allUsers.where((u) {
+      final r = (u['role'] ?? '').toString().toLowerCase();
+      return (r == 'manager' || r == 'super_admin') && u['uid'] != uid;
+    }).toList();
+
+    if (!context.mounted) return;
+
     final departmentController = TextEditingController(text: currentDepartment);
-    final nameController = TextEditingController(text: userData['name'] ?? '');
+    bool isCustomDept = currentDepartment.isNotEmpty && !availableDepts.contains(currentDepartment);
 
     showModalBottomSheet(
       context: context,
@@ -43,97 +55,158 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
                 right: 20,
                 top: 24,
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: AppTheme.primaryBlue.withOpacity(0.1),
-                          shape: BoxShape.circle,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: AppTheme.primaryBlue.withOpacity(0.1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.manage_accounts_rounded, color: AppTheme.primaryBlue, size: 24),
                         ),
-                        child: const Icon(Icons.manage_accounts_rounded, color: AppTheme.primaryBlue, size: 24),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Edit ${userData['name'] ?? 'User'}',
-                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
-                            ),
-                            Text(
-                              userData['email'] ?? '',
-                              style: const TextStyle(fontSize: 12, color: Color(0xFF64748B)),
-                            ),
-                          ],
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Manage: ${userData['name'] ?? 'Staff'}',
+                                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+                              ),
+                              Text(
+                                userData['email'] ?? '',
+                                style: const TextStyle(fontSize: 12, color: Color(0xFF64748B)),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Role selector with card options
-                  const Text('Assign User Role', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF334155))),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      _buildRoleOptionChip('employee', 'Employee', Icons.badge_outlined, const Color(0xFF10B981), currentRole, (v) => setModalState(() => currentRole = v)),
-                      const SizedBox(width: 8),
-                      _buildRoleOptionChip('manager', 'Manager', Icons.supervisor_account_rounded, const Color(0xFF3B82F6), currentRole, (v) => setModalState(() => currentRole = v)),
-                      const SizedBox(width: 8),
-                      _buildRoleOptionChip('super_admin', 'Admin', Icons.verified_user_rounded, const Color(0xFF8B5CF6), currentRole, (v) => setModalState(() => currentRole = v)),
-                    ],
-                  ),
-
-                  const SizedBox(height: 18),
-                  const Text('Department / Designation', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF334155))),
-                  const SizedBox(height: 6),
-                  TextField(
-                    controller: departmentController,
-                    decoration: InputDecoration(
-                      hintText: 'e.g. IT, Sales, Logistics, Support, HR',
-                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                      ],
                     ),
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        try {
-                          await _firestore.collection('users').doc(uid).update({
-                            'role': currentRole,
-                            'department': departmentController.text.trim(),
+                    const SizedBox(height: 20),
+
+                    // Role selector with card options
+                    const Text('Assign User Role', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF334155))),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        _buildRoleOptionChip('employee', 'Employee', Icons.badge_outlined, const Color(0xFF10B981), currentRole, (v) => setModalState(() => currentRole = v)),
+                        const SizedBox(width: 8),
+                        _buildRoleOptionChip('manager', 'Manager', Icons.supervisor_account_rounded, const Color(0xFF3B82F6), currentRole, (v) => setModalState(() => currentRole = v)),
+                        const SizedBox(width: 8),
+                        _buildRoleOptionChip('super_admin', 'Admin', Icons.verified_user_rounded, const Color(0xFF8B5CF6), currentRole, (v) => setModalState(() => currentRole = v)),
+                      ],
+                    ),
+
+                    const SizedBox(height: 18),
+                    const Text('Department / Team', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF334155))),
+                    const SizedBox(height: 8),
+                    DropdownButtonFormField<String>(
+                      value: availableDepts.contains(currentDepartment) ? currentDepartment : (isCustomDept ? '__custom__' : (availableDepts.isNotEmpty ? availableDepts.first : null)),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                        prefixIcon: const Icon(Icons.business_center_rounded),
+                      ),
+                      items: [
+                        ...availableDepts.map((dept) => DropdownMenuItem(value: dept, child: Text(dept))),
+                        const DropdownMenuItem(value: '__custom__', child: Text('+ Type New Department...')),
+                      ],
+                      onChanged: (val) {
+                        if (val == '__custom__') {
+                          setModalState(() {
+                            isCustomDept = true;
+                            currentDepartment = '';
+                            departmentController.clear();
                           });
-                          if (ctx.mounted) Navigator.pop(ctx);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('${userData['name']} is now set to ${currentRole.toUpperCase()}!'),
-                              backgroundColor: const Color(0xFF10B981),
-                            ),
-                          );
-                        } catch (e) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Error updating user: $e'), backgroundColor: Colors.red),
-                          );
+                        } else if (val != null) {
+                          setModalState(() {
+                            isCustomDept = false;
+                            currentDepartment = val;
+                            departmentController.text = val;
+                          });
                         }
                       },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppTheme.primaryBlue,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      ),
-                      child: const Text('Save Role & Department', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                ],
+
+                    if (isCustomDept) ...[
+                      const SizedBox(height: 8),
+                      TextField(
+                        controller: departmentController,
+                        autofocus: true,
+                        decoration: InputDecoration(
+                          hintText: 'Enter new department name',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                          prefixIcon: const Icon(Icons.edit_outlined),
+                        ),
+                        onChanged: (v) => currentDepartment = v.trim(),
+                      ),
+                    ],
+
+                    const SizedBox(height: 18),
+                    const Text('Assign to Manager / Team Leader', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF334155))),
+                    const SizedBox(height: 8),
+                    DropdownButtonFormField<String>(
+                      value: currentManagerId.isEmpty ? '' : (potentialManagers.any((m) => m['uid'] == currentManagerId) ? currentManagerId : ''),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                        prefixIcon: const Icon(Icons.groups_rounded),
+                      ),
+                      items: [
+                        const DropdownMenuItem(value: '', child: Text('No Manager Assigned (Direct)')),
+                        ...potentialManagers.map((mgr) => DropdownMenuItem(
+                          value: mgr['uid'] as String,
+                          child: Text('${mgr['name'] ?? 'Manager'} (${mgr['department'] ?? 'General'})'),
+                        )),
+                      ],
+                      onChanged: (val) {
+                        setModalState(() => currentManagerId = val ?? '');
+                      },
+                    ),
+
+                    const SizedBox(height: 24),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          try {
+                            final finalDept = isCustomDept ? departmentController.text.trim() : currentDepartment.trim();
+                            await _firestore.collection('users').doc(uid).update({
+                              'role': currentRole,
+                              'department': finalDept,
+                              'managerId': currentManagerId,
+                            });
+                            if (ctx.mounted) Navigator.pop(ctx);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('${userData['name']} updated: $finalDept / ${currentRole.toUpperCase()}!'),
+                                backgroundColor: const Color(0xFF10B981),
+                              ),
+                            );
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Error updating user: $e'), backgroundColor: Colors.red),
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.primaryBlue,
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        child: const Text('Save Role, Department & Team', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
+                ),
               ),
             );
           },

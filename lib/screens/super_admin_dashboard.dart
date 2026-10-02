@@ -387,10 +387,23 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
     );
   }
 
-  void _showRoleManagerSheet(BuildContext context, Map<String, dynamic> userData, String uid) {
-    String currentRole = userData['role'] ?? 'employee';
-    String currentDepartment = userData['department'] ?? widget.department;
+  void _showRoleManagerSheet(BuildContext context, Map<String, dynamic> userData, String uid) async {
+    String currentRole = (userData['role'] ?? 'employee').toString().toLowerCase();
+    String currentDepartment = (userData['department'] ?? widget.department).toString().trim();
+    String currentManagerId = (userData['managerId'] ?? '').toString().trim();
+
+    final taskProvider = context.read<TaskProvider>();
+    final List<String> availableDepts = await taskProvider.getDepartments();
+    final List<Map<String, dynamic>> allUsers = await taskProvider.getEmployees();
+    final List<Map<String, dynamic>> potentialManagers = allUsers.where((u) {
+      final r = (u['role'] ?? '').toString().toLowerCase();
+      return (r == 'manager' || r == 'super_admin') && u['uid'] != uid;
+    }).toList();
+
+    if (!context.mounted) return;
+
     final departmentController = TextEditingController(text: currentDepartment);
+    bool isCustomDept = currentDepartment.isNotEmpty && !availableDepts.contains(currentDepartment);
 
     showModalBottomSheet(
       context: context,
@@ -400,54 +413,113 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
         builder: (context, setModalState) {
           return Padding(
             padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, left: 20, right: 20, top: 24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Manage Role & Department: ${userData['name'] ?? 'Staff'}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 16),
-                const Text('Role', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF475569))),
-                const SizedBox(height: 6),
-                DropdownButtonFormField<String>(
-                  value: ['employee', 'manager', 'super_admin'].contains(currentRole) ? currentRole : 'employee',
-                  decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
-                  items: const [
-                    DropdownMenuItem(value: 'employee', child: Text('Employee')),
-                    DropdownMenuItem(value: 'manager', child: Text('Manager')),
-                    DropdownMenuItem(value: 'super_admin', child: Text('Super Admin')),
-                  ],
-                  onChanged: (val) {
-                    if (val != null) setModalState(() => currentRole = val);
-                  },
-                ),
-                const SizedBox(height: 16),
-                const Text('Department', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF475569))),
-                const SizedBox(height: 6),
-                TextField(
-                  controller: departmentController,
-                  decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)), hintText: 'e.g. IT, Sales, Operations'),
-                ),
-                const SizedBox(height: 24),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryBlue, padding: const EdgeInsets.symmetric(vertical: 14)),
-                    onPressed: () async {
-                      await FirebaseFirestore.instance.collection('users').doc(uid).update({
-                        'role': currentRole,
-                        'department': departmentController.text.trim(),
-                      });
-                      if (ctx.mounted) Navigator.pop(ctx);
-                      _loadManagers();
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Staff role & department updated!'), backgroundColor: Color(0xFF10B981)));
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Manage Role, Department & Team: ${userData['name'] ?? 'Staff'}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 16),
+                  const Text('Role', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF475569))),
+                  const SizedBox(height: 6),
+                  DropdownButtonFormField<String>(
+                    value: ['employee', 'manager', 'super_admin'].contains(currentRole) ? currentRole : 'employee',
+                    decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                    items: const [
+                      DropdownMenuItem(value: 'employee', child: Text('Employee')),
+                      DropdownMenuItem(value: 'manager', child: Text('Manager')),
+                      DropdownMenuItem(value: 'super_admin', child: Text('Super Admin')),
+                    ],
+                    onChanged: (val) {
+                      if (val != null) setModalState(() => currentRole = val);
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  const Text('Department / Team', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF475569))),
+                  const SizedBox(height: 6),
+                  DropdownButtonFormField<String>(
+                    value: availableDepts.contains(currentDepartment) ? currentDepartment : (isCustomDept ? '__custom__' : (availableDepts.isNotEmpty ? availableDepts.first : null)),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      prefixIcon: const Icon(Icons.business_center_rounded),
+                    ),
+                    items: [
+                      ...availableDepts.map((dept) => DropdownMenuItem(value: dept, child: Text(dept))),
+                      const DropdownMenuItem(value: '__custom__', child: Text('+ Type New Department...')),
+                    ],
+                    onChanged: (val) {
+                      if (val == '__custom__') {
+                        setModalState(() {
+                          isCustomDept = true;
+                          currentDepartment = '';
+                          departmentController.clear();
+                        });
+                      } else if (val != null) {
+                        setModalState(() {
+                          isCustomDept = false;
+                          currentDepartment = val;
+                          departmentController.text = val;
+                        });
                       }
                     },
-                    child: const Text('Save Changes', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
-                ),
-                const SizedBox(height: 20),
-              ],
+                  if (isCustomDept) ...[
+                    const SizedBox(height: 8),
+                    TextField(
+                      controller: departmentController,
+                      autofocus: true,
+                      decoration: InputDecoration(
+                        hintText: 'Enter new department name',
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                        prefixIcon: const Icon(Icons.edit_outlined),
+                      ),
+                      onChanged: (v) => currentDepartment = v.trim(),
+                    ),
+                  ],
+                  const SizedBox(height: 16),
+                  const Text('Assign to Manager / Team Leader', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF475569))),
+                  const SizedBox(height: 6),
+                  DropdownButtonFormField<String>(
+                    value: currentManagerId.isEmpty ? '' : (potentialManagers.any((m) => m['uid'] == currentManagerId) ? currentManagerId : ''),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                      prefixIcon: const Icon(Icons.groups_rounded),
+                    ),
+                    items: [
+                      const DropdownMenuItem(value: '', child: Text('No Manager Assigned (Direct)')),
+                      ...potentialManagers.map((mgr) => DropdownMenuItem(
+                        value: mgr['uid'] as String,
+                        child: Text('${mgr['name'] ?? 'Manager'} (${mgr['department'] ?? 'General'})'),
+                      )),
+                    ],
+                    onChanged: (val) {
+                      setModalState(() => currentManagerId = val ?? '');
+                    },
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryBlue, padding: const EdgeInsets.symmetric(vertical: 14)),
+                      onPressed: () async {
+                        final finalDept = isCustomDept ? departmentController.text.trim() : currentDepartment.trim();
+                        await FirebaseFirestore.instance.collection('users').doc(uid).update({
+                          'role': currentRole,
+                          'department': finalDept,
+                          'managerId': currentManagerId,
+                        });
+                        if (ctx.mounted) Navigator.pop(ctx);
+                        _loadManagers();
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Staff role, department & manager updated!'), backgroundColor: Color(0xFF10B981)));
+                        }
+                      },
+                      child: const Text('Save Changes', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           );
         },
