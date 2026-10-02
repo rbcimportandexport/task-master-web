@@ -6,6 +6,7 @@ import '../providers/task_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/assign_task_sheet.dart';
 import 'employee_detail_screen.dart';
+import 'manager_dashboard_screen.dart';
 
 class ManageUsersScreen extends StatefulWidget {
   const ManageUsersScreen({Key? key}) : super(key: key);
@@ -194,6 +195,18 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person_add_alt_1_rounded, color: AppTheme.primaryBlue),
+            tooltip: 'Add New Employee',
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) => const AddEmployeeDialog(),
+              );
+            },
+          ),
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _firestore.collection('users').orderBy('createdAt', descending: true).snapshots(),

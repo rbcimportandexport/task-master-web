@@ -210,7 +210,7 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        title: Text('${widget.department} Managers', style: const TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.bold, fontSize: 16)),
+        title: Text('${widget.department} Staff & Team', style: const TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.bold, fontSize: 16)),
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
@@ -218,39 +218,54 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _managers.isEmpty
-              ? const Center(child: Text('No managers found in this department.'))
+              ? Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.people_outline_rounded, size: 48, color: Color(0xFF94A3B8)),
+                      const SizedBox(height: 12),
+                      Text('No staff found in ${widget.department} department.', style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                )
               : ListView.builder(
                   padding: const EdgeInsets.all(16),
                   itemCount: _managers.length,
                   itemBuilder: (context, index) {
-                    final mgr = _managers[index];
+                    final staff = _managers[index];
+                    final role = (staff['role'] ?? 'employee').toString().toLowerCase();
+                    Color roleColor = const Color(0xFF10B981);
+                    if (role == 'super_admin') roleColor = const Color(0xFF8B5CF6);
+                    else if (role == 'manager') roleColor = const Color(0xFF3B82F6);
+
                     return Card(
                       margin: const EdgeInsets.only(bottom: 12),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                       elevation: 0,
+                      color: Colors.white,
                       child: ListTile(
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         leading: CircleAvatar(
                           radius: 24,
-                          backgroundColor: const Color(0xFFE2E8F0),
-                          backgroundImage: (mgr['profilePic'] != null && mgr['profilePic'].isNotEmpty) ? MemoryImage(base64Decode(mgr['profilePic'])) : null,
-                          child: (mgr['profilePic'] == null || mgr['profilePic'].isEmpty) ? const Icon(Icons.person, color: Color(0xFF94A3B8)) : null,
+                          backgroundColor: roleColor.withOpacity(0.12),
+                          backgroundImage: (staff['profilePic'] != null && staff['profilePic'].isNotEmpty) ? MemoryImage(base64Decode(staff['profilePic'])) : null,
+                          child: (staff['profilePic'] == null || staff['profilePic'].isEmpty) ? Text(staff['name'] != null && staff['name'].isNotEmpty ? staff['name'][0].toUpperCase() : 'U', style: TextStyle(color: roleColor, fontWeight: FontWeight.bold)) : null,
                         ),
-                        title: Text(mgr['name'] ?? 'Unknown', style: const TextStyle(fontWeight: FontWeight.bold)),
+                        title: Text(staff['name'] ?? 'Unknown', style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(mgr['email'] ?? '', style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
+                            Text(staff['email'] ?? '', style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
                             const SizedBox(height: 4),
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                              decoration: BoxDecoration(color: const Color(0xFFF59E0B).withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
-                              child: Text((mgr['role'] ?? 'Manager').toString().toUpperCase(), style: const TextStyle(fontSize: 10, color: Color(0xFFF59E0B), fontWeight: FontWeight.bold)),
+                              decoration: BoxDecoration(color: roleColor.withOpacity(0.12), borderRadius: BorderRadius.circular(8)),
+                              child: Text((staff['role'] ?? 'Employee').toString().toUpperCase(), style: TextStyle(fontSize: 10, color: roleColor, fontWeight: FontWeight.bold)),
                             ),
                           ],
                         ),
                         trailing: const Icon(Icons.more_vert),
-                        onTap: () => _showManagerOptions(context, mgr['uid'], mgr['name'] ?? 'Manager'),
+                        onTap: () => _showManagerOptions(context, staff['uid'], staff['name'] ?? 'Staff'),
                       ),
                     );
                   },

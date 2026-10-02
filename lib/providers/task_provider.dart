@@ -9,6 +9,7 @@ import '../models/task.dart';
 import '../models/category.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import '../services/fcm_service.dart';
+import '../services/notification_service.dart';
 
 class TaskProvider extends ChangeNotifier {
   List<Task> _tasks = [];
@@ -167,6 +168,7 @@ class TaskProvider extends ChangeNotifier {
            _userRole = 'super_admin';
            try { await FirebaseFirestore.instance.collection('users').doc(uid).update({'role': 'super_admin'}); } catch(e) {}
         }
+        saveFcmToken();
         notifyListeners();
       }
     } catch (e) {
@@ -533,16 +535,14 @@ class TaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // ----------------------------------------------------
-  // MANAGER METHODS
-  // ----------------------------------------------------
-
-  
   Future<void> addEmployee(String name, String email, String password, String department) async {
+    FirebaseApp? app;
     try {
-      // Use secondary app to prevent logging out current manager
-      FirebaseApp app = await Firebase.initializeApp(
-          name: 'SecondaryApp', options: Firebase.app().options);
+      final appName = 'SecondaryApp_${DateTime.now().millisecondsSinceEpoch}';
+      app = await Firebase.initializeApp(
+        name: appName,
+        options: Firebase.app().options,
+      );
       
       UserCredential userCredential = await FirebaseAuth.instanceFor(app: app)
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -556,14 +556,19 @@ class TaskProvider extends ChangeNotifier {
         'department': department,
         'managerId': _uid, // The current logged-in manager
         'profilePic': '',
-        'createdAt': DateTime.now().toIso8601String(),
+        'createdAt': FieldValue.serverTimestamp(),
       });
       
-      await app.delete(); // Cleanup secondary app
       notifyListeners();
     } catch (e) {
-      debugPrint('Error adding employee: ');
+      debugPrint('Error adding employee: $e');
       rethrow;
+    } finally {
+      if (app != null) {
+        try {
+          await app.delete();
+        } catch (_) {}
+      }
     }
   }
 
@@ -650,12 +655,25 @@ class TaskProvider extends ChangeNotifier {
     required String message,
   }) async {
     try {
+      // 1. Show immediate local system push notification on device
+      try {
+        final notificationService = NotificationService();
+        await notificationService.showNotification(
+          id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+          title: title,
+          body: message,
+        );
+      } catch (notifErr) {
+        debugPrint('Local push error: $notifErr');
+      }
+
+      // 2. Deliver in-app notification inbox & FCM push to all users in Firestore
       final usersSnap = await FirebaseFirestore.instance.collection('users').get();
       for (var userDoc in usersSnap.docs) {
         final uId = userDoc.id;
         final uData = userDoc.data();
 
-        // 1. Add Firestore Notification in user's inbox
+        // Add Firestore Notification in user's inbox
         await FirebaseFirestore.instance.collection('users').doc(uId).collection('notifications').add({
           'title': title,
           'message': message,
@@ -663,7 +681,7 @@ class TaskProvider extends ChangeNotifier {
           'isRead': false,
         });
 
-        // 2. Send FCM Push Notification if token exists
+        // Send FCM Push Notification if token exists
         if (uData.containsKey('fcmToken') && uData['fcmToken'] != null && uData['fcmToken'].toString().isNotEmpty) {
           final fcmToken = uData['fcmToken'].toString();
           await FCMService.sendPushNotification(
@@ -688,7 +706,54 @@ class TaskProvider extends ChangeNotifier {
           .doc(notificationId)
           .update({'isRead': true});
     } catch (e) {
-      debugPrint('Error marking notification as read: ');
+      debugPrint('Error marking notification as read: $e');
+    }
+  }
+
+  Future<void> deleteNotification(String notificationId) async {
+    if (_uid == null) return;
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(_uid)
+          .collection('notifications')
+          .doc(notificationId)
+          .delete();
+    } catch (e) {
+      debugPrint('Error deleting notification: $e');
+    }
+  }
+
+  Future<void> clearAllNotifications() async {
+    if (_uid == null) return;
+    try {
+      final notifs = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(_uid)
+          .collection('notifications')
+          .get();
+      final batch = FirebaseFirestore.instance.batch();
+      for (var doc in notifs.docs) {
+        batch.delete(doc.reference);
+      }
+      await batch.commit();
+    } catch (e) {
+      debugPrint('Error clearing all notifications: $e');
+    }
+  }
+
+  Future<void> saveFcmToken() async {
+    if (_uid == null) return;
+    try {
+      final token = await FirebaseMessaging.instance.getToken();
+      if (token != null && token.isNotEmpty) {
+        await FirebaseFirestore.instance.collection('users').doc(_uid).set({
+          'fcmToken': token,
+          'lastActive': FieldValue.serverTimestamp(),
+        }, SetOptions(merge: true));
+      }
+    } catch (e) {
+      debugPrint('Error saving FCM token: $e');
     }
   }
 
@@ -887,34 +952,37 @@ class TaskProvider extends ChangeNotifier {
   Future<List<String>> getDepartments() async {
     try {
       final snapshot = await FirebaseFirestore.instance.collection('users').get();
-      final Set<String> depts = {};
+      final Set<String> depts = {'IT', 'Sales', 'Marketing', 'Support', 'Operations', 'HR'};
       for (var doc in snapshot.docs) {
         final data = doc.data();
-        if (data['role'] == 'manager' && data['department'] != null) {
-          depts.add(data['department'] as String);
+        final dept = data['department'];
+        if (dept != null && dept.toString().trim().isNotEmpty) {
+          depts.add(dept.toString().trim());
         }
       }
       return depts.toList();
     } catch (e) {
-      debugPrint('Error fetching departments: ');
-      return [];
+      debugPrint('Error fetching departments: $e');
+      return ['IT', 'Sales', 'Marketing', 'Support', 'Operations', 'HR'];
     }
   }
 
   Future<List<Map<String, dynamic>>> getManagersByDepartment(String dept) async {
     try {
       final snapshot = await FirebaseFirestore.instance.collection('users').get();
-      List<Map<String, dynamic>> managers = [];
+      List<Map<String, dynamic>> staffList = [];
+      final cleanDept = dept.trim().toLowerCase();
       for (var doc in snapshot.docs) {
         final data = doc.data();
-        if (data['role'] == 'manager' && data['department'] == dept) {
+        final userDept = (data['department'] ?? '').toString().trim().toLowerCase();
+        if (userDept == cleanDept || (cleanDept == 'it' && (userDept.contains('it') || data['email'] == 'rbcitsupport@gmail.com'))) {
           data['uid'] = doc.id;
-          managers.add(data);
+          staffList.add(data);
         }
       }
-      return managers;
+      return staffList;
     } catch (e) {
-      debugPrint('Error fetching managers: ');
+      debugPrint('Error fetching staff for department: $e');
       return [];
     }
   }

@@ -250,7 +250,7 @@ class _AddEmployeeDialogState extends State<AddEmployeeDialog> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: ')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error adding employee: $e'), backgroundColor: Colors.red));
         setState(() => _isLoading = false);
       }
     }
