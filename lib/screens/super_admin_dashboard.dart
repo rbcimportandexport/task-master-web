@@ -138,6 +138,107 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
     );
   }
 
+  Future<void> _showAddDepartmentDialog() async {
+    final controller = TextEditingController();
+    final formKey = GlobalKey<FormState>();
+
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppTheme.primaryBlue.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Icon(Icons.add_business_rounded, color: AppTheme.primaryBlue, size: 20),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Text(
+                'Create New Department',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        content: Form(
+          key: formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Enter the department name. You will be able to assign staff and team members to it right away.',
+                style: TextStyle(fontSize: 12, color: Color(0xFF64748B), height: 1.4),
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: controller,
+                autofocus: true,
+                decoration: InputDecoration(
+                  labelText: 'Department Name',
+                  hintText: 'e.g. Quality Assurance / Logistics',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.business_center_rounded),
+                ),
+                validator: (val) {
+                  if (val == null || val.trim().isEmpty) {
+                    return 'Please enter a department name';
+                  }
+                  if (_departments.any((d) => d.toLowerCase() == val.trim().toLowerCase())) {
+                    return 'This department already exists';
+                  }
+                  return null;
+                },
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel', style: TextStyle(color: Color(0xFF64748B))),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              if (formKey.currentState?.validate() ?? false) {
+                final newDept = controller.text.trim();
+                Navigator.pop(context);
+                setState(() {
+                  _departments.add(newDept);
+                });
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Department "$newDept" created successfully!'),
+                      backgroundColor: const Color(0xFF10B981),
+                    ),
+                  );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DepartmentManagersScreen(department: newDept),
+                    ),
+                  );
+                }
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primaryBlue,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
+            child: const Text('Create Department'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,6 +250,11 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.add_business_rounded, color: AppTheme.primaryBlue),
+            tooltip: 'Create New Department',
+            onPressed: _showAddDepartmentDialog,
+          ),
           PopupMenuButton<String>(
             icon: const Icon(Icons.download_rounded, color: AppTheme.primaryBlue),
             tooltip: 'Export Reports',
@@ -659,6 +765,139 @@ class _ManagerTeamScreenState extends State<ManagerTeamScreen> {
     }
   }
 
+  Future<void> _showAssignEmployeeToTeamDialog() async {
+    final taskProvider = context.read<TaskProvider>();
+    final allUsers = await taskProvider.getEmployees();
+    final nonTeamEmployees = allUsers.where((u) => u['uid'] != widget.managerId && (u['managerId'] ?? '') != widget.managerId).toList();
+
+    if (!mounted) return;
+
+    await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      builder: (ctx) => StatefulBuilder(
+        builder: (context, setSheetState) {
+          String searchQuery = '';
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.75,
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: AppTheme.primaryBlue.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: const Icon(Icons.person_add_alt_1_rounded, color: AppTheme.primaryBlue, size: 22),
+                    ),
+                    const SizedBox(width: 12),
+                    const Expanded(
+                      child: Text(
+                        'Add Member to Team',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () => Navigator.pop(ctx),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                // Button to Create New Member from scratch
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    icon: const Icon(Icons.add_circle_outline, size: 18),
+                    label: const Text('Create & Register New Employee'),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppTheme.primaryBlue,
+                      side: const BorderSide(color: AppTheme.primaryBlue),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    onPressed: () async {
+                      Navigator.pop(ctx);
+                      final added = await showDialog<bool>(
+                        context: context,
+                        builder: (_) => const AddEmployeeDialog(),
+                      );
+                      if (added == true) {
+                        _loadTeam();
+                      }
+                    },
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Or Select From Existing Employees:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF64748B)),
+                ),
+                const SizedBox(height: 8),
+                Expanded(
+                  child: nonTeamEmployees.isEmpty
+                      ? const Center(
+                          child: Text('All current employees are already in this team.', style: TextStyle(color: Color(0xFF94A3B8))),
+                        )
+                      : ListView.separated(
+                          itemCount: nonTeamEmployees.length,
+                          separatorBuilder: (context, index) => const Divider(height: 1),
+                          itemBuilder: (context, index) {
+                            final emp = nonTeamEmployees[index];
+                            final empName = emp['name'] ?? 'Unknown';
+                            final empEmail = emp['email'] ?? '';
+                            final empDept = emp['department'] ?? 'General';
+                            final empUid = emp['uid'] as String;
+
+                            return ListTile(
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                              leading: CircleAvatar(
+                                backgroundColor: AppTheme.primaryBlue.withOpacity(0.1),
+                                child: Text(empName.isNotEmpty ? empName[0].toUpperCase() : 'U', style: const TextStyle(color: AppTheme.primaryBlue, fontWeight: FontWeight.bold)),
+                              ),
+                              title: Text(empName, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                              subtitle: Text('$empEmail • Dept: $empDept', style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
+                              trailing: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: const Color(0xFF10B981),
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                                ),
+                                onPressed: () async {
+                                  await FirebaseFirestore.instance.collection('users').doc(empUid).update({
+                                    'managerId': widget.managerId,
+                                  });
+                                  if (ctx.mounted) Navigator.pop(ctx);
+                                  _loadTeam();
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('$empName assigned to this team!'),
+                                        backgroundColor: const Color(0xFF10B981),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: const Text('Add to Team', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                              ),
+                            );
+                          },
+                        ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cleanTitle = widget.title.trim().startsWith('\'') ? 'Team Members' : widget.title;
@@ -669,6 +908,13 @@ class _ManagerTeamScreenState extends State<ManagerTeamScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person_add_alt_1_rounded, color: AppTheme.primaryBlue),
+            tooltip: 'Add Member to Team',
+            onPressed: _showAssignEmployeeToTeamDialog,
+          ),
+        ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -683,14 +929,16 @@ class _ManagerTeamScreenState extends State<ManagerTeamScreen> {
                         'No employees assigned to this manager yet.',
                         style: TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.bold, fontSize: 14),
                       ),
-                      const SizedBox(height: 6),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 32),
-                        child: Text(
-                          'You can assign employees to this team from the "All Employees & Role Controller" screen.',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        icon: const Icon(Icons.person_add, color: Colors.white, size: 18),
+                        label: const Text('Add Member to Team'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.primaryBlue,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                         ),
+                        onPressed: _showAssignEmployeeToTeamDialog,
                       ),
                     ],
                   ),
@@ -725,7 +973,21 @@ class _ManagerTeamScreenState extends State<ManagerTeamScreen> {
                             ),
                           ],
                         ),
-                        trailing: const Icon(Icons.chevron_right_rounded, color: Color(0xFF94A3B8)),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.remove_circle_outline, color: Colors.redAccent, size: 20),
+                          tooltip: 'Remove from Team',
+                          onPressed: () async {
+                            await FirebaseFirestore.instance.collection('users').doc(emp['uid']).update({
+                              'managerId': '',
+                            });
+                            _loadTeam();
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('${emp['name']} removed from team.')),
+                              );
+                            }
+                          },
+                        ),
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => EmployeeDetailScreen(employeeId: emp['uid'], employeeName: emp['name'] ?? 'Unknown', employeeEmail: emp['email'] ?? '', profilePicBase64: emp['profilePic'])));
                         },
