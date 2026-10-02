@@ -6,6 +6,8 @@ import '../theme/app_theme.dart';
 import 'employee_detail_screen.dart';
 import 'manage_users_screen.dart';
 import 'holiday_policy_screen.dart';
+import '../widgets/assign_task_sheet.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'dart:convert';
 
@@ -171,36 +173,162 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
     }
   }
 
-  void _showManagerOptions(BuildContext context, String managerId, String managerName) {
+  void _showStaffOptions(BuildContext context, Map<String, dynamic> staffData) {
+    final String staffId = staffData['uid'] ?? '';
+    final String staffName = staffData['name'] ?? 'Staff Member';
+    final String staffEmail = staffData['email'] ?? '';
+    final String profilePic = staffData['profilePic'] ?? '';
+    final String role = (staffData['role'] ?? 'employee').toString().toLowerCase();
+
     showModalBottomSheet(
       context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (context) => Container(
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Options for $managerName', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 20,
+                  backgroundColor: AppTheme.primaryBlue.withOpacity(0.1),
+                  child: const Icon(Icons.person, color: AppTheme.primaryBlue),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(staffName, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
+                      Text(staffEmail, style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(height: 20),
+            
+            // 1. Assign Task / Work Directly
             ListTile(
-              leading: const CircleAvatar(backgroundColor: Color(0xFFE2E8F0), child: Icon(Icons.assignment, color: AppTheme.primaryBlue)),
-              title: const Text('View Manager Work'),
+              leading: const CircleAvatar(backgroundColor: Color(0xFFEFF6FF), child: Icon(Icons.add_task_rounded, color: Color(0xFF2563EB))),
+              title: const Text('Assign Work / Task', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
+              subtitle: const Text('Directly assign task to this person'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => EmployeeDetailScreen(employeeId: managerId, employeeName: managerName, employeeEmail: '', profilePicBase64: '')));
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (ctx) => AssignTaskSheet(employeeId: staffId),
+                );
               },
             ),
+
+            // 2. View Work & Progress
             ListTile(
-              leading: const CircleAvatar(backgroundColor: Color(0xFFE2E8F0), child: Icon(Icons.groups, color: AppTheme.primaryBlue)),
-              title: const Text('View Manager Team'),
+              leading: const CircleAvatar(backgroundColor: Color(0xFFF0FDF4), child: Icon(Icons.assignment_outlined, color: Color(0xFF16A34A))),
+              title: const Text('View Work & Tasks', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
+              subtitle: const Text('Check completed & pending tasks'),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ManagerTeamScreen(managerId: managerId, title: "$managerName's Team")));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => EmployeeDetailScreen(employeeId: staffId, employeeName: staffName, employeeEmail: staffEmail, profilePicBase64: profilePic)));
+              },
+            ),
+
+            // 3. If Manager or Admin, View Team
+            if (role == 'manager' || role == 'super_admin')
+              ListTile(
+                leading: const CircleAvatar(backgroundColor: Color(0xFFFAF5FF), child: Icon(Icons.groups_rounded, color: Color(0xFF9333EA))),
+                title: const Text('View Assigned Team', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
+                subtitle: const Text('Check employees reporting to this manager'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ManagerTeamScreen(managerId: staffId, title: "$staffName's Team")));
+                },
+              ),
+
+            // 4. Change Role or Move Department
+            ListTile(
+              leading: const CircleAvatar(backgroundColor: Color(0xFFFFFBEB), child: Icon(Icons.manage_accounts_rounded, color: Color(0xFFD97706))),
+              title: const Text('Change Role & Department', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A))),
+              subtitle: const Text('Promote to Manager / change team'),
+              onTap: () {
+                Navigator.pop(context);
+                _showRoleManagerSheet(context, staffData, staffId);
               },
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showRoleManagerSheet(BuildContext context, Map<String, dynamic> userData, String uid) {
+    String currentRole = userData['role'] ?? 'employee';
+    String currentDepartment = userData['department'] ?? widget.department;
+    final departmentController = TextEditingController(text: currentDepartment);
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      builder: (ctx) => StatefulBuilder(
+        builder: (context, setModalState) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom, left: 20, right: 20, top: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Manage Role & Department: ${userData['name'] ?? 'Staff'}', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 16),
+                const Text('Role', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF475569))),
+                const SizedBox(height: 6),
+                DropdownButtonFormField<String>(
+                  value: ['employee', 'manager', 'super_admin'].contains(currentRole) ? currentRole : 'employee',
+                  decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12))),
+                  items: const [
+                    DropdownMenuItem(value: 'employee', child: Text('Employee')),
+                    DropdownMenuItem(value: 'manager', child: Text('Manager')),
+                    DropdownMenuItem(value: 'super_admin', child: Text('Super Admin')),
+                  ],
+                  onChanged: (val) {
+                    if (val != null) setModalState(() => currentRole = val);
+                  },
+                ),
+                const SizedBox(height: 16),
+                const Text('Department', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF475569))),
+                const SizedBox(height: 6),
+                TextField(
+                  controller: departmentController,
+                  decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)), hintText: 'e.g. IT, Sales, Operations'),
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryBlue, padding: const EdgeInsets.symmetric(vertical: 14)),
+                    onPressed: () async {
+                      await FirebaseFirestore.instance.collection('users').doc(uid).update({
+                        'role': currentRole,
+                        'department': departmentController.text.trim(),
+                      });
+                      if (ctx.mounted) Navigator.pop(ctx);
+                      _loadManagers();
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Staff role & department updated!'), backgroundColor: Color(0xFF10B981)));
+                      }
+                    },
+                    child: const Text('Save Changes', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
@@ -265,7 +393,7 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
                           ],
                         ),
                         trailing: const Icon(Icons.more_vert),
-                        onTap: () => _showManagerOptions(context, staff['uid'], staff['name'] ?? 'Staff'),
+                        onTap: () => _showStaffOptions(context, staff),
                       ),
                     );
                   },
