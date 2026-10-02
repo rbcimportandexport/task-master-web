@@ -593,6 +593,40 @@ class TaskProvider extends ChangeNotifier {
     }
   }
 
+  Future<bool> deleteEmployee(String employeeUid) async {
+    try {
+      if (employeeUid.isEmpty) return false;
+      
+      // 1. Delete tasks subcollection of the employee
+      final tasksSnap = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(employeeUid)
+          .collection('tasks')
+          .get();
+      for (var doc in tasksSnap.docs) {
+        await doc.reference.delete();
+      }
+
+      // 2. Clear manager references if any employee was reporting to this user
+      final subordinatesSnap = await FirebaseFirestore.instance
+          .collection('users')
+          .where('managerId', isEqualTo: employeeUid)
+          .get();
+      for (var doc in subordinatesSnap.docs) {
+        await doc.reference.update({'managerId': ''});
+      }
+
+      // 3. Delete user document from Firestore
+      await FirebaseFirestore.instance.collection('users').doc(employeeUid).delete();
+      
+      notifyListeners();
+      return true;
+    } catch (e) {
+      debugPrint('Error deleting employee: $e');
+      return false;
+    }
+  }
+
         Future<void> debugPrintAllUsers() async {
     final snapshot = await FirebaseFirestore.instance.collection('users').get();
     for (var doc in snapshot.docs) {

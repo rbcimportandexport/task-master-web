@@ -248,6 +248,78 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
     );
   }
 
+  void _confirmDeleteEmployee(BuildContext context, Map<String, dynamic> userData, String uid) {
+    final name = userData['name'] ?? 'Employee';
+    final email = userData['email'] ?? '';
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Icon(Icons.delete_forever_rounded, color: Colors.red, size: 24),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Text(
+                'Delete Employee?',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xFF0F172A)),
+              ),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Are you sure you want to remove "$name" ($email)?',
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF1E293B)),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'All tasks, data and manager mappings associated with this employee will be deleted. This action cannot be undone.',
+              style: TextStyle(fontSize: 12, color: Color(0xFF64748B), height: 1.4),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel', style: TextStyle(color: Color(0xFF64748B))),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
+            onPressed: () async {
+              Navigator.pop(ctx);
+              final success = await context.read<TaskProvider>().deleteEmployee(uid);
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(success ? '$name deleted successfully!' : 'Failed to delete employee.'),
+                    backgroundColor: success ? const Color(0xFF10B981) : Colors.red,
+                  ),
+                );
+              }
+            },
+            child: const Text('Delete Employee'),
+          ),
+        ],
+      ),
+    );
+  }
+
   void _showAssignWorkSheet(BuildContext context, Map<String, dynamic> userData, String uid) {
     showModalBottomSheet(
       context: context,
@@ -484,14 +556,19 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
                                     children: [
                                       // Assign Task Button
                                       IconButton(
-                                        icon: const Icon(Icons.add_task_rounded, color: AppTheme.primaryBlue, size: 22),
+                                        icon: const Icon(Icons.add_task_rounded, color: AppTheme.primaryBlue, size: 20),
                                         tooltip: 'Assign Work/Task',
+                                        padding: const EdgeInsets.all(6),
+                                        constraints: const BoxConstraints(),
                                         onPressed: () => _showAssignWorkSheet(context, data, doc.id),
                                       ),
+                                      const SizedBox(width: 4),
                                       // View Work / Details Button
                                       IconButton(
-                                        icon: const Icon(Icons.visibility_outlined, color: Color(0xFF64748B), size: 20),
+                                        icon: const Icon(Icons.visibility_outlined, color: Color(0xFF64748B), size: 19),
                                         tooltip: 'View Work & Tasks',
+                                        padding: const EdgeInsets.all(6),
+                                        constraints: const BoxConstraints(),
                                         onPressed: () {
                                           Navigator.push(
                                             context,
@@ -506,11 +583,23 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
                                           );
                                         },
                                       ),
+                                      const SizedBox(width: 4),
                                       // Change Role Button
                                       IconButton(
-                                        icon: const Icon(Icons.edit_note_rounded, color: Color(0xFFF59E0B), size: 24),
+                                        icon: const Icon(Icons.edit_note_rounded, color: Color(0xFFF59E0B), size: 22),
                                         tooltip: 'Change Role / Department',
+                                        padding: const EdgeInsets.all(6),
+                                        constraints: const BoxConstraints(),
                                         onPressed: () => _showRoleManagerSheet(context, data, doc.id),
+                                      ),
+                                      const SizedBox(width: 4),
+                                      // Delete Employee Button
+                                      IconButton(
+                                        icon: const Icon(Icons.delete_outline_rounded, color: Colors.redAccent, size: 20),
+                                        tooltip: 'Delete Employee',
+                                        padding: const EdgeInsets.all(6),
+                                        constraints: const BoxConstraints(),
+                                        onPressed: () => _confirmDeleteEmployee(context, data, doc.id),
                                       ),
                                     ],
                                   ),

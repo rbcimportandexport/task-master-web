@@ -487,8 +487,92 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
                 _showRoleManagerSheet(context, staffData, staffId);
               },
             ),
+
+            // 5. Delete Employee
+            ListTile(
+              leading: const CircleAvatar(backgroundColor: Color(0xFFFEF2F2), child: Icon(Icons.delete_forever_rounded, color: Colors.redAccent)),
+              title: const Text('Delete Employee', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.redAccent)),
+              subtitle: const Text('Permanently remove employee & tasks'),
+              onTap: () {
+                Navigator.pop(context);
+                _confirmDeleteEmployee(context, staffData, staffId);
+              },
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _confirmDeleteEmployee(BuildContext context, Map<String, dynamic> userData, String uid) {
+    final name = userData['name'] ?? 'Employee';
+    final email = userData['email'] ?? '';
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Icon(Icons.delete_forever_rounded, color: Colors.red, size: 24),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Text(
+                'Delete Employee?',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17, color: Color(0xFF0F172A)),
+              ),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Are you sure you want to remove "$name" ($email)?',
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF1E293B)),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              'All tasks, data and manager mappings associated with this employee will be deleted. This action cannot be undone.',
+              style: TextStyle(fontSize: 12, color: Color(0xFF64748B), height: 1.4),
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('Cancel', style: TextStyle(color: Color(0xFF64748B))),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
+            onPressed: () async {
+              Navigator.pop(ctx);
+              final success = await context.read<TaskProvider>().deleteEmployee(uid);
+              _loadManagers();
+              if (context.mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(success ? '$name deleted successfully!' : 'Failed to delete employee.'),
+                    backgroundColor: success ? const Color(0xFF10B981) : Colors.red,
+                  ),
+                );
+              }
+            },
+            child: const Text('Delete Employee'),
+          ),
+        ],
       ),
     );
   }
