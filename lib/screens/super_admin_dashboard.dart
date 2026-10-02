@@ -41,6 +41,102 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
     }
   }
 
+  Future<void> _showEditDepartmentDialog(String oldDept) async {
+    final controller = TextEditingController(text: oldDept);
+    final formKey = GlobalKey<FormState>();
+
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: AppTheme.primaryBlue.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Icon(Icons.edit_rounded, color: AppTheme.primaryBlue, size: 20),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Text(
+                'Edit Department Name',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        content: Form(
+          key: formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Renaming "$oldDept" will automatically update all staff and team members belonging to this department.',
+                style: const TextStyle(fontSize: 12, color: Color(0xFF64748B), height: 1.4),
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: controller,
+                autofocus: true,
+                decoration: InputDecoration(
+                  labelText: 'Department Name',
+                  hintText: 'e.g. Technology / HR',
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                  prefixIcon: const Icon(Icons.business_center_rounded),
+                ),
+                validator: (val) {
+                  if (val == null || val.trim().isEmpty) {
+                    return 'Please enter a department name';
+                  }
+                  return null;
+                },
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel', style: TextStyle(color: Color(0xFF64748B))),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              if (formKey.currentState?.validate() ?? false) {
+                final newName = controller.text.trim();
+                Navigator.pop(context);
+                if (newName == oldDept) return;
+
+                setState(() => _isLoading = true);
+                final provider = context.read<TaskProvider>();
+                final success = await provider.updateDepartmentName(oldDept, newName);
+                await _loadDepartments();
+
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(success ? 'Department "$oldDept" renamed to "$newName" successfully!' : 'Failed to update department name.'),
+                      backgroundColor: success ? const Color(0xFF10B981) : Colors.red,
+                    ),
+                  );
+                }
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primaryBlue,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
+            child: const Text('Save Changes'),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,7 +211,7 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
-                childAspectRatio: 1.1,
+                childAspectRatio: 1.05,
               ),
               itemCount: _departments.length,
               itemBuilder: (context, index) {
@@ -128,12 +224,37 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     elevation: 0,
                     color: Colors.white,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Stack(
                       children: [
-                        const Icon(Icons.business_center_rounded, size: 40, color: AppTheme.primaryBlue),
-                        const SizedBox(height: 12),
-                        Text(dept, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF1E293B))),
+                        Positioned.fill(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.business_center_rounded, size: 36, color: AppTheme.primaryBlue),
+                                const SizedBox(height: 10),
+                                Text(
+                                  dept,
+                                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Color(0xFF1E293B)),
+                                  textAlign: TextAlign.center,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 4,
+                          right: 4,
+                          child: IconButton(
+                            icon: const Icon(Icons.edit_note_rounded, size: 20, color: Color(0xFF94A3B8)),
+                            tooltip: 'Rename Department',
+                            splashRadius: 18,
+                            onPressed: () => _showEditDepartmentDialog(dept),
+                          ),
+                        ),
                       ],
                     ),
                   ),

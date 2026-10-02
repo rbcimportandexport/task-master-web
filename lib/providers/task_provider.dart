@@ -967,6 +967,35 @@ class TaskProvider extends ChangeNotifier {
     }
   }
 
+  Future<bool> updateDepartmentName(String oldDept, String newDept) async {
+    try {
+      final cleanOld = oldDept.trim();
+      final cleanNew = newDept.trim();
+      if (cleanNew.isEmpty || cleanOld.toLowerCase() == cleanNew.toLowerCase()) {
+        return false;
+      }
+      final snapshot = await FirebaseFirestore.instance.collection('users').get();
+      final batch = FirebaseFirestore.instance.batch();
+      int updateCount = 0;
+      for (var doc in snapshot.docs) {
+        final data = doc.data();
+        final userDept = (data['department'] ?? '').toString().trim();
+        if (userDept.toLowerCase() == cleanOld.toLowerCase()) {
+          batch.update(doc.reference, {'department': cleanNew});
+          updateCount++;
+        }
+      }
+      if (updateCount > 0) {
+        await batch.commit();
+      }
+      notifyListeners();
+      return true;
+    } catch (e) {
+      debugPrint('Error updating department name: $e');
+      return false;
+    }
+  }
+
   Future<List<Map<String, dynamic>>> getManagersByDepartment(String dept) async {
     try {
       final snapshot = await FirebaseFirestore.instance.collection('users').get();
