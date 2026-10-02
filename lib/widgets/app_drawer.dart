@@ -346,21 +346,72 @@ class _AppDrawerState extends State<AppDrawer> {
                   ? taskProvider.tasks.length
                   : taskProvider.tasks.where((t) => t.category.toLowerCase() == cat.name.toLowerCase()).length;
 
+              final isAll = cat.name.toLowerCase() == 'all';
+
               return ListTile(
-                leading: const Padding(
-                  padding: EdgeInsets.only(left: 12),
-                  child: Icon(Icons.description_outlined, color: Color(0xFF94A3B8), size: 20),
+                leading: Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Icon(cat.icon, color: cat.color, size: 20),
                 ),
                 title: Text(
                   cat.name,
                   style: const TextStyle(fontSize: 14, color: AppTheme.textPrimary, fontWeight: FontWeight.w500),
                 ),
-                trailing: Text(
-                  '$count',
-                  style: const TextStyle(color: Color(0xFF94A3B8), fontSize: 13),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFF1F5F9),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        '$count',
+                        style: const TextStyle(color: Color(0xFF64748B), fontSize: 11, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    if (!isAll) ...[
+                      const SizedBox(width: 4),
+                      IconButton(
+                        icon: const Icon(Icons.delete_outline_rounded, size: 18, color: Color(0xFF94A3B8)),
+                        tooltip: 'Delete "${cat.name}" category',
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                              title: Row(
+                                children: [
+                                  const Icon(Icons.delete_forever_rounded, color: Colors.red),
+                                  const SizedBox(width: 8),
+                                  Text('Delete "${cat.name}"?'),
+                                ],
+                              ),
+                              content: Text('Kya aap "${cat.name}" category delete karna chahte hain? Is category ke tasks safe rahenge.'),
+                              actions: [
+                                TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                                  onPressed: () {
+                                    Navigator.pop(ctx);
+                                    taskProvider.deleteCategory(cat.id);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text('Category "${cat.name}" deleted!')),
+                                    );
+                                  },
+                                  child: const Text('Delete', style: TextStyle(color: Colors.white)),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ],
                 ),
                 dense: true,
-                contentPadding: const EdgeInsets.only(left: 24, right: 28),
+                contentPadding: const EdgeInsets.only(left: 24, right: 16),
                 onTap: () {
                   taskProvider.setSelectedCategory(cat.name);
                   Navigator.pop(context);

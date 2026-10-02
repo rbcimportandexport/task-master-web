@@ -525,11 +525,11 @@ class TaskProvider extends ChangeNotifier {
   }
 
   void deleteCategory(String id) {
-    // Prevent deleting default categories
-    if (CategoryItem.defaultCategories.any((cat) => cat.id == id)) return;
+    // 'all' is the primary root view that shows everything
+    if (id.toLowerCase() == 'all') return;
     
-    _categories.removeWhere((cat) => cat.id == id);
-    if (_selectedCategory.toLowerCase() == id) {
+    _categories.removeWhere((cat) => cat.id.toLowerCase() == id.toLowerCase() || cat.name.toLowerCase() == id.toLowerCase());
+    if (_selectedCategory.toLowerCase() == id.toLowerCase()) {
       _selectedCategory = 'All';
     }
     notifyListeners();
