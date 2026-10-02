@@ -108,45 +108,57 @@ class _TasksScreenState extends State<TasksScreen> {
         return StatefulBuilder(
           builder: (context, setState) {
             final taskProvider = context.watch<TaskProvider>();
-            final customCategories = taskProvider.categories.where((c) => !CategoryItem.defaultCategories.any((dc) => dc.id == c.id)).toList();
+            final deletableCategories = taskProvider.categories.where((c) => c.name.toLowerCase() != 'all').toList();
             
             return AlertDialog(
-              title: const Text('Manage Categories'),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              title: const Row(
+                children: [
+                  Icon(Icons.category_rounded, color: AppTheme.primaryBlue),
+                  SizedBox(width: 8),
+                  Text('Manage Categories'),
+                ],
+              ),
               content: SizedBox(
                 width: double.maxFinite,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextField(
                       controller: controller,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'New category name',
-                        border: OutlineInputBorder(),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                        prefixIcon: const Icon(Icons.add_circle_outline),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    if (customCategories.isNotEmpty)
-                      const Text('Custom Categories:', style: TextStyle(fontWeight: FontWeight.bold)),
-                    if (customCategories.isNotEmpty)
-                      Flexible(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: customCategories.length,
-                          itemBuilder: (context, index) {
-                            final cat = customCategories[index];
-                            return ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              title: Text(cat.name),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete, color: Colors.red),
-                                onPressed: () {
-                                  context.read<TaskProvider>().deleteCategory(cat.id);
-                                },
-                              ),
-                            );
-                          },
-                        ),
+                    const Text('Categories (Tap bin to delete):', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF64748B))),
+                    const SizedBox(height: 8),
+                    Flexible(
+                      child: ListView.separated(
+                        shrinkWrap: true,
+                        itemCount: deletableCategories.length,
+                        separatorBuilder: (context, index) => const Divider(height: 1),
+                        itemBuilder: (context, index) {
+                          final cat = deletableCategories[index];
+                          return ListTile(
+                            dense: true,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+                            leading: Icon(cat.icon, color: cat.color, size: 20),
+                            title: Text(cat.name, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.delete_outline_rounded, color: Colors.red, size: 20),
+                              tooltip: 'Delete "${cat.name}"',
+                              onPressed: () {
+                                context.read<TaskProvider>().deleteCategory(cat.id);
+                              },
+                            ),
+                          );
+                        },
                       ),
+                    ),
                   ],
                 ),
               ),

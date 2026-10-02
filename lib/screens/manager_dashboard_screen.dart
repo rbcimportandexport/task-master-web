@@ -216,7 +216,8 @@ class _ManagerDashboardScreenState extends State<ManagerDashboardScreen> {
 }
 
 class AddEmployeeDialog extends StatefulWidget {
-  const AddEmployeeDialog({super.key});
+  final String? initialDepartment;
+  const AddEmployeeDialog({super.key, this.initialDepartment});
 
   @override
   State<AddEmployeeDialog> createState() => _AddEmployeeDialogState();
@@ -228,8 +229,32 @@ class _AddEmployeeDialogState extends State<AddEmployeeDialog> {
   final _passwordController = TextEditingController();
   String _selectedDept = 'Marketing';
   bool _isLoading = false;
+  List<String> _departments = ['Marketing', 'Sales', 'IT', 'HR', 'Finance', 'Operations'];
 
-  final List<String> _departments = ['Marketing', 'Sales', 'IT', 'HR', 'Finance', 'Operations'];
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialDepartment != null && widget.initialDepartment!.trim().isNotEmpty) {
+      _selectedDept = widget.initialDepartment!.trim();
+      if (!_departments.contains(_selectedDept)) {
+        _departments.add(_selectedDept);
+      }
+    }
+    _loadDepts();
+  }
+
+  Future<void> _loadDepts() async {
+    final depts = await context.read<TaskProvider>().getDepartments();
+    if (mounted) {
+      setState(() {
+        final combined = {..._departments, ...depts}.toList();
+        _departments = combined;
+        if (!_departments.contains(_selectedDept)) {
+          _selectedDept = _departments.first;
+        }
+      });
+    }
+  }
 
   Future<void> _add() async {
     if (_nameController.text.trim().isEmpty || _emailController.text.trim().isEmpty || _passwordController.text.trim().isEmpty) {
@@ -245,8 +270,8 @@ class _AddEmployeeDialogState extends State<AddEmployeeDialog> {
         _selectedDept,
       );
       if (mounted) {
-        Navigator.pop(context);
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Employee added successfully!')));
+        Navigator.pop(context, true);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Employee added successfully to $_selectedDept!')));
       }
     } catch (e) {
       if (mounted) {

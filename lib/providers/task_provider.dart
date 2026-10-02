@@ -255,6 +255,23 @@ class TaskProvider extends ChangeNotifier {
       if (savedThemeColor != null) {
         _selectedThemeColor = Color(savedThemeColor);
       }
+
+      final savedCategoriesJson = prefs.getString('user_categories');
+      if (savedCategoriesJson != null && savedCategoriesJson.isNotEmpty) {
+        try {
+          final List<dynamic> decoded = jsonDecode(savedCategoriesJson);
+          _categories.clear();
+          for (var item in decoded) {
+            _categories.add(CategoryItem.fromJson(Map<String, dynamic>.from(item)));
+          }
+          if (!_categories.any((c) => c.id.toLowerCase() == 'all')) {
+            _categories.insert(0, CategoryItem(id: 'all', name: 'All', icon: Icons.all_inclusive, color: const Color(0xFF2F80ED)));
+          }
+        } catch (e) {
+          debugPrint('Error decoding saved categories: $e');
+        }
+      }
+
       notifyListeners();
     } catch (e) {
       debugPrint('Error loading preferences: $e');
@@ -268,6 +285,8 @@ class TaskProvider extends ChangeNotifier {
       await prefs.setBool('hasCompletedFirstTask', _hasCompletedFirstTask);
       await prefs.setBool('task_tone', _taskCompletionTone);
       await prefs.setInt('selected_theme_color', _selectedThemeColor.value);
+      final categoriesJson = jsonEncode(_categories.map((c) => c.toJson()).toList());
+      await prefs.setString('user_categories', categoriesJson);
     } catch (e) {
       debugPrint('Error saving preferences: $e');
     }
@@ -521,6 +540,7 @@ class TaskProvider extends ChangeNotifier {
       icon: icon,
       color: color,
     ));
+    _saveToPrefs();
     notifyListeners();
   }
 
@@ -532,6 +552,7 @@ class TaskProvider extends ChangeNotifier {
     if (_selectedCategory.toLowerCase() == id.toLowerCase()) {
       _selectedCategory = 'All';
     }
+    _saveToPrefs();
     notifyListeners();
   }
 

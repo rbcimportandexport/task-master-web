@@ -5,6 +5,7 @@ import '../providers/task_provider.dart';
 import '../theme/app_theme.dart';
 import 'employee_detail_screen.dart';
 import 'manage_users_screen.dart';
+import 'manager_dashboard_screen.dart';
 import 'holiday_policy_screen.dart';
 import '../widgets/assign_task_sheet.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -463,6 +464,21 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person_add_alt_1_rounded, color: AppTheme.primaryBlue),
+            tooltip: 'Add Member to ${widget.department}',
+            onPressed: () async {
+              final added = await showDialog<bool>(
+                context: context,
+                builder: (_) => AddEmployeeDialog(initialDepartment: widget.department),
+              );
+              if (added == true) {
+                _loadManagers();
+              }
+            },
+          ),
+        ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -474,6 +490,24 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
                       const Icon(Icons.people_outline_rounded, size: 48, color: Color(0xFF94A3B8)),
                       const SizedBox(height: 12),
                       Text('No staff found in ${widget.department} department.', style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        icon: const Icon(Icons.person_add, color: Colors.white, size: 18),
+                        label: Text('Add Member to ${widget.department}'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.primaryBlue,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ),
+                        onPressed: () async {
+                          final added = await showDialog<bool>(
+                            context: context,
+                            builder: (_) => AddEmployeeDialog(initialDepartment: widget.department),
+                          );
+                          if (added == true) {
+                            _loadManagers();
+                          }
+                        },
+                      ),
                     ],
                   ),
                 )
@@ -555,10 +589,11 @@ class _ManagerTeamScreenState extends State<ManagerTeamScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cleanTitle = widget.title.trim().startsWith('\'') ? 'Team Members' : widget.title;
     return Scaffold(
       backgroundColor: const Color(0xFFF8FAFC),
       appBar: AppBar(
-        title: Text(widget.title, style: const TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.bold, fontSize: 16)),
+        title: Text(cleanTitle, style: const TextStyle(color: Color(0xFF0F172A), fontWeight: FontWeight.bold, fontSize: 16)),
         backgroundColor: Colors.white,
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
@@ -566,7 +601,28 @@ class _ManagerTeamScreenState extends State<ManagerTeamScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _employees.isEmpty
-              ? const Center(child: Text('No employees found in this team.'))
+              ? Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.group_off_rounded, size: 48, color: Color(0xFF94A3B8)),
+                      const SizedBox(height: 12),
+                      const Text(
+                        'No employees assigned to this manager yet.',
+                        style: TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.bold, fontSize: 14),
+                      ),
+                      const SizedBox(height: 6),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 32),
+                        child: Text(
+                          'You can assign employees to this team from the "All Employees & Role Controller" screen.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Color(0xFF94A3B8), fontSize: 12),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               : ListView.builder(
                   padding: const EdgeInsets.all(16),
                   itemCount: _employees.length,
