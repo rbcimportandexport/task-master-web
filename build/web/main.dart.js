@@ -14425,7 +14425,7 @@ _.w=h
 _.x=i},
 a6a:function a6a(){},
 bj3(a,b,c,d,e,f,g){return new A.kz(a,d,g,f,b,c,e,null)},
-bky(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9){return new A.LH(j,b,a0,a2,a1,l==null?B.a4e:l,a5,n,k,a6,a8,a9,s,o,b0,b8,b5,b3,h,q,!1,i,e,a7,b9,a3,p,b2,b6,r,b1,b4,f,c,d,m,g,a4,b7,null)},
+bky(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1,b2,b3,b4,b5,b6,b7,b8,b9){return new A.LH(j,b,a0,a2,a1,l==null?B.a4d:l,a5,n,k,a6,a8,a9,s,o,b0,b8,b5,b3,h,q,!1,i,e,a7,b9,a3,p,b2,b6,r,b1,b4,f,c,d,m,g,a4,b7,null)},
 bMr(a,b,c,d,e,f){var s,r,q,p=a.a-d.gdI()
 d.gcd(0)
 d.gcj(0)
@@ -125125,7 +125125,7 @@ q=c?1:0
 p=t.p
 o=A.a([],p)
 if(b)B.b.I(o,A.a([A.bf(f,f,f,B.a1e,f,f,new A.aOK(g,a),f,f,f,"Set Office Location & Radius",f),new A.ah(B.XD,A.bf(f,f,f,B.AX,f,f,new A.aOL(a),f,f,f,"Sunday & Holiday Policy",f),f)],p))
-if(b||d==="manager")o.push(new A.ah(B.XB,A.it(B.a4K,B.aBp,new A.aOM(g,a,e),A.fO(f,f,f,f,f,f,f,f,f,B.m,f,f,f,f,new A.af(A.r(10),B.o),B.jr,f,f,f,f)),f))
+if(b||d==="manager")o.push(new A.ah(B.XB,A.it(B.a4J,B.aBp,new A.aOM(g,a,e),A.fO(f,f,f,f,f,f,f,f,f,B.m,f,f,f,f,new A.af(A.r(10),B.o),B.jr,f,f,f,f)),f))
 n=c?60:48
 m=c?B.f5:B.T
 l=c?32:0
@@ -125178,9 +125178,9 @@ b=j?"Late In":"On Time"
 g=A.W(A.a([g,A.E(a,A.W(A.a([c,B.aS,A.w(b,a,a,a,a,A.aU(a,a,j?B.xs:B.jD,a,a,a,a,a,a,a,a,11,a,a,B.u,a,a,!0,a,a,a,a,a,a,a,a),a,a,a)],h),B.h,B.d,B.w,0,a),B.i,a,a,new A.H(f,a,d,e,a,a,B.p),a,a,a,B.jZ,a,a,a)],h),B.h,B.af,B.f,0,a)
 f=A.a([],h)
 if(s!=null&&s.length!==0)f.push(A.eM(a,A.AU(A.r(8),A.pH(B.bJ.bC(s),new A.aOf(),B.ey,36,36),B.bD),B.y,!1,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,new A.aOg(this,s),a,a,a,a,a,a,!1,B.b5))
-else f.push(A.E(a,B.a4y,B.i,a,a,new A.H(B.eE,a,a,A.r(8),a,a,B.p),a,36,a,a,a,a,36))
+else f.push(A.E(a,B.a4x,B.i,a,a,new A.H(B.eE,a,a,A.r(8),a,a,B.p),a,36,a,a,a,a,36))
 f.push(B.b3)
-f.push(A.aa(A.a([B.azq,A.w(n,a,a,a,a,B.Nb,a,a,a)],h),B.z,B.d,B.f,0,B.n))
+f.push(A.aa(A.a([B.azr,A.w(n,a,a,a,a,B.Nb,a,a,a)],h),B.z,B.d,B.f,0,B.n))
 f=A.W(f,B.h,B.d,B.f,0,a)
 e=A.r(8)
 e=A.E(a,A.aa(A.a([B.aB2,A.w(k,a,a,a,a,B.arE,a,a,a)],h),B.h,B.d,B.f,0,B.n),B.i,a,a,new A.H(B.U,a,a,e,a,a,B.p),a,a,a,B.fj,a,a,a)
@@ -125389,9 +125389,9 @@ return new A.hH(new A.aOH(s.a,s.b,s.c,s.d,s.e,a),null)},
 $S:38}
 A.aOH.prototype={
 $2(a,b){var s=this,r=null,q=A.r(18),p=A.W(B.aae,B.h,B.d,B.f,0,r),o=A.bw(r,r,B.bE,r,r,r,0,r,r,B.m,r,r,r,r,new A.af(A.r(10),B.o),r,r,r,r,r),n=s.a,m=n.a,l=m?B.alZ:B.a1Y,k=A.w(m?"Fetching GPS...":"Auto Detect My Current Location",r,r,r,r,r,r,r,r),j=s.c,i=s.d,h=s.e,g=t.p
-o=A.es(A.aa(A.a([B.ayy,B.bB,A.dB(l,k,m?r:new A.aOE(n,b,s.c,s.d,a),o),B.bB,A.cI(r,B.ac,!1,r,!0,B.q,r,A.cP(),j,r,r,r,r,r,2,B.a68,B.y,!0,r,!0,r,!1,r,B.a9,r,r,r,r,B.MQ,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.a_,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.P,r,B.al,r,r,r,r),B.bt,A.cI(r,B.ac,!1,r,!0,B.q,r,A.cP(),i,r,r,r,r,r,2,B.a64,B.y,!0,r,!0,r,!1,r,B.a9,r,r,r,r,B.MQ,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.a_,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.P,r,B.al,r,r,r,r),B.bt,A.cI(r,B.ac,!1,r,!0,B.q,r,A.cP(),h,r,r,r,r,r,2,B.a6a,B.y,!0,r,!0,r,!1,r,B.a9,r,r,r,r,B.MP,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.a_,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.P,r,B.al,r,r,r,r)],g),B.z,B.d,B.w,0,B.n),r,B.y,r,r,r,B.a3)
+o=A.es(A.aa(A.a([B.ayA,B.bB,A.dB(l,k,m?r:new A.aOE(n,b,s.c,s.d,a),o),B.bB,A.cI(r,B.ac,!1,r,!0,B.q,r,A.cP(),j,r,r,r,r,r,2,B.a68,B.y,!0,r,!0,r,!1,r,B.a9,r,r,r,r,B.MQ,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.a_,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.P,r,B.al,r,r,r,r),B.bt,A.cI(r,B.ac,!1,r,!0,B.q,r,A.cP(),i,r,r,r,r,r,2,B.a64,B.y,!0,r,!0,r,!1,r,B.a9,r,r,r,r,B.MQ,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.a_,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.P,r,B.al,r,r,r,r),B.bt,A.cI(r,B.ac,!1,r,!0,B.q,r,A.cP(),h,r,r,r,r,r,2,B.a6a,B.y,!0,r,!0,r,!1,r,B.a9,r,r,r,r,B.MP,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.a_,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.P,r,B.al,r,r,r,r)],g),B.z,B.d,B.w,0,B.n),r,B.y,r,r,r,B.a3)
 n=s.f
-return A.dg(A.a([A.cH(B.dg,new A.aOF(n),r),A.cU(B.azf,new A.aOG(s.b,j,i,h,n,a),A.bw(r,r,B.C,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r))],g),o,new A.af(q,B.o),p)},
+return A.dg(A.a([A.cH(B.dg,new A.aOF(n),r),A.cU(B.azg,new A.aOG(s.b,j,i,h,n,a),A.bw(r,r,B.C,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r))],g),o,new A.af(q,B.o),p)},
 $S:77}
 A.aOE.prototype={
 $0(){var s=0,r=A.n(t.H),q=1,p=[],o=[],n=this,m,l,k,j,i,h,g
@@ -125547,17 +125547,17 @@ else{a=a7.c
 a0=A.is(new A.aOa(k,s,a,r,b0))
 a1=A.r(14)
 a2=A.aS(B.I,B.r,1)
-a3=q?B.a0z:B.eK
+a3=q?B.a0y:B.eK
 a3=A.bc(a3,q?B.h3:B.E,a8,20)
 a4=q?"Currently outside on Hourly Pass":"Need short break / hourly pass?"
 b0=b0?14:12
 a5=q?B.u:B.ae
 b0=A.a([a3,B.b3,A.aH(A.w(a4,a8,a8,a8,a8,A.aU(a8,a8,q?B.xD:B.ab,a8,a8,a8,a8,a8,a8,a8,a8,b0,a8,a8,a5,a8,a8,!0,a8,a8,a8,a8,a8,a8,a8,a8),a8,a8,a8),1)],b)
 if(!q){a3=A.bw(a8,a8,B.bL,a8,a8,a8,0,a8,a8,B.k,a8,a8,B.k0,a8,new A.af(A.r(10),B.o),a8,a8,a8,a8,a8)
-b0.push(A.dB(B.a49,B.az1,!s||r?a8:new A.aOb(k,a),a3))}else b0.push(A.dB(B.a3N,B.axe,new A.aOc(k,a),A.bw(a8,a8,B.C,a8,a8,a8,0,a8,a8,B.k,a8,a8,B.k0,a8,new A.af(A.r(10),B.o),a8,a8,a8,a8,a8)))
+b0.push(A.dB(B.a49,B.az2,!s||r?a8:new A.aOb(k,a),a3))}else b0.push(A.dB(B.a3N,B.axf,new A.aOc(k,a),A.bw(a8,a8,B.C,a8,a8,a8,0,a8,a8,B.k,a8,a8,B.k0,a8,new A.af(A.r(10),B.o),a8,a8,a8,a8,a8)))
 b0=A.aa(A.a([a0,B.ag,A.E(a8,A.W(b0,B.h,B.d,B.f,0,a8),B.i,a8,a8,new A.H(B.U,a8,a2,a1,a8,a8,B.p),a8,a8,a8,B.ea,a8,a8,a8)],b),B.h,B.d,B.f,0,B.n)}c.push(b0)
 c.push(B.ag)
-c.push(A.cj(A.NK(B.a3G,B.ayh,new A.aOd(b2),a8),a8,a8))
+c.push(A.cj(A.NK(B.a3G,B.ayj,new A.aOd(b2),a8),a8,a8))
 return A.aa(A.a([A.E(a8,A.aa(c,B.z,B.d,B.f,0,B.n),B.i,a8,a8,new A.H(B.k,a8,e,f,d,a8,B.p),a8,a8,new A.U(j,j,j,j),new A.U(h,g,h,g),a8,a8,a8),A.aH(k.aoh(a7.c),1)],b),B.h,B.d,B.f,0,B.n)},
 $S:791}
 A.aOa.prototype={
@@ -125624,7 +125624,7 @@ r=new A.au(Date.now(),0,!1)
 q=J.mm(s,new A.aNT(r))
 p=A.Z(q,q.$ti.i("B.E"))
 q=p.length
-if(q===0)return A.cj(new A.ah(B.ct,A.aa(A.a([A.bc(B.a0a,B.lR,a0,60),B.ag,A.w("No attendance records for "+A.bO(a1).ba(r)+".",a0,a0,a0,a0,B.Nv,B.ax,a0,a0),B.at,B.auU],t.p),B.h,B.bc,B.f,0,B.n),a0),a0,a0)
+if(q===0)return A.cj(new A.ah(B.ct,A.aa(A.a([A.bc(B.a09,B.lR,a0,60),B.ag,A.w("No attendance records for "+A.bO(a1).ba(r)+".",a0,a0,a0,a0,B.Nv,B.ax,a0,a0),B.at,B.auU],t.p),B.h,B.bc,B.f,0,B.n),a0),a0,a0)
 for(o=t.Cc,n=0,m=0,l=0,k=0;k<p.length;p.length===q||(0,A.Q)(p),++k){j=p[k]
 i=J.a6(j)
 h=o.a(i.h(j,"checkIn"))
@@ -125729,8 +125729,8 @@ f=t.V
 e=A.a([new A.b5(0,B.H,A.am(5,B.x.p()>>>16&255,B.x.p()>>>8&255,B.x.p()&255),B.cA,6)],f)
 c=A.bf(a4,a4,a4,B.a3e,a4,a4,new A.aO0(r),a4,a4,a4,"Previous Month",a4)
 a2=t.p
-a3=A.a([B.a4r,B.G,A.w(A.bO(a6).ba(r.e),a4,a4,a4,a4,B.MV,a4,a4,a4)],a2)
-if(a1)B.b.I(a3,A.a([B.G,A.E(a4,B.awY,B.i,a4,a4,new A.H(B.xF,a4,a4,A.r(10),a4,a4,B.p),a4,a4,a4,B.cw,a4,a4,a4)],a2))
+a3=A.a([B.a4q,B.G,A.w(A.bO(a6).ba(r.e),a4,a4,a4,a4,B.MV,a4,a4,a4)],a2)
+if(a1)B.b.I(a3,A.a([B.G,A.E(a4,B.awZ,B.i,a4,a4,new A.H(B.xF,a4,a4,A.r(10),a4,a4,B.p),a4,a4,a4,B.cw,a4,a4,a4)],a2))
 a3=A.W(a3,B.h,B.d,B.f,0,a4)
 q=A.E(a4,A.aa(A.a([A.W(A.a([c,a3,A.bf(a4,a4,a4,A.bc(B.mL,r.e.u4(A.b8(A.bi(a0),A.bk(a0),1,0,0,0,0))?B.lR:B.cJ,a4,28),a4,a4,new A.aO1(r),a4,a4,a4,"Next Month",a4)],a2),B.h,B.af,B.f,0,a4),B.at,A.es(A.W(A.tA(6,new A.aO2(r,a0),!0,t.l7),B.h,B.d,B.f,0,a4),a4,B.y,a4,a4,a4,B.L)],a2),B.h,B.d,B.f,0,B.n),B.i,a4,a4,new A.H(B.k,a4,i,q,e,a4,B.p),a4,a4,B.XT,B.dF,a4,a4,a4)
 i=A.r(16)
@@ -125828,7 +125828,7 @@ s=g?B.Y8:B.Y0
 p=h.length
 if(p===0){p=A.r(16)
 o=A.aS(B.I,B.r,1)
-p=new A.jy(A.E(k,A.aa(A.a([B.a17,B.ag,A.w("No tasks scheduled for "+A.bO("EEE, d MMM").ba(i),k,k,k,k,B.apv,k,k,k),B.aT,B.ayv,B.bB,A.dB(B.iC,B.avu,new A.aQk(a,i),A.bw(k,k,B.m,k,k,k,1,k,k,B.k,k,k,B.yJ,k,new A.af(A.r(10),B.o),k,k,k,k,k))],q),B.h,B.bc,B.f,0,B.n),B.i,k,k,new A.H(B.k,k,o,p,k,k,B.p),k,k,k,B.eb,k,k,k),k)}else p=A.a35(new A.ot(new A.aQl(h,j),p,!0,!0,!0,A.GD(),k))
+p=new A.jy(A.E(k,A.aa(A.a([B.a17,B.ag,A.w("No tasks scheduled for "+A.bO("EEE, d MMM").ba(i),k,k,k,k,B.apv,k,k,k),B.aT,B.ayx,B.bB,A.dB(B.iC,B.avu,new A.aQk(a,i),A.bw(k,k,B.m,k,k,k,1,k,k,B.k,k,k,B.yJ,k,new A.af(A.r(10),B.o),k,k,k,k,k))],q),B.h,B.bc,B.f,0,B.n),B.i,k,k,new A.H(B.k,k,o,p,k,k,B.p),k,k,k,B.eb,k,k,k),k)}else p=A.a35(new A.ot(new A.aQl(h,j),p,!0,!0,!0,A.GD(),k))
 return A.eq(k,f,A.f_(!0,A.cj(A.E(k,A.alE(B.e2,A.a([new A.jy(r,k),new A.yG(d,new A.jy(n,k),k),new A.yG(s,p,k),new A.jy(A.bY(k,g?32:100,k),k)],q)),B.i,k,new A.al(0,e,0,1/0),k,k,k,k,k,k,k,k),k,k),B.J,!0),k,k,k,k,k)},
 aFu(a,b){var s=null
 A.cg(s,s,!0,s,new A.aQ_(this,b),a,s,!0,t.z)},
@@ -125994,14 +125994,14 @@ return A.bY(A.w(this.c,s,s,s,s,B.aqP,B.ax,s,s),s,36)}}
 A.mA.prototype={
 a0(){return new A.a8_()}}
 A.a8_.prototype={
-H(a){var s,r,q=this,p=null,o=A.by(a,!0,t.O),n=t.p,m=A.h0(A.a([A.bf(p,p,p,B.a4g,p,p,new A.aUD(q,a),p,p,p,p,p)],n),B.k,p,!0,0,p,A.bf(p,p,p,B.AD,p,p,new A.aUE(a),p,p,p,p,p),B.auR,p),l=q.a.f
+H(a){var s,r,q=this,p=null,o=A.by(a,!0,t.O),n=t.p,m=A.h0(A.a([A.bf(p,p,p,B.a4f,p,p,new A.aUD(q,a),p,p,p,p,p)],n),B.k,p,!0,0,p,A.bf(p,p,p,B.AD,p,p,new A.aUE(a),p,p,p,p,p),B.auR,p),l=q.a.f
 l=l!=null&&l.length!==0?new A.jo(B.bJ.bC(l),1):p
 s=q.a
 r=s.f
-return A.eq(m,B.U,A.alE(p,A.a([new A.jy(A.E(p,A.aa(A.a([A.rK(B.I,l,r==null||r.length===0?B.a52:p,40),B.a5,A.w(s.d,p,p,p,p,B.MY,p,p,p),B.aT,A.w(s.e,p,p,p,p,B.uK,p,p,p),B.bH],n),B.h,B.d,B.f,0,B.n),B.i,B.k,p,p,p,p,p,B.ct,p,p,p),p),new A.yG(B.a_,new A.jy(B.axy,p),p),A.iY(new A.aUF(q),o.aff(q.a.c),t.D6)],n)),p,p,A.bq0(B.m,B.a0Y,p,new A.aUG(q,a),p),p,p)},
+return A.eq(m,B.U,A.alE(p,A.a([new A.jy(A.E(p,A.aa(A.a([A.rK(B.I,l,r==null||r.length===0?B.a52:p,40),B.a5,A.w(s.d,p,p,p,p,B.MY,p,p,p),B.aT,A.w(s.e,p,p,p,p,B.uK,p,p,p),B.bH],n),B.h,B.d,B.f,0,B.n),B.i,B.k,p,p,p,p,p,B.ct,p,p,p),p),new A.yG(B.a_,new A.jy(B.axA,p),p),A.iY(new A.aUF(q),o.aff(q.a.c),t.D6)],n)),p,p,A.bq0(B.m,B.a0Y,p,new A.aUG(q,a),p),p,p)},
 aop(a){var s,r,q,p,o,n=null,m=A.r(16),l=A.a([new A.b5(0,B.H,B.E.bb(0.08),B.bW,16)],t.V),k=A.r(16),j=a.e,i=j?B.mG:B.iy
 i=A.bc(i,j?B.m:B.X,n,n)
-s=A.tS(n,n,n,B.a4R,n,new A.aUq(),B.t,new A.aUr(this,a),B.au,new A.af(A.r(16),B.o),n,t.N)
+s=A.tS(n,n,n,B.a4Q,n,new A.aUq(),B.t,new A.aUr(this,a),B.au,new A.af(A.r(16),B.o),n,t.N)
 r=a.b
 q=j?B.X:B.F
 r=A.w(r,n,n,n,n,A.aU(n,n,q,n,j?B.eX:n,n,n,n,n,n,n,n,n,n,B.u,n,n,!0,n,n,n,n,n,n,n,n),n,n,n)
@@ -126104,7 +126104,7 @@ f=r.e
 s=t.p
 i=A.es(A.aa(A.a([m,B.at,k,B.a5,B.awa,B.ao,A.t2(h,!0,g,new A.aUu(j,b),i,t.N),B.a5,B.aBy,B.ao,A.cI(q,B.ac,!1,q,!0,B.q,q,A.cP(),f,q,q,q,q,q,2,A.d_(q,new A.c0(4,A.r(12),B.aO),q,q,q,q,q,q,!0,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,q,"e.g. Employee is on leave/absent...",q,q,q,q,q,q,q,q,q,!0,!0,!1,q,q,q,q,q,q,q,q,q,q,q,q,q,q),B.y,!0,q,!0,q,!1,q,B.a9,q,q,q,q,q,q,q,q,2,q,q,!1,"\u2022",q,q,q,q,q,!1,q,q,!1,q,!0,q,B.a_,q,q,q,q,q,q,q,q,q,q,q,q,!0,B.P,q,B.al,q,q,q,q)],s),B.z,B.d,B.w,0,B.n),q,B.y,q,q,q,B.a3)
 g=r.f
-return A.dg(A.a([A.cH(B.dg,new A.aUv(g),q),A.cU(B.ayT,new A.aUw(j,l,g,r.r,n,f,a),A.bw(q,q,B.m,q,q,q,q,q,q,q,q,q,q,q,new A.af(A.r(12),B.o),q,q,q,q,q))],s),i,new A.af(p,B.o),o)},
+return A.dg(A.a([A.cH(B.dg,new A.aUv(g),q),A.cU(B.ayU,new A.aUw(j,l,g,r.r,n,f,a),A.bw(q,q,B.m,q,q,q,q,q,q,q,q,q,q,q,new A.af(A.r(12),B.o),q,q,q,q,q))],s),i,new A.af(p,B.o),o)},
 $S:77}
 A.aUt.prototype={
 $1(a){var s,r,q=null,p=J.a6(a),o=p.h(a,"name")
@@ -126253,10 +126253,10 @@ A.cg(p,p,!0,p,new A.aWy(n,this,a,new A.ca(l,s),new A.ca(new A.co(r,B.b0,B.ay),s)
 aF9(){return this.a5b(null)},
 H(a){var s,r=this,q=null,p=r.d
 p===$&&A.b()
-p=A.h0(q,B.k,A.bkR(p,B.m,3,!1,B.m,B.og,B.abe,B.E,q),q,0,B.dK,q,B.axp,q)
+p=A.h0(q,B.k,A.bkR(p,B.m,3,!1,B.m,B.og,B.abe,B.E,q),q,0,B.dK,q,B.axr,q)
 s=r.d
 return A.eq(p,B.U,A.bkS(A.a([r.aoO(),r.aoM()],t.p),s),q,q,q,q,q)},
-aoO(){var s,r,q,p=null,o=t.N,n=t.K,m=A.a([A.a9(["id","Full Day Off","title","Full Day Off (Weekly Holiday)","subtitle","Sunday is a complete weekly off. Attendance is not required.","icon",B.kf,"color",B.am],o,n),A.a9(["id","Half Day Working","title","Half Day Working (4 Hours Shift)","subtitle","Sunday is active as half day. Employees punch in for 4 hours.","icon",B.a0G,"color",B.aB],o,n),A.a9(["id","Full Day Working","title","Full Day Working (Normal Duty)","subtitle","Sunday is a regular working day with normal hours & duties.","icon",B.a0O,"color",B.C],o,n)],t.Mq)
+aoO(){var s,r,q,p=null,o=t.N,n=t.K,m=A.a([A.a9(["id","Full Day Off","title","Full Day Off (Weekly Holiday)","subtitle","Sunday is a complete weekly off. Attendance is not required.","icon",B.kf,"color",B.am],o,n),A.a9(["id","Half Day Working","title","Half Day Working (4 Hours Shift)","subtitle","Sunday is active as half day. Employees punch in for 4 hours.","icon",B.a0F,"color",B.aB],o,n),A.a9(["id","Full Day Working","title","Full Day Working (Normal Duty)","subtitle","Sunday is a regular working day with normal hours & duties.","icon",B.a0N,"color",B.C],o,n)],t.Mq)
 n=A.r(16)
 o=A.aS(B.dl,B.r,1)
 s=t.p
@@ -126313,7 +126313,7 @@ m=A.r(12)
 n=A.aS(B.h2,B.r,1)
 k=A.r(12)
 j=i.e
-k=A.es(A.aa(A.a([B.auI,B.at,q,B.a5,B.aAS,B.at,o,B.a5,B.avS,B.at,l,B.a5,B.ay5,B.at,A.bU(!1,m,!0,A.E(h,A.W(A.a([A.w(A.bO(g).ba(p.b),h,h,h,h,B.o6,h,h,h),B.AO],s),B.h,B.af,B.f,0,h),B.i,h,h,new A.H(h,h,n,k,h,h,B.p),h,h,h,B.cr,h,h,h),h,!0,h,h,h,h,h,h,h,h,h,h,h,new A.aWu(p,a,b),h,h,h,h,h,h,h),B.a5,B.awI,B.at,A.cI(h,B.ac,!1,h,!0,B.q,h,A.cP(),j,h,h,h,h,h,2,A.d_(h,new A.c0(4,A.r(12),B.aO),h,B.cr,h,h,h,h,!0,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,"e.g. Office will remain completely closed during this period.",h,h,h,h,h,h,h,h,h,!0,!0,!1,h,h,h,h,h,h,h,h,h,h,h,h,h,h),B.y,!0,h,!0,h,!1,h,B.a9,h,h,h,h,h,h,h,h,2,h,h,!1,"\u2022",h,h,h,h,h,!1,h,h,!1,h,!0,h,B.a_,h,h,h,h,h,h,h,h,h,h,h,h,!0,B.P,h,B.al,h,h,h,h)],s),B.z,B.d,B.w,0,B.n),h,B.y,h,h,h,B.a3)
+k=A.es(A.aa(A.a([B.auI,B.at,q,B.a5,B.aAS,B.at,o,B.a5,B.avS,B.at,l,B.a5,B.ay7,B.at,A.bU(!1,m,!0,A.E(h,A.W(A.a([A.w(A.bO(g).ba(p.b),h,h,h,h,B.o6,h,h,h),B.AO],s),B.h,B.af,B.f,0,h),B.i,h,h,new A.H(h,h,n,k,h,h,B.p),h,h,h,B.cr,h,h,h),h,!0,h,h,h,h,h,h,h,h,h,h,h,new A.aWu(p,a,b),h,h,h,h,h,h,h),B.a5,B.awI,B.at,A.cI(h,B.ac,!1,h,!0,B.q,h,A.cP(),j,h,h,h,h,h,2,A.d_(h,new A.c0(4,A.r(12),B.aO),h,B.cr,h,h,h,h,!0,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,h,"e.g. Office will remain completely closed during this period.",h,h,h,h,h,h,h,h,h,!0,!0,!1,h,h,h,h,h,h,h,h,h,h,h,h,h,h),B.y,!0,h,!0,h,!1,h,B.a9,h,h,h,h,h,h,h,h,2,h,h,!1,"\u2022",h,h,h,h,h,!1,h,h,!1,h,!0,h,B.a_,h,h,h,h,h,h,h,h,h,h,h,h,!0,B.P,h,B.al,h,h,h,h)],s),B.z,B.d,B.w,0,B.n),h,B.y,h,h,h,B.a3)
 n=i.f
 m=A.cH(B.dg,new A.aWv(n),h)
 l=A.bw(h,h,B.m,h,h,h,h,h,h,h,h,h,h,h,new A.af(A.r(10),B.o),h,h,h,h,h)
@@ -126407,7 +126407,7 @@ f=A.E(r,A.bc(t.tk.a(p.h(a,"icon")),n,r,26),B.i,r,r,new A.H(g,r,r,f,r,r,B.p),r,r,
 g=A.aK(p.h(a,"title"))
 s=t.p
 g=A.a([A.w(g,r,r,r,r,A.aU(r,r,o?n:B.F,r,r,r,r,r,r,r,r,15,r,r,B.u,r,r,!0,r,r,r,r,r,r,r,r),r,r,r)],s)
-if(o)B.b.I(g,A.a([B.G,A.E(r,B.axi,B.i,r,r,new A.H(n,r,r,A.r(10),r,r,B.p),r,r,r,B.cw,r,r,r)],s))
+if(o)B.b.I(g,A.a([B.G,A.E(r,B.axj,B.i,r,r,new A.H(n,r,r,A.r(10),r,r,B.p),r,r,r,B.cw,r,r,r)],s))
 p=A.aH(A.aa(A.a([A.W(g,B.h,B.d,B.f,0,r),B.aT,A.w(A.aK(p.h(a,"subtitle")),r,r,r,r,B.aoL,r,r,r)],s),B.z,B.d,B.f,0,B.n),1)
 g=o?B.cx:B.Af
 return A.ja(A.bU(!1,h,!0,new A.ah(B.aD,A.W(A.a([f,B.em,p,A.bc(g,o?n:B.c5,r,24)],s),B.h,B.d,B.f,0,r),r),r,!0,r,r,r,r,r,r,r,r,r,r,r,new A.aWm(q,a),r,r,r,r,r,r,r),i,j,B.qe,new A.af(m,new A.b9(l,k,B.r,-1)))},
@@ -126506,7 +126506,7 @@ return A.m($async$$1,r)},
 $S:323}
 A.aWg.prototype={
 $1(a){var s=null,r=A.w('Are you sure you want to delete "'+A.i(this.a)+'"?',s,s,s,s,s,s,s,s)
-return A.dg(A.a([A.cH(B.c1,new A.aWe(a),s),A.cU(B.NQ,new A.aWf(a),A.bw(s,s,B.Y,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s))],t.p),r,s,B.awS)},
+return A.dg(A.a([A.cH(B.c1,new A.aWe(a),s),A.cU(B.NQ,new A.aWf(a),A.bw(s,s,B.Y,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s))],t.p),r,s,B.awT)},
 $S:10}
 A.aWe.prototype={
 $0(){A.V(this.a,!1).T(!1)
@@ -126552,10 +126552,10 @@ s=this.c
 s.toString
 A.cg(r,r,!0,r,new A.aYj(this,p.a.a>=950,b==="Rejected",new A.ca(B.az,q),a,b),s,r,!0,t.z)},
 ZL(a){var s=null,r=A.ap(a,s,t.w).w.a.a>=950?540:1/0,q=A.r(20),p=A.aS(B.I,B.r,1),o=A.a([new A.b5(0,B.H,A.am(10,B.x.p()>>>16&255,B.x.p()>>>8&255,B.x.p()&255),B.bW,20)],t.V)
-return A.cj(new A.ah(B.eb,A.E(s,A.aa(A.a([A.E(s,B.a1i,B.i,s,s,new A.H(A.am(B.j.aE(25.5),B.m.p()>>>16&255,B.m.p()>>>8&255,B.m.p()&255),s,s,s,s,s,B.aa),s,s,s,B.a_,s,s,s),B.aI,B.az8,B.ao,B.axK,B.bH,A.dB(B.rM,B.awK,this.ga5c(),A.bw(s,s,B.m,s,s,s,0,s,s,B.k,s,s,B.ql,s,new A.af(A.r(12),B.o),s,s,s,s,s))],t.p),B.h,B.d,B.w,0,B.n),B.i,s,new A.al(0,r,0,1/0),new A.H(B.k,s,p,q,o,s,B.p),s,s,s,B.Yp,s,s,s),s),s,s)},
+return A.cj(new A.ah(B.eb,A.E(s,A.aa(A.a([A.E(s,B.a1i,B.i,s,s,new A.H(A.am(B.j.aE(25.5),B.m.p()>>>16&255,B.m.p()>>>8&255,B.m.p()&255),s,s,s,s,s,B.aa),s,s,s,B.a_,s,s,s),B.aI,B.az9,B.ao,B.axM,B.bH,A.dB(B.rM,B.awK,this.ga5c(),A.bw(s,s,B.m,s,s,s,0,s,s,B.k,s,s,B.ql,s,new A.af(A.r(12),B.o),s,s,s,s,s))],t.p),B.h,B.d,B.w,0,B.n),B.i,s,new A.al(0,r,0,1/0),new A.H(B.k,s,p,q,o,s,B.p),s,s,s,B.Yp,s,s,s),s),s,s)},
 H(a){var s,r,q,p=null,o=A.by(a,!0,t.O),n=o.gjq(),m=n==="manager"||n==="super_admin",l=A.ap(a,p,t.w).w.a.a>=950,k=A.w("Leave Management Portal",p,p,p,p,A.aU(p,p,B.F,p,p,p,p,p,p,p,p,l?22:18,p,p,B.ai,p,p,!0,p,p,p,p,p,p,p,p),p,p,p),j=l?1:0
 k=A.h0(p,B.k,p,!l,j,B.dK,p,k,p)
-j=A.bjG(B.m,p,B.AF,B.az2,this.ga5c())
+j=A.bjG(B.m,p,B.AF,B.az3,this.ga5c())
 s=l?1200:1/0
 r=$.ac
 q=(r==null?$.ac=$.b2():r).aI("[DEFAULT]")
@@ -126595,7 +126595,7 @@ j=A.r(12)
 l=l?A.a([new A.b5(0,B.H,A.am(15,B.x.p()>>>16&255,B.x.p()>>>8&255,B.x.p()&255),B.cA,6)],t.V):f
 i=p.a==="Hourly"
 h=i?B.ai:B.ae
-r=A.a([r,B.aI,B.ay1,B.ao,A.E(f,A.W(A.a([o,n,A.aH(A.bU(!1,m,!0,A.E(B.T,A.w(" Hourly",f,f,f,f,A.aU(f,f,i?B.m:B.E,f,f,f,f,f,f,f,f,13,f,f,h,f,f,!0,f,f,f,f,f,f,f,f),f,f,f),B.i,f,f,new A.H(k,f,f,j,l,f,B.p),f,f,f,B.ih,f,f,f),f,!0,f,f,f,f,f,f,f,f,f,f,f,new A.aY0(p,a3),f,f,f,f,f,f,f),1)],s),B.h,B.d,B.f,0,f),B.i,f,f,new A.H(B.ar,f,f,q,f,f,B.p),f,f,f,B.cu,f,f,f),B.a5],s)
+r=A.a([r,B.aI,B.ay3,B.ao,A.E(f,A.W(A.a([o,n,A.aH(A.bU(!1,m,!0,A.E(B.T,A.w(" Hourly",f,f,f,f,A.aU(f,f,i?B.m:B.E,f,f,f,f,f,f,f,f,13,f,f,h,f,f,!0,f,f,f,f,f,f,f,f),f,f,f),B.i,f,f,new A.H(k,f,f,j,l,f,B.p),f,f,f,B.ih,f,f,f),f,!0,f,f,f,f,f,f,f,f,f,f,f,new A.aY0(p,a3),f,f,f,f,f,f,f),1)],s),B.h,B.d,B.f,0,f),B.i,f,f,new A.H(B.ar,f,f,q,f,f,B.p),f,f,f,B.cu,f,f,f),B.a5],s)
 q=p.a
 if(q==="Full Day"){q=A.fO(f,f,B.U,f,f,f,f,f,f,f,f,f,B.yD,f,new A.af(A.r(12),B.o),B.i0,f,f,f,f)
 q=A.aH(A.it(B.mZ,A.w(A.bO(e).ba(p.c),f,f,f,f,B.uN,f,f,f),new A.aY6(p,a2,a3),q),1)
@@ -127041,7 +127041,7 @@ s=A.cH(B.aA3,p.gaFw(),A.lY(o,o,o,o,o,o,o,o,o,B.m,o,o,B.J,o,o,o,o,o,o,o))
 if(p.r)r=B.wS
 else{r=A.r(16)
 r=A.cU(B.avq,p.gazA(),A.bw(o,o,o,o,o,o,2,o,o,o,o,o,B.dE,B.m.bb(0.3),new A.af(r,B.o),o,o,o,o,o))}q=t.p
-return A.eq(o,o,A.f_(!0,A.es(new A.ah(B.Yg,A.aa(A.a([B.l1,n,B.dU,B.avD,B.ao,B.azo,B.ug,m,B.aI,l,B.ag,new A.eb(B.hW,o,o,s,o),B.dU,r,B.dU,A.BO(A.W(A.a([B.ayd,A.cH(B.awe,new A.aYR(a),A.lY(o,o,o,o,o,o,o,o,o,B.m,o,o,o,o,o,o,o,o,o,o))],q),B.h,B.bc,B.f,0,o),B.dA)],q),B.cc,B.d,B.f,0,B.n),o),o,B.y,o,o,o,B.a3),B.J,!0),o,o,o,o,o)},
+return A.eq(o,o,A.f_(!0,A.es(new A.ah(B.Yg,A.aa(A.a([B.l1,n,B.dU,B.avD,B.ao,B.azp,B.ug,m,B.aI,l,B.ag,new A.eb(B.hW,o,o,s,o),B.dU,r,B.dU,A.BO(A.W(A.a([B.ayf,A.cH(B.awe,new A.aYR(a),A.lY(o,o,o,o,o,o,o,o,o,B.m,o,o,o,o,o,o,o,o,o,o))],q),B.h,B.bc,B.f,0,o),B.dA)],q),B.cc,B.d,B.f,0,B.n),o),o,B.y,o,o,o,B.a3),B.J,!0),o,o,o,o,o)},
 ZU(a,b,c,d,e,f){var s=null,r=A.r(16),q=A.a([new A.b5(0,B.H,B.x.bb(0.03),B.bW,10)],t.V),p=A.bc(b,B.m,s,22)
 return A.E(s,A.cI(s,B.ac,!1,s,!0,B.q,s,A.cP(),a,s,s,s,s,s,2,A.d_(s,new A.c0(4,A.r(16),B.o),s,B.aD,s,s,s,s,!0,s,s,s,s,s,s,B.k,!0,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,B.fF,d,!0,!0,!1,s,p,s,s,s,s,s,s,f,s,s,s,s,s),B.y,!0,s,!0,s,!1,s,B.a9,s,s,s,s,c,s,s,s,1,s,s,e,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.a_,s,s,s,s,s,s,s,s,s,s,s,B.N0,!0,B.P,s,B.al,s,s,s,s),B.i,s,s,new A.H(B.k,s,s,r,q,s,B.p),s,s,s,s,s,s,s)},
 aoR(a,b,c,d){return this.ZU(a,b,c,d,!1,null)},
@@ -127322,7 +127322,7 @@ q=g.e
 p=q?12:16
 q=q?12:16
 o=t.p
-s=A.a([A.E(f,B.a4x,B.i,f,f,new A.H(f,f,f,A.r(14),A.a([new A.b5(0,B.H,B.am.bb(0.3),B.bW,10)],s),B.a77,B.p),f,f,f,B.cL,f,f,f)],o)
+s=A.a([A.E(f,B.a4w,B.i,f,f,new A.H(f,f,f,A.r(14),A.a([new A.b5(0,B.H,B.am.bb(0.3),B.bW,10)],s),B.a77,B.p),f,f,f,B.cL,f,f,f)],o)
 if(!g.e)B.b.I(s,A.a([B.b_,B.YW],o))
 n=g.e
 m=A.bc(n?B.mL:B.A_,B.E,f,22)
@@ -127333,7 +127333,7 @@ s=g.e
 p=s?10:16
 n=s?10:16
 m=g.ga39()
-s=s?A.cj(new A.te(f,f,f,f,B.a3C,f,m,"Create Task",f,f,A.tf(f,B.m,f,f,f,f,f,B.k,f,f,f,f,f,B.dp,new A.af(A.r(12),B.o),f,f,f),B.aEu,f),f,f):A.dB(B.rM,B.ayr,m,A.bw(f,f,B.m,f,f,f,3,f,f,B.k,f,B.M9,f,B.m.bb(0.35),new A.af(A.r(12),B.o),f,f,f,f,f))
+s=s?A.cj(new A.te(f,f,f,f,B.a3C,f,m,"Create Task",f,f,A.tf(f,B.m,f,f,f,f,f,B.k,f,f,f,f,f,B.dp,new A.af(A.r(12),B.o),f,f,f),B.aEu,f),f,f):A.dB(B.rM,B.ayt,m,A.bw(f,f,B.m,f,f,f,3,f,f,B.k,f,B.M9,f,B.m.bb(0.35),new A.af(A.r(12),B.o),f,f,f,f,f))
 m=g.e?6:10
 l=A.a([],o)
 if(!g.e)l.push(B.agK)
@@ -127345,20 +127345,20 @@ l.push(g.rB(B.rA,B.m,!1,"Projects & Workspaces",new A.aZ8(a)))
 l.push(g.vb(B.mR,g.d===2,"My Profile & Stats",new A.aZ9(g)))
 l.push(B.ag)
 if(!g.e)l.push(B.agC)
-l.push(g.rB(B.a07,B.C,g.d===3,"Attendance & Punch",new A.aZa(g)))
+l.push(g.rB(B.a06,B.C,g.d===3,"Attendance & Punch",new A.aZa(g)))
 l.push(g.rB(B.A2,B.aB,g.d===4,"Leave Requests",new A.aZb(g)))
 l.push(g.rB(B.A4,B.bL,!1,"Team Discussion & Chat",new A.aZc(a)))
 if(d){k=A.a([B.ag],o)
 if(!g.e)k.push(B.agD)
 k.push(g.rB(B.ro,B.h1,!1,"Assign Task to Staff",g.gaBv()))
-if(e.gjq().toLowerCase()==="manager")k.push(g.rB(B.a00,B.am,!1,"Manager Dashboard",new A.aZd(a)))
+if(e.gjq().toLowerCase()==="manager")k.push(g.rB(B.a0_,B.am,!1,"Manager Dashboard",new A.aZd(a)))
 if(e.gjq().toLowerCase()==="super admin")k.push(g.rB(B.mJ,B.aP,!1,"Super Admin Portal",new A.aZe(a)))
 B.b.I(l,k)}l.push(B.ag)
 if(!g.e)l.push(B.agJ)
-l.push(g.vb(B.a0m,!1,"Notifications",new A.aZf(a)))
+l.push(g.vb(B.a0l,!1,"Notifications",new A.aZf(a)))
 l.push(g.vb(B.a_L,!1,"Themes & Colors",new A.aZ4(a)))
 l.push(g.vb(B.a_y,!1,"My Account & Profile",new A.aZ5(a)))
-l.push(g.vb(B.a0C,!1,"Settings",new A.aZ6(a)))
+l.push(g.vb(B.a0B,!1,"Settings",new A.aZ6(a)))
 m=A.aH(A.kU(l,new A.U(m,8,m,8),f,f,!1),1)
 l=g.e
 k=l?10:14
@@ -127445,7 +127445,7 @@ A.aZn.prototype={
 $1(a){var s,r=null,q=A.r(28),p=A.E(r,B.a3a,B.i,r,r,new A.H(r,r,A.aS(B.lJ,B.r,3),r,A.a([new A.b5(0,B.H,A.am(64,B.dD.p()>>>16&255,B.dD.p()>>>8&255,B.dD.p()&255),B.eP,18)],t.V),B.Bg,B.aa),r,r,r,B.qk,r,r,r),o=A.r(20)
 o=A.E(r,B.ave,B.i,r,r,new A.H(B.pD,r,A.aS(B.lJ,B.r,1),o,r,r,B.p),r,r,r,B.k_,r,r,r)
 s=A.w("Happy Birthday",r,r,r,r,B.Nd,B.ax,r,r)
-return A.mw(r,B.k,new A.ah(B.ct,A.aa(A.a([p,B.aI,o,B.bB,s,B.ao,A.w("Aaj hamare "+(this.a?"saathiyon":"bhai")+" "+this.b+" ka Birthday hai!",r,r,r,r,B.arj,B.ax,r,r),B.bt,B.az_,B.bH,A.bY(A.dB(B.a2W,B.avL,new A.aZl(a),A.bw(r,r,B.dD,r,r,r,3,r,r,r,r,r,B.cZ,r,new A.af(A.r(16),B.o),r,r,r,r,r)),r,1/0)],t.p),B.h,B.d,B.w,0,B.n),r),r,r,r,B.qi,B.dw,r,new A.af(q,B.o),r)},
+return A.mw(r,B.k,new A.ah(B.ct,A.aa(A.a([p,B.aI,o,B.bB,s,B.ao,A.w("Aaj hamare "+(this.a?"saathiyon":"bhai")+" "+this.b+" ka Birthday hai!",r,r,r,r,B.arj,B.ax,r,r),B.bt,B.az0,B.bH,A.bY(A.dB(B.a2W,B.avL,new A.aZl(a),A.bw(r,r,B.dD,r,r,r,3,r,r,r,r,r,B.cZ,r,new A.af(A.r(16),B.o),r,r,r,r,r)),r,1/0)],t.p),B.h,B.d,B.w,0,B.n),r),r,r,r,B.qi,B.dw,r,new A.af(q,B.o),r)},
 $S:66}
 A.aZl.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -127453,7 +127453,7 @@ return null},
 $S:0}
 A.aZr.prototype={
 $1(a){var s=null,r=A.r(28),q=A.E(s,B.a59,B.i,s,s,new A.H(s,s,A.aS(B.aB,B.r,3),s,A.a([new A.b5(0,B.H,A.am(64,B.bb.p()>>>16&255,B.bb.p()>>>8&255,B.bb.p()&255),B.eP,20)],t.V),B.a76,B.aa),s,s,s,B.qk,s,s,s),p=A.r(20),o=A.aS(B.U3,B.r,1)
-return A.mw(s,B.k,new A.ah(B.ct,A.aa(A.a([q,B.aI,A.E(s,A.w(this.a,s,s,s,s,B.ap2,s,s,s),B.i,s,s,new A.H(B.bM,s,o,p,s,s,B.p),s,s,s,B.k_,s,s,s),B.bB,A.w(this.b,s,s,s,s,B.ao0,B.ax,s,s),B.bt,A.w(this.c,s,s,s,s,B.at_,B.ax,s,s),B.bH,A.bY(A.dB(B.a3A,B.axq,new A.aZq(a),A.bw(s,s,B.bb,s,s,s,3,s,s,s,s,s,B.cZ,s,new A.af(A.r(16),B.o),s,s,s,s,s)),s,1/0)],t.p),B.h,B.d,B.w,0,B.n),s),s,s,s,B.qi,B.dw,s,new A.af(r,B.o),s)},
+return A.mw(s,B.k,new A.ah(B.ct,A.aa(A.a([q,B.aI,A.E(s,A.w(this.a,s,s,s,s,B.ap2,s,s,s),B.i,s,s,new A.H(B.bM,s,o,p,s,s,B.p),s,s,s,B.k_,s,s,s),B.bB,A.w(this.b,s,s,s,s,B.ao0,B.ax,s,s),B.bt,A.w(this.c,s,s,s,s,B.at_,B.ax,s,s),B.bH,A.bY(A.dB(B.a3A,B.axs,new A.aZq(a),A.bw(s,s,B.bb,s,s,s,3,s,s,s,s,s,B.cZ,s,new A.af(A.r(16),B.o),s,s,s,s,s)),s,1/0)],t.p),B.h,B.d,B.w,0,B.n),s),s,s,s,B.qi,B.dw,s,new A.af(r,B.o),s)},
 $S:66}
 A.aZq.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -127461,7 +127461,7 @@ return null},
 $S:0}
 A.aZp.prototype={
 $1(a){var s=null,r=A.r(28),q=A.E(s,B.a2y,B.i,s,s,new A.H(B.bM,s,A.aS(B.eD,B.r,3),s,A.a([new A.b5(0,B.H,A.am(64,B.aB.p()>>>16&255,B.aB.p()>>>8&255,B.aB.p()&255),B.nr,16)],t.V),s,B.aa),s,s,s,B.qk,s,s,s),p=A.r(20)
-return A.mw(s,B.k,new A.ah(B.ct,A.aa(A.a([q,B.aI,A.E(s,B.aBu,B.i,s,s,new A.H(B.bM,s,A.aS(B.eD,B.r,1),p,s,s,B.p),s,s,s,B.k_,s,s,s),B.bB,A.w(this.a,s,s,s,s,B.asC,B.ax,s,s),B.bt,A.w(this.b,s,s,s,s,B.uy,B.ax,s,s),B.bH,A.bY(A.dB(B.a4u,B.aA8,new A.aZo(a),A.bw(s,s,B.bb,s,s,s,3,s,s,s,s,s,B.cZ,s,new A.af(A.r(16),B.o),s,s,s,s,s)),s,1/0)],t.p),B.h,B.d,B.w,0,B.n),s),s,s,s,B.qi,B.dw,s,new A.af(r,B.o),s)},
+return A.mw(s,B.k,new A.ah(B.ct,A.aa(A.a([q,B.aI,A.E(s,B.aBu,B.i,s,s,new A.H(B.bM,s,A.aS(B.eD,B.r,1),p,s,s,B.p),s,s,s,B.k_,s,s,s),B.bB,A.w(this.a,s,s,s,s,B.asC,B.ax,s,s),B.bt,A.w(this.b,s,s,s,s,B.uy,B.ax,s,s),B.bH,A.bY(A.dB(B.a4t,B.aA8,new A.aZo(a),A.bw(s,s,B.bb,s,s,s,3,s,s,s,s,s,B.cZ,s,new A.af(A.r(16),B.o),s,s,s,s,s)),s,1/0)],t.p),B.h,B.d,B.w,0,B.n),s),s,s,s,B.qi,B.dw,s,new A.af(r,B.o),s)},
 $S:66}
 A.aZo.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -127621,7 +127621,7 @@ s=b.h(0,"email")
 A.cg(r,r,!0,r,new A.aZw(q,s==null?"":s,a,c),a,r,!0,t.z)},
 aFe(a,b,c){A.dM(B.B,new A.aZx(c),a,!0,!0,!0,null,!1,t.z)},
 H(a){var s=null
-return A.eq(A.h0(A.a([A.bf(s,s,s,B.n_,s,s,new A.b_c(a),s,s,s,"Add New Employee",s)],t.p),B.k,s,s,0,B.dK,s,B.ayV,s),B.U,A.iY(new A.b_d(this),this.d.au("users").uk("createdAt",!0).jA(),t.cG),s,s,s,s,s)},
+return A.eq(A.h0(A.a([A.bf(s,s,s,B.n_,s,s,new A.b_c(a),s,s,s,"Add New Employee",s)],t.p),B.k,s,s,0,B.dK,s,B.ayW,s),B.U,A.iY(new A.b_d(this),this.d.au("users").uk("createdAt",!0).jA(),t.cG),s,s,s,s,s)},
 F9(a,b,c){var s=null,r=A.r(20),q=b?B.m:B.ar,p=A.r(20),o=b?B.k:B.ab
 return A.bU(!1,r,!0,A.E(s,A.w(a,s,s,s,s,A.aU(s,s,o,s,s,s,s,s,s,s,s,12,s,s,b?B.u:B.a6,s,s,!0,s,s,s,s,s,s,s,s),s,s,s),B.i,s,s,new A.H(q,s,s,p,s,s,B.p),s,s,s,B.ij,s,s,s),s,!0,s,s,s,s,s,s,s,s,s,s,s,c,s,s,s,s,s,s,s)}}
 A.aZT.prototype={
@@ -127652,10 +127652,10 @@ p=A.Z(o.fK(p,new A.aZK(),l),l)
 p.push(B.yi)
 o=k.e
 l=t.N
-n=A.a([s,B.aI,B.ax3,B.ao,q,B.fA,B.azH,B.ao,A.t2(m,!1,p,new A.aZL(g,b,o),n,l)],r)
+n=A.a([s,B.aI,B.ax4,B.ao,q,B.fA,B.azH,B.ao,A.t2(m,!1,p,new A.aZL(g,b,o),n,l)],r)
 if(g.d)B.b.I(n,A.a([B.ao,A.cI(j,B.ac,!0,j,!0,B.q,j,A.cP(),o,j,j,j,j,j,2,A.d_(j,new A.c0(4,A.r(12),B.aO),j,B.cr,j,j,j,j,!0,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,"Enter new department name",j,j,j,j,j,j,j,j,j,!0,!0,!1,j,B.AP,j,j,j,j,j,j,j,j,j,j,j,j),B.y,!0,j,!0,j,!1,j,B.a9,j,j,j,j,j,j,j,j,1,j,j,!1,"\u2022",j,new A.aZM(g),j,j,j,!1,j,j,!1,j,!0,j,B.a_,j,j,j,j,j,j,j,j,j,j,j,j,!0,B.P,j,B.al,j,j,j,j)],r))
 n.push(B.fA)
-n.push(B.azm)
+n.push(B.azn)
 n.push(B.ao)
 if(g.c.length===0)s=""
 else s=B.b.eG(k.f,new A.aZN(g))?g.c:""
@@ -127687,7 +127687,7 @@ l=g.f
 l.toString
 l=m.ba(l)
 m=l}else m="Select Birthday (DOB)"
-n.push(A.bU(!1,s,!0,A.E(j,A.W(A.a([B.a4i,B.b3,A.aH(A.w(m,j,j,j,j,B.uR,j,j,j),1),B.Av],r),B.h,B.d,B.f,0,j),B.i,j,j,new A.H(B.U,j,q,p,j,j,B.p),j,j,j,B.cr,j,j,j),j,!0,j,j,j,j,j,j,j,j,j,j,j,new A.aZR(g,a,b),j,j,j,j,j,j,j))
+n.push(A.bU(!1,s,!0,A.E(j,A.W(A.a([B.a4h,B.b3,A.aH(A.w(m,j,j,j,j,B.uR,j,j,j),1),B.Av],r),B.h,B.d,B.f,0,j),B.i,j,j,new A.H(B.U,j,q,p,j,j,B.p),j,j,j,B.cr,j,j,j),j,!0,j,j,j,j,j,j,j,j,j,j,j,new A.aZR(g,a,b),j,j,j,j,j,j,j))
 n.push(B.bH)
 n.push(A.bY(A.cU(B.NR,new A.aZJ(g,e,o,k.r,k.w,a,f),A.bw(j,j,B.m,j,j,j,j,j,j,j,j,j,B.cZ,j,new A.af(A.r(12),B.o),j,j,j,j,j)),j,1/0))
 n.push(B.aI)
@@ -127871,8 +127871,8 @@ if(m!=null&&B.c.af(J.bs(m)).length!==0)q.C(0,B.c.af(J.bs(m)))}s=this.a
 p=A.a_(r).i("aD<1>")
 l=A.Z(new A.aD(r,new A.b_4(s),p),p.i("B.E"))
 p=t.p
-n=A.E(i,A.aa(A.a([A.cI(i,B.ac,!1,i,!0,B.q,i,A.cP(),i,i,i,i,i,i,2,A.d_(i,new A.c0(4,A.r(12),B.o),i,B.dq,i,i,i,i,!0,i,i,i,i,i,i,B.ar,!0,i,i,i,i,i,i,i,i,i,i,i,i,i,B.la,"Search employee by name or email...",i,i,i,i,i,i,i,i,i,!0,!0,!1,i,B.a50,i,i,i,i,i,i,i,i,i,i,i,i),B.y,!0,i,!0,i,!1,i,B.a9,i,i,i,i,i,i,i,i,1,i,i,!1,"\u2022",i,new A.b_5(s),i,i,i,!1,i,i,!1,i,!0,i,B.a_,i,i,i,i,i,i,i,i,i,i,i,i,!0,B.P,i,B.al,i,i,i,i),B.bt,A.es(A.W(A.a([s.F9("All Roles",s.f==="All",new A.b_6(s)),B.G,s.F9("Employees",s.f==="employee",new A.b_7(s)),B.G,s.F9("Managers",s.f==="manager",new A.b_8(s)),B.G,s.F9("Super Admins",s.f==="super_admin",new A.b_9(s))],p),B.h,B.d,B.f,0,i),i,B.y,i,i,i,B.L)],p),B.h,B.d,B.f,0,B.n),B.i,B.k,i,i,i,i,i,B.Y_,i,i,i)
-k=A.E(i,A.W(A.a([A.w("TOTAL STAFF: "+l.length,i,i,i,i,B.aqh,i,i,i),B.axu],p),B.h,B.af,B.f,0,i),B.i,B.ar,i,i,i,i,i,B.qj,i,i,i)
+n=A.E(i,A.aa(A.a([A.cI(i,B.ac,!1,i,!0,B.q,i,A.cP(),i,i,i,i,i,i,2,A.d_(i,new A.c0(4,A.r(12),B.o),i,B.dq,i,i,i,i,!0,i,i,i,i,i,i,B.ar,!0,i,i,i,i,i,i,i,i,i,i,i,i,i,B.la,"Search employee by name or email...",i,i,i,i,i,i,i,i,i,!0,!0,!1,i,B.a5_,i,i,i,i,i,i,i,i,i,i,i,i),B.y,!0,i,!0,i,!1,i,B.a9,i,i,i,i,i,i,i,i,1,i,i,!1,"\u2022",i,new A.b_5(s),i,i,i,!1,i,i,!1,i,!0,i,B.a_,i,i,i,i,i,i,i,i,i,i,i,i,!0,B.P,i,B.al,i,i,i,i),B.bt,A.es(A.W(A.a([s.F9("All Roles",s.f==="All",new A.b_6(s)),B.G,s.F9("Employees",s.f==="employee",new A.b_7(s)),B.G,s.F9("Managers",s.f==="manager",new A.b_8(s)),B.G,s.F9("Super Admins",s.f==="super_admin",new A.b_9(s))],p),B.h,B.d,B.f,0,i),i,B.y,i,i,i,B.L)],p),B.h,B.d,B.f,0,B.n),B.i,B.k,i,i,i,i,i,B.Y_,i,i,i)
+k=A.E(i,A.W(A.a([A.w("TOTAL STAFF: "+l.length,i,i,i,i,B.aqh,i,i,i),B.axw],p),B.h,B.af,B.f,0,i),B.i,B.ar,i,i,i,i,i,B.qj,i,i,i)
 j=l.length
 return A.aa(A.a([n,k,A.aH(j===0?A.cj(A.aa(A.a([B.Aw,B.ag,B.aBB],p),B.h,B.d,B.w,0,B.n),i,i):A.iR(i,new A.b_a(s,l),j,B.aD,!1),1)],p),B.h,B.d,B.f,0,B.n)},
 $S:834}
@@ -127967,7 +127967,7 @@ f=A.a([A.E(d,A.W(A.a([A.bc(l,m,d,12),B.aS,A.w(n.Dz(q),d,d,d,d,A.aU(d,d,m,d,d,d,d
 n=J.i9(p)
 if(n.k(p).length!==0){g=A.r(8)
 f.push(A.E(d,A.w(n.k(p).toUpperCase(),d,d,d,d,B.MX,d,d,d),B.i,d,d,new A.H(B.ar,d,d,g,d,d,B.p),d,d,d,B.cw,d,d,d))}n=this.a
-return A.ja(new A.ah(B.dp,A.W(A.a([i,B.em,A.aH(A.aa(A.a([h,B.cQ,j,B.at,A.W(f,B.h,B.d,B.f,0,d)],e),B.z,B.d,B.f,0,B.n),1),A.W(A.a([A.bf(d,B.bC,d,B.a2M,d,d,new A.aZW(n,a,b,c),B.cv,d,d,"Assign Work/Task",d),B.aS,A.bf(d,B.bC,d,B.a1U,d,d,new A.aZX(a,c,s,r,o),B.cv,d,d,"View Work & Tasks",d),B.aS,A.bf(d,B.bC,d,B.a4C,d,d,new A.aZY(n,a,b,c),B.cv,d,d,"Change Role / Department",d),B.aS,A.bf(d,B.bC,d,B.a4Z,d,d,new A.aZZ(n,a,b,c),B.cv,d,d,"Delete Employee",d)],e),B.h,B.d,B.w,0,d)],e),B.h,B.d,B.f,0,d),d),B.k,0,B.cp,new A.af(k,B.o))},
+return A.ja(new A.ah(B.dp,A.W(A.a([i,B.em,A.aH(A.aa(A.a([h,B.cQ,j,B.at,A.W(f,B.h,B.d,B.f,0,d)],e),B.z,B.d,B.f,0,B.n),1),A.W(A.a([A.bf(d,B.bC,d,B.a2M,d,d,new A.aZW(n,a,b,c),B.cv,d,d,"Assign Work/Task",d),B.aS,A.bf(d,B.bC,d,B.a1U,d,d,new A.aZX(a,c,s,r,o),B.cv,d,d,"View Work & Tasks",d),B.aS,A.bf(d,B.bC,d,B.a4B,d,d,new A.aZY(n,a,b,c),B.cv,d,d,"Change Role / Department",d),B.aS,A.bf(d,B.bC,d,B.a4Y,d,d,new A.aZZ(n,a,b,c),B.cv,d,d,"Delete Employee",d)],e),B.h,B.d,B.w,0,d)],e),B.h,B.d,B.f,0,d),d),B.k,0,B.cp,new A.af(k,B.o))},
 $S:47}
 A.aZW.prototype={
 $0(){var s=this
@@ -128204,7 +128204,7 @@ m=A.es(A.aa(A.a([p,B.ag,o,B.ag,n,B.a5,A.t2(B.a5Z,!1,l,new A.aLy(s),m,t.N)],k),B.
 l=A.cH(B.c1,new A.aLz(a),r)
 p=s.w?r:s.gazF(s)
 o=A.bw(r,r,B.m,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r)
-return A.dg(A.a([l,A.cU(s.w?B.uf:B.aAj,p,o)],k),m,new A.af(q,B.o),B.axN)}}
+return A.dg(A.a([l,A.cU(s.w?B.uf:B.aAj,p,o)],k),m,new A.af(q,B.o),B.axP)}}
 A.aLv.prototype={
 $0(){var s,r=this.a,q=A.fo(r.x,t.N)
 q.I(0,this.b)
@@ -128306,7 +128306,7 @@ else return A.aa(A.a([new A.B1(r.gkv(),r.gnt(),s),B.a5,new A.Bd(r.gkv(),s),B.a5,
 $S:186}
 A.ayn.prototype={
 $1(a){var s=this,r=null,q=A.r(24),p=s.a,o=s.b,n=t.p,m=A.aa(A.a([A.cI(r,B.ac,!1,r,!0,B.q,r,A.cP(),p,r,r,r,r,r,2,B.a5Y,B.y,!0,r,!0,r,!1,r,B.a9,r,r,r,r,r,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.a_,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.P,r,B.al,r,r,r,r),B.a5,A.cI(r,B.ac,!1,r,!0,B.q,r,A.cP(),o,r,r,r,r,r,2,B.a60,B.y,!0,r,!0,r,!1,r,B.a9,r,r,r,r,B.hD,r,r,r,1,r,r,!1,"\u2022",r,r,r,r,r,!1,r,r,!1,r,!0,r,B.a_,r,r,r,r,r,r,r,r,r,r,r,r,!0,B.P,r,B.al,r,r,r,r)],n),B.h,B.d,B.w,0,B.n)
-return A.dg(A.a([A.cH(B.dg,new A.ayl(a),r),A.cU(B.aB9,new A.aym(p,o,s.c,a,s.d),A.bw(r,r,B.m,r,r,r,r,r,r,B.k,r,r,r,r,new A.af(A.r(12),B.o),r,r,r,r,r))],n),m,new A.af(q,B.o),B.ayp)},
+return A.dg(A.a([A.cH(B.dg,new A.ayl(a),r),A.cU(B.aB9,new A.aym(p,o,s.c,a,s.d),A.bw(r,r,B.m,r,r,r,r,r,r,B.k,r,r,r,r,new A.af(A.r(12),B.o),r,r,r,r,r))],n),m,new A.af(q,B.o),B.ayr)},
 $S:10}
 A.ayl.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -128322,10 +128322,10 @@ A.CQ.prototype={
 aqj(a,b){var s=null
 A.cg(s,s,!0,s,new A.azx(b,a),a,s,!0,t.z)},
 H(a){var s=null,r=A.by(a,!0,t.O),q=t.b5
-return A.eq(A.h0(A.a([A.iY(new A.azD(this,r),r.gVa(),q)],t.p),B.k,s,s,0,B.dK,s,B.axr,s),B.U,A.iY(new A.azE(r),r.gVa(),q),s,s,s,s,s)}}
+return A.eq(A.h0(A.a([A.iY(new A.azD(this,r),r.gVa(),q)],t.p),B.k,s,s,0,B.dK,s,B.axt,s),B.U,A.iY(new A.azE(r),r.gVa(),q),s,s,s,s,s)}}
 A.azx.prototype={
 $1(a){var s=null,r=A.r(18),q=A.W(B.a7g,B.h,B.d,B.f,0,s)
-return A.dg(A.a([A.cH(B.dg,new A.azv(a),s),A.cU(B.azi,new A.azw(a,this.a,this.b),A.bw(s,s,B.aP,s,s,s,s,s,s,s,s,s,s,s,new A.af(A.r(10),B.o),s,s,s,s,s))],t.p),B.aww,new A.af(r,B.o),q)},
+return A.dg(A.a([A.cH(B.dg,new A.azv(a),s),A.cU(B.azj,new A.azw(a,this.a,this.b),A.bw(s,s,B.aP,s,s,s,s,s,s,s,s,s,s,s,new A.af(A.r(10),B.o),s,s,s,s,s))],t.p),B.aww,new A.af(r,B.o),q)},
 $S:10}
 A.azv.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -128345,7 +128345,7 @@ $S:2}
 A.azD.prototype={
 $2(a,b){var s=b.b
 if(!(s!=null&&J.f3(s)))return B.bi
-return A.NK(B.a4t,B.ayc,new A.azC(this.a,a,this.b),null)},
+return A.NK(B.a4s,B.aye,new A.azC(this.a,a,this.b),null)},
 $S:67}
 A.azC.prototype={
 $0(){return this.a.aqj(this.b,this.c)},
@@ -128383,7 +128383,7 @@ e=q?B.N:B.ae
 f.push(A.w(r,d,d,d,d,A.aU(d,d,q?B.ab:B.bq,d,d,d,d,d,d,d,d,13,d,d,e,d,1.4,!0,d,d,d,d,d,d,d,d),d,d,d))
 f.push(B.at)
 e=A.a([A.w(o,d,d,d,d,B.uV,d,d,d)],g)
-if(!q)e.push(A.E(d,B.ayj,B.i,d,d,new A.H(B.am,d,d,A.r(6),d,d,B.p),d,d,d,B.il,d,d,d))
+if(!q)e.push(A.E(d,B.ayl,B.i,d,d,new A.H(B.am,d,d,A.r(6),d,d,B.p),d,d,d,B.il,d,d,d))
 f.push(A.W(e,B.h,B.af,B.f,0,d))
 return A.bjl(n,B.aY,A.eM(d,A.E(d,A.W(A.a([h,B.em,A.aH(A.aa(f,B.z,B.d,B.f,0,B.n),1),A.bf(d,B.bC,d,B.AB,d,d,new A.azy(m,a),B.J,d,d,"Delete notification",d)],g),B.z,B.d,B.f,0,d),B.i,d,d,new A.H(l,d,i,k,j,d,B.p),d,d,B.k2,B.aD,d,d,d),B.y,!1,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,d,new A.azz(q,m,a),d,d,d,d,d,d,!1,B.b5),B.me,new A.ea(b,t.kK),new A.azA(m,a,a0),B.co)},
 $S:840}
@@ -128556,7 +128556,7 @@ e=a.r
 e.toString
 e=f.ba(e)
 f=e}else f="Tap to select birthday"
-k=A.bU(!1,k,!0,A.E(a0,A.W(A.a([g,B.em,A.aH(A.aa(A.a([B.aAK,B.cQ,A.w(f,a0,a0,a0,a0,A.aU(a0,a0,a.r!=null?B.F:B.X,a0,a0,a0,a0,a0,a0,a0,a0,15,a0,a0,B.u,a0,a0,!0,a0,a0,a0,a0,a0,a0,a0,a0),a0,a0,a0)],l),B.z,B.d,B.f,0,B.n),1),B.a4N],l),B.h,B.d,B.f,0,a0),B.i,a0,a0,new A.H(j,a0,h,i,a0,a0,B.p),a0,a0,a0,B.aD,a0,a0,a0),a0,!0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a.gaCw(),a0,a0,a0,a0,a0,a0,a0)
+k=A.bU(!1,k,!0,A.E(a0,A.W(A.a([g,B.em,A.aH(A.aa(A.a([B.aAK,B.cQ,A.w(f,a0,a0,a0,a0,A.aU(a0,a0,a.r!=null?B.F:B.X,a0,a0,a0,a0,a0,a0,a0,a0,15,a0,a0,B.u,a0,a0,!0,a0,a0,a0,a0,a0,a0,a0,a0),a0,a0,a0)],l),B.z,B.d,B.f,0,B.n),1),B.a4M],l),B.h,B.d,B.f,0,a0),B.i,a0,a0,new A.H(j,a0,h,i,a0,a0,B.p),a0,a0,a0,B.aD,a0,a0,a0),a0,!0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a.gaCw(),a0,a0,a0,a0,a0,a0,a0)
 j=A.r(16)
 i=A.r(16)
 h=A.aS(B.c5,B.r,1)
@@ -128590,7 +128590,7 @@ b.toString
 b=B.e.ag(new A.au(c,0,!1).eH(b).a,a2)+1
 c=b}c=""+c+" Days"}else c="Edit"
 i=A.bU(!1,j,!0,A.E(a0,A.W(A.a([g,B.em,d,A.E(a0,A.w(c,a0,a0,a0,a0,B.aoS,a0,a0,a0),B.i,a0,a0,new A.H(e,a0,a0,f,a0,a0,B.p),a0,a0,a0,B.fj,a0,a0,a0)],l),B.h,B.d,B.f,0,a0),B.i,a0,a0,new A.H(B.U,a0,h,i,a0,a0,B.p),a0,a0,a0,B.aD,a0,a0,a0),a0,!0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a.gaCz(),a0,a0,a0,a0,a0,a0,a0)
-return A.eq(a4,B.U,A.f_(!0,A.cj(new A.ed(new A.al(0,s,0,1/0),A.es(A.E(a0,A.aa(A.a([B.ag,n,B.l1,m,B.aI,o,B.aI,k,B.aI,i,B.alV,A.bY(a.e?B.bU:A.cU(B.aBb,a.gaI7(),A.bw(a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,B.dE,a0,new A.af(A.r(16),B.o),a0,a0,a0,a0,a0)),a0,1/0),B.alX,A.bY(A.it(B.a1N,B.ayD,new A.b1L(a7),A.fO(a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,B.dE,a0,new A.af(A.r(16),B.o),B.Qb,a0,a0,a0,a0)),a0,1/0)],l),B.h,B.d,B.f,0,B.n),B.i,a0,a0,p,a0,a0,a0,q,a0,a0,a0),a0,B.y,new A.U(r,24,r,24),a0,a0,B.a3),a0),a0,a0),B.J,!0),a0,a0,a0,a0,a0)}}
+return A.eq(a4,B.U,A.f_(!0,A.cj(new A.ed(new A.al(0,s,0,1/0),A.es(A.E(a0,A.aa(A.a([B.ag,n,B.l1,m,B.aI,o,B.aI,k,B.aI,i,B.alV,A.bY(a.e?B.bU:A.cU(B.aBb,a.gaI7(),A.bw(a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,B.dE,a0,new A.af(A.r(16),B.o),a0,a0,a0,a0,a0)),a0,1/0),B.alX,A.bY(A.it(B.a1N,B.ayF,new A.b1L(a7),A.fO(a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,a0,B.dE,a0,new A.af(A.r(16),B.o),B.Qb,a0,a0,a0,a0)),a0,1/0)],l),B.h,B.d,B.f,0,B.n),B.i,a0,a0,p,a0,a0,a0,q,a0,a0,a0),a0,B.y,new A.U(r,24,r,24),a0,a0,B.a3),a0),a0,a0),B.J,!0),a0,a0,a0,a0,a0)}}
 A.b1F.prototype={
 $0(){this.a.f=B.hZ.gn9().bC(this.b)},
 $S:0}
@@ -128775,7 +128775,7 @@ j=new A.ca(B.az,l)
 m.a="docx"
 p=t.N
 o=t.K
-n=A.a([A.a9(["ext","docx","label","Word Doc (.docx)","icon",B.mM,"color",B.cK],p,o),A.a9(["ext","pdf","label","PDF Document (.pdf)","icon",B.mS,"color",B.h3],p,o),A.a9(["ext","pptx","label","PowerPoint PPT (.pptx)","icon",B.mU,"color",B.jM],p,o),A.a9(["ext","xlsx","label","Excel Sheet (.xlsx)","icon",B.Al,"color",B.h4],p,o),A.a9(["ext","txt","label","Text File (.txt)","icon",B.mK,"color",B.E],p,o),A.a9(["ext","notes","label","Quick Notes (.notes)","icon",B.Ai,"color",B.bb],p,o),A.a9(["ext","md","label","Markdown (.md)","icon",B.An,"color",B.lQ],p,o),A.a9(["ext","csv","label","CSV Table (.csv)","icon",B.A5,"color",B.dC],p,o),A.a9(["ext","json","label","JSON / Code (.json)","icon",B.A0,"color",B.lN],p,o),A.a9(["ext","html","label","HTML Page (.html)","icon",B.a0T,"color",B.U0],p,o)],t.Mq)
+n=A.a([A.a9(["ext","docx","label","Word Doc (.docx)","icon",B.mM,"color",B.cK],p,o),A.a9(["ext","pdf","label","PDF Document (.pdf)","icon",B.mS,"color",B.h3],p,o),A.a9(["ext","pptx","label","PowerPoint PPT (.pptx)","icon",B.mU,"color",B.jM],p,o),A.a9(["ext","xlsx","label","Excel Sheet (.xlsx)","icon",B.Al,"color",B.h4],p,o),A.a9(["ext","txt","label","Text File (.txt)","icon",B.mK,"color",B.E],p,o),A.a9(["ext","notes","label","Quick Notes (.notes)","icon",B.Ai,"color",B.bb],p,o),A.a9(["ext","md","label","Markdown (.md)","icon",B.An,"color",B.lQ],p,o),A.a9(["ext","csv","label","CSV Table (.csv)","icon",B.A5,"color",B.dC],p,o),A.a9(["ext","json","label","JSON / Code (.json)","icon",B.A0,"color",B.lN],p,o),A.a9(["ext","html","label","HTML Page (.html)","icon",B.a0S,"color",B.U0],p,o)],t.Mq)
 o=q.c
 o.toString
 s=2
@@ -128825,14 +128825,14 @@ o===$&&A.b()
 o=o.z
 if(o.length===0){o=A.r(16)
 s=A.aS(B.I,B.r,1)
-p.push(A.E(r,A.aa(A.a([A.E(r,B.a4W,B.i,r,r,B.QD,r,r,r,B.yN,r,r,r),B.a5,B.avr,B.at,B.aA4],q),B.h,B.d,B.f,0,B.n),B.i,r,r,new A.H(B.k,r,s,o,r,r,B.p),r,r,B.yy,B.eb,r,r,r))}else B.b.I(p,new A.R(o,new A.b21(this),A.a_(o).i("R<1,h>")))
+p.push(A.E(r,A.aa(A.a([A.E(r,B.a4V,B.i,r,r,B.QD,r,r,r,B.yN,r,r,r),B.a5,B.avr,B.at,B.aA4],q),B.h,B.d,B.f,0,B.n),B.i,r,r,new A.H(B.k,r,s,o,r,r,B.p),r,r,B.yy,B.eb,r,r,r))}else B.b.I(p,new A.R(o,new A.b21(this),A.a_(o).i("R<1,h>")))
 return A.kU(p,B.aD,r,r,!1)},
-aoq(){var s,r=this,q=null,p=r.gaqH(),o=r.gaIA(),n=t.p,m=A.a([A.fT(B.Oy,A.a([B.aza,A.W(A.a([A.it(B.a3E,B.awJ,p,A.fO(q,q,q,q,q,q,q,q,q,B.m,q,q,q,q,new A.af(A.r(10),B.o),B.jr,q,q,q,q)),B.G,A.dB(B.AR,B.auH,o,A.bw(q,q,B.m,q,q,q,0,q,q,B.k,q,q,q,q,new A.af(A.r(10),B.o),q,q,q,q,q))],n),B.h,B.d,B.w,0,q)],n),B.hQ,8,8),B.bB],n),l=r.e
+aoq(){var s,r=this,q=null,p=r.gaqH(),o=r.gaIA(),n=t.p,m=A.a([A.fT(B.Oy,A.a([B.azb,A.W(A.a([A.it(B.a3E,B.awJ,p,A.fO(q,q,q,q,q,q,q,q,q,B.m,q,q,q,q,new A.af(A.r(10),B.o),B.jr,q,q,q,q)),B.G,A.dB(B.AR,B.auH,o,A.bw(q,q,B.m,q,q,q,0,q,q,B.k,q,q,q,q,new A.af(A.r(10),B.o),q,q,q,q,q))],n),B.h,B.d,B.w,0,q)],n),B.hQ,8,8),B.bB],n),l=r.e
 l===$&&A.b()
 l=l.y
 if(l.length===0){l=A.r(16)
 s=A.aS(B.I,B.r,1)
-m.push(A.E(q,A.aa(A.a([A.E(q,B.a5f,B.i,q,q,B.wn,q,q,q,B.yN,q,q,q),B.a5,B.ayu,B.at,B.axZ,B.aI,A.fT(B.Ox,A.a([A.dB(B.AR,B.aBt,o,A.bw(q,q,B.m,q,q,q,0,q,q,B.k,q,q,B.ea,q,new A.af(A.r(12),B.o),q,q,q,q,q)),A.it(B.a5b,B.avh,p,A.fO(q,q,q,q,q,q,q,q,q,B.m,q,q,B.ea,q,new A.af(A.r(12),B.o),B.jr,q,q,q,q))],n),B.c8,10,10)],n),B.h,B.d,B.f,0,B.n),B.i,q,q,new A.H(B.k,q,s,l,q,q,B.p),q,q,B.XH,B.eb,q,q,q))}else B.b.I(m,new A.R(l,new A.b1X(r),A.a_(l).i("R<1,h>")))
+m.push(A.E(q,A.aa(A.a([A.E(q,B.a5f,B.i,q,q,B.wn,q,q,q,B.yN,q,q,q),B.a5,B.ayw,B.at,B.ay0,B.aI,A.fT(B.Ox,A.a([A.dB(B.AR,B.aBt,o,A.bw(q,q,B.m,q,q,q,0,q,q,B.k,q,q,B.ea,q,new A.af(A.r(12),B.o),q,q,q,q,q)),A.it(B.a5b,B.avh,p,A.fO(q,q,q,q,q,q,q,q,q,B.m,q,q,B.ea,q,new A.af(A.r(12),B.o),B.jr,q,q,q,q))],n),B.c8,10,10)],n),B.h,B.d,B.f,0,B.n),B.i,q,q,new A.H(B.k,q,s,l,q,q,B.p),q,q,B.XH,B.eb,q,q,q))}else B.b.I(m,new A.R(l,new A.b1X(r),A.a_(l).i("R<1,h>")))
 return A.kU(m,B.aD,q,q,!1)},
 aoP(){var s,r,q,p=this,o=null,n=p.c
 n.toString
@@ -128843,7 +128843,7 @@ q=A.Z(new A.aD(n,new A.b24(p),r),r.i("B.E"))
 n=p.e
 n===$&&A.b()
 r=t.p
-r=A.a([A.W(A.a([A.w("Tasks in "+n.d+" ("+q.length+")",o,o,o,o,B.ob,o,o,o),A.dB(B.a4G,B.awZ,new A.b25(p),A.bw(o,o,B.m,o,o,o,0,o,o,B.k,o,o,o,o,new A.af(A.r(10),B.o),o,o,o,o,o))],r),B.h,B.af,B.f,0,o),B.bB],r)
+r=A.a([A.W(A.a([A.w("Tasks in "+n.d+" ("+q.length+")",o,o,o,o,B.ob,o,o,o),A.dB(B.a4F,B.ax_,new A.b25(p),A.bw(o,o,B.m,o,o,o,0,o,o,B.k,o,o,o,o,new A.af(A.r(10),B.o),o,o,o,o,o))],r),B.h,B.af,B.f,0,o),B.bB],r)
 if(q.length===0){n=A.r(16)
 r.push(A.E(o,B.Wa,B.i,o,o,new A.H(B.k,o,A.aS(B.I,B.r,1),n,o,o,B.p),o,o,B.yy,B.eb,o,o,o))}else B.b.I(r,new A.R(q,new A.b26(s),A.a_(q).i("R<1,h>")))
 return A.kU(r,B.aD,o,o,!1)}}
@@ -128890,15 +128890,15 @@ return new A.hH(new A.b2e(s.a,s.b,a,s.c,s.d,s.e),null)},
 $S:38}
 A.b2e.prototype={
 $2(a,b){var s,r,q,p,o=this,n=null,m=A.r(22),l=A.r(14),k=A.aS(B.jK,B.r,1),j=o.b,i=o.c,h=t.p
-l=A.E(n,A.W(A.a([A.E(n,B.a44,B.i,n,n,B.jt,n,n,n,B.au,n,n,n),B.b3,B.Z5,A.dB(B.a4D,B.aye,new A.b2a(j,i),A.bw(n,n,B.m,n,n,n,0,n,n,B.k,n,n,B.cq,n,new A.af(A.r(10),B.o),n,n,n,n,n))],h),B.h,B.d,B.f,0,n),B.i,n,n,new A.H(B.bE,n,k,l,n,n,B.p),n,n,B.ys,B.dp,n,n,n)
+l=A.E(n,A.W(A.a([A.E(n,B.a44,B.i,n,n,B.jt,n,n,n,B.au,n,n,n),B.b3,B.Z5,A.dB(B.a4C,B.ayg,new A.b2a(j,i),A.bw(n,n,B.m,n,n,n,0,n,n,B.k,n,n,B.cq,n,new A.af(A.r(10),B.o),n,n,n,n,n))],h),B.h,B.d,B.f,0,n),B.i,n,n,new A.H(B.bE,n,k,l,n,n,B.p),n,n,B.ys,B.dp,n,n,n)
 k=o.d
-s=A.cI(n,B.ac,!0,n,!0,B.q,n,A.cP(),k,n,n,n,n,n,2,A.d_(n,new A.c0(4,A.r(14),B.aO),n,n,n,n,n,n,!0,n,n,n,n,n,n,B.U,!0,n,n,n,n,n,n,n,n,n,n,n,n,n,n,"e.g. Project Proposal, Sales PPT, Annual Report",n,n,n,n,n,n,n,n,"File / Document Title *",!0,!0,!1,n,B.a4w,n,n,n,n,n,n,n,n,n,n,n,n),B.y,!0,n,!0,n,!1,n,B.a9,n,n,n,n,n,n,n,n,1,n,n,!1,"\u2022",n,n,n,n,n,!1,n,n,!1,n,!0,n,B.a_,n,n,n,n,n,n,n,n,n,n,n,B.bQ,!0,B.P,n,B.al,n,n,n,n)
+s=A.cI(n,B.ac,!0,n,!0,B.q,n,A.cP(),k,n,n,n,n,n,2,A.d_(n,new A.c0(4,A.r(14),B.aO),n,n,n,n,n,n,!0,n,n,n,n,n,n,B.U,!0,n,n,n,n,n,n,n,n,n,n,n,n,n,n,"e.g. Project Proposal, Sales PPT, Annual Report",n,n,n,n,n,n,n,n,"File / Document Title *",!0,!0,!1,n,B.a4v,n,n,n,n,n,n,n,n,n,n,n,n),B.y,!0,n,!0,n,!1,n,B.a9,n,n,n,n,n,n,n,n,1,n,n,!1,"\u2022",n,n,n,n,n,!1,n,n,!1,n,!0,n,B.a_,n,n,n,n,n,n,n,n,n,n,n,B.bQ,!0,B.P,n,B.al,n,n,n,n)
 r=o.e
 q=o.a
 p=A.a_(r).i("R<1,lt>")
 r=A.Z(new A.R(r,new A.b2b(q,b),p),p.i("aj.E"))
 p=o.f
-r=A.bY(A.es(A.aa(A.a([l,B.qa,B.bB,B.axV,B.ao,s,B.a5,B.ayX,B.ao,A.fT(B.bk,r,B.c8,8,8),B.a5,A.cI(n,B.ac,!1,n,!0,B.q,n,A.cP(),p,n,n,n,n,n,2,A.d_(!0,new A.c0(4,A.r(14),B.aO),n,n,n,n,n,n,!0,n,n,n,n,n,n,B.U,!0,n,n,n,n,n,n,n,n,n,n,n,n,n,n,"Write your text, points, data, headings, or outline here...",n,n,n,n,n,n,n,n,"Document Content & Body *",!0,!0,!1,n,n,n,n,n,n,n,n,n,n,n,n,n,n),B.y,!0,n,!0,n,!1,n,B.a9,n,n,n,n,n,n,n,n,7,n,n,!1,"\u2022",n,n,n,n,n,!1,n,n,!1,n,!0,n,B.a_,n,n,n,n,n,n,n,n,n,n,n,n,!0,B.P,n,B.al,n,n,n,n)],h),B.z,B.d,B.w,0,B.n),n,B.y,n,n,n,B.a3),n,17976931348623157e292)
+r=A.bY(A.es(A.aa(A.a([l,B.qa,B.bB,B.axX,B.ao,s,B.a5,B.ayY,B.ao,A.fT(B.bk,r,B.c8,8,8),B.a5,A.cI(n,B.ac,!1,n,!0,B.q,n,A.cP(),p,n,n,n,n,n,2,A.d_(!0,new A.c0(4,A.r(14),B.aO),n,n,n,n,n,n,!0,n,n,n,n,n,n,B.U,!0,n,n,n,n,n,n,n,n,n,n,n,n,n,n,"Write your text, points, data, headings, or outline here...",n,n,n,n,n,n,n,n,"Document Content & Body *",!0,!0,!1,n,n,n,n,n,n,n,n,n,n,n,n,n,n),B.y,!0,n,!0,n,!1,n,B.a9,n,n,n,n,n,n,n,n,7,n,n,!1,"\u2022",n,n,n,n,n,!1,n,n,!1,n,!0,n,B.a_,n,n,n,n,n,n,n,n,n,n,n,n,!0,B.P,n,B.al,n,n,n,n)],h),B.z,B.d,B.w,0,B.n),n,B.y,n,n,n,B.a3),n,17976931348623157e292)
 return A.dg(A.a([A.cH(B.aAp,new A.b2c(i),n),A.dB(B.a1g,B.avF,new A.b2d(q,j,k,p,a,i),A.bw(n,n,B.m,n,n,n,n,n,n,B.k,n,n,B.yM,n,new A.af(A.r(12),B.o),n,n,n,n,n))],h),r,new A.af(m,B.o),B.aj4)},
 $S:77}
 A.b2a.prototype={
@@ -128961,7 +128961,7 @@ return null},
 $S:0}
 A.b21.prototype={
 $1(a){var s=null,r=this.a,q=a.c,p=r.aCS(q),o=A.r(16),n=A.aS(B.I,B.r,1),m=A.a([new A.b5(0,B.H,B.x.bb(0.02),B.d2,8)],t.V),l=p.bb(0.12),k=A.r(10),j=t.p
-return A.E(s,A.aa(A.a([A.W(A.a([A.E(s,A.bc(r.aCT(q),p,s,22),B.i,s,s,new A.H(l,s,s,k,s,s,B.p),s,s,s,B.au,s,s,s),B.b3,A.aH(A.aa(A.a([A.w(a.a,1,B.a2,s,s,B.uQ,s,s,s),B.cQ,A.w(a.b,1,B.a2,s,s,B.c0,s,s,s)],j),B.z,B.d,B.f,0,B.n),1),A.bf(s,B.bC,s,B.a2C,s,s,new A.b1Z(r,a),B.J,s,s,"Delete Link",s)],j),B.h,B.d,B.f,0,s),B.bt,A.fT(B.bk,A.a([A.dB(B.a1J,B.ayK,new A.b2_(r,a),A.bw(s,s,B.e6,s,s,s,0,s,s,B.k,s,s,B.XQ,s,new A.af(A.r(8),B.o),s,s,s,B.fC,s)),A.it(B.a4d,B.azF,new A.b20(r,a),A.fO(s,s,s,s,s,s,s,s,s,B.E,s,s,B.XO,s,new A.af(A.r(8),B.o),B.e1,s,s,s,s)),A.E(s,B.ajh,B.i,s,s,new A.H(B.C.bb(0.1),s,s,A.r(6),s,s,B.p),s,s,s,B.Yx,s,s,s)],j),B.hQ,8,8)],j),B.z,B.d,B.f,0,B.n),B.i,s,s,new A.H(B.k,s,n,o,m,s,B.p),s,s,B.cp,B.eI,s,s,s)},
+return A.E(s,A.aa(A.a([A.W(A.a([A.E(s,A.bc(r.aCT(q),p,s,22),B.i,s,s,new A.H(l,s,s,k,s,s,B.p),s,s,s,B.au,s,s,s),B.b3,A.aH(A.aa(A.a([A.w(a.a,1,B.a2,s,s,B.uQ,s,s,s),B.cQ,A.w(a.b,1,B.a2,s,s,B.c0,s,s,s)],j),B.z,B.d,B.f,0,B.n),1),A.bf(s,B.bC,s,B.a2C,s,s,new A.b1Z(r,a),B.J,s,s,"Delete Link",s)],j),B.h,B.d,B.f,0,s),B.bt,A.fT(B.bk,A.a([A.dB(B.a1J,B.axk,new A.b2_(r,a),A.bw(s,s,B.e6,s,s,s,0,s,s,B.k,s,s,B.XQ,s,new A.af(A.r(8),B.o),s,s,s,B.fC,s)),A.it(B.a51,B.awS,new A.b20(r,a),A.fO(s,s,s,s,s,s,s,s,s,B.E,s,s,B.XO,s,new A.af(A.r(8),B.o),B.e1,s,s,s,s)),A.E(s,B.ajh,B.i,s,s,new A.H(B.C.bb(0.1),s,s,A.r(6),s,s,B.p),s,s,s,B.Yx,s,s,s)],j),B.hQ,8,8)],j),B.z,B.d,B.f,0,B.n),B.i,s,s,new A.H(B.k,s,n,o,m,s,B.p),s,s,B.cp,B.eI,s,s,s)},
 $S:352}
 A.b1Z.prototype={
 $0(){var s=0,r=A.n(t.H),q=this,p,o,n,m
@@ -128984,15 +128984,15 @@ A.b1Y.prototype={
 $0(){return this.a.e=this.b},
 $S:0}
 A.b2_.prototype={
-$0(){return this.a.A2(this.b.b)},
-$S:0}
-A.b20.prototype={
 $0(){var s,r=this.a,q=r.c
 q.toString
 s=this.b
 r=r.e
 r===$&&A.b()
 A.bqs(q,r,s.a,s.b)},
+$S:0}
+A.b20.prototype={
+$0(){return this.a.A2(this.b.b)},
 $S:0}
 A.b1X.prototype={
 $1(a){var s,r,q,p,o,n=null,m=a.c
@@ -129107,7 +129107,7 @@ this.fB()}}
 A.Df.prototype={
 Qt(a){A.dM(B.B,new A.aB9(),a,!0,!0,!0,null,!1,t.z)},
 H(a){var s=null,r=A.by(a,!0,t.O)
-return A.eq(A.h0(A.a([A.bf(s,s,s,B.a2V,s,s,new A.aBc(this,a),s,s,s,"Create New Project",s),B.G],t.p),B.k,s,!1,0,s,s,B.axE,s),B.U,A.iY(new A.aBd(this,r),r.afD(),t.aS),s,s,A.bjG(B.m,B.k,B.Az,B.avp,new A.aBe(this,a)),s,s)},
+return A.eq(A.h0(A.a([A.bf(s,s,s,B.a2V,s,s,new A.aBc(this,a),s,s,s,"Create New Project",s),B.G],t.p),B.k,s,!1,0,s,s,B.axG,s),B.U,A.iY(new A.aBd(this,r),r.afD(),t.aS),s,s,A.bjG(B.m,B.k,B.Az,B.avp,new A.aBe(this,a)),s,s)},
 aoL(a,b,c){var s,r=null,q=A.c4(b.e),p=A.r(18),o=A.r(18),n=A.aS(B.I,B.r,1),m=A.a([new A.b5(0,B.H,B.x.bb(0.03),B.bW,10)],t.V),l=q.bb(0.12),k=A.r(8),j=t.p
 k=A.a([A.W(A.a([A.E(r,A.w(b.d,r,r,r,r,A.aU(r,r,q,r,r,r,r,r,r,r,r,12,r,r,B.ai,r,r,!0,r,r,r,r,r,r,r,r),r,r,r),B.i,r,r,new A.H(l,r,r,k,r,r,B.p),r,r,r,B.jZ,r,r,r),A.tS(r,r,r,B.a5h,r,new A.aB5(),B.t,new A.aB6(c,b,a),B.au,r,r,t.N)],j),B.h,B.af,B.f,0,r),B.ao,A.w(b.b,r,r,r,r,B.MV,r,r,r)],j)
 l=b.c
@@ -129122,7 +129122,7 @@ k.push(B.mf)
 k.push(B.bt)
 l=b.w
 l=l.length!==0?l:"Admin"
-l=A.a([A.W(A.a([B.a4O,B.aS,A.w(l,r,r,r,r,A.aU(r,r,B.f8,r,r,r,r,r,r,r,r,12,r,r,B.ae,r,r,!0,r,r,r,r,r,r,r,r),r,r,r)],j),B.h,B.d,B.f,0,r)],j)
+l=A.a([A.W(A.a([B.a4N,B.aS,A.w(l,r,r,r,r,A.aU(r,r,B.f8,r,r,r,r,r,r,r,r,12,r,r,B.ae,r,r,!0,r,r,r,r,r,r,r,r),r,r,r)],j),B.h,B.d,B.f,0,r)],j)
 s=b.f
 if(s!=null)l.push(A.W(A.a([B.a2Y,B.aS,A.w(A.bO("dd MMM yyyy").ba(s),r,r,r,r,B.apy,r,r,r)],j),B.h,B.d,B.f,0,r))
 k.push(A.W(l,B.h,B.af,B.f,0,r))
@@ -129139,7 +129139,7 @@ if(b.a===B.cb)return B.bU
 s=b.b
 if(s==null)s=A.a([],t.th)
 r=J.a6(s)
-if(r.ga5(s))return A.cj(new A.ah(B.eb,A.aa(A.a([A.E(q,B.a4m,B.i,q,q,new A.H(B.bE,q,q,q,q,q,B.aa),q,q,q,B.ct,q,q,q),B.aI,B.auT,B.ao,A.w("Create organized project workspaces, assign team members, and attach PDF/specs documents.",q,q,q,q,A.aU(q,q,B.fa,q,q,q,q,q,q,q,q,14,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),B.ax,q,q),B.bH,A.dB(B.Az,B.azN,new A.aBa(this.a,a),A.bw(q,q,B.m,q,q,q,q,q,q,B.k,q,q,B.ql,q,new A.af(A.r(14),B.o),q,q,q,q,q))],t.p),B.h,B.bc,B.f,0,B.n),q),q,q)
+if(r.ga5(s))return A.cj(new A.ah(B.eb,A.aa(A.a([A.E(q,B.a4l,B.i,q,q,new A.H(B.bE,q,q,q,q,q,B.aa),q,q,q,B.ct,q,q,q),B.aI,B.auT,B.ao,A.w("Create organized project workspaces, assign team members, and attach PDF/specs documents.",q,q,q,q,A.aU(q,q,B.fa,q,q,q,q,q,q,q,q,14,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),B.ax,q,q),B.bH,A.dB(B.Az,B.azN,new A.aBa(this.a,a),A.bw(q,q,B.m,q,q,q,q,q,q,B.k,q,q,B.ql,q,new A.af(A.r(14),B.o),q,q,q,q,q))],t.p),B.h,B.bc,B.f,0,B.n),q),q,q)
 return A.iR(q,new A.aBb(this.a,s,this.b),r.gB(s),B.aD,!1)},
 $S:849}
 A.aBa.prototype={
@@ -129175,9 +129175,9 @@ aqn(a){var s=null
 A.cg(s,s,!0,s,new A.aC5(a),a,s,!0,t.z)},
 H(a){var s=null,r=A.by(a,!0,t.O),q=r.ga9i(),p=A.bf(s,s,s,B.AD,s,s,new A.aC8(a),s,s,s,s,s),o=t.p,n=A.a([],o)
 if(q.length!==0)n.push(A.bf(s,s,s,B.a5n,s,s,new A.aC9(this,a),s,s,s,"Empty Recycle Bin",s))
-p=A.h0(n,B.k,s,!0,0,s,p,B.ayG,s)
+p=A.h0(n,B.k,s,!0,0,s,p,B.ayI,s)
 n=q.length
-return A.eq(p,B.U,n===0?A.cj(A.aa(A.a([A.E(s,B.a4U,B.i,s,s,B.wm,s,s,s,B.ct,s,s,s),B.a5,B.aAT,B.at,B.aum],o),B.h,B.bc,B.f,0,B.n),s,s):A.iR(s,new A.aCa(q,r),n,B.aD,!1),s,s,s,s,s)}}
+return A.eq(p,B.U,n===0?A.cj(A.aa(A.a([A.E(s,B.a4T,B.i,s,s,B.wm,s,s,s,B.ct,s,s,s),B.a5,B.aAT,B.at,B.aum],o),B.h,B.bc,B.f,0,B.n),s,s):A.iR(s,new A.aCa(q,r),n,B.aD,!1),s,s,s,s,s)}}
 A.aC5.prototype={
 $1(a){var s=null,r=A.r(16)
 return A.dg(A.a([A.cH(B.dg,new A.aC3(a),s),A.cU(B.aBi,new A.aC4(this.a,a),A.bw(s,s,B.Y,s,s,s,s,s,s,B.k,s,s,s,s,s,s,s,s,s,s))],t.p),B.aAN,new A.af(r,B.o),B.ajm)},
@@ -129211,7 +129211,7 @@ m=q.ax
 if(m!=null&&m.length!==0)B.b.I(n,A.a([B.aT,A.w("Assigned by: "+m,r,r,r,r,B.apo,r,r,r)],o))
 n.push(B.ag)
 m=this.b
-n.push(A.W(A.a([A.it(B.a1j,B.ax_,new A.aC6(m,q,a),A.fO(r,r,r,r,r,r,r,r,r,B.Y,r,r,r,r,new A.af(A.r(10),B.o),B.Q8,r,r,r,r)),B.G,A.dB(B.a3q,B.azP,new A.aC7(m,q,a),A.bw(r,r,B.C,r,r,r,0,r,r,B.k,r,r,r,r,new A.af(A.r(10),B.o),r,r,r,r,r))],o),B.h,B.ei,B.f,0,r))
+n.push(A.W(A.a([A.it(B.a1j,B.ax0,new A.aC6(m,q,a),A.fO(r,r,r,r,r,r,r,r,r,B.Y,r,r,r,r,new A.af(A.r(10),B.o),B.Q8,r,r,r,r)),B.G,A.dB(B.a3q,B.azP,new A.aC7(m,q,a),A.bw(r,r,B.C,r,r,r,0,r,r,B.k,r,r,r,r,new A.af(A.r(10),B.o),r,r,r,r,r))],o),B.h,B.ei,B.f,0,r))
 return A.ja(new A.ah(B.aD,A.aa(n,B.z,B.d,B.f,0,B.n),r),r,0,B.cp,new A.af(p,B.d8))},
 $S:47}
 A.aC6.prototype={
@@ -129498,14 +129498,14 @@ H(a){var s,r,q,p,o,n,m=this,l=null,k=A.ap(a,l,t.w).w.a,j=k.a*0.72,i=m.z?B.C:B.k.
 if(m.f&&m.d!=null){s=m.d
 s.toString
 g.push(A.a0Y(0,A.cj(new A.WH(s,l),l,l)))}else g.push(B.wT)
-s=A.bf(l,l,l,B.a4v,l,l,new A.b4D(a),l,l,l,l,l)
+s=A.bf(l,l,l,B.a4u,l,l,new A.b4D(a),l,l,l,l,l)
 r=B.x.bb(0.65)
 q=A.r(20)
 p=m.z
 o=A.aS(p?B.C:B.e7,B.r,1.2)
 n=p?B.mG:B.a_j
 s=A.a([s,A.E(l,A.W(A.a([A.bc(n,p?B.C:B.aF,l,20),B.G,A.w(m.a.c,l,l,l,l,B.N4,l,l,l)],h),B.h,B.d,B.f,0,l),B.i,l,l,new A.H(r,l,o,q,l,l,B.p),l,l,l,B.cs,l,l,l)],h)
-if(J.bn(m.e)>1)s.push(A.bf(l,l,l,B.a4T,l,l,m.gaGE(),l,l,l,l,l))
+if(J.bn(m.e)>1)s.push(A.bf(l,l,l,B.a4S,l,l,m.gaGE(),l,l,l,l,l))
 else s.push(B.alT)
 g.push(A.oj(l,A.W(s,B.h,B.af,B.f,0,l),l,l,16,16,45,l))
 g.push(A.cj(A.p5(l,l,B.aq,new A.H(B.B,l,A.aS(i,B.r,m.z?4:2.5),l,l,l,B.aa),B.fi,l,j,l,j),l,l))
@@ -129591,18 +129591,18 @@ r=g.ga5a()
 r=g.kf(A.dB(B.a2B,B.aBC,r,A.bw(f,f,B.b8,f,f,f,0,f,f,B.cK,f,f,B.dF,f,new A.af(A.r(10),B.o),f,f,f,f,f)),B.kk,r,"Google Cloud Auto Backup & Multi-device Sync",e)
 o=g.y
 n=o?"Active & synchronizing system schedules":"Disconnected from local calendar"
-n=A.aH(A.aa(A.a([g.F7(B.rw,B.am,A.a([r,g.kf(A.aHv(B.m,new A.b5E(g,a1),o),B.mV,new A.b5F(g),n,d),g.kf(A.cU(B.azO,new A.b5Q(a1),A.bw(f,f,B.ar,f,f,f,0,f,f,B.F,f,f,B.dF,f,new A.af(A.r(10),B.o),f,f,f,f,f)),B.rr,new A.b60(a1),"AI Natural Language Task Generator","Smart Voice Input")],p),"Sync & Integration"),B.bH,g.F7(B.Ac,B.h1,A.a([g.kf(A.La(B.ayw,new A.b6b(a1),A.fO(f,f,f,f,f,f,f,f,f,f,f,f,B.dF,f,new A.af(A.r(10),B.o),B.e1,f,f,f,f)),B.zM,new A.b6e(a1),"Color schemes, dark mode & texture presets","Theme & Wallpapers"),g.kf(A.La(B.azM,new A.b6f(a1),A.fO(f,f,f,f,f,f,f,f,f,f,f,f,B.dF,f,new A.af(A.r(10),B.o),B.e1,f,f,f,f)),B.rj,new A.b6g(a1),"10 interactive desktop and mobile widgets","Widgets Gallery"),g.kf(A.aHv(B.m,new A.b6h(a0),a0.x),B.zO,new A.b6i(a0),"Play celebratory audio cue when completing tasks",c),g.kf(B.a4S,B.zT,new A.b5G(a1),"Confetti & celebration when all pending tasks are finished","Perfect Day Animations")],p),"Theme & Customization")],p),B.h,B.d,B.f,0,B.n),1)
+n=A.aH(A.aa(A.a([g.F7(B.rw,B.am,A.a([r,g.kf(A.aHv(B.m,new A.b5E(g,a1),o),B.mV,new A.b5F(g),n,d),g.kf(A.cU(B.azO,new A.b5Q(a1),A.bw(f,f,B.ar,f,f,f,0,f,f,B.F,f,f,B.dF,f,new A.af(A.r(10),B.o),f,f,f,f,f)),B.rr,new A.b60(a1),"AI Natural Language Task Generator","Smart Voice Input")],p),"Sync & Integration"),B.bH,g.F7(B.Ac,B.h1,A.a([g.kf(A.La(B.ayy,new A.b6b(a1),A.fO(f,f,f,f,f,f,f,f,f,f,f,f,B.dF,f,new A.af(A.r(10),B.o),B.e1,f,f,f,f)),B.zM,new A.b6e(a1),"Color schemes, dark mode & texture presets","Theme & Wallpapers"),g.kf(A.La(B.azM,new A.b6f(a1),A.fO(f,f,f,f,f,f,f,f,f,f,f,f,B.dF,f,new A.af(A.r(10),B.o),B.e1,f,f,f,f)),B.rj,new A.b6g(a1),"10 interactive desktop and mobile widgets","Widgets Gallery"),g.kf(A.aHv(B.m,new A.b6h(a0),a0.x),B.zO,new A.b6i(a0),"Play celebratory audio cue when completing tasks",c),g.kf(B.a4R,B.zT,new A.b5G(a1),"Confetti & celebration when all pending tasks are finished","Perfect Day Animations")],p),"Theme & Customization")],p),B.h,B.d,B.f,0,B.n),1)
 o=g.d
 o=g.kf(g.zi(new A.b5H(g),o),B.fm,new A.b5I(g),"Active: "+o,b)
 r=g.e
 m=B.c.n(r,"12")?"12 Hours":"24 Hours"
-r=g.kf(g.zi(new A.b5J(g),m),B.a0A,new A.b5K(g),"Active: "+r,"Time Display Format")
+r=g.kf(g.zi(new A.b5J(g),m),B.a0z,new A.b5K(g),"Active: "+r,"Time Display Format")
 m=g.f
 m=g.kf(g.zi(new A.b5L(g),m),B.Ar,new A.b5M(g),"Active: "+m,"Date Calendar Format")
 l=g.r
 l=g.F7(B.ke,B.C,A.a([o,r,m,g.kf(g.zi(new A.b5N(g),l),B.zP,new A.b5O(g),"Remind: "+l,"Default Task Reminder")],p),"Date & Time Formatting")
 m=g.x
-return A.eq(f,B.U,A.aa(A.a([q,A.aH(A.es(A.cj(new A.ed(B.Qo,A.aa(A.a([s,B.dU,A.W(A.a([n,B.l0,A.aH(A.aa(A.a([l,B.bH,g.F7(B.A8,B.E,A.a([g.kf(g.zi(new A.b5P(g),m),B.mN,new A.b5R(g),"Interface language: "+m,a),g.kf(B.a1x,B.zR,new A.b5S(a1),"Local-first encrypted storage & zero-tracking","Privacy & Data Policy")],p),"Interface & About")],p),B.h,B.d,B.f,0,B.n),1)],p),B.z,B.d,B.f,0,f),B.ug],p),B.z,B.d,B.f,0,B.n),f),f,f),f,B.y,B.Yo,B.e2,f,B.a3),1)],p),B.h,B.d,B.f,0,B.n),f,f,f,f,f)}s=A.h0(f,f,f,!1,f,f,A.bf(f,f,f,B.fn,f,f,new A.b5T(a1),f,f,f,f,f),B.ax5,f)
+return A.eq(f,B.U,A.aa(A.a([q,A.aH(A.es(A.cj(new A.ed(B.Qo,A.aa(A.a([s,B.dU,A.W(A.a([n,B.l0,A.aH(A.aa(A.a([l,B.bH,g.F7(B.A8,B.E,A.a([g.kf(g.zi(new A.b5P(g),m),B.mN,new A.b5R(g),"Interface language: "+m,a),g.kf(B.a1x,B.zR,new A.b5S(a1),"Local-first encrypted storage & zero-tracking","Privacy & Data Policy")],p),"Interface & About")],p),B.h,B.d,B.f,0,B.n),1)],p),B.z,B.d,B.f,0,f),B.ug],p),B.z,B.d,B.f,0,B.n),f),f,f),f,B.y,B.Yo,B.e2,f,B.a3),1)],p),B.h,B.d,B.f,0,B.n),f,f,f,f,f)}s=A.h0(f,f,f,!1,f,f,A.bf(f,f,f,B.fn,f,f,new A.b5T(a1),f,f,f,f,f),B.ax6,f)
 r=A.w("Customize",f,f,f,f,B.l8,f,f,f)
 q=g.ho(B.kk,g.ga5a(),"Google Cloud Sync",e)
 p=g.ho(B.rj,new A.b5U(a1),"10 interactive widgets","Widget")
@@ -129615,7 +129615,7 @@ k=g.ho(B.a_z,new A.b5Z(a1),"Show on task list","Subtasks")
 j=A.w("Task Completion",f,f,f,f,B.l8,f,f,f)
 i=g.ho(B.zT,new A.b6_(a1),"Celebrate when all tasks done","Perfect Day")
 h=a0.x
-return A.eq(s,B.k,A.kU(A.a([new A.ah(B.k3,r,f),q,p,o,n,m,l,k,B.a5,new A.ah(B.k3,j,f),i,A.cz(B.yR,!1,f,A.bc(B.zO,B.ca,f,24),f,f,f,f,f,A.w(c,f,f,f,f,B.NB,f,f,f),A.aHv(B.m,new A.b61(a0),h)),B.a5,new A.ah(B.k3,A.w("Date & Time",f,f,f,f,B.l8,f,f,f),f),g.ho(B.fm,new A.b62(g),g.d,b),g.ho(B.ke,new A.b63(g),g.e,"Time Format"),g.ho(B.Ar,new A.b64(g),g.f,"Date Format"),g.ho(B.a0U,new A.b65(a1),"Today","Due Date"),g.ho(B.zP,new A.b66(g),g.r,"Task reminder default"),B.a5,new A.ah(B.k3,A.w("Task Appearance Customize",f,f,f,f,B.l8,f,f,f),f),g.ho(B.a0M,new A.b67(g),g.w,"Default Home View"),g.ho(B.rB,new A.b68(a1),"Last Viewed","Default Category"),g.ho(B.a0F,new A.b69(a1),"Previous, Today, Future","Time Range Sort"),B.a5,new A.ah(B.k3,A.w("About",f,f,f,f,B.l8,f,f,f),f),g.ho(B.mN,new A.b6a(g),g.x,a),g.aoN(B.zR,new A.b6c(a1),"Privacy Policy"),g.ho(B.a_K,new A.b6d(a1),"Latest Release","Version: 1.03.30.0817"),B.dU],t.p),B.h9,B.fS,f,!1),f,f,f,f,f)},
+return A.eq(s,B.k,A.kU(A.a([new A.ah(B.k3,r,f),q,p,o,n,m,l,k,B.a5,new A.ah(B.k3,j,f),i,A.cz(B.yR,!1,f,A.bc(B.zO,B.ca,f,24),f,f,f,f,f,A.w(c,f,f,f,f,B.NB,f,f,f),A.aHv(B.m,new A.b61(a0),h)),B.a5,new A.ah(B.k3,A.w("Date & Time",f,f,f,f,B.l8,f,f,f),f),g.ho(B.fm,new A.b62(g),g.d,b),g.ho(B.ke,new A.b63(g),g.e,"Time Format"),g.ho(B.Ar,new A.b64(g),g.f,"Date Format"),g.ho(B.a0T,new A.b65(a1),"Today","Due Date"),g.ho(B.zP,new A.b66(g),g.r,"Task reminder default"),B.a5,new A.ah(B.k3,A.w("Task Appearance Customize",f,f,f,f,B.l8,f,f,f),f),g.ho(B.a0L,new A.b67(g),g.w,"Default Home View"),g.ho(B.rB,new A.b68(a1),"Last Viewed","Default Category"),g.ho(B.a0E,new A.b69(a1),"Previous, Today, Future","Time Range Sort"),B.a5,new A.ah(B.k3,A.w("About",f,f,f,f,B.l8,f,f,f),f),g.ho(B.mN,new A.b6a(g),g.x,a),g.aoN(B.zR,new A.b6c(a1),"Privacy Policy"),g.ho(B.a_K,new A.b6d(a1),"Latest Release","Version: 1.03.30.0817"),B.dU],t.p),B.h9,B.fS,f,!1),f,f,f,f,f)},
 F7(a,b,c,d){var s=null,r=A.r(18),q=A.aS(B.I,B.r,1),p=A.a([new A.b5(0,B.H,B.F.bb(0.03),B.bW,12)],t.V),o=b.bb(0.12),n=A.r(10),m=t.p
 m=A.a([new A.ah(B.Y5,A.W(A.a([A.E(s,A.bc(a,b,s,20),B.i,s,s,new A.H(o,s,s,n,s,s,B.p),s,s,s,B.au,s,s,s),B.b_,A.w(d,s,s,s,s,B.as7,s,s,s)],m),B.h,B.d,B.f,0,s),s),B.mf],m)
 B.b.I(m,c)
@@ -129643,7 +129643,7 @@ A.V(this.c,!1).T(null)},
 $S:0}
 A.b4O.prototype={
 $1(a){var s=null,r=A.r(20)
-return A.dg(A.a([A.cH(B.c1,new A.b4M(a),s),A.dB(B.a4J,B.aAU,new A.b4N(this.a,a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,s,s,s,s,s,s))],t.p),B.axx,new A.af(r,B.o),B.aj9)},
+return A.dg(A.a([A.cH(B.c1,new A.b4M(a),s),A.dB(B.a4I,B.aAU,new A.b4N(this.a,a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,s,s,s,s,s,s))],t.p),B.axz,new A.af(r,B.o),B.aj9)},
 $S:10}
 A.b4M.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -130104,7 +130104,7 @@ s.e=!1},
 $S:0}
 A.b8m.prototype={
 $1(a){var s=this,r=null,q=A.r(20),p=t.p,o=A.W(A.a([A.E(r,B.a5j,B.i,r,r,new A.H(A.am(B.j.aE(25.5),B.m.p()>>>16&255,B.m.p()>>>8&255,B.m.p()&255),r,r,A.r(10),r,r,B.p),r,r,r,B.au,r,r,r),B.b_,B.YM],p),B.h,B.d,B.f,0,r),n=s.b,m=s.c,l=s.d,k=A.YS(r,A.aa(A.a([A.w('Renaming "'+m+'" will automatically update all staff and team members belonging to this department.',r,r,r,r,B.uD,r,r,r),B.a5,A.a3K(!0,l,A.d_(r,new A.c0(4,A.r(12),B.aO),r,r,r,r,r,r,!0,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,r,"e.g. Technology / HR",r,r,r,r,r,r,r,r,"Department Name",!0,!0,!1,r,B.mX,r,r,r,r,r,r,r,r,r,r,r,r),!1,r,r,r,1,r,r,r,r,r,r,B.P,r,new A.b8j())],p),B.z,B.d,B.w,0,B.n),n)
-return A.dg(A.a([A.cH(B.dg,new A.b8k(a),r),A.cU(B.ayN,new A.b8l(s.a,n,l,a,m),A.bw(r,r,B.m,r,r,r,r,r,r,B.k,r,r,r,r,new A.af(A.r(10),B.o),r,r,r,r,r))],p),k,new A.af(q,B.o),o)},
+return A.dg(A.a([A.cH(B.dg,new A.b8k(a),r),A.cU(B.ayO,new A.b8l(s.a,n,l,a,m),A.bw(r,r,B.m,r,r,r,r,r,r,B.k,r,r,r,r,new A.af(A.r(10),B.o),r,r,r,r,r))],p),k,new A.af(q,B.o),o)},
 $S:10}
 A.b8j.prototype={
 $1(a){if(a==null||B.c.af(a).length===0)return"Please enter a department name"
@@ -130142,7 +130142,7 @@ A.b8i.prototype={
 $0(){return this.a.e=!0},
 $S:0}
 A.b8d.prototype={
-$1(a){var s=null,r=A.r(20),q=t.p,p=A.W(A.a([A.E(s,B.a1k,B.i,s,s,new A.H(A.am(B.j.aE(25.5),B.m.p()>>>16&255,B.m.p()>>>8&255,B.m.p()&255),s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),B.b_,B.Z6],q),B.h,B.d,B.f,0,s),o=this.b,n=this.c,m=this.a,l=A.YS(s,A.aa(A.a([B.axR,B.a5,A.a3K(!0,n,A.d_(s,new A.c0(4,A.r(12),B.aO),s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,"e.g. Quality Assurance / Logistics",s,s,s,s,s,s,s,s,"Department Name",!0,!0,!1,s,B.mX,s,s,s,s,s,s,s,s,s,s,s,s),!1,s,s,s,1,s,s,s,s,s,s,B.P,s,new A.b8a(m))],q),B.z,B.d,B.w,0,B.n),o)
+$1(a){var s=null,r=A.r(20),q=t.p,p=A.W(A.a([A.E(s,B.a1k,B.i,s,s,new A.H(A.am(B.j.aE(25.5),B.m.p()>>>16&255,B.m.p()>>>8&255,B.m.p()&255),s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),B.b_,B.Z6],q),B.h,B.d,B.f,0,s),o=this.b,n=this.c,m=this.a,l=A.YS(s,A.aa(A.a([B.axT,B.a5,A.a3K(!0,n,A.d_(s,new A.c0(4,A.r(12),B.aO),s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,"e.g. Quality Assurance / Logistics",s,s,s,s,s,s,s,s,"Department Name",!0,!0,!1,s,B.mX,s,s,s,s,s,s,s,s,s,s,s,s),!1,s,s,s,1,s,s,s,s,s,s,B.P,s,new A.b8a(m))],q),B.z,B.d,B.w,0,B.n),o)
 return A.dg(A.a([A.cH(B.dg,new A.b8b(a),s),A.cU(B.aup,new A.b8c(m,o,n,a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,new A.af(A.r(10),B.o),s,s,s,s,s))],q),l,new A.af(r,B.o),p)},
 $S:10}
 A.b8a.prototype={
@@ -130186,7 +130186,7 @@ $1(a){return new A.rX(this.a,null)},
 $S:298}
 A.b8h.prototype={
 $1(a){var s=null,r=A.r(20),q=t.p,p=A.W(A.a([A.E(s,B.a18,B.i,s,s,new A.H(A.am(B.j.aE(25.5),B.Y.p()>>>16&255,B.Y.p()>>>8&255,B.Y.p()&255),s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),B.b_,B.Z_],q),B.h,B.d,B.f,0,s),o=this.b,n=A.w('Are you sure you want to delete the department "'+o+'"?\n\nAll employees and managers assigned to this department will have their department reset to "Unassigned".',s,s,s,s,B.Nq,s,s,s)
-return A.dg(A.a([A.cH(B.dg,new A.b8f(a),s),A.cU(B.azz,new A.b8g(this.a,a,o),A.bw(s,s,B.Y,s,s,s,s,s,s,B.k,s,s,s,s,new A.af(A.r(10),B.o),s,s,s,s,s))],q),n,new A.af(r,B.o),p)},
+return A.dg(A.a([A.cH(B.dg,new A.b8f(a),s),A.cU(B.azA,new A.b8g(this.a,a,o),A.bw(s,s,B.Y,s,s,s,s,s,s,B.k,s,s,s,s,new A.af(A.r(10),B.o),s,s,s,s,s))],q),n,new A.af(r,B.o),p)},
 $S:10}
 A.b8f.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -130264,7 +130264,7 @@ $1(a){return B.GH},
 $S:297}
 A.b8x.prototype={
 $2(a,b){var s=null,r=this.a,q=J.a7(r.d,b),p=A.r(16),o=t.p
-return A.eM(s,A.ja(A.f0(B.bT,A.a([A.a0Y(0,new A.ah(B.dp,A.aa(A.a([B.a4k,B.bt,A.w(q,2,B.a2,s,s,B.uI,B.ax,s,s)],o),B.h,B.bc,B.f,0,B.n),s)),A.oj(s,A.W(A.a([A.bf(s,B.bC,s,B.a1M,s,s,new A.b8o(r,q),B.cu,16,s,"Rename Department",s),B.ud,A.bf(s,B.bC,s,B.a35,s,s,new A.b8p(r,q),B.cu,16,s,"Delete Department",s)],o),B.h,B.d,B.w,0,s),s,s,s,4,4,s)],o),B.q,B.bd,s),B.k,0,s,new A.af(p,B.o)),B.y,!1,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,new A.b8q(a,q),s,s,s,s,s,s,!1,B.b5)},
+return A.eM(s,A.ja(A.f0(B.bT,A.a([A.a0Y(0,new A.ah(B.dp,A.aa(A.a([B.a4j,B.bt,A.w(q,2,B.a2,s,s,B.uI,B.ax,s,s)],o),B.h,B.bc,B.f,0,B.n),s)),A.oj(s,A.W(A.a([A.bf(s,B.bC,s,B.a1M,s,s,new A.b8o(r,q),B.cu,16,s,"Rename Department",s),B.ud,A.bf(s,B.bC,s,B.a35,s,s,new A.b8p(r,q),B.cu,16,s,"Delete Department",s)],o),B.h,B.d,B.w,0,s),s,s,s,4,4,s)],o),B.q,B.bd,s),B.k,0,s,new A.af(p,B.o)),B.y,!1,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,new A.b8q(a,q),s,s,s,s,s,s,!1,B.b5)},
 $S:860}
 A.b8q.prototype={
 $0(){var s=A.c9(new A.b8n(this.b),null,t.z)
@@ -130348,9 +130348,9 @@ s.e=!1},
 $S:0}
 A.aTd.prototype={
 $1(a){var s=this,r=null,q=s.b,p=s.c,o=t.p,n=s.d
-o=A.a([A.W(A.a([A.rK(A.am(B.j.aE(25.5),B.m.p()>>>16&255,B.m.p()>>>8&255,B.m.p()&255),r,B.AV,20),B.b_,A.aH(A.aa(A.a([A.w(q,r,r,r,r,B.d4,r,r,r),A.w(p,r,r,r,r,B.c0,r,r,r)],o),B.z,B.d,B.f,0,B.n),1)],o),B.h,B.d,B.f,0,r),B.aI,A.cz(r,r,r,B.TA,r,new A.aT8(a,n),r,B.axk,r,B.axT,r),A.cz(r,r,r,B.Tx,r,new A.aT9(a,n,q,p,s.e),r,B.awi,r,B.aAg,r)],o)
+o=A.a([A.W(A.a([A.rK(A.am(B.j.aE(25.5),B.m.p()>>>16&255,B.m.p()>>>8&255,B.m.p()&255),r,B.AV,20),B.b_,A.aH(A.aa(A.a([A.w(q,r,r,r,r,B.d4,r,r,r),A.w(p,r,r,r,r,B.c0,r,r,r)],o),B.z,B.d,B.f,0,B.n),1)],o),B.h,B.d,B.f,0,r),B.aI,A.cz(r,r,r,B.TA,r,new A.aT8(a,n),r,B.axm,r,B.axV,r),A.cz(r,r,r,B.Tx,r,new A.aT9(a,n,q,p,s.e),r,B.awi,r,B.aAg,r)],o)
 p=s.f
-if(p==="manager"||p==="super_admin")o.push(A.cz(r,r,r,B.Tv,r,new A.aTa(a,n,q),r,B.azB,r,B.avj,r))
+if(p==="manager"||p==="super_admin")o.push(A.cz(r,r,r,B.Tv,r,new A.aTa(a,n,q),r,B.azC,r,B.avj,r))
 q=s.a
 p=s.r
 o.push(A.cz(r,r,r,B.TB,r,new A.aTb(q,a,p,n),r,B.aw_,r,B.avG,r))
@@ -130442,7 +130442,7 @@ p=A.Z(o.fK(p,new A.aSW(),l),l)
 p.push(B.yi)
 o=k.e
 l=t.p
-n=A.a([h,B.a5,B.auG,B.at,r,B.a5,B.ayf,B.at,A.t2(m,!1,p,new A.aSX(s,b,o),n,q)],l)
+n=A.a([h,B.a5,B.auG,B.at,r,B.a5,B.ayh,B.at,A.t2(m,!1,p,new A.aSX(s,b,o),n,q)],l)
 if(s.d)B.b.I(n,A.a([B.ao,A.cI(j,B.ac,!0,j,!0,B.q,j,A.cP(),o,j,j,j,j,j,2,A.d_(j,new A.c0(4,A.r(12),B.aO),j,j,j,j,j,j,!0,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,j,"Enter new department name",j,j,j,j,j,j,j,j,j,!0,!0,!1,j,B.AP,j,j,j,j,j,j,j,j,j,j,j,j),B.y,!0,j,!0,j,!1,j,B.a9,j,j,j,j,j,j,j,j,1,j,j,!1,"\u2022",j,new A.aSY(s),j,j,j,!1,j,j,!1,j,!0,j,B.a_,j,j,j,j,j,j,j,j,j,j,j,j,!0,B.P,j,B.al,j,j,j,j)],l))
 n.push(B.a5)
 n.push(B.aAA)
@@ -130571,7 +130571,7 @@ q=A.w(q==null?"":q,m,m,m,m,B.c0,m,m,m)
 o=A.am(31,s.p()>>>16&255,s.p()>>>8&255,s.p()&255)
 n=A.r(8)
 h=h.h(i,"role")
-return A.ja(A.cz(B.cs,m,m,p,m,new A.aTe(j,a,i),m,A.aa(A.a([q,B.aT,A.E(m,A.w(J.bs(h==null?"Employee":h).toUpperCase(),m,m,m,m,A.aU(m,m,s,m,m,m,m,m,m,m,m,10,m,m,B.u,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),B.i,m,m,new A.H(o,m,m,n,m,m,B.p),m,m,m,B.cw,m,m,m)],t.p),B.z,B.d,B.f,0,B.n),m,r,B.a4z),B.k,0,B.cp,new A.af(g,B.o))},
+return A.ja(A.cz(B.cs,m,m,p,m,new A.aTe(j,a,i),m,A.aa(A.a([q,B.aT,A.E(m,A.w(J.bs(h==null?"Employee":h).toUpperCase(),m,m,m,m,A.aU(m,m,s,m,m,m,m,m,m,m,m,10,m,m,B.u,m,m,!0,m,m,m,m,m,m,m,m),m,m,m),B.i,m,m,new A.H(o,m,m,n,m,m,B.p),m,m,m,B.cw,m,m,m)],t.p),B.z,B.d,B.f,0,B.n),m,r,B.a4y),B.k,0,B.cp,new A.af(g,B.o))},
 $S:47}
 A.aTe.prototype={
 $0(){return this.a.aFR(this.b,this.c)},
@@ -130610,7 +130610,7 @@ return A.m($async$AB,r)},
 H(a){var s=this,r=null,q=s.a.d,p=A.w(B.c.bK(B.c.af(q),"'")?"Team Members":q,r,r,r,r,B.c_,r,r,r),o=s.gaFd(),n=t.p
 p=A.h0(A.a([A.bf(r,r,r,B.n_,r,r,o,r,r,r,"Add Member to Team",r)],n),B.k,r,r,0,B.dK,r,p,r)
 if(s.e)o=B.bU
-else o=J.fv(s.d)?A.cj(A.aa(A.a([B.Aw,B.ag,B.avl,B.a5,A.dB(B.AA,B.axL,o,A.bw(r,r,B.m,r,r,r,r,r,r,r,r,r,B.ik,r,new A.af(A.r(12),B.o),r,r,r,r,r))],n),B.h,B.d,B.w,0,B.n),r,r):A.iR(r,new A.b_L(s),J.bn(s.d),B.aD,!1)
+else o=J.fv(s.d)?A.cj(A.aa(A.a([B.Aw,B.ag,B.avl,B.a5,A.dB(B.AA,B.axN,o,A.bw(r,r,B.m,r,r,r,r,r,r,r,r,r,B.ik,r,new A.af(A.r(12),B.o),r,r,r,r,r))],n),B.h,B.d,B.w,0,B.n),r,r):A.iR(r,new A.b_L(s),J.bn(s.d),B.aD,!1)
 return A.eq(p,B.U,o,r,r,r,r,r)}}
 A.b_y.prototype={
 $0(){var s=this.a
@@ -130664,7 +130664,7 @@ m=A.am(B.j.aE(25.5),B.m.p()>>>16&255,B.m.p()>>>8&255,B.m.p()&255)
 p=J.a6(l)
 m=A.rK(m,o,A.w(p.gbp(l)?J.bo8(p.h(l,0)):"U",o,o,o,o,B.uU,o,o,o),o)
 p=A.w(l,o,o,o,o,B.og,o,o,o)
-return A.cz(B.cu,o,o,m,o,o,o,A.w(A.i(s)+" \u2022 Dept: "+A.i(r),o,o,o,o,B.c0,o,o,o),o,p,A.cU(B.axW,new A.b_z(this.a,q,this.c,a,l),A.bw(o,o,B.C,o,o,o,o,o,o,B.k,o,o,B.k0,o,new A.af(A.r(8),B.o),o,o,o,o,o)))},
+return A.cz(B.cu,o,o,m,o,o,o,A.w(A.i(s)+" \u2022 Dept: "+A.i(r),o,o,o,o,B.c0,o,o,o),o,p,A.cU(B.axY,new A.b_z(this.a,q,this.c,a,l),A.bw(o,o,B.C,o,o,o,o,o,o,B.k,o,o,B.k0,o,new A.af(A.r(8),B.o),o,o,o,o,o)))},
 $S:160}
 A.b_z.prototype={
 $0(){var s=0,r=A.n(t.H),q=this,p,o,n,m
@@ -130696,7 +130696,7 @@ r=A.w(r==null?"":r,o,o,o,o,B.c0,o,o,o)
 q=A.am(B.j.aE(25.5),B.C.p()>>>16&255,B.C.p()>>>8&255,B.C.p()&255)
 p=A.r(8)
 j=j.h(l,"role")
-return A.ja(A.cz(B.cs,o,o,i,o,new A.b_J(a,l),o,A.aa(A.a([r,B.aT,A.E(o,A.w(J.bs(j==null?"Employee":j).toUpperCase(),o,o,o,o,B.as9,o,o,o),B.i,o,o,new A.H(q,o,o,p,o,o,B.p),o,o,o,B.cw,o,o,o)],t.p),B.z,B.d,B.f,0,B.n),o,s,A.bf(o,o,o,B.a4Y,o,o,new A.b_K(m,l,a),o,o,o,"Remove from Team",o)),o,0,B.cp,new A.af(k,B.o))},
+return A.ja(A.cz(B.cs,o,o,i,o,new A.b_J(a,l),o,A.aa(A.a([r,B.aT,A.E(o,A.w(J.bs(j==null?"Employee":j).toUpperCase(),o,o,o,o,B.as9,o,o,o),B.i,o,o,new A.H(q,o,o,p,o,o,B.p),o,o,o,B.cw,o,o,o)],t.p),B.z,B.d,B.f,0,B.n),o,s,A.bf(o,o,o,B.a4X,o,o,new A.b_K(m,l,a),o,o,o,"Remove from Team",o)),o,0,B.cp,new A.af(k,B.o))},
 $S:47}
 A.b_K.prototype={
 $0(){var s=0,r=A.n(t.H),q=this,p,o,n,m,l
@@ -130960,7 +130960,7 @@ $0(){return this.a.r=this.b},
 $S:0}
 A.ba_.prototype={
 $1(a){var s=null,r=this.b,q=A.cI(s,B.ac,!0,s,!0,B.q,s,A.cP(),r,s,s,s,s,s,2,B.a65,B.y,!0,s,!0,s,!1,s,B.a9,s,s,s,s,s,s,s,s,1,s,s,!1,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.a_,s,s,s,s,s,s,s,s,s,s,s,s,!0,B.P,s,B.al,s,s,s,s)
-return A.dg(A.a([A.cH(B.c1,new A.b9Y(a),s),A.cU(B.lc,new A.b9Z(this.a,r,a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,s,s,s,s,s,s))],t.p),q,s,B.ay3)},
+return A.dg(A.a([A.cH(B.c1,new A.b9Y(a),s),A.cU(B.lc,new A.b9Z(this.a,r,a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,s,s,s,s,s,s))],t.p),q,s,B.ay5)},
 $S:10}
 A.b9Y.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -131026,7 +131026,7 @@ return this.a.as=s},
 $S:0}
 A.baE.prototype={
 $1(a){var s=null,r=A.r(20),q=this.b,p=A.cI(s,B.ac,!1,s,!0,B.q,s,A.cP(),q,s,s,s,s,s,2,B.a5X,B.y,!0,s,!0,s,!1,s,B.a9,s,s,s,s,s,s,s,s,6,s,s,!1,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.a_,s,s,s,s,s,s,s,s,s,s,s,s,!0,B.P,s,B.al,s,s,s,s)
-return A.dg(A.a([A.cH(B.c1,new A.baC(a),s),A.cU(B.axg,new A.baD(this.a,q,a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,new A.af(A.r(10),B.o),s,s,s,s,s))],t.p),p,new A.af(r,B.o),B.aj8)},
+return A.dg(A.a([A.cH(B.c1,new A.baC(a),s),A.cU(B.axh,new A.baD(this.a,q,a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,new A.af(A.r(10),B.o),s,s,s,s,s))],t.p),p,new A.af(r,B.o),B.aj8)},
 $S:10}
 A.baC.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -131043,7 +131043,7 @@ $0(){return this.a.x=B.c.af(this.b.a.a)},
 $S:0}
 A.baj.prototype={
 $1(a){var s=null,r=this.a
-return A.f_(!0,new A.ah(B.yQ,A.aa(A.a([B.aA2,B.a5,A.cz(s,s,s,A.E(s,B.a41,B.i,s,s,new A.H(B.b8,s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),s,new A.baf(r,a),s,B.ay2,s,B.axH,s),A.cz(s,s,s,A.E(s,B.a46,B.i,s,s,new A.H(B.eE,s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),s,new A.bag(r,a),s,B.aB4,s,B.axc,s),A.cz(s,s,s,A.E(s,B.a3H,B.i,s,s,new A.H(B.lT,s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),s,new A.bah(r,a),s,B.azg,s,B.ayS,s),A.cz(s,s,s,A.E(s,B.a4X,B.i,s,s,new A.H(B.bM,s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),s,new A.bai(r,a),s,B.axM,s,B.avi,s)],t.p),B.h,B.d,B.w,0,B.n),s),B.J,!0)},
+return A.f_(!0,new A.ah(B.yQ,A.aa(A.a([B.aA2,B.a5,A.cz(s,s,s,A.E(s,B.a41,B.i,s,s,new A.H(B.b8,s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),s,new A.baf(r,a),s,B.ay4,s,B.axJ,s),A.cz(s,s,s,A.E(s,B.a46,B.i,s,s,new A.H(B.eE,s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),s,new A.bag(r,a),s,B.aB4,s,B.axd,s),A.cz(s,s,s,A.E(s,B.a3H,B.i,s,s,new A.H(B.lT,s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),s,new A.bah(r,a),s,B.azh,s,B.ayT,s),A.cz(s,s,s,A.E(s,B.a4W,B.i,s,s,new A.H(B.bM,s,s,A.r(10),s,s,B.p),s,s,s,B.au,s,s,s),s,new A.bai(r,a),s,B.axO,s,B.avi,s)],t.p),B.h,B.d,B.w,0,B.n),s),B.J,!0)},
 $S:53}
 A.baf.prototype={
 $0(){var s=0,r=A.n(t.H),q=1,p=[],o=this,n,m,l,k,j,i
@@ -131147,7 +131147,7 @@ this.a.aFa()},
 $S:0}
 A.baa.prototype={
 $1(a){var s=null,r=this.b,q=A.cI(s,B.ac,!1,s,!0,B.q,s,A.cP(),r,s,s,s,s,s,2,B.a5W,B.y,!0,s,!0,s,!1,s,B.a9,s,s,s,s,s,s,s,s,1,s,s,!1,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.a_,s,s,s,s,s,s,s,s,s,s,s,s,!0,B.P,s,B.al,s,s,s,s)
-return A.dg(A.a([A.cH(B.c1,new A.ba8(a),s),A.cU(B.uZ,new A.ba9(this.a,r,a),s)],t.p),q,s,B.ayB)},
+return A.dg(A.a([A.cH(B.c1,new A.ba8(a),s),A.cU(B.uZ,new A.ba9(this.a,r,a),s)],t.p),q,s,B.ayD)},
 $S:10}
 A.ba8.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -131181,7 +131181,7 @@ s=A.a([n,B.at,m,A.w("Due Date: "+s,q,q,q,q,B.oa,q,q,q)],r)
 n=o.x
 n===$&&A.b()
 if(n.length!==0)B.b.I(s,A.a([B.ao,A.w("Notes: "+n,q,q,q,q,B.o3,q,q,q)],r))
-if(o.a.c.w.length!==0){n=A.a([B.ao,B.ay9],r)
+if(o.a.c.w.length!==0){n=A.a([B.ao,B.ayb],r)
 m=o.a.c.w
 B.b.I(n,new A.R(m,new A.baF(),A.a_(m).i("R<1,h>")))
 B.b.I(s,n)}n=o.y
@@ -131340,7 +131340,7 @@ B.b.J(s,this.b)},
 $S:0}
 A.ba6.prototype={
 $1(a){var s=null,r=A.r(16),q=this.b,p=A.cI(s,B.ac,!0,s,!0,B.q,s,A.cP(),q,s,s,s,s,s,2,A.d_(s,new A.c0(4,A.r(12),B.aO),s,s,s,s,s,s,!0,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,"e.g. 80% task complete, client review pending...",s,s,s,s,s,s,s,s,s,!0,!0,!1,s,s,s,s,s,s,s,s,s,s,s,s,s,s),B.y,!0,s,!0,s,!1,s,B.a9,s,s,s,s,s,s,s,s,3,s,s,!1,"\u2022",s,s,s,s,s,!1,s,s,!1,s,!0,s,B.a_,s,s,s,s,s,s,s,s,s,s,s,s,!0,B.P,s,B.al,s,s,s,s)
-return A.dg(A.a([A.cH(B.c1,new A.ba4(a),s),A.cU(B.azy,new A.ba5(this.a,q,a,this.c),A.bw(s,s,B.m,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s))],t.p),p,new A.af(r,B.o),B.awE)},
+return A.dg(A.a([A.cH(B.c1,new A.ba4(a),s),A.cU(B.azz,new A.ba5(this.a,q,a,this.c),A.bw(s,s,B.m,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s))],t.p),p,new A.af(r,B.o),B.awE)},
 $S:10}
 A.ba4.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -131603,7 +131603,7 @@ B.b.I(b,A.a([s,B.ag,A.W(A.a([o,B.b_,n,B.b_,A.aH(A.E(l,A.W(A.a([A.E(l,B.a29,B.i,l
 if(h){s=A.bf(l,l,l,B.AS,l,l,new A.bcP(k),l,l,l,l,l)
 r=k.ay.a
 q=A.w(""+r+" Selected",l,l,l,l,B.cC,l,l,l)
-p=A.cH(B.az5,new A.bcQ(k),l)
+p=A.cH(B.az6,new A.bcQ(k),l)
 b.push(A.E(l,A.W(A.a([s,q,B.eV,p,A.bf(l,l,l,B.a5o,l,l,r===0?l:new A.bcR(k),l,l,l,l,l)],c),B.h,B.d,B.f,0,l),B.i,B.bE,l,l,l,l,l,B.ea,l,l,l))}else{s=f?16:12
 r=f?12:8
 q=f?16:8
@@ -131767,7 +131767,7 @@ $1(a){this.a.zs()},
 $S:4}
 A.bc_.prototype={
 $1(a){var s=null,r=A.r(24)
-return A.mw(s,B.k,new A.ah(B.ct,A.aa(A.a([A.E(s,B.a4H,B.i,s,s,new A.H(B.bM,s,A.aS(B.eD,B.r,2),s,s,s,B.aa),s,s,s,B.a_,s,s,s),B.aI,A.E(s,B.aAR,B.i,s,s,new A.H(B.bM,s,s,A.r(20),s,s,B.p),s,s,s,B.yI,s,s,s),B.ag,A.w(this.a,s,s,s,s,B.Nd,B.ax,s,s),B.bt,A.w(this.b,s,s,s,s,B.uy,B.ax,s,s),B.bH,A.bY(A.dB(B.a2m,B.auk,new A.bbZ(a),A.bw(s,s,B.bb,s,s,s,2,s,s,s,s,s,B.cZ,s,new A.af(A.r(16),B.o),s,s,s,s,s)),s,1/0)],t.p),B.h,B.d,B.w,0,B.n),s),s,s,s,s,B.dw,s,new A.af(r,B.o),s)},
+return A.mw(s,B.k,new A.ah(B.ct,A.aa(A.a([A.E(s,B.a4G,B.i,s,s,new A.H(B.bM,s,A.aS(B.eD,B.r,2),s,s,s,B.aa),s,s,s,B.a_,s,s,s),B.aI,A.E(s,B.aAR,B.i,s,s,new A.H(B.bM,s,s,A.r(20),s,s,B.p),s,s,s,B.yI,s,s,s),B.ag,A.w(this.a,s,s,s,s,B.Nd,B.ax,s,s),B.bt,A.w(this.b,s,s,s,s,B.uy,B.ax,s,s),B.bH,A.bY(A.dB(B.a2m,B.auk,new A.bbZ(a),A.bw(s,s,B.bb,s,s,s,2,s,s,s,s,s,B.cZ,s,new A.af(A.r(16),B.o),s,s,s,s,s)),s,1/0)],t.p),B.h,B.d,B.w,0,B.n),s),s,s,s,s,B.dw,s,new A.af(r,B.o),s)},
 $S:66}
 A.bbZ.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -131777,7 +131777,7 @@ A.bbV.prototype={
 $1(a){return B.MB},
 $S:74}
 A.bcg.prototype={
-$1(a){var s=null,r=this.a,q=r.at,p=A.cz(s,s,s,A.bc(q==="default"?B.mH:B.iy,B.m,s,s),s,new A.bcc(r,a),s,s,s,B.ay4,s),o=A.cz(s,s,s,A.bc(q==="date"?B.mH:B.iy,B.m,s,s),s,new A.bcd(r,a),s,s,s,B.auW,s),n=A.cz(s,s,s,A.bc(q==="priority"?B.mH:B.iy,B.m,s,s),s,new A.bce(r,a),s,s,s,B.axG,s)
+$1(a){var s=null,r=this.a,q=r.at,p=A.cz(s,s,s,A.bc(q==="default"?B.mH:B.iy,B.m,s,s),s,new A.bcc(r,a),s,s,s,B.ay6,s),o=A.cz(s,s,s,A.bc(q==="date"?B.mH:B.iy,B.m,s,s),s,new A.bcd(r,a),s,s,s,B.auW,s),n=A.cz(s,s,s,A.bc(q==="priority"?B.mH:B.iy,B.m,s,s),s,new A.bce(r,a),s,s,s,B.axI,s)
 return A.dg(s,A.aa(A.a([p,o,n,A.cz(s,s,s,A.bc(q==="alphabetical"?B.mH:B.iy,B.m,s,s),s,new A.bcf(r,a),s,s,s,B.aw7,s)],t.p),B.h,B.d,B.w,0,B.n),s,B.avK)},
 $S:10}
 A.bcc.prototype={
@@ -131840,7 +131840,7 @@ $S:0}
 A.bci.prototype={
 $1(a){var s=null,r=A.r(20),q=this.a
 q=A.w("You have "+q.gnt()+" pending tasks and "+q.gkv()+" completed tasks today. Keep it up!",s,s,s,s,B.uC,s,s,s)
-return A.dg(A.a([A.cU(B.azp,new A.bch(a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,s,s,s,s,s,s))],t.p),q,new A.af(r,B.o),B.ajp)},
+return A.dg(A.a([A.cU(B.azq,new A.bch(a),A.bw(s,s,B.m,s,s,s,s,s,s,B.k,s,s,s,s,s,s,s,s,s,s))],t.p),q,new A.af(r,B.o),B.ajp)},
 $S:10}
 A.bch.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -131879,7 +131879,7 @@ A.V(s,!1).T(null)},
 $S:0}
 A.bbY.prototype={
 $1(a){var s=null,r=A.r(24)
-return A.dg(A.a([A.cj(A.cU(B.azs,new A.bbX(a),A.bw(s,s,B.C,s,s,s,s,s,s,B.k,s,s,B.Yi,s,new A.af(A.r(20),B.o),s,s,s,s,s)),s,s)],t.p),B.awP,new A.af(r,B.o),B.Tc)},
+return A.dg(A.a([A.cj(A.cU(B.azt,new A.bbX(a),A.bw(s,s,B.C,s,s,s,s,s,s,B.k,s,s,B.Yi,s,new A.af(A.r(20),B.o),s,s,s,s,s)),s,s)],t.p),B.awP,new A.af(r,B.o),B.Tc)},
 $S:10}
 A.bbX.prototype={
 $0(){A.V(this.a,!1).T(null)
@@ -131920,8 +131920,8 @@ r=A.aH(A.aa(A.a([s,B.cQ,A.w(r,1,B.a2,m,m,A.aU(m,m,B.E,m,m,m,m,m,m,m,m,k?10:12,m,
 s=k?4:6
 p=k?30:36
 o=k?30:36
-s=A.a([r,B.aS,A.bf(m,new A.al(p,1/0,o,1/0),m,A.bc(B.a0B,B.ab,m,k?19:22),m,m,new A.bcM(a),new A.U(s,s,s,s),m,m,"Search tasks",B.hO)],q)
-if(!k)s.push(A.bf(m,B.wj,m,B.a4B,m,m,new A.bcC(n.a,g),B.cv,m,m,"Filter",B.hO))
+s=A.a([r,B.aS,A.bf(m,new A.al(p,1/0,o,1/0),m,A.bc(B.a0A,B.ab,m,k?19:22),m,m,new A.bcM(a),new A.U(s,s,s,s),m,m,"Search tasks",B.hO)],q)
+if(!k)s.push(A.bf(m,B.wj,m,B.a4A,m,m,new A.bcC(n.a,g),B.cv,m,m,"Filter",B.hO))
 if(!j)s.push(A.bf(m,B.wj,m,B.a3Z,m,m,n.a.ga5f(),B.cv,m,m,"Sort",B.hO))
 return new A.ah(new A.U(i,10,h,4),A.W(s,B.h,B.d,B.f,0,m),m)},
 $S:874}
@@ -131998,7 +131998,7 @@ A.bcI.prototype={
 $1(a){return B.tN},
 $S:141}
 A.bcU.prototype={
-$1(a){return A.a([B.ahG,B.ahD,B.ahQ,B.ahI,B.ahJ,B.ahT,A.bkr(A.W(A.a([B.axh,new A.hH(new A.bcJ(this.a,a),null)],t.p),B.h,B.af,B.f,0,null),!1,null,t.N)],t.Do)},
+$1(a){return A.a([B.ahG,B.ahD,B.ahQ,B.ahI,B.ahJ,B.ahT,A.bkr(A.W(A.a([B.axi,new A.hH(new A.bcJ(this.a,a),null)],t.p),B.h,B.af,B.f,0,null),!1,null,t.N)],t.Do)},
 $S:65}
 A.bcJ.prototype={
 $2(a,b){var s=this.a
@@ -132355,7 +132355,7 @@ s=r.length
 if(s===0){s=A.E(p,B.a2d,B.i,p,p,B.wn,p,p,p,B.a_,p,p,p)
 q=this.a.d
 q===$&&A.b()
-return A.cj(A.aa(A.a([s,B.bB,A.w("No messages yet in #"+q,p,p,p,p,B.Nf,p,p,p),B.at,B.ayO],t.p),B.h,B.d,B.w,0,B.n),p,p)}return A.iR(this.a.f,new A.bd1(r,this.b,a),s,B.ea,!0)},
+return A.cj(A.aa(A.a([s,B.bB,A.w("No messages yet in #"+q,p,p,p,p,B.Nf,p,p,p),B.at,B.ayP],t.p),B.h,B.d,B.w,0,B.n),p,p)}return A.iR(this.a.f,new A.bd1(r,this.b,a),s,B.ea,!0)},
 $S:242}
 A.bd1.prototype={
 $2(a2,a3){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b=null,a=this.a[a3].da(0),a0=J.c(a.h(0,"senderId"),this.b),a1=a.h(0,"senderName")
@@ -132401,7 +132401,7 @@ s.toString
 r=B.b.oF(B.By,new A.bdZ(A.by(s,!1,t.O).fr))
 if(r!==-1)this.d=r},
 H(a){var s=null,r=A.by(a,!1,t.O),q=t.l7
-return A.eq(A.h0(s,s,s,s,s,s,A.bf(s,s,s,B.fn,s,s,new A.bdV(a),s,s,s,s,s),B.ayq,s),B.k,A.kU(A.a([B.axo,B.bB,A.fT(B.bk,A.tA(12,new A.bdW(this,a),!0,q),B.c8,14,14),B.en,B.ayI,B.bB,A.W(A.tA(4,new A.bdX(this,r,a),!0,q),B.h,B.af,B.f,0,s),B.en,B.axO,B.bB,A.Jv(s,B.y,B.am4,new A.bdY(this,r),6,s,B.to,!0),B.dU],t.p),B.ik,B.fS,s,!1),s,s,s,s,s)}}
+return A.eq(A.h0(s,s,s,s,s,s,A.bf(s,s,s,B.fn,s,s,new A.bdV(a),s,s,s,s,s),B.ays,s),B.k,A.kU(A.a([B.axq,B.bB,A.fT(B.bk,A.tA(12,new A.bdW(this,a),!0,q),B.c8,14,14),B.en,B.ayK,B.bB,A.W(A.tA(4,new A.bdX(this,r,a),!0,q),B.h,B.af,B.f,0,s),B.en,B.axQ,B.bB,A.Jv(s,B.y,B.am4,new A.bdY(this,r),6,s,B.to,!0),B.dU],t.p),B.ik,B.fS,s,!1),s,s,s,s,s)}}
 A.bdZ.prototype={
 $1(a){return a.gq(a)===this.a.p()},
 $S:889}
@@ -132455,7 +132455,7 @@ s=A.a([new A.b5(0,B.H,B.b.gV(j).bb(0.18),B.bW,10)],t.V)
 r=B.k.bb(0.9)
 q=t.p
 r=A.a([A.E(n,A.bc(t.tk.a(m.h(0,"icon")),B.b.gV(j),n,22),B.i,n,n,new A.H(r,n,n,n,n,n,B.aa),n,n,n,B.au,n,n,n)],q)
-if(k)r.push(A.E(n,B.a4n,B.i,n,n,B.wl,n,n,n,B.cu,n,n,n))
+if(k)r.push(A.E(n,B.a4m,B.i,n,n,B.wl,n,n,n,B.cu,n,n,n))
 r=A.W(r,B.h,B.af,B.f,0,n)
 p=B.k.bb(0.92)
 o=A.r(10)
@@ -132478,14 +132478,14 @@ s.e=null},
 $S:0}
 A.a4L.prototype={
 H(a){var s=this,r=null,q=t.p
-return A.eq(r,B.Vd,A.f0(B.bT,A.a([A.a0Y(0,A.fy(r,r,r,new A.Z6(r),B.a8)),A.f_(!0,new A.ah(B.Ye,A.aa(A.a([B.dU,A.aDy(r,r,r,B.d3,r,r,!0,r,B.anZ,B.ax,r,r,B.av,B.ba),B.ug,A.aH(A.kU(A.a([s.F8(B.rH,B.xu,B.lN,"Input tasks, subtasks and repetitive tasks.","Create Tasks Quickly and Easily"),B.en,s.F8(B.a_S,B.Vo,B.jM,"Set reminders, and never miss important things.","Task Reminders"),B.en,s.F8(B.rB,B.bE,B.m,"Create widgets, and view your tasks more easily.","Personalized Widgets"),B.en,s.F8(B.Ac,B.x1,B.dD,"Choose the theme you like and start your wonderful day","Custom Themes")],q),r,B.e2,r,!1),1),new A.ah(B.cp,A.bY(A.cU(B.aiU,new A.aKT(a),A.bw(r,r,B.cK,r,r,r,6,r,r,B.k,r,r,r,B.cK.bb(0.4),new A.af(A.r(28),B.o),r,r,r,r,r)),56,1/0),r)],q),B.h,B.d,B.f,0,B.n),r),B.J,!0)],q),B.q,B.bd,r),r,r,r,r,r)},
+return A.eq(r,B.Vd,A.f0(B.bT,A.a([A.a0Y(0,A.fy(r,r,r,new A.Z6(r),B.a8)),A.f_(!0,new A.ah(B.Ye,A.aa(A.a([B.dU,A.aDy(r,r,r,B.d3,r,r,!0,r,B.anZ,B.ax,r,r,B.av,B.ba),B.ug,A.aH(A.kU(A.a([s.F8(B.rH,B.xu,B.lN,"Input tasks, subtasks and repetitive tasks.","Create Tasks Quickly and Easily"),B.en,s.F8(B.a_R,B.Vo,B.jM,"Set reminders, and never miss important things.","Task Reminders"),B.en,s.F8(B.rB,B.bE,B.m,"Create widgets, and view your tasks more easily.","Personalized Widgets"),B.en,s.F8(B.Ac,B.x1,B.dD,"Choose the theme you like and start your wonderful day","Custom Themes")],q),r,B.e2,r,!1),1),new A.ah(B.cp,A.bY(A.cU(B.aiU,new A.aKT(a),A.bw(r,r,B.cK,r,r,r,6,r,r,B.k,r,r,r,B.cK.bb(0.4),new A.af(A.r(28),B.o),r,r,r,r,r)),56,1/0),r)],q),B.h,B.d,B.f,0,B.n),r),B.J,!0)],q),B.q,B.bd,r),r,r,r,r,r)},
 F8(a,b,c,d,e){var s=null,r=A.r(12),q=t.p
 return A.W(A.a([A.E(s,A.bc(a,c,s,26),B.i,s,s,new A.H(b,s,s,r,s,s,B.p),s,48,s,s,s,s,48),B.alR,A.aH(A.aa(A.a([A.w(e,s,s,s,s,B.ar4,s,s,s),B.aT,A.w(d,s,s,s,s,B.atL,s,s,s)],q),B.z,B.d,B.f,0,B.n),1)],q),B.z,B.d,B.f,0,s)}}
 A.aKT.prototype={
 $0(){A.by(this.a,!1,t.O).Bd()},
 $S:0}
 A.EJ.prototype={
-H(a1){var s,r,q,p,o,n,m,l=this,k=null,j="Size: 4*4",i="Today",h="Have lunch with Jenny",g="Send email to Tim",f="Shortcut",e=A.h0(k,B.k,k,k,k,k,A.bf(k,k,k,B.fn,k,k,new A.aKY(a1),k,k,k,k,k),B.azb,k),d=A.E(k,B.axX,B.i,B.jE,k,k,k,k,k,B.yP,k,k,k),c=t.s,b=l.zo(B.am,A.a(["Morning jogging",h,g],c),i),a=A.r(8),a0=t.p
+H(a1){var s,r,q,p,o,n,m,l=this,k=null,j="Size: 4*4",i="Today",h="Have lunch with Jenny",g="Send email to Tim",f="Shortcut",e=A.h0(k,B.k,k,k,k,k,A.bf(k,k,k,B.fn,k,k,new A.aKY(a1),k,k,k,k,k),B.azc,k),d=A.E(k,B.axZ,B.i,B.jE,k,k,k,k,k,B.yP,k,k,k),c=t.s,b=l.zo(B.am,A.a(["Morning jogging",h,g],c),i),a=A.r(8),a0=t.p
 a=l.Fd(a1,A.W(A.a([b,B.G,A.aH(A.E(k,B.W6,B.i,k,k,new A.H(B.k,k,A.aS(B.I,B.r,1),a,k,k,B.p),k,100,k,B.cv,k,k,k),1)],a0),B.h,B.d,B.f,0,k),j,"Standard")
 b=l.Fd(a1,A.W(A.a([l.zo(B.fb,A.a(["Morning jogging",h,g],c),i),B.G,l.zo(B.Uj,A.a(["Have a glass of water.","Morning jogging",h],c),i)],a0),B.h,B.d,B.f,0,k),"Size: 3*2","Lite")
 s=A.r(8)
@@ -132506,7 +132506,7 @@ o.push(A.w(f,s,s,s,s,B.c_,s,s,s))
 o.push(B.aT)
 o.push(A.w(e,s,s,s,s,B.uG,s,s,s))
 o.push(B.bB)
-o.push(A.La(B.axj,new A.aKX(a,f),A.fO(s,s,s,s,s,s,s,s,s,B.m,s,s,B.yK,s,new A.af(A.r(20),B.o),B.jr,s,s,s,s)))
+o.push(A.La(B.axl,new A.aKX(a,f),A.fO(s,s,s,s,s,s,s,s,s,B.m,s,s,B.yK,s,new A.af(A.r(20),B.o),B.jr,s,s,s,s)))
 return A.E(s,A.f0(B.bT,A.a([A.W(A.a([A.bY(A.aa(o,B.z,B.d,B.f,0,B.n),s,110),A.aH(A.E(s,d,B.i,s,s,new A.H(B.U,s,s,A.r(12),s,s,B.p),s,s,s,B.au,s,s,s),1)],p),B.z,B.d,B.f,0,s)],p),B.q,B.bd,s),B.i,s,s,new A.H(B.k,s,q,r,s,s,B.p),s,s,B.cs,B.aD,s,s,s)},
 Fd(a,b,c,d){return this.vc(a,!1,!1,b,c,d)},
 ZW(a,b,c,d,e){return this.vc(a,!1,b,c,d,e)},
@@ -132775,7 +132775,7 @@ $0(){return this.a.d++},
 $S:0}
 A.a3C.prototype={
 H(a){var s=null,r=A.r(18),q=t.p,p=A.W(A.a([B.YV,B.G,A.bU(!1,A.r(12),!0,B.agv,s,!0,s,s,s,s,s,s,s,s,s,s,s,new A.aIO(a),s,s,s,s,s,s,s)],q),B.h,B.af,B.f,0,s),o=A.r(18),n=A.aS(B.I,B.r,1)
-return A.E(s,A.aa(A.a([p,B.bH,A.E(s,A.is(new A.aIP()),B.i,s,s,new A.H(B.U,s,n,o,s,s,B.p),s,s,s,B.Y7,s,s,s),B.bH,A.bY(A.it(B.a4L,B.aBG,new A.aIQ(a),A.fO(s,s,s,s,s,s,s,s,s,B.m,s,s,s,s,new A.af(A.r(14),B.o),B.pa,s,s,s,s)),50,1/0)],q),B.z,B.af,B.f,0,B.n),B.i,s,B.wh,new A.H(B.k,s,s,r,s,s,B.p),s,s,s,B.ml,s,s,s)}}
+return A.E(s,A.aa(A.a([p,B.bH,A.E(s,A.is(new A.aIP()),B.i,s,s,new A.H(B.U,s,n,o,s,s,B.p),s,s,s,B.Y7,s,s,s),B.bH,A.bY(A.it(B.a4K,B.aBG,new A.aIQ(a),A.fO(s,s,s,s,s,s,s,s,s,B.m,s,s,s,s,new A.af(A.r(14),B.o),B.pa,s,s,s,s)),50,1/0)],q),B.z,B.af,B.f,0,B.n),B.i,s,B.wh,new A.H(B.k,s,s,r,s,s,B.p),s,s,s,B.ml,s,s,s)}}
 A.aIO.prototype={
 $0(){var s=A.c9(new A.aIN(),null,t.z)
 return A.V(this.a,!1).by(s)},
@@ -132785,7 +132785,7 @@ $1(a){return B.pm},
 $S:261}
 A.aIP.prototype={
 $2(a,b){var s=null
-if(b.b<280)return A.aa(A.a([A.E(s,B.a2e,B.i,s,s,new A.H(B.bE,s,s,A.r(14),s,s,B.p),s,s,s,B.eI,s,s,s),B.ag,B.avw,B.aT,B.axA],t.p),B.h,B.d,B.f,0,B.n)
+if(b.b<280)return A.aa(A.a([A.E(s,B.a2e,B.i,s,s,new A.H(B.bE,s,s,A.r(14),s,s,B.p),s,s,s,B.eI,s,s,s),B.ag,B.avw,B.aT,B.axC],t.p),B.h,B.d,B.f,0,B.n)
 return A.W(A.a([A.E(s,B.a1L,B.i,s,s,new A.H(B.bE,s,s,A.r(16),s,s,B.p),s,s,s,B.aD,s,s,s),B.l_,B.YZ],t.p),B.h,B.d,B.f,0,s)},
 $S:117}
 A.aIQ.prototype={
@@ -132806,18 +132806,18 @@ if(s.length!==0)s=A.akM(A.pH(B.bJ.bC(s),p,B.ey,56,56))
 else{s=o.z
 s=A.cj(A.w(s.length!==0?B.c.a3(s,0,1).toUpperCase():"U",p,p,p,p,B.aqr,p,p,p),p,p)}}else s=B.a54
 r=t.p
-m=A.W(A.a([A.bU(!1,n,!0,A.E(p,s,B.i,p,p,new A.H(B.k,p,m,p,p,p,B.aa),p,56,p,p,p,p,56),p,!0,p,p,p,p,p,p,p,p,p,p,p,new A.aMC(a,o),p,p,p,p,p,p,p),A.W(A.a([A.iY(new A.aMD(),o.gVa(),t.b5),B.G,A.E(p,B.a4P,B.i,p,p,new A.H(A.am(51,B.k.p()>>>16&255,B.k.p()>>>8&255,B.k.p()&255),p,p,A.r(12),p,p,B.p),p,p,p,B.au,p,p,p)],r),B.h,B.d,B.f,0,p)],r),B.h,B.af,B.f,0,p)
+m=A.W(A.a([A.bU(!1,n,!0,A.E(p,s,B.i,p,p,new A.H(B.k,p,m,p,p,p,B.aa),p,56,p,p,p,p,56),p,!0,p,p,p,p,p,p,p,p,p,p,p,new A.aMC(a,o),p,p,p,p,p,p,p),A.W(A.a([A.iY(new A.aMD(),o.gVa(),t.b5),B.G,A.E(p,B.a4O,B.i,p,p,new A.H(A.am(51,B.k.p()>>>16&255,B.k.p()>>>8&255,B.k.p()&255),p,p,A.r(12),p,p,B.p),p,p,p,B.au,p,p,p)],r),B.h,B.d,B.f,0,p)],r),B.h,B.af,B.f,0,p)
 n=A.a([A.E(p,A.aa(A.a([m,B.a5,A.bU(!1,p,!0,A.W(A.a([A.aH(A.w(o.y?o.z:"Welcome! (Tap to log in)",1,B.a2,p,p,B.apW,p,p,p),1),B.a2L],r),B.h,B.d,B.f,0,p),p,!0,p,p,p,p,p,p,p,p,p,p,p,new A.aME(a,o),p,p,p,p,p,p,p),B.aT,A.w(A.bO("EEEE").ba(new A.au(Date.now(),0,!1))+", "+A.bO("MMMM d, yyyy").ba(new A.au(Date.now(),0,!1)),p,p,p,p,A.aU(p,p,A.am(B.j.aE(229.5),B.k.p()>>>16&255,B.k.p()>>>8&255,B.k.p()&255),p,p,p,p,p,p,p,p,14,p,p,B.a6,p,p,!0,p,p,p,p,p,p,p,p),p,p,p)],r),B.z,B.d,B.f,0,B.n),B.i,p,p,B.QF,p,p,p,B.Yh,p,p,p),B.ag,q.j6(B.rA,B.m,new A.aMP(a),"Projects & Files"),q.j6(B.a_k,B.C,new A.aMS(a),"Attendance"),q.j6(B.A2,B.aB,new A.aMT(a),"Leave Requests")],r)
 if(o.gjq()==="manager"||o.gjq()==="super_admin")n.push(q.j6(B.ro,B.m,new A.aMU(a),"Assign Task"))
 n.push(q.NE(o.gahp().length,B.kl,B.am,new A.aMV(a,o),"Starred Tasks"))
 n.push(A.cz(B.mm,!0,p,B.a1K,p,new A.aMW(q),p,p,p,B.aAu,A.bc(q.d?B.zB:B.iw,B.X,p,p)))
 if(q.d){m=o.c
 m=A.Z(new A.R(m,new A.aMX(o,a),A.a_(m).i("R<1,h>")),t.l7)
-m.push(A.cz(B.Yc,!0,p,B.agz,p,new A.aMY(q,a),p,p,p,B.az7,p))
+m.push(A.cz(B.Yc,!0,p,B.agz,p,new A.aMY(q,a),p,p,p,B.az8,p))
 B.b.I(n,m)}n.push(q.j6(B.A4,B.bL,new A.aMF(a),"Team Discussion & Chat"))
 if(o.gjq()==="manager")n.push(q.j6(B.mJ,B.ca,new A.aMG(a),"Team Dashboard"))
-if(o.gjq()==="super_admin")B.b.I(n,A.a([q.j6(B.kg,B.bL,new A.aMH(a),"All Departments (Edit / Delete)"),q.j6(B.mJ,B.aB,new A.aMI(a),"Company Dashboard"),q.j6(B.a0q,B.am,new A.aMJ(a),"All Staff & Role Controller"),q.j6(B.mW,B.aB,new A.aMK(a),"Holiday & Sunday Policy")],r))
-n.push(q.j6(B.a_U,B.ca,new A.aML(a),"Theme"))
+if(o.gjq()==="super_admin")B.b.I(n,A.a([q.j6(B.kg,B.bL,new A.aMH(a),"All Departments (Edit / Delete)"),q.j6(B.mJ,B.aB,new A.aMI(a),"Company Dashboard"),q.j6(B.a0p,B.am,new A.aMJ(a),"All Staff & Role Controller"),q.j6(B.mW,B.aB,new A.aMK(a),"Holiday & Sunday Policy")],r))
+n.push(q.j6(B.a_T,B.ca,new A.aML(a),"Theme"))
 n.push(q.j6(B.rj,B.ca,new A.aMM(a),"Widget"))
 n.push(q.NE(o.ga9i().length,B.dI,B.aP,new A.aMN(a),"Recycle Bin"))
 n.push(q.j6(B.a_M,B.ca,new A.aMO(a),"Settings"))
@@ -132862,7 +132862,7 @@ $1(a){return B.hr},
 $S:79}
 A.aMD.prototype={
 $2(a,b){var s=null,r=b.b,q=r!=null?J.mm(r,new A.aMr()).gB(0):0
-r=A.a([A.bf(s,s,s,B.a4s,s,s,new A.aMs(a),s,s,s,s,s)],t.p)
+r=A.a([A.bf(s,s,s,B.a4r,s,s,new A.aMs(a),s,s,s,s,s)],t.p)
 if(q>0)r.push(A.oj(s,A.E(s,A.w(B.e.k(q),s,s,s,s,B.apD,s,s,s),B.i,s,s,B.QB,s,s,s,B.cu,s,s,s),s,s,s,8,6,s))
 return A.f0(B.T,r,B.q,B.bd,s)},
 $S:898}
@@ -133230,7 +133230,7 @@ g=a.ch
 g=g!=a.ay&&g!=null
 f=A.am(38,B.C.p()>>>16&255,B.C.p()>>>8&255,B.C.p()&255)
 e=a.ch
-B.b.I(i,A.a([B.ag,A.W(A.a([h,B.G,A.vQ(a0,a0,B.ayg,A.aU(a0,a0,e!=a.ay&&e!=null?B.C:B.ab,a0,a0,a0,a0,a0,a0,a0,a0,12,a0,a0,B.u,a0,a0,!0,a0,a0,a0,a0,a0,a0,a0,a0),new A.aNI(a1,a),g,f,a0,a0)],j),B.h,B.d,B.f,0,a0)],j))}h=a.ay
+B.b.I(i,A.a([B.ag,A.W(A.a([h,B.G,A.vQ(a0,a0,B.ayi,A.aU(a0,a0,e!=a.ay&&e!=null?B.C:B.ab,a0,a0,a0,a0,a0,a0,a0,a0,12,a0,a0,B.u,a0,a0,!0,a0,a0,a0,a0,a0,a0,a0,a0),new A.aNI(a1,a),g,f,a0,a0)],j),B.h,B.d,B.f,0,a0)],j))}h=a.ay
 if(h!=null&&a.ch!==h){h=a1.a
 if(h.length===0)a1=A.E(a0,B.aji,B.i,a0,a0,new A.H(B.bM,a0,a0,A.r(10),a0,a0,B.p),a0,a0,a0,B.dp,a0,a0,a0)
 else{g=A.r(12)
@@ -133238,11 +133238,11 @@ f=A.aS(B.I,B.r,1)
 e=a.ch
 c=A.a_(h).i("R<1,eE<o>>")
 h=A.Z(new A.R(h,new A.aNs(),c),c.i("aj.E"))
-a1=A.E(a0,new A.pp(A.an9(a0,!1,!0,h,new A.aNt(a1,a),e,d),a0),B.i,a0,a0,new A.H(B.U,a0,f,g,a0,a0,B.p),a0,a0,a0,B.mk,a0,a0,a0)}B.b.I(i,A.a([B.a5,B.ax1,B.ao,a1],j))}a1=a.CW
+a1=A.E(a0,new A.pp(A.an9(a0,!1,!0,h,new A.aNt(a1,a),e,d),a0),B.i,a0,a0,new A.H(B.U,a0,f,g,a0,a0,B.p),a0,a0,a0,B.mk,a0,a0,a0)}B.b.I(i,A.a([B.a5,B.ax2,B.ao,a1],j))}a1=a.CW
 if(a1!=null){h=A.r(10)
 g=A.aS(B.lX,B.r,1)
 B.b.I(i,A.a([B.bB,A.E(a0,A.W(A.a([B.a2t,B.G,A.aH(A.w("Assigning to: "+a1,a0,a0,a0,a0,B.arS,a0,a0,a0),1)],j),B.h,B.d,B.f,0,a0),B.i,a0,a0,new A.H(B.eE,a0,g,h,a0,a0,B.p),a0,a0,a0,B.dF,a0,a0,a0)],j))}i.push(B.aI)
-i.push(B.azE)
+i.push(B.azF)
 i.push(B.ag)
 a1=a.z!=null
 h=a1?B.dJ:B.mP
@@ -133792,7 +133792,7 @@ i=f.e
 h=new A.au(Date.now(),0,!1)
 g=7-A.qd(h)
 if(g===0)g=7
-return A.cj(new A.ed(B.Qu,A.E(e,A.es(A.aa(A.a([n,B.ag,m,B.bt,d,B.fA,A.fT(B.bk,A.a([l,k,j,f.zl("This Sunday",f.A0(i,A.b8(A.bi(h),A.bk(h),A.de(h)+g,0,0,0,0))),f.zl("No Date",f.e==null)],q),B.c8,8,8),B.bB,B.WV,A.cz(B.J,!0,e,B.a5m,e,new A.aRV(),e,e,e,B.ayk,B.uY),A.cz(B.J,!0,e,B.a20,e,new A.aRW(),e,e,e,B.ay0,B.uY),A.cz(B.J,!0,e,B.a3g,e,new A.aRX(),e,e,e,B.ayZ,B.uY),B.ag,A.W(A.a([A.cH(B.ayz,new A.aRY(a),e),B.G,A.cH(B.azL,new A.aRZ(f,a),e)],q),B.h,B.ei,B.f,0,e)],q),B.h,B.d,B.w,0,B.n),e,B.y,e,e,e,B.a3),B.i,e,e,B.pc,e,e,e,B.XW,e,e,e),e),e,e)},
+return A.cj(new A.ed(B.Qu,A.E(e,A.es(A.aa(A.a([n,B.ag,m,B.bt,d,B.fA,A.fT(B.bk,A.a([l,k,j,f.zl("This Sunday",f.A0(i,A.b8(A.bi(h),A.bk(h),A.de(h)+g,0,0,0,0))),f.zl("No Date",f.e==null)],q),B.c8,8,8),B.bB,B.WV,A.cz(B.J,!0,e,B.a5m,e,new A.aRV(),e,e,e,B.aym,B.uY),A.cz(B.J,!0,e,B.a20,e,new A.aRW(),e,e,e,B.ay2,B.uY),A.cz(B.J,!0,e,B.a3g,e,new A.aRX(),e,e,e,B.az_,B.uY),B.ag,A.W(A.a([A.cH(B.ayB,new A.aRY(a),e),B.G,A.cH(B.azL,new A.aRZ(f,a),e)],q),B.h,B.ei,B.f,0,e)],q),B.h,B.d,B.w,0,B.n),e,B.y,e,e,e,B.a3),B.i,e,e,B.pc,e,e,e,B.XW,e,e,e),e),e,e)},
 A0(a,b){if(a==null)return!1
 return a.gci()===A.bi(b)&&a.gbX()===A.bk(b)&&a.gdi()===A.de(b)}}
 A.aRP.prototype={
@@ -134441,7 +134441,7 @@ $0(){return this.a.f=this.b},
 $S:0}
 A.aUZ.prototype={
 $1(a){var s=null,r=a+1,q=this.a
-return A.bf(s,B.bC,s,A.bc(r<=q.r?B.kl:B.a0E,B.aeY,s,28),s,s,new A.aUW(q,r),B.J,s,s,s,s)},
+return A.bf(s,B.bC,s,A.bc(r<=q.r?B.kl:B.a0D,B.aeY,s,28),s,s,new A.aUW(q,r),B.J,s,s,s,s)},
 $S:911}
 A.aUW.prototype={
 $0(){var s=this.a
@@ -134550,7 +134550,7 @@ p=B.lz.bC(n.d)
 if(s.length!==0)k=s
 else k=r.length!==0?"https://docs.google.com/spreadsheets/d/"+r+"/edit":u.F
 o=B.lz.bC(k)
-l.srcdoc='<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>'+q+' - Google Sheets</title>\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">\n<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; font-family: \'Roboto\', -apple-system, BlinkMacSystemFont, sans-serif; }\n  body, html { width: 100%; height: 100%; overflow: hidden; background: #fff; color: #202124; display: flex; flex-direction: column; font-size: 13px; user-select: none; }\n  \n  /* Top App Bar */\n  .header {\n    background: #fff;\n    border-bottom: 1px solid #dadce0;\n    display: flex;\n    flex-direction: column;\n    padding: 6px 12px 4px 12px;\n    flex-shrink: 0;\n  }\n  .header-top {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 8px;\n    height: 34px;\n    flex-wrap: nowrap;\n  }\n  .header-left {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex: 1;\n    min-width: 0;\n    overflow: hidden;\n  }\n  .sheets-icon {\n    width: 28px;\n    height: 28px;\n    background: #0f9d58;\n    border-radius: 4px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n    flex-shrink: 0;\n    box-shadow: 0 1px 2px rgba(0,0,0,0.15);\n  }\n  .sheets-icon svg { width: 18px; height: 18px; fill: white; }\n  .doc-title {\n    font-family: \'Google Sans\', \'Roboto\', sans-serif;\n    font-size: 15px;\n    font-weight: 500;\n    color: #202124;\n    border: 1px solid transparent;\n    border-radius: 4px;\n    padding: 2px 6px;\n    cursor: text;\n    outline: none;\n    max-width: 180px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .doc-title:focus {\n    border-color: #1a73e8;\n    background: #fff;\n  }\n  \n  /* Live sync badge */\n  .sync-badge {\n    display: inline-flex;\n    align-items: center;\n    gap: 4px;\n    font-size: 11px;\n    font-weight: 500;\n    color: #0f9d58;\n    background: #e6f4ea;\n    border: 1px solid #ceead6;\n    padding: 2px 8px;\n    border-radius: 12px;\n    white-space: nowrap;\n    flex-shrink: 0;\n  }\n  .sync-badge.syncing {\n    color: #1a73e8;\n    background: #e8f0fe;\n    border-color: #d2e3fc;\n  }\n  .sync-badge.synced {\n    color: #0f9d58;\n    background: #e6f4ea;\n    border-color: #ceead6;\n  }\n  .sync-badge.local {\n    color: #444746;\n    background: #f1f3f4;\n    border-color: #dadce0;\n    cursor: pointer;\n  }\n  .sync-badge.warning {\n    color: #b06000;\n    background: #fef7e0;\n    border-color: #feefc3;\n    cursor: pointer;\n  }\n  .sync-badge .material-icons { font-size: 13px; }\n  .material-icons.spinning {\n    animation: spin 0.8s linear infinite;\n  }\n  .sync-dot {\n    width: 7px;\n    height: 7px;\n    border-radius: 50%;\n    background: #0f9d58;\n    display: inline-block;\n  }\n  .sync-dot.pulse {\n    animation: pulse 1.5s infinite;\n  }\n  @keyframes pulse {\n    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(15, 157, 88, 0.7); }\n    70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(15, 157, 88, 0); }\n    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(15, 157, 88, 0); }\n  }\n  \n  .header-right {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    flex-shrink: 0;\n  }\n  .btn-action {\n    border: none;\n    border-radius: 14px;\n    padding: 5px 10px;\n    font-weight: 500;\n    font-size: 11.5px;\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    cursor: pointer;\n    transition: all 0.15s ease;\n    white-space: nowrap;\n    text-decoration: none;\n  }\n  .btn-save {\n    background: #1a73e8;\n    color: #fff;\n    border: 1px solid #1a73e8;\n  }\n  .btn-save:hover { background: #1557b0; }\n  .btn-save.saving {\n    background: #f1f3f4;\n    color: #5f6368;\n    border: 1px solid #dadce0;\n    cursor: wait;\n  }\n  .btn-sync {\n    background: #e8f0fe;\n    color: #1a73e8;\n    border: 1px solid #c2e7ff;\n  }\n  .btn-sync:hover { background: #d2e3fc; }\n  .btn-sync.spinning .material-icons {\n    animation: spin 0.8s linear infinite;\n  }\n  @keyframes spin { 100% { transform: rotate(360deg); } }\n\n  .btn-2way {\n    background: #fef7e0;\n    color: #b06000;\n    border: 1px solid #feefc3;\n  }\n  .btn-2way:hover { background: #feefc3; }\n\n  .btn-open-google {\n    background: #0f9d58;\n    color: #fff;\n  }\n  .btn-open-google:hover { background: #0b8043; }\n\n  .btn-export {\n    background: #f1f3f4;\n    color: #3c4043;\n    border: 1px solid #dadce0;\n  }\n  .btn-export:hover { background: #e8eaed; }\n  \n  .menu-bar {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    margin-top: 4px;\n    padding-bottom: 2px;\n    overflow-x: auto;\n    white-space: nowrap;\n    scrollbar-width: none;\n    width: 100%;\n  }\n  .menu-item {\n    padding: 2px 6px;\n    border-radius: 4px;\n    color: #3c4043;\n    font-size: 12px;\n    cursor: pointer;\n    white-space: nowrap;\n  }\n  .menu-item:hover { background: #f1f3f4; color: #202124; }\n  \n  /* Share notice alert banner */\n  .share-banner {\n    background: #fef7e0;\n    border-bottom: 1px solid #feefc3;\n    color: #5c3b00;\n    padding: 6px 12px;\n    font-size: 12px;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex-shrink: 0;\n  }\n  .share-banner .material-icons { font-size: 18px; color: #e37400; }\n  .share-banner button.btn-inline {\n    background: #1a73e8;\n    color: white;\n    border: none;\n    padding: 2px 8px;\n    border-radius: 4px;\n    font-size: 11px;\n    cursor: pointer;\n    margin-left: 6px;\n  }\n  .share-banner .btn-close {\n    background: transparent;\n    border: none;\n    cursor: pointer;\n    font-size: 16px;\n    color: #5c3b00;\n    padding: 0 4px;\n  }\n\n  @media (max-width: 600px) {\n    .sync-badge span.badge-text { display: none; }\n    .btn-action span.btn-text { display: none; }\n    .btn-action { padding: 5px 7px; }\n    .doc-title { max-width: 120px; }\n  }\n\n  /* Primary Toolbar */\n  .toolbar {\n    background: #edf2fa;\n    border-radius: 24px;\n    margin: 4px 8px 6px 8px;\n    padding: 3px 8px;\n    display: flex;\n    align-items: center;\n    gap: 2px;\n    overflow-x: auto;\n    flex-shrink: 0;\n  }\n  .tool-btn {\n    background: transparent;\n    border: none;\n    border-radius: 4px;\n    padding: 4px 6px;\n    cursor: pointer;\n    color: #444746;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 13px;\n    height: 28px;\n    min-width: 28px;\n  }\n  .tool-btn:hover { background: #dde3ea; color: #1f1f1f; }\n  .tool-btn.active { background: #d3e3fd; color: #041e49; font-weight: bold; }\n  .tool-btn .material-icons { font-size: 18px; }\n  .tool-sep { width: 1px; height: 18px; background: #c4c7c5; margin: 0 4px; flex-shrink: 0; }\n  \n  .font-select, .size-select {\n    border: none;\n    background: transparent;\n    padding: 2px 6px;\n    border-radius: 4px;\n    font-size: 12px;\n    color: #444746;\n    outline: none;\n    cursor: pointer;\n    height: 28px;\n  }\n  .font-select:hover, .size-select:hover { background: #dde3ea; }\n  \n  /* Formula Bar */\n  .formula-bar {\n    display: flex;\n    align-items: center;\n    background: #fff;\n    border-bottom: 1px solid #dadce0;\n    padding: 4px 12px;\n    gap: 8px;\n    flex-shrink: 0;\n    height: 32px;\n  }\n  .cell-name-box {\n    width: 60px;\n    height: 24px;\n    border: 1px solid #dadce0;\n    border-radius: 2px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 500;\n    font-size: 12px;\n    color: #3c4043;\n    background: #f8f9fa;\n  }\n  .fx-symbol {\n    font-style: italic;\n    font-weight: bold;\n    color: #5f6368;\n    font-family: \'Google Sans\', sans-serif;\n    font-size: 14px;\n  }\n  .formula-input {\n    flex: 1;\n    height: 24px;\n    border: none;\n    outline: none;\n    font-size: 13px;\n    color: #202124;\n    padding: 0 6px;\n  }\n  .formula-input:focus { background: #f8fafd; }\n  \n  /* Spreadsheet Grid Viewport */\n  .grid-container {\n    flex: 1;\n    overflow: auto;\n    position: relative;\n    background: #fff;\n    cursor: cell;\n  }\n  table.sheet-table {\n    border-collapse: collapse;\n    table-layout: fixed;\n    background: #fff;\n    font-size: 12px;\n  }\n  \n  /* Column & Row Headers */\n  th.corner-header {\n    width: 46px;\n    min-width: 46px;\n    max-width: 46px;\n    height: 24px;\n    background: #f8f9fa;\n    border-right: 1px solid #dadce0;\n    border-bottom: 1px solid #dadce0;\n    position: sticky;\n    top: 0;\n    left: 0;\n    z-index: 10;\n  }\n  th.col-header {\n    height: 24px;\n    width: 100px;\n    min-width: 100px;\n    background: #f8f9fa;\n    border-right: 1px solid #dadce0;\n    border-bottom: 1px solid #dadce0;\n    font-weight: 500;\n    color: #5f6368;\n    text-align: center;\n    position: sticky;\n    top: 0;\n    z-index: 5;\n    user-select: none;\n  }\n  th.col-header.selected { background: #e8f0fe; color: #1a73e8; }\n  \n  th.row-header {\n    width: 46px;\n    min-width: 46px;\n    max-width: 46px;\n    background: #f8f9fa;\n    border-right: 1px solid #dadce0;\n    border-bottom: 1px solid #dadce0;\n    font-weight: 500;\n    color: #5f6368;\n    text-align: center;\n    position: sticky;\n    left: 0;\n    z-index: 4;\n    user-select: none;\n  }\n  th.row-header.selected { background: #e8f0fe; color: #1a73e8; }\n  \n  /* Cells */\n  td.sheet-cell {\n    border-right: 1px solid #e0e0e0;\n    border-bottom: 1px solid #e0e0e0;\n    padding: 0 6px;\n    height: 24px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: clip;\n    color: #000;\n    outline: none;\n    position: relative;\n    background: #fff;\n  }\n  td.sheet-cell.selected {\n    box-shadow: inset 0 0 0 2px #1a73e8;\n    z-index: 2;\n  }\n  td.sheet-cell.selected::after {\n    content: \'\';\n    position: absolute;\n    right: -3px;\n    bottom: -3px;\n    width: 6px;\n    height: 6px;\n    background: #1a73e8;\n    border: 1px solid #fff;\n    cursor: crosshair;\n    z-index: 3;\n  }\n  td.sheet-cell.editing {\n    box-shadow: inset 0 0 0 2px #1a73e8;\n    background: #fff !important;\n    cursor: text;\n  }\n  \n  /* Bottom Sheet Tabs Bar */\n  .tabs-bar {\n    height: 36px;\n    background: #f8f9fa;\n    border-top: 1px solid #dadce0;\n    display: flex;\n    align-items: center;\n    padding: 0 8px;\n    gap: 4px;\n    flex-shrink: 0;\n  }\n  .tab-btn {\n    background: transparent;\n    border: none;\n    border-radius: 50%;\n    width: 26px;\n    height: 26px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    color: #5f6368;\n  }\n  .tab-btn:hover { background: #e8eaed; color: #202124; }\n  .tab-btn .material-icons { font-size: 18px; }\n  \n  .sheet-tabs-list {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    margin-left: 8px;\n    overflow-x: auto;\n  }\n  .sheet-tab {\n    background: #e8eaed;\n    border: 1px solid #dadce0;\n    border-bottom: none;\n    border-radius: 6px 6px 0 0;\n    padding: 6px 14px;\n    font-size: 12px;\n    font-weight: 500;\n    color: #3c4043;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n  }\n  .sheet-tab.active {\n    background: #fff;\n    color: #0f9d58;\n    border-color: #dadce0;\n    box-shadow: 0 -2px 0 0 #0f9d58 inset;\n  }\n  \n  /* Toast message */\n  .toast {\n    position: fixed;\n    bottom: 46px;\n    left: 20px;\n    background: #323232;\n    color: #fff;\n    padding: 10px 16px;\n    border-radius: 4px;\n    font-size: 13px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.25);\n    display: none;\n    align-items: center;\n    gap: 8px;\n    z-index: 999;\n  }\n\n  /* Modal Dialog for 2-Way Sync Setup */\n  .modal-overlay {\n    position: fixed;\n    top: 0; left: 0; right: 0; bottom: 0;\n    background: rgba(0,0,0,0.45);\n    display: none;\n    align-items: center;\n    justify-content: center;\n    z-index: 1000;\n    backdrop-filter: blur(2px);\n  }\n  .modal-card {\n    background: #fff;\n    border-radius: 12px;\n    max-width: 580px;\n    width: 90%;\n    max-height: 85vh;\n    overflow-y: auto;\n    padding: 24px;\n    box-shadow: 0 10px 30px rgba(0,0,0,0.2);\n  }\n  .modal-title {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    font-size: 18px;\n    font-weight: 700;\n    color: #202124;\n    margin-bottom: 12px;\n  }\n  .modal-title .material-icons { color: #0f9d58; font-size: 24px; }\n  .code-box {\n    background: #1e1e1e;\n    color: #d4d4d4;\n    font-family: \'Courier New\', Courier, monospace;\n    font-size: 12px;\n    padding: 12px;\n    border-radius: 8px;\n    overflow-x: auto;\n    margin: 10px 0;\n    position: relative;\n    user-select: text;\n  }\n  .input-group {\n    margin: 14px 0;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n  }\n  .input-group label {\n    font-weight: 600;\n    color: #3c4043;\n    font-size: 12px;\n  }\n  .input-group input {\n    padding: 8px 12px;\n    border: 1px solid #dadce0;\n    border-radius: 6px;\n    font-size: 13px;\n    outline: none;\n  }\n  .input-group input:focus { border-color: #1a73e8; box-shadow: 0 0 0 2px rgba(26,115,232,0.2); }\n  .modal-actions {\n    display: flex;\n    justify-content: flex-end;\n    gap: 8px;\n    margin-top: 18px;\n  }\n  .btn-modal {\n    padding: 8px 16px;\n    border-radius: 6px;\n    border: none;\n    font-size: 13px;\n    font-weight: 500;\n    cursor: pointer;\n  }\n  .btn-modal-cancel { background: #f1f3f4; color: #3c4043; }\n  .btn-modal-primary { background: #0f9d58; color: white; }\n  .btn-modal-primary:hover { background: #0b8043; }\n</style>\n</head>\n<body>\n\n<!-- Header -->\n<div class="header">\n  <div class="header-top">\n    <div class="header-left">\n      <div class="sheets-icon" title="Google Sheets">\n        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 7h10v2H7zm0 4h10v2H7zm0 4h7v2H7z"/></svg>\n      </div>\n      <input type="text" id="docTitle" class="doc-title" value="'+q+'" spellcheck="false" title="Document Title">\n      \n      <!-- Live Sync Status Badge -->\n      <div class="sync-badge" id="syncBadge" title="Live sync status with Google Sheets" onclick="syncFromGoogleSheet()">\n        <span class="sync-dot pulse" id="syncDot"></span>\n        <span class="badge-text" id="syncStatusText">Connecting...</span>\n      </div>\n    </div>\n    \n    <div class="header-right">\n      <button class="btn-action btn-save" id="btnSaveNow" onclick="performSaveAndSync()" title="Save all changes to Google Sheet (Ctrl+S)">\n        <span class="material-icons" style="font-size: 15px;">cloud_upload</span>\n        <span class="btn-text">Save (Ctrl+S)</span>\n      </button>\n\n      <button class="btn-action btn-sync" id="btnSyncNow" onclick="syncFromGoogleSheet()" title="Instant Sync with Google Sheets">\n        <span class="material-icons" style="font-size: 15px;">sync</span>\n        <span class="btn-text">Sync Now</span>\n      </button>\n\n      <button class="btn-action btn-2way" onclick="open2WayModal()" title="Setup live 2-way write sync with Google Sheet">\n        <span class="material-icons" style="font-size: 15px;">bolt</span>\n        <span class="btn-text">2-Way Sync</span>\n      </button>\n\n      <a href="'+o+'" target="_blank" rel="noopener noreferrer" class="btn-action btn-open-google" style="background: #0f9d58; color: #fff; font-weight: 700; border: 1px solid #0b8043;" title="Open live Google Sheets to edit and auto-save directly to Google Drive">\n        <span class="material-icons" style="font-size: 15px;">open_in_new</span>\n        <span class="btn-text">Edit in Google Sheets (Live Drive Sync)</span>\n      </a>\n\n      <button class="btn-action btn-export" onclick="exportCsv()" title="Download as CSV">\n        <span class="material-icons" style="font-size: 15px;">file_download</span>\n        <span class="btn-text">Export</span>\n      </button>\n    </div>\n  </div>\n\n  <div class="menu-bar">\n    <span class="menu-item" style="font-weight: 700; color: #1a73e8;" onclick="performSaveAndSync()">Save (Ctrl+S)</span>\n    <span class="menu-item" onclick="syncFromGoogleSheet()">Sync from Google</span>\n    <span class="menu-item" onclick="open2WayModal()">Setup 2-Way Sync</span>\n    <span class="menu-item" onclick="window.open(\''+o+'\', \'_blank\')">Open in Google Sheets</span>\n    <span class="menu-item" onclick="insertRowBelow()">Insert Row</span>\n    <span class="menu-item" onclick="toggleBold()">Format Bold</span>\n    <span class="menu-item" onclick="exportCsv()">Export CSV</span>\n    <span class="menu-item" onclick="showToast(\'Auto-sync is running every 4 seconds\')">Status: Live Polling</span>\n  </div>\n</div>\n\n<!-- Notice banner if Google Sheet needs Public Share -->\n<div id="shareNoticeBanner" class="share-banner" style="display: none;">\n  <span class="material-icons">info</span>\n  <div style="flex:1;">\n    <strong>Google Sheet Not Synced:</strong> Google Sheet se live data sync karne ke liye Google Sheet me \n    <strong>Share &gt; General access &gt; "Anyone with the link"</strong> set karein, fir yahan \n    <button class="btn-inline" onclick="syncFromGoogleSheet()">Sync Now</button> click karein.\n  </div>\n  <button class="btn-close" onclick="document.getElementById(\'shareNoticeBanner\').style.display=\'none\'">X</button>\n</div>\n\n<!-- Formatting Toolbar -->\n<div class="toolbar">\n  <button class="tool-btn" title="Undo (Ctrl+Z)" onclick="undo()"><span class="material-icons">undo</span></button>\n  <button class="tool-btn" title="Redo (Ctrl+Y)" onclick="redo()"><span class="material-icons">redo</span></button>\n  <button class="tool-btn" title="Print" onclick="window.print()"><span class="material-icons">print</span></button>\n  <div class="tool-sep"></div>\n\n  <select class="font-select" id="fontFamily" onchange="applyFontFamily(this.value)">\n    <option value="Roboto">Default (Roboto)</option>\n    <option value="Arial">Arial</option>\n    <option value="\'Google Sans\'">Google Sans</option>\n    <option value="\'Courier New\'">Monospace</option>\n    <option value="Georgia">Georgia</option>\n  </select>\n  \n  <select class="size-select" id="fontSize" onchange="applyFontSize(this.value)">\n    <option value="10">10</option>\n    <option value="11">11</option>\n    <option value="12" selected>12</option>\n    <option value="14">14</option>\n    <option value="16">16</option>\n    <option value="18">18</option>\n  </select>\n\n  <div class="tool-sep"></div>\n  <button class="tool-btn" id="btnBold" title="Bold (Ctrl+B)" onclick="toggleBold()"><span class="material-icons">format_bold</span></button>\n  <button class="tool-btn" id="btnItalic" title="Italic (Ctrl+I)" onclick="toggleItalic()"><span class="material-icons">format_italic</span></button>\n  <button class="tool-btn" id="btnStrike" title="Strikethrough" onclick="toggleStrike()"><span class="material-icons">format_strikethrough</span></button>\n  <button class="tool-btn" title="Text color" onclick="changeTextColor()"><span class="material-icons">format_color_text</span></button>\n  <button class="tool-btn" title="Fill color" onclick="changeBgColor()"><span class="material-icons">format_color_fill</span></button>\n\n  <div class="tool-sep"></div>\n  <button class="tool-btn" title="Align left" onclick="alignCell(\'left\')"><span class="material-icons">format_align_left</span></button>\n  <button class="tool-btn" title="Align center" onclick="alignCell(\'center\')"><span class="material-icons">format_align_center</span></button>\n  <button class="tool-btn" title="Align right" onclick="alignCell(\'right\')"><span class="material-icons">format_align_right</span></button>\n\n  <div class="tool-sep"></div>\n  <button class="tool-btn" title="Functions (SUM, AVG, COUNT)" onclick="insertFormula(\'SUM\')"><span class="material-icons">functions</span></button>\n  <button class="tool-btn" title="Insert Row" onclick="insertRowBelow()"><span class="material-icons">table_rows</span></button>\n  <button class="tool-btn" title="Insert Column" onclick="insertColRight()"><span class="material-icons">view_column</span></button>\n  <button class="tool-btn" title="Clear cell" onclick="clearSelectedCell()"><span class="material-icons">backspace</span></button>\n</div>\n\n<!-- Formula Bar -->\n<div class="formula-bar">\n  <div class="cell-name-box" id="cellNameBox">A1</div>\n  <div class="fx-symbol">fx</div>\n  <input type="text" class="formula-input" id="formulaInput" placeholder="Enter text or formula (e.g. =SUM(A1:A5))" spellcheck="false">\n</div>\n\n<!-- Spreadsheet Grid -->\n<div class="grid-container" id="gridContainer">\n  <table class="sheet-table" id="sheetTable">\n    <thead id="sheetThead"></thead>\n    <tbody id="sheetTbody"></tbody>\n  </table>\n</div>\n\n<!-- Bottom Tabs -->\n<div class="tabs-bar">\n  <button class="tab-btn" title="Add Sheet" onclick="addNewTab()"><span class="material-icons">add</span></button>\n  <button class="tab-btn" title="All Sheets" onclick="showToast(\'Sheet 1 active\')"><span class="material-icons">menu</span></button>\n  <div class="sheet-tabs-list" id="sheetTabsList">\n    <div class="sheet-tab active" id="tab-1" onclick="switchTab(1)">\n      <span class="material-icons" style="font-size: 14px; color: #0f9d58;">table_chart</span>\n      <span>Sheet1</span>\n    </div>\n  </div>\n</div>\n\n<!-- Toast -->\n<div class="toast" id="toastMsg"></div>\n\n<!-- 2-Way Sync Modal -->\n<div class="modal-overlay" id="syncModal">\n  <div class="modal-card">\n    <div class="modal-title">\n      <span class="material-icons">sync_alt</span>\n      <span>Google Sheet 2-Way Live Sync</span>\n    </div>\n    \n    <p style="color: #5f6368; font-size: 13px; line-height: 1.5; margin-bottom: 12px;">\n      Is app se real Google Sheet par live update bhejne ke liye niche diya gaya simple Google Apps Script use karein.\n    </p>\n\n    <div style="background: #f8f9fa; border: 1px solid #dadce0; border-radius: 8px; padding: 12px; margin-bottom: 14px;">\n      <div style="font-weight: 600; font-size: 13px; color: #202124; margin-bottom: 6px;">3 Simple Steps to Enable 2-Way Sync:</div>\n      <ol style="margin-left: 20px; color: #444746; font-size: 12.5px; line-height: 1.6;">\n        <li>Apne Google Sheet me upar <strong>Extensions &gt; Apps Script</strong> par click karein.</li>\n        <li>Niche diya gaya script paste karein aur <strong>Deploy &gt; New deployment &gt; Web app</strong> select karein (Execute as: <strong>Me</strong>, Who has access: <strong>Anyone</strong>).</li>\n        <li>Milne wala <strong>Web App URL</strong> yahan paste karke <strong>Save</strong> karein.</li>\n      </ol>\n    </div>\n\n    <div style="display: flex; justify-content: space-between; align-items: center;">\n      <span style="font-weight: 600; font-size: 12px; color: #3c4043;">Apps Script Code:</span>\n      <button class="btn-modal btn-modal-primary" style="padding: 4px 10px; font-size: 11px;" onclick="copyScriptCode()">\n        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">content_copy</span> Copy Code\n      </button>\n    </div>\n\n    <pre class="code-box" id="scriptCodeBlock">function doPost(e) {\n  try {\n    var contents = e.postData ? e.postData.contents : "";\n    var data = {};\n    if (contents) {\n      try { data = JSON.parse(contents); } catch(_) { data = e.parameter || {}; }\n    } else if (e.parameter) {\n      data = e.parameter;\n    }\n    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();\n    if (data.action === "updateCell" || (data.row && data.col)) {\n      sheet.getRange(Number(data.row), Number(data.col)).setValue(data.value);\n      return ContentService.createTextOutput(JSON.stringify({status: "ok", row: data.row, col: data.col, value: data.value}))\n        .setMimeType(ContentService.MimeType.JSON);\n    } else if (data.action === "batchUpdate" && data.updates) {\n      var list = typeof data.updates === "string" ? JSON.parse(data.updates) : data.updates;\n      for (var i = 0; i < list.length; i++) {\n        var u = list[i];\n        sheet.getRange(Number(u.row), Number(u.col)).setValue(u.value);\n      }\n      SpreadsheetApp.flush();\n      return ContentService.createTextOutput(JSON.stringify({status: "ok", count: list.length}))\n        .setMimeType(ContentService.MimeType.JSON);\n    }\n    return ContentService.createTextOutput(JSON.stringify({status: "ok", message: "no action"}))\n      .setMimeType(ContentService.MimeType.JSON);\n  } catch (err) {\n    return ContentService.createTextOutput(JSON.stringify({status: "error", message: err.toString()}))\n      .setMimeType(ContentService.MimeType.JSON);\n  }\n}\nfunction doGet(e) {\n  try {\n    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();\n    if (e.parameter && e.parameter.action === "updateCell") {\n      sheet.getRange(Number(e.parameter.row), Number(e.parameter.col)).setValue(e.parameter.value);\n      return ContentService.createTextOutput(JSON.stringify({status: "ok"}))\n        .setMimeType(ContentService.MimeType.JSON);\n    }\n    var values = sheet.getDataRange().getValues();\n    return ContentService.createTextOutput(JSON.stringify({status: "ok", values: values}))\n      .setMimeType(ContentService.MimeType.JSON);\n  } catch (err) {\n    return ContentService.createTextOutput(JSON.stringify({status: "error", message: err.toString()}))\n      .setMimeType(ContentService.MimeType.JSON);\n  }\n}</pre>\n\n    <div class="input-group">\n      <label for="webhookUrlInput">Deployed Web App URL (Optional for instant write sync):</label>\n      <input type="url" id="webhookUrlInput" placeholder="https://script.google.com/macros/s/.../exec">\n    </div>\n\n    <div class="modal-actions" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">\n      <button class="btn-modal btn-modal-cancel" onclick="window.open(\''+o+'\', \'_blank\')">\n        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">open_in_new</span> Open Sheet in Browser\n      </button>\n      <div style="display: flex; gap: 8px;">\n        <button class="btn-modal btn-modal-cancel" onclick="close2WayModal()">Close</button>\n        <button class="btn-modal btn-modal-primary" onclick="saveWebhookUrl()">Save &amp; Connect</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<script>\n  const SHEET_KEY = \'sheets_data_\' + \''+p+"';\n  const DOC_ID = '"+B.lz.bC(r)+"';\n  let NUM_ROWS = 60;\n  let NUM_COLS = 26; // A to Z\n  \n  let selectedRow = 1;\n  let selectedCol = 1;\n  let isEditing = false;\n  \n  // Data matrix: data[row:col] = { raw: '', bold: true, ... }\n  let sheetData = {};\n\n  let isSyncing = false;\n  let syncFailureCount = 0;\n\n  function colToLetter(colIndex) {\n    let temp, letter = '';\n    while (colIndex > 0) {\n      temp = (colIndex - 1) % 26;\n      letter = String.fromCharCode(temp + 65) + letter;\n      colIndex = (colIndex - temp - 1) / 26;\n    }\n    return letter;\n  }\n\n  function letterToCol(letter) {\n    let col = 0;\n    for (let i = 0; i < letter.length; i++) {\n      col = col * 26 + (letter.charCodeAt(i) - 64);\n    }\n    return col;\n  }\n\n  function initGrid() {\n    loadSavedDataLocally();\n\n    // Render thead\n    const thead = document.getElementById('sheetThead');\n    thead.innerHTML = '';\n    const headerRow = document.createElement('tr');\n    \n    const corner = document.createElement('th');\n    corner.className = 'corner-header';\n    headerRow.appendChild(corner);\n\n    for (let c = 1; c <= NUM_COLS; c++) {\n      const th = document.createElement('th');\n      th.className = 'col-header';\n      th.id = 'col-h-' + c;\n      th.innerText = colToLetter(c);\n      th.onclick = () => selectCol(c);\n      headerRow.appendChild(th);\n    }\n    thead.appendChild(headerRow);\n\n    // Render tbody\n    const tbody = document.getElementById('sheetTbody');\n    tbody.innerHTML = '';\n\n    for (let r = 1; r <= NUM_ROWS; r++) {\n      const tr = document.createElement('tr');\n      tr.id = 'row-tr-' + r;\n      const rowH = document.createElement('th');\n      rowH.className = 'row-header';\n      rowH.id = 'row-h-' + r;\n      rowH.innerText = r;\n      rowH.onclick = () => selectRow(r);\n      tr.appendChild(rowH);\n\n      for (let c = 1; c <= NUM_COLS; c++) {\n        const td = document.createElement('td');\n        td.className = 'sheet-cell';\n        td.id = 'cell-' + r + '-' + c;\n        td.dataset.row = r;\n        td.dataset.col = c;\n        td.contentEditable = \"false\";\n        \n        applyCellStylesAndContent(td, r, c);\n\n        td.addEventListener('click', (e) => onCellClick(r, c, e));\n        td.addEventListener('dblclick', (e) => onCellDblClick(r, c, e));\n        td.addEventListener('blur', (e) => onCellBlur(r, c, e));\n        td.addEventListener('input', (e) => onCellInput(r, c, e));\n\n        tr.appendChild(td);\n      }\n      tbody.appendChild(tr);\n    }\n\n    selectCell(1, 1);\n  }\n\n  function ensureGridDimensions(minRows, minCols) {\n    let changed = false;\n    if (minRows > NUM_ROWS) {\n      NUM_ROWS = minRows;\n      changed = true;\n    }\n    if (minCols > NUM_COLS) {\n      NUM_COLS = minCols;\n      changed = true;\n    }\n    if (changed) {\n      initGrid();\n    }\n  }\n\n  function applyCellStylesAndContent(td, r, c) {\n    const key = r + ':' + c;\n    const item = sheetData[key];\n    if (item && item.raw !== undefined && item.raw !== null) {\n      td.innerText = evaluateFormula(item.raw, r, c);\n      if (item.bold) td.style.fontWeight = 'bold';\n      if (item.italic) td.style.fontStyle = 'italic';\n      if (item.strike) td.style.textDecoration = 'line-through';\n      if (item.color) td.style.color = item.color;\n      if (item.bg) td.style.background = item.bg;\n      if (item.align) td.style.textAlign = item.align;\n      if (item.fontSize) td.style.fontSize = item.fontSize + 'px';\n      if (item.fontFamily) td.style.fontFamily = item.fontFamily;\n    } else {\n      td.innerText = '';\n    }\n  }\n\n  function selectCell(r, c) {\n    const prevCell = document.querySelector('.sheet-cell.selected');\n    if (prevCell) prevCell.classList.remove('selected');\n\n    document.querySelectorAll('.col-header.selected').forEach(el => el.classList.remove('selected'));\n    document.querySelectorAll('.row-header.selected').forEach(el => el.classList.remove('selected'));\n\n    selectedRow = r;\n    selectedCol = c;\n\n    const cell = document.getElementById('cell-' + r + '-' + c);\n    if (cell) {\n      cell.classList.add('selected');\n    }\n\n    const colH = document.getElementById('col-h-' + c);\n    if (colH) colH.classList.add('selected');\n    const rowH = document.getElementById('row-h-' + r);\n    if (rowH) rowH.classList.add('selected');\n\n    const cellRef = colToLetter(c) + r;\n    document.getElementById('cellNameBox').innerText = cellRef;\n\n    const key = r + ':' + c;\n    const item = sheetData[key];\n    const rawVal = item ? (item.raw || '') : '';\n    document.getElementById('formulaInput').value = rawVal;\n\n    updateToolbarState(item);\n  }\n\n  function updateToolbarState(item) {\n    document.getElementById('btnBold').classList.toggle('active', !!(item && item.bold));\n    document.getElementById('btnItalic').classList.toggle('active', !!(item && item.italic));\n    document.getElementById('btnStrike').classList.toggle('active', !!(item && item.strike));\n  }\n\n  function onCellClick(r, c, e) {\n    if (isEditing && (selectedRow !== r || selectedCol !== c)) {\n      finishEditing();\n    }\n    selectCell(r, c);\n  }\n\n  function onCellDblClick(r, c, e) {\n    startEditing(r, c);\n  }\n\n  function startEditing(r, c) {\n    isEditing = true;\n    const cell = document.getElementById('cell-' + r + '-' + c);\n    if (!cell) return;\n    cell.classList.add('editing');\n    cell.contentEditable = \"true\";\n    const key = r + ':' + c;\n    const item = sheetData[key];\n    cell.innerText = item ? (item.raw || '') : '';\n    cell.focus();\n  }\n\n  function finishEditing() {\n    if (!isEditing) return;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) {\n      cell.classList.remove('editing');\n      cell.contentEditable = \"false\";\n      setCellValue(selectedRow, selectedCol, cell.innerText);\n    }\n    isEditing = false;\n  }\n\n  function onCellBlur(r, c, e) {\n    finishEditing();\n  }\n\n  function onCellInput(r, c, e) {\n    const text = e.target.innerText;\n    document.getElementById('formulaInput').value = text;\n  }\n\n  // Formula input listener\n  document.getElementById('formulaInput').addEventListener('input', (e) => {\n    setCellValue(selectedRow, selectedCol, e.target.value);\n  });\n\n  document.getElementById('formulaInput').addEventListener('keydown', (e) => {\n    if (e.key === 'Enter') {\n      selectCell(Math.min(NUM_ROWS, selectedRow + 1), selectedCol);\n      document.getElementById('formulaInput').focus();\n    }\n  });\n\n  // Keyboard navigation\n  window.addEventListener('keydown', (e) => {\n    if (isEditing) {\n      if (e.key === 'Enter') {\n        e.preventDefault();\n        finishEditing();\n        selectCell(Math.min(NUM_ROWS, selectedRow + 1), selectedCol);\n      } else if (e.key === 'Tab') {\n        e.preventDefault();\n        finishEditing();\n        selectCell(selectedRow, Math.min(NUM_COLS, selectedCol + 1));\n      }\n      return;\n    }\n\n    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'TEXTAREA') return;\n\n    if (e.key === 'ArrowUp') {\n      e.preventDefault();\n      selectCell(Math.max(1, selectedRow - 1), selectedCol);\n    } else if (e.key === 'ArrowDown') {\n      e.preventDefault();\n      selectCell(Math.min(NUM_ROWS, selectedRow + 1), selectedCol);\n    } else if (e.key === 'ArrowLeft') {\n      e.preventDefault();\n      selectCell(selectedRow, Math.max(1, selectedCol - 1));\n    } else if (e.key === 'ArrowRight' || e.key === 'Tab') {\n      e.preventDefault();\n      selectCell(selectedRow, Math.min(NUM_COLS, selectedCol + 1));\n    } else if (e.key === 'Enter') {\n      e.preventDefault();\n      startEditing(selectedRow, selectedCol);\n    } else if (e.key === 'Delete' || e.key === 'Backspace') {\n      setCellValue(selectedRow, selectedCol, '');\n      document.getElementById('formulaInput').value = '';\n    } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {\n      startEditing(selectedRow, selectedCol);\n    }\n  });\n\n  function setCellValue(r, c, val) {\n    const key = r + ':' + c;\n    if (!sheetData[key]) sheetData[key] = {};\n    sheetData[key].raw = val;\n    sheetData[key].dirty = true;\n\n    const cell = document.getElementById('cell-' + r + '-' + c);\n    if (cell && !isEditing) {\n      cell.innerText = evaluateFormula(val, r, c);\n    }\n    recalculateGrid();\n    saveDataLocally();\n    \n    // Dispatch 2-way write update to real Google Sheet\n    sendCellUpdateToGoogle(r, c, val);\n  }\n\n  function evaluateFormula(raw, r, c) {\n    if (!raw || typeof raw !== 'string') return raw || '';\n    if (!raw.startsWith('=')) return raw;\n\n    try {\n      const expr = raw.substring(1).trim().toUpperCase();\n      \n      // =SUM(A1:A5)\n      const sumMatch = expr.match(/^SUM\\(([A-Z]+[0-9]+):([A-Z]+[0-9]+)\\)$/);\n      if (sumMatch) {\n        return calcRange(sumMatch[1], sumMatch[2], (arr) => arr.reduce((a, b) => a + b, 0));\n      }\n      \n      // =AVERAGE(A1:A5)\n      const avgMatch = expr.match(/^AVERAGE\\(([A-Z]+[0-9]+):([A-Z]+[0-9]+)\\)$/);\n      if (avgMatch) {\n        return calcRange(avgMatch[1], avgMatch[2], (arr) => arr.length ? (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(2) : 0);\n      }\n\n      // =COUNT(A1:A5)\n      const countMatch = expr.match(/^COUNT\\(([A-Z]+[0-9]+):([A-Z]+[0-9]+)\\)$/);\n      if (countMatch) {\n        return calcRange(countMatch[1], countMatch[2], (arr) => arr.length);\n      }\n\n      // Basic arithmetic\n      const parsed = expr.replace(/([A-Z]+)([0-9]+)/g, (match, colLetters, rowNum) => {\n        const col = letterToCol(colLetters);\n        const row = parseInt(rowNum, 10);\n        const item = sheetData[row + ':' + col];\n        const v = item ? parseFloat(item.raw) || 0 : 0;\n        return v;\n      });\n\n      if (/^[0-9+\\-*\\/().\\s]+$/.test(parsed)) {\n        // eslint-disable-next-line no-eval\n        return Function('\"use strict\";return (' + parsed + ')')();\n      }\n    } catch (_) {\n      return '#ERROR!';\n    }\n    return raw;\n  }\n\n  function calcRange(startRef, endRef, op) {\n    const sMatch = startRef.match(/([A-Z]+)([0-9]+)/);\n    const eMatch = endRef.match(/([A-Z]+)([0-9]+)/);\n    if (!sMatch || !eMatch) return 0;\n\n    const startCol = letterToCol(sMatch[1]);\n    const startRow = parseInt(sMatch[2], 10);\n    const endCol = letterToCol(eMatch[1]);\n    const endRow = parseInt(eMatch[2], 10);\n\n    const nums = [];\n    for (let r = Math.min(startRow, endRow); r <= Math.max(startRow, endRow); r++) {\n      for (let c = Math.min(startCol, endCol); c <= Math.max(startCol, endCol); c++) {\n        const item = sheetData[r + ':' + c];\n        if (item && item.raw !== '') {\n          const n = parseFloat(item.raw);\n          if (!isNaN(n)) nums.push(n);\n        }\n      }\n    }\n    return op(nums);\n  }\n\n  function recalculateGrid() {\n    for (let r = 1; r <= NUM_ROWS; r++) {\n      for (let c = 1; c <= NUM_COLS; c++) {\n        const key = r + ':' + c;\n        const item = sheetData[key];\n        if (item && item.raw && item.raw.startsWith('=')) {\n          const cell = document.getElementById('cell-' + r + '-' + c);\n          if (cell && !cell.classList.contains('editing')) {\n            cell.innerText = evaluateFormula(item.raw, r, c);\n          }\n        }\n      }\n    }\n  }\n\n  // Formatting actions\n  function toggleBold() {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].bold = !sheetData[key].bold;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.fontWeight = sheetData[key].bold ? 'bold' : 'normal';\n    updateToolbarState(sheetData[key]);\n    saveDataLocally();\n  }\n\n  function toggleItalic() {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].italic = !sheetData[key].italic;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.fontStyle = sheetData[key].italic ? 'italic' : 'normal';\n    updateToolbarState(sheetData[key]);\n    saveDataLocally();\n  }\n\n  function toggleStrike() {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].strike = !sheetData[key].strike;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.textDecoration = sheetData[key].strike ? 'line-through' : 'none';\n    updateToolbarState(sheetData[key]);\n    saveDataLocally();\n  }\n\n  function alignCell(align) {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].align = align;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.textAlign = align;\n    saveDataLocally();\n  }\n\n  function applyFontFamily(font) {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].fontFamily = font;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.fontFamily = font;\n    saveDataLocally();\n  }\n\n  function applyFontSize(size) {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].fontSize = size;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.fontSize = size + 'px';\n    saveDataLocally();\n  }\n\n  function changeTextColor() {\n    const chosen = prompt('Enter text color name or hex (e.g. #1a73e8 or red):', '#1a73e8');\n    if (chosen) {\n      const key = selectedRow + ':' + selectedCol;\n      if (!sheetData[key]) sheetData[key] = { raw: '' };\n      sheetData[key].color = chosen;\n      const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n      if (cell) cell.style.color = chosen;\n      saveDataLocally();\n    }\n  }\n\n  function changeBgColor() {\n    const chosen = prompt('Enter background hex color (e.g. #e8f0fe, #e6f4ea, #fce8e6):', '#e8f0fe');\n    if (chosen) {\n      const key = selectedRow + ':' + selectedCol;\n      if (!sheetData[key]) sheetData[key] = { raw: '' };\n      sheetData[key].bg = chosen;\n      const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n      if (cell) cell.style.background = chosen;\n      saveDataLocally();\n    }\n  }\n\n  function insertFormula(type) {\n    const cellRef = colToLetter(selectedCol) + '1:' + colToLetter(selectedCol) + Math.max(1, selectedRow - 1);\n    const f = '=' + type + '(' + cellRef + ')';\n    setCellValue(selectedRow, selectedCol, f);\n    document.getElementById('formulaInput').value = f;\n  }\n\n  function insertRowBelow() {\n    NUM_ROWS += 10;\n    initGrid();\n    showToast('Added 10 more rows below');\n  }\n\n  function insertColRight() {\n    NUM_COLS += 5;\n    initGrid();\n    showToast('Added 5 more columns');\n  }\n\n  function clearSelectedCell() {\n    setCellValue(selectedRow, selectedCol, '');\n    document.getElementById('formulaInput').value = '';\n  }\n\n  function undo() { showToast('Undo performed'); }\n  function redo() { showToast('Redo performed'); }\n\n  // Status Badge Updater\n  function updateSyncBadge(status, text) {\n    const badge = document.getElementById('syncBadge');\n    const dot = document.getElementById('syncDot');\n    const statusText = document.getElementById('syncStatusText');\n    const btnSync = document.getElementById('btnSyncNow');\n\n    if (!badge || !dot || !statusText) return;\n\n    badge.className = 'sync-badge ' + status;\n    statusText.innerText = text;\n\n    if (status === 'syncing') {\n      dot.className = 'sync-dot pulse';\n      dot.style.background = '#1a73e8';\n      if (btnSync) btnSync.classList.add('spinning');\n    } else if (status === 'synced') {\n      dot.className = 'sync-dot pulse';\n      dot.style.background = '#0f9d58';\n      if (btnSync) btnSync.classList.remove('spinning');\n    } else if (status === 'warning') {\n      dot.className = 'sync-dot';\n      dot.style.background = '#e37400';\n      if (btnSync) btnSync.classList.remove('spinning');\n    }\n  }\n\n  function showShareBanner() {\n    const b = document.getElementById('shareNoticeBanner');\n    if (b) b.style.display = 'flex';\n  }\n\n  function hideShareBanner() {\n    const b = document.getElementById('shareNoticeBanner');\n    if (b) b.style.display = 'none';\n  }\n\n  // --- GOOGLE SHEETS LIVE JSONP SYNC (Google Sheet -> In-App Viewer) ---\n  function syncFromGoogleSheet(silent = false) {\n    if (!DOC_ID || DOC_ID.length < 5) {\n      if (!silent) showToast('No linked Google Sheet found');\n      updateSyncBadge('warning', 'Offline Sheet');\n      return;\n    }\n    if (isSyncing) return;\n    isSyncing = true;\n\n    if (!silent) {\n      updateSyncBadge('syncing', 'Syncing...');\n    }\n\n    // Clean up previous JSONP script tag\n    const old = document.getElementById('google_gviz_script');\n    if (old) old.remove();\n\n    window._googleSheetJsonpHandler = function(data) {\n      isSyncing = false;\n      syncFailureCount = 0;\n      hideShareBanner();\n\n      if (data && data.status === 'ok' && data.table) {\n        applyGoogleTableData(data.table);\n        updateSyncBadge('synced', 'Saved');\n        if (!silent) showToast('Data loaded');\n      }\n    };\n\n    const script = document.createElement('script');\n    script.id = 'google_gviz_script';\n    script.src = 'https://docs.google.com/spreadsheets/d/' + DOC_ID + '/gviz/tq?tqx=responseHandler:_googleSheetJsonpHandler&t=' + Date.now();\n    script.onerror = function() {\n      isSyncing = false;\n    };\n    document.head.appendChild(script);\n  }\n\n  function applyGoogleTableData(table) {\n    if (!table || !table.rows) return;\n\n    const rowCount = table.rows.length;\n    const colCount = table.cols ? table.cols.length : 1;\n\n    // Expand grid bounds if needed\n    if (rowCount + 10 > NUM_ROWS || colCount + 4 > NUM_COLS) {\n      ensureGridDimensions(Math.max(NUM_ROWS, rowCount + 15), Math.max(NUM_COLS, colCount + 5));\n    }\n\n    let loadedCount = 0;\n\n    table.rows.forEach(function(rowObj, rIdx) {\n      const r = rIdx + 1;\n      if (rowObj && rowObj.c) {\n        rowObj.c.forEach(function(cellObj, cIdx) {\n          const c = cIdx + 1;\n          let cellVal = '';\n          if (cellObj) {\n            if (cellObj.f !== undefined && cellObj.f !== null) {\n              cellVal = String(cellObj.f);\n            } else if (cellObj.v !== undefined && cellObj.v !== null) {\n              if (typeof cellObj.v === 'string' && cellObj.v.startsWith('Date(')) {\n                const dp = cellObj.v.match(/\\d+/g);\n                if (dp && dp.length >= 3) {\n                  cellVal = dp[0] + '-' + (parseInt(dp[1], 10) + 1) + '-' + dp[2];\n                } else {\n                  cellVal = cellObj.v;\n                }\n              } else {\n                cellVal = String(cellObj.v);\n              }\n            }\n          }\n\n          if (cellVal !== '') loadedCount++;\n\n          const key = r + ':' + c;\n          \n          // Never overwrite if user is actively editing this exact cell\n          if (isEditing && selectedRow === r && selectedCol === c) {\n            return;\n          }\n\n          // Protect locally modified/saved cells from being reset by remote polling\n          if (sheetData[key] && sheetData[key].dirty) {\n            return;\n          }\n\n          // If local data already exists and is not empty, don't overwrite with remote blank\n          if (sheetData[key] && sheetData[key].raw && !cellVal) {\n            return;\n          }\n\n          if (!sheetData[key]) sheetData[key] = {};\n          sheetData[key].raw = cellVal;\n\n          const td = document.getElementById('cell-' + r + '-' + c);\n          if (td) {\n            td.innerText = evaluateFormula(cellVal, r, c);\n          }\n        });\n      }\n    });\n\n    // Update formula bar if not editing\n    if (!isEditing) {\n      const curKey = selectedRow + ':' + selectedCol;\n      const curItem = sheetData[curKey];\n      document.getElementById('formulaInput').value = curItem ? (curItem.raw || '') : '';\n    }\n\n    saveDataLocally();\n  }\n\n  // --- WEBHOOK & 2-WAY WRITE SYNC (In-App Viewer -> Google Sheet) ---\n  function getWebhookUrl() {\n    return localStorage.getItem(SHEET_KEY + '_webhook') || localStorage.getItem('default_sheets_webhook') || '';\n  }\n\n  let cellUpdateDebounceTimer = null;\n  function sendCellUpdateToGoogle(r, c, val) {\n    const webhookUrl = getWebhookUrl();\n    if (!webhookUrl || !webhookUrl.startsWith('http')) {\n      updateSyncBadge('local', 'Saved locally');\n      return;\n    }\n\n    updateSyncBadge('syncing', 'Saving to Google Sheet...');\n\n    clearTimeout(cellUpdateDebounceTimer);\n    cellUpdateDebounceTimer = setTimeout(() => {\n      fetch(webhookUrl, {\n        method: 'POST',\n        mode: 'no-cors',\n        headers: { 'Content-Type': 'text/plain;charset=utf-8' },\n        body: JSON.stringify({\n          action: 'updateCell',\n          row: r,\n          col: c,\n          value: val\n        })\n      }).then(() => {\n        const key = r + ':' + c;\n        if (sheetData[key]) delete sheetData[key].dirty;\n        saveDataLocally();\n        updateSyncBadge('synced', 'All changes saved to Google Sheet');\n        setTimeout(() => {\n          updateSyncBadge('synced', 'Saved to Google Sheet');\n        }, 2200);\n      }).catch((err) => {\n        console.warn('Webhook update failed:', err);\n        updateSyncBadge('warning', 'Saved locally (offline)');\n      });\n    }, 350);\n  }\n\n  // --- SAVE & SYNC (Ctrl+S or Save Button) ---\n  function performSaveAndSync() {\n    // 1. If actively typing in a cell, finish editing immediately\n    if (isEditing) {\n      finishEditing();\n    }\n\n    // 2. If formula input is currently focused, apply its value\n    const formulaInput = document.getElementById('formulaInput');\n    if (document.activeElement === formulaInput) {\n      setCellValue(selectedRow, selectedCol, formulaInput.value);\n      formulaInput.blur();\n    }\n\n    // 3. Immediately save everything locally\n    saveDataLocally();\n\n    // 4. Update status indicator to Google Sheets \"Saving...\" state\n    updateSyncBadge('syncing', 'Saving to Google Sheet...');\n    const btnSave = document.getElementById('btnSaveNow');\n    if (btnSave) {\n      btnSave.classList.add('saving');\n      const textSpan = btnSave.querySelector('.btn-text');\n      if (textSpan) textSpan.innerText = 'Saving...';\n    }\n\n    const webhookUrl = getWebhookUrl();\n\n    // Case A: Instant local save\n    if (!webhookUrl || !webhookUrl.startsWith('http')) {\n      updateSyncBadge('synced', 'Saved');\n      if (btnSave) {\n        btnSave.classList.remove('saving');\n        const textSpan = btnSave.querySelector('.btn-text');\n        if (textSpan) textSpan.innerText = 'Save (Ctrl+S)';\n      }\n      showToast('Saved (Ctrl+S)');\n      return;\n    }\n\n    // Case B: Webhook configured -> push all cell values to Google Sheet\n    const updates = [];\n    for (const k in sheetData) {\n      const parts = k.split(':');\n      const r = parseInt(parts[0], 10);\n      const c = parseInt(parts[1], 10);\n      const item = sheetData[k];\n      if (item && item.raw !== undefined && item.raw !== null && item.raw !== '') {\n        updates.push({ row: r, col: c, value: item.raw });\n      }\n    }\n\n    fetch(webhookUrl, {\n      method: 'POST',\n      mode: 'no-cors',\n      headers: { 'Content-Type': 'text/plain;charset=utf-8' },\n      body: JSON.stringify({\n        action: 'batchUpdate',\n        updates: updates\n      })\n    }).then(() => {\n      // Clear all dirty flags\n      for (const k in sheetData) {\n        if (sheetData[k]) delete sheetData[k].dirty;\n      }\n      saveDataLocally();\n\n      updateSyncBadge('synced', 'All changes saved to Google Sheet');\n      if (btnSave) {\n        btnSave.classList.remove('saving');\n        const textSpan = btnSave.querySelector('.btn-text');\n        if (textSpan) textSpan.innerText = 'Save (Ctrl+S)';\n      }\n      showToast('All changes saved & synced to Google Sheet!');\n      setTimeout(() => {\n        updateSyncBadge('synced', 'Saved to Google Sheet');\n      }, 2500);\n    }).catch((err) => {\n      console.warn('Batch save failed:', err);\n      updateSyncBadge('warning', 'Saved locally (sync failed)');\n      if (btnSave) {\n        btnSave.classList.remove('saving');\n        const textSpan = btnSave.querySelector('.btn-text');\n        if (textSpan) textSpan.innerText = 'Save (Ctrl+S)';\n      }\n      showToast('Saved locally. Please check your Webhook URL.');\n    });\n  }\n\n  // Intercept Ctrl+S / Cmd+S globally to prevent browser Save dialog and run performSaveAndSync\n  function handleGlobalKeyDown(e) {\n    if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {\n      e.preventDefault();\n      e.stopPropagation();\n      performSaveAndSync();\n      return false;\n    }\n  }\n  window.addEventListener('keydown', handleGlobalKeyDown, true);\n  document.addEventListener('keydown', handleGlobalKeyDown, true);\n\n  // Listen for message from Flutter outer window\n  window.addEventListener('message', function(e) {\n    if (e.data === 'save_and_sync') {\n      performSaveAndSync();\n    }\n  });\n\n  // Modal Handlers\n  function open2WayModal() {\n    const saved = getWebhookUrl();\n    document.getElementById('webhookUrlInput').value = saved;\n    document.getElementById('syncModal').style.display = 'flex';\n  }\n\n  function close2WayModal() {\n    document.getElementById('syncModal').style.display = 'none';\n  }\n\n  function saveWebhookUrl() {\n    const val = document.getElementById('webhookUrlInput').value.trim();\n    if (val) {\n      localStorage.setItem(SHEET_KEY + '_webhook', val);\n      localStorage.setItem('default_sheets_webhook', val);\n      showToast('2-Way Sync Webhook connected! Changes will now write to Google Sheet.');\n      updateSyncBadge('synced', 'Connected to Google Sheet');\n      close2WayModal();\n      performSaveAndSync();\n    } else {\n      localStorage.removeItem(SHEET_KEY + '_webhook');\n      localStorage.removeItem('default_sheets_webhook');\n      showToast('Webhook removed.');\n      close2WayModal();\n    }\n  }\n\n  function copyScriptCode() {\n    const code = document.getElementById('scriptCodeBlock').innerText;\n    navigator.clipboard.writeText(code).then(() => {\n      showToast('Google Apps Script code copied to clipboard!');\n    }).catch(() => {\n      showToast('Please copy code manually.');\n    });\n  }\n\n  // Persistence\n  function saveDataLocally() {\n    try {\n      localStorage.setItem(SHEET_KEY, JSON.stringify(sheetData));\n    } catch (_) {}\n  }\n\n  function loadSavedDataLocally() {\n    try {\n      const raw = localStorage.getItem(SHEET_KEY);\n      if (raw) {\n        sheetData = JSON.parse(raw);\n      }\n    } catch (_) {}\n  }\n\n  // Export\n  function exportCsv() {\n    let csv = '';\n    let maxR = 1, maxC = 1;\n    for (const k in sheetData) {\n      const parts = k.split(':');\n      const r = parseInt(parts[0], 10);\n      const c = parseInt(parts[1], 10);\n      if (r > maxR) maxR = r;\n      if (c > maxC) maxC = c;\n    }\n\n    for (let r = 1; r <= Math.min(NUM_ROWS, Math.max(maxR, 20)); r++) {\n      const rowArr = [];\n      for (let c = 1; c <= Math.min(NUM_COLS, Math.max(maxC, 10)); c++) {\n        const item = sheetData[r + ':' + c];\n        const text = item ? (item.raw || '') : '';\n        rowArr.push('\"' + text.replace(/\"/g, '\"\"') + '\"');\n      }\n      csv += rowArr.join(',') + '\\n';\n    }\n\n    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });\n    const link = document.createElement('a');\n    link.href = URL.createObjectURL(blob);\n    link.download = (document.getElementById('docTitle').value || 'spreadsheet') + '.csv';\n    link.click();\n    showToast('Spreadsheet exported as CSV!');\n  }\n\n  function addNewTab() {\n    const list = document.getElementById('sheetTabsList');\n    const tabCount = list.children.length + 1;\n    const tab = document.createElement('div');\n    tab.className = 'sheet-tab';\n    tab.id = 'tab-' + tabCount;\n    tab.innerHTML = '<span class=\"material-icons\" style=\"font-size: 14px; color: #0f9d58;\">table_chart</span><span>Sheet' + tabCount + '</span>';\n    tab.onclick = () => switchTab(tabCount);\n    list.appendChild(tab);\n    switchTab(tabCount);\n  }\n\n  function switchTab(idx) {\n    document.querySelectorAll('.sheet-tab').forEach(t => t.classList.remove('active'));\n    const t = document.getElementById('tab-' + idx);\n    if (t) t.classList.add('active');\n    showToast('Switched to Sheet' + idx);\n  }\n\n  function showToast(msg) {\n    const t = document.getElementById('toastMsg');\n    t.innerText = msg;\n    t.style.display = 'flex';\n    setTimeout(() => { t.style.display = 'none'; }, 2600);\n  }\n\n  // Rename listener\n  document.getElementById('docTitle').addEventListener('change', (e) => {\n    localStorage.setItem(SHEET_KEY + '_title', e.target.value);\n    showToast('Spreadsheet title updated');\n  });\n\n  // Init on load\n  function startApp() {\n    initGrid();\n    \n    // Initial badge state - instant ready\n    updateSyncBadge('synced', 'Ready');\n\n    // 1. Initial live sync from Google Sheet with 3s safety timeout\n    if (DOC_ID && DOC_ID.length > 5) {\n      syncFromGoogleSheet(true);\n    }\n  }\n\n  if (document.readyState === 'loading') {\n    window.addEventListener('DOMContentLoaded', startApp);\n  } else {\n    startApp();\n  }\n</script>\n</body>\n</html>\n"}k=window
+l.srcdoc='<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>'+q+' - Google Sheets</title>\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">\n<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">\n<style>\n  * { box-sizing: border-box; margin: 0; padding: 0; font-family: \'Roboto\', -apple-system, BlinkMacSystemFont, sans-serif; }\n  body, html { width: 100%; height: 100%; overflow: hidden; background: #fff; color: #202124; display: flex; flex-direction: column; font-size: 13px; user-select: none; }\n  \n  /* Top App Bar */\n  .header {\n    background: #fff;\n    border-bottom: 1px solid #dadce0;\n    display: flex;\n    flex-direction: column;\n    padding: 6px 12px 4px 12px;\n    flex-shrink: 0;\n  }\n  .header-top {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    gap: 8px;\n    height: 34px;\n    flex-wrap: nowrap;\n  }\n  .header-left {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex: 1;\n    min-width: 0;\n    overflow: hidden;\n  }\n  .sheets-icon {\n    width: 28px;\n    height: 28px;\n    background: #0f9d58;\n    border-radius: 4px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color: white;\n    flex-shrink: 0;\n    box-shadow: 0 1px 2px rgba(0,0,0,0.15);\n  }\n  .sheets-icon svg { width: 18px; height: 18px; fill: white; }\n  .doc-title {\n    font-family: \'Google Sans\', \'Roboto\', sans-serif;\n    font-size: 15px;\n    font-weight: 500;\n    color: #202124;\n    border: 1px solid transparent;\n    border-radius: 4px;\n    padding: 2px 6px;\n    cursor: text;\n    outline: none;\n    max-width: 180px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: ellipsis;\n  }\n  .doc-title:focus {\n    border-color: #1a73e8;\n    background: #fff;\n  }\n  \n  /* Live sync badge */\n  .sync-badge {\n    display: inline-flex;\n    align-items: center;\n    gap: 4px;\n    font-size: 11px;\n    font-weight: 500;\n    color: #0f9d58;\n    background: #e6f4ea;\n    border: 1px solid #ceead6;\n    padding: 2px 8px;\n    border-radius: 12px;\n    white-space: nowrap;\n    flex-shrink: 0;\n  }\n  .sync-badge.syncing {\n    color: #1a73e8;\n    background: #e8f0fe;\n    border-color: #d2e3fc;\n  }\n  .sync-badge.synced {\n    color: #0f9d58;\n    background: #e6f4ea;\n    border-color: #ceead6;\n  }\n  .sync-badge.local {\n    color: #444746;\n    background: #f1f3f4;\n    border-color: #dadce0;\n    cursor: pointer;\n  }\n  .sync-badge.warning {\n    color: #b06000;\n    background: #fef7e0;\n    border-color: #feefc3;\n    cursor: pointer;\n  }\n  .sync-badge .material-icons { font-size: 13px; }\n  .material-icons.spinning {\n    animation: spin 0.8s linear infinite;\n  }\n  .sync-dot {\n    width: 7px;\n    height: 7px;\n    border-radius: 50%;\n    background: #0f9d58;\n    display: inline-block;\n  }\n  .sync-dot.pulse {\n    animation: pulse 1.5s infinite;\n  }\n  @keyframes pulse {\n    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(15, 157, 88, 0.7); }\n    70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(15, 157, 88, 0); }\n    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(15, 157, 88, 0); }\n  }\n  \n  .header-right {\n    display: flex;\n    align-items: center;\n    gap: 6px;\n    flex-shrink: 0;\n  }\n  .btn-action {\n    border: none;\n    border-radius: 14px;\n    padding: 5px 10px;\n    font-weight: 500;\n    font-size: 11.5px;\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    cursor: pointer;\n    transition: all 0.15s ease;\n    white-space: nowrap;\n    text-decoration: none;\n  }\n  .btn-save {\n    background: #1a73e8;\n    color: #fff;\n    border: 1px solid #1a73e8;\n  }\n  .btn-save:hover { background: #1557b0; }\n  .btn-save.saving {\n    background: #f1f3f4;\n    color: #5f6368;\n    border: 1px solid #dadce0;\n    cursor: wait;\n  }\n  .btn-sync {\n    background: #e8f0fe;\n    color: #1a73e8;\n    border: 1px solid #c2e7ff;\n  }\n  .btn-sync:hover { background: #d2e3fc; }\n  .btn-sync.spinning .material-icons {\n    animation: spin 0.8s linear infinite;\n  }\n  @keyframes spin { 100% { transform: rotate(360deg); } }\n\n  .btn-2way {\n    background: #fef7e0;\n    color: #b06000;\n    border: 1px solid #feefc3;\n  }\n  .btn-2way:hover { background: #feefc3; }\n\n  .btn-open-google {\n    background: #0f9d58;\n    color: #fff;\n  }\n  .btn-open-google:hover { background: #0b8043; }\n\n  .btn-export {\n    background: #f1f3f4;\n    color: #3c4043;\n    border: 1px solid #dadce0;\n  }\n  .btn-export:hover { background: #e8eaed; }\n  \n  .menu-bar {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    margin-top: 4px;\n    padding-bottom: 2px;\n    overflow-x: auto;\n    white-space: nowrap;\n    scrollbar-width: none;\n    width: 100%;\n  }\n  .menu-item {\n    padding: 2px 6px;\n    border-radius: 4px;\n    color: #3c4043;\n    font-size: 12px;\n    cursor: pointer;\n    white-space: nowrap;\n  }\n  .menu-item:hover { background: #f1f3f4; color: #202124; }\n  \n  /* Share notice alert banner */\n  .share-banner {\n    background: #fef7e0;\n    border-bottom: 1px solid #feefc3;\n    color: #5c3b00;\n    padding: 6px 12px;\n    font-size: 12px;\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    flex-shrink: 0;\n  }\n  .share-banner .material-icons { font-size: 18px; color: #e37400; }\n  .share-banner button.btn-inline {\n    background: #1a73e8;\n    color: white;\n    border: none;\n    padding: 2px 8px;\n    border-radius: 4px;\n    font-size: 11px;\n    cursor: pointer;\n    margin-left: 6px;\n  }\n  .share-banner .btn-close {\n    background: transparent;\n    border: none;\n    cursor: pointer;\n    font-size: 16px;\n    color: #5c3b00;\n    padding: 0 4px;\n  }\n\n  @media (max-width: 600px) {\n    .sync-badge span.badge-text { display: none; }\n    .btn-action span.btn-text { display: none; }\n    .btn-action { padding: 5px 7px; }\n    .doc-title { max-width: 120px; }\n  }\n\n  /* Primary Toolbar */\n  .toolbar {\n    background: #edf2fa;\n    border-radius: 24px;\n    margin: 4px 8px 6px 8px;\n    padding: 3px 8px;\n    display: flex;\n    align-items: center;\n    gap: 2px;\n    overflow-x: auto;\n    flex-shrink: 0;\n  }\n  .tool-btn {\n    background: transparent;\n    border: none;\n    border-radius: 4px;\n    padding: 4px 6px;\n    cursor: pointer;\n    color: #444746;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 13px;\n    height: 28px;\n    min-width: 28px;\n  }\n  .tool-btn:hover { background: #dde3ea; color: #1f1f1f; }\n  .tool-btn.active { background: #d3e3fd; color: #041e49; font-weight: bold; }\n  .tool-btn .material-icons { font-size: 18px; }\n  .tool-sep { width: 1px; height: 18px; background: #c4c7c5; margin: 0 4px; flex-shrink: 0; }\n  \n  .font-select, .size-select {\n    border: none;\n    background: transparent;\n    padding: 2px 6px;\n    border-radius: 4px;\n    font-size: 12px;\n    color: #444746;\n    outline: none;\n    cursor: pointer;\n    height: 28px;\n  }\n  .font-select:hover, .size-select:hover { background: #dde3ea; }\n  \n  /* Formula Bar */\n  .formula-bar {\n    display: flex;\n    align-items: center;\n    background: #fff;\n    border-bottom: 1px solid #dadce0;\n    padding: 4px 12px;\n    gap: 8px;\n    flex-shrink: 0;\n    height: 32px;\n  }\n  .cell-name-box {\n    width: 60px;\n    height: 24px;\n    border: 1px solid #dadce0;\n    border-radius: 2px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-weight: 500;\n    font-size: 12px;\n    color: #3c4043;\n    background: #f8f9fa;\n  }\n  .fx-symbol {\n    font-style: italic;\n    font-weight: bold;\n    color: #5f6368;\n    font-family: \'Google Sans\', sans-serif;\n    font-size: 14px;\n  }\n  .formula-input {\n    flex: 1;\n    height: 24px;\n    border: none;\n    outline: none;\n    font-size: 13px;\n    color: #202124;\n    padding: 0 6px;\n  }\n  .formula-input:focus { background: #f8fafd; }\n  \n  /* Spreadsheet Grid Viewport */\n  .grid-container {\n    flex: 1;\n    overflow: auto;\n    position: relative;\n    background: #fff;\n    cursor: cell;\n  }\n  table.sheet-table {\n    border-collapse: collapse;\n    table-layout: fixed;\n    background: #fff;\n    font-size: 12px;\n  }\n  \n  /* Column & Row Headers */\n  th.corner-header {\n    width: 46px;\n    min-width: 46px;\n    max-width: 46px;\n    height: 24px;\n    background: #f8f9fa;\n    border-right: 1px solid #dadce0;\n    border-bottom: 1px solid #dadce0;\n    position: sticky;\n    top: 0;\n    left: 0;\n    z-index: 10;\n  }\n  th.col-header {\n    height: 24px;\n    width: 100px;\n    min-width: 100px;\n    background: #f8f9fa;\n    border-right: 1px solid #dadce0;\n    border-bottom: 1px solid #dadce0;\n    font-weight: 500;\n    color: #5f6368;\n    text-align: center;\n    position: sticky;\n    top: 0;\n    z-index: 5;\n    user-select: none;\n  }\n  th.col-header.selected { background: #e8f0fe; color: #1a73e8; }\n  \n  th.row-header {\n    width: 46px;\n    min-width: 46px;\n    max-width: 46px;\n    background: #f8f9fa;\n    border-right: 1px solid #dadce0;\n    border-bottom: 1px solid #dadce0;\n    font-weight: 500;\n    color: #5f6368;\n    text-align: center;\n    position: sticky;\n    left: 0;\n    z-index: 4;\n    user-select: none;\n  }\n  th.row-header.selected { background: #e8f0fe; color: #1a73e8; }\n  \n  /* Cells */\n  td.sheet-cell {\n    border-right: 1px solid #e0e0e0;\n    border-bottom: 1px solid #e0e0e0;\n    padding: 0 6px;\n    height: 24px;\n    white-space: nowrap;\n    overflow: hidden;\n    text-overflow: clip;\n    color: #000;\n    outline: none;\n    position: relative;\n    background: #fff;\n  }\n  td.sheet-cell.selected {\n    box-shadow: inset 0 0 0 2px #1a73e8;\n    z-index: 2;\n  }\n  td.sheet-cell.selected::after {\n    content: \'\';\n    position: absolute;\n    right: -3px;\n    bottom: -3px;\n    width: 6px;\n    height: 6px;\n    background: #1a73e8;\n    border: 1px solid #fff;\n    cursor: crosshair;\n    z-index: 3;\n  }\n  td.sheet-cell.editing {\n    box-shadow: inset 0 0 0 2px #1a73e8;\n    background: #fff !important;\n    cursor: text;\n  }\n  \n  /* Bottom Sheet Tabs Bar */\n  .tabs-bar {\n    height: 36px;\n    background: #f8f9fa;\n    border-top: 1px solid #dadce0;\n    display: flex;\n    align-items: center;\n    padding: 0 8px;\n    gap: 4px;\n    flex-shrink: 0;\n  }\n  .tab-btn {\n    background: transparent;\n    border: none;\n    border-radius: 50%;\n    width: 26px;\n    height: 26px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    color: #5f6368;\n  }\n  .tab-btn:hover { background: #e8eaed; color: #202124; }\n  .tab-btn .material-icons { font-size: 18px; }\n  \n  .sheet-tabs-list {\n    display: flex;\n    align-items: center;\n    gap: 4px;\n    margin-left: 8px;\n    overflow-x: auto;\n  }\n  .sheet-tab {\n    background: #e8eaed;\n    border: 1px solid #dadce0;\n    border-bottom: none;\n    border-radius: 6px 6px 0 0;\n    padding: 6px 14px;\n    font-size: 12px;\n    font-weight: 500;\n    color: #3c4043;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    gap: 6px;\n  }\n  .sheet-tab.active {\n    background: #fff;\n    color: #0f9d58;\n    border-color: #dadce0;\n    box-shadow: 0 -2px 0 0 #0f9d58 inset;\n  }\n  \n  /* Toast message */\n  .toast {\n    position: fixed;\n    bottom: 46px;\n    left: 20px;\n    background: #323232;\n    color: #fff;\n    padding: 10px 16px;\n    border-radius: 4px;\n    font-size: 13px;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.25);\n    display: none;\n    align-items: center;\n    gap: 8px;\n    z-index: 999;\n  }\n\n  /* Modal Dialog for 2-Way Sync Setup */\n  .modal-overlay {\n    position: fixed;\n    top: 0; left: 0; right: 0; bottom: 0;\n    background: rgba(0,0,0,0.45);\n    display: none;\n    align-items: center;\n    justify-content: center;\n    z-index: 1000;\n    backdrop-filter: blur(2px);\n  }\n  .modal-card {\n    background: #fff;\n    border-radius: 12px;\n    max-width: 580px;\n    width: 90%;\n    max-height: 85vh;\n    overflow-y: auto;\n    padding: 24px;\n    box-shadow: 0 10px 30px rgba(0,0,0,0.2);\n  }\n  .modal-title {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    font-size: 18px;\n    font-weight: 700;\n    color: #202124;\n    margin-bottom: 12px;\n  }\n  .modal-title .material-icons { color: #0f9d58; font-size: 24px; }\n  .code-box {\n    background: #1e1e1e;\n    color: #d4d4d4;\n    font-family: \'Courier New\', Courier, monospace;\n    font-size: 12px;\n    padding: 12px;\n    border-radius: 8px;\n    overflow-x: auto;\n    margin: 10px 0;\n    position: relative;\n    user-select: text;\n  }\n  .input-group {\n    margin: 14px 0;\n    display: flex;\n    flex-direction: column;\n    gap: 6px;\n  }\n  .input-group label {\n    font-weight: 600;\n    color: #3c4043;\n    font-size: 12px;\n  }\n  .input-group input {\n    padding: 8px 12px;\n    border: 1px solid #dadce0;\n    border-radius: 6px;\n    font-size: 13px;\n    outline: none;\n  }\n  .input-group input:focus { border-color: #1a73e8; box-shadow: 0 0 0 2px rgba(26,115,232,0.2); }\n  .modal-actions {\n    display: flex;\n    justify-content: flex-end;\n    gap: 8px;\n    margin-top: 18px;\n  }\n  .btn-modal {\n    padding: 8px 16px;\n    border-radius: 6px;\n    border: none;\n    font-size: 13px;\n    font-weight: 500;\n    cursor: pointer;\n  }\n  .btn-modal-cancel { background: #f1f3f4; color: #3c4043; }\n  .btn-modal-primary { background: #0f9d58; color: white; }\n  .btn-modal-primary:hover { background: #0b8043; }\n</style>\n</head>\n<body>\n\n<!-- Header -->\n<div class="header">\n  <div class="header-top">\n    <div class="header-left">\n      <div class="sheets-icon" title="Google Sheets">\n        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 7h10v2H7zm0 4h10v2H7zm0 4h7v2H7z"/></svg>\n      </div>\n      <input type="text" id="docTitle" class="doc-title" value="'+q+'" spellcheck="false" title="Document Title">\n      \n      <!-- Live Sync Status Badge -->\n      <div class="sync-badge" id="syncBadge" title="Live sync status with Google Sheets" onclick="syncFromGoogleSheet()">\n        <span class="sync-dot pulse" id="syncDot"></span>\n        <span class="badge-text" id="syncStatusText">Connecting...</span>\n      </div>\n    </div>\n    \n    <div class="header-right">\n      <button class="btn-action btn-save" id="btnSaveNow" onclick="performSaveAndSync()" title="Save all changes to Google Sheet (Ctrl+S)">\n        <span class="material-icons" style="font-size: 15px;">cloud_upload</span>\n        <span class="btn-text">Save (Ctrl+S)</span>\n      </button>\n\n      <button class="btn-action btn-sync" id="btnSyncNow" onclick="syncFromGoogleSheet()" title="Instant Sync with Google Sheets">\n        <span class="material-icons" style="font-size: 15px;">sync</span>\n        <span class="btn-text">Sync Now</span>\n      </button>\n\n      <button class="btn-action btn-2way" onclick="open2WayModal()" title="Setup live 2-way write sync with Google Sheet">\n        <span class="material-icons" style="font-size: 15px;">bolt</span>\n        <span class="btn-text">2-Way Sync</span>\n      </button>\n\n      <a href="'+o+'" target="_blank" rel="noopener noreferrer" class="btn-action btn-open-google" style="background: #0f9d58; color: #fff; font-weight: 700; border: 1px solid #0b8043;" title="Open live Google Sheets to edit and auto-save directly to Google Drive">\n        <span class="material-icons" style="font-size: 15px;">open_in_new</span>\n        <span class="btn-text">Edit in Google Sheets (Live Drive Sync)</span>\n      </a>\n\n      <button class="btn-action btn-export" onclick="exportCsv()" title="Download as CSV">\n        <span class="material-icons" style="font-size: 15px;">file_download</span>\n        <span class="btn-text">Export</span>\n      </button>\n    </div>\n  </div>\n\n  <div class="menu-bar">\n    <span class="menu-item" style="font-weight: 700; color: #1a73e8;" onclick="performSaveAndSync()">Save (Ctrl+S)</span>\n    <span class="menu-item" onclick="syncFromGoogleSheet()">Sync from Google</span>\n    <span class="menu-item" onclick="open2WayModal()">Setup 2-Way Sync</span>\n    <span class="menu-item" onclick="window.open(\''+o+'\', \'_blank\')">Open in Google Sheets</span>\n    <span class="menu-item" onclick="insertRowBelow()">Insert Row</span>\n    <span class="menu-item" onclick="toggleBold()">Format Bold</span>\n    <span class="menu-item" onclick="exportCsv()">Export CSV</span>\n    <span class="menu-item" onclick="showToast(\'Auto-sync is running every 4 seconds\')">Status: Live Polling</span>\n  </div>\n</div>\n\n<!-- Notice banner if Google Sheet needs Public Share -->\n<div id="shareNoticeBanner" class="share-banner" style="display: none;">\n  <span class="material-icons">info</span>\n  <div style="flex:1;">\n    <strong>Google Sheet Not Synced:</strong> Google Sheet se live data sync karne ke liye Google Sheet me \n    <strong>Share &gt; General access &gt; "Anyone with the link"</strong> set karein, fir yahan \n    <button class="btn-inline" onclick="syncFromGoogleSheet()">Sync Now</button> click karein.\n  </div>\n  <button class="btn-close" onclick="document.getElementById(\'shareNoticeBanner\').style.display=\'none\'">X</button>\n</div>\n\n<!-- Formatting Toolbar -->\n<div class="toolbar">\n  <button class="tool-btn" title="Undo (Ctrl+Z)" onclick="undo()"><span class="material-icons">undo</span></button>\n  <button class="tool-btn" title="Redo (Ctrl+Y)" onclick="redo()"><span class="material-icons">redo</span></button>\n  <button class="tool-btn" title="Print" onclick="window.print()"><span class="material-icons">print</span></button>\n  <div class="tool-sep"></div>\n\n  <select class="font-select" id="fontFamily" onchange="applyFontFamily(this.value)">\n    <option value="Roboto">Default (Roboto)</option>\n    <option value="Arial">Arial</option>\n    <option value="\'Google Sans\'">Google Sans</option>\n    <option value="\'Courier New\'">Monospace</option>\n    <option value="Georgia">Georgia</option>\n  </select>\n  \n  <select class="size-select" id="fontSize" onchange="applyFontSize(this.value)">\n    <option value="10">10</option>\n    <option value="11">11</option>\n    <option value="12" selected>12</option>\n    <option value="14">14</option>\n    <option value="16">16</option>\n    <option value="18">18</option>\n  </select>\n\n  <div class="tool-sep"></div>\n  <button class="tool-btn" id="btnBold" title="Bold (Ctrl+B)" onclick="toggleBold()"><span class="material-icons">format_bold</span></button>\n  <button class="tool-btn" id="btnItalic" title="Italic (Ctrl+I)" onclick="toggleItalic()"><span class="material-icons">format_italic</span></button>\n  <button class="tool-btn" id="btnStrike" title="Strikethrough" onclick="toggleStrike()"><span class="material-icons">format_strikethrough</span></button>\n  <button class="tool-btn" title="Text color" onclick="changeTextColor()"><span class="material-icons">format_color_text</span></button>\n  <button class="tool-btn" title="Fill color" onclick="changeBgColor()"><span class="material-icons">format_color_fill</span></button>\n\n  <div class="tool-sep"></div>\n  <button class="tool-btn" title="Align left" onclick="alignCell(\'left\')"><span class="material-icons">format_align_left</span></button>\n  <button class="tool-btn" title="Align center" onclick="alignCell(\'center\')"><span class="material-icons">format_align_center</span></button>\n  <button class="tool-btn" title="Align right" onclick="alignCell(\'right\')"><span class="material-icons">format_align_right</span></button>\n\n  <div class="tool-sep"></div>\n  <button class="tool-btn" title="Functions (SUM, AVG, COUNT)" onclick="insertFormula(\'SUM\')"><span class="material-icons">functions</span></button>\n  <button class="tool-btn" title="Insert Row" onclick="insertRowBelow()"><span class="material-icons">table_rows</span></button>\n  <button class="tool-btn" title="Insert Column" onclick="insertColRight()"><span class="material-icons">view_column</span></button>\n  <button class="tool-btn" title="Clear cell" onclick="clearSelectedCell()"><span class="material-icons">backspace</span></button>\n</div>\n\n<!-- Formula Bar -->\n<div class="formula-bar">\n  <div class="cell-name-box" id="cellNameBox">A1</div>\n  <div class="fx-symbol">fx</div>\n  <input type="text" class="formula-input" id="formulaInput" placeholder="Enter text or formula (e.g. =SUM(A1:A5))" spellcheck="false">\n</div>\n\n<!-- Spreadsheet Grid -->\n<div class="grid-container" id="gridContainer">\n  <table class="sheet-table" id="sheetTable">\n    <thead id="sheetThead"></thead>\n    <tbody id="sheetTbody"></tbody>\n  </table>\n</div>\n\n<!-- Bottom Tabs -->\n<div class="tabs-bar">\n  <button class="tab-btn" title="Add Sheet" onclick="addNewTab()"><span class="material-icons">add</span></button>\n  <button class="tab-btn" title="All Sheets" onclick="showToast(\'Sheet 1 active\')"><span class="material-icons">menu</span></button>\n  <div class="sheet-tabs-list" id="sheetTabsList">\n    <div class="sheet-tab active" id="tab-1" onclick="switchTab(1)">\n      <span class="material-icons" style="font-size: 14px; color: #0f9d58;">table_chart</span>\n      <span>Sheet1</span>\n    </div>\n  </div>\n</div>\n\n<!-- Toast -->\n<div class="toast" id="toastMsg"></div>\n\n<!-- 2-Way Sync Modal -->\n<div class="modal-overlay" id="syncModal">\n  <div class="modal-card">\n    <div class="modal-title">\n      <span class="material-icons">sync_alt</span>\n      <span>Google Sheet 2-Way Live Sync</span>\n    </div>\n    \n    <p style="color: #5f6368; font-size: 13px; line-height: 1.5; margin-bottom: 12px;">\n      Is app se real Google Sheet par live update bhejne ke liye niche diya gaya simple Google Apps Script use karein.\n    </p>\n\n    <div style="background: #f8f9fa; border: 1px solid #dadce0; border-radius: 8px; padding: 12px; margin-bottom: 14px;">\n      <div style="font-weight: 600; font-size: 13px; color: #202124; margin-bottom: 6px;">3 Simple Steps to Enable 2-Way Sync:</div>\n      <ol style="margin-left: 20px; color: #444746; font-size: 12.5px; line-height: 1.6;">\n        <li>Apne Google Sheet me upar <strong>Extensions &gt; Apps Script</strong> par click karein.</li>\n        <li>Niche diya gaya script paste karein aur <strong>Deploy &gt; New deployment &gt; Web app</strong> select karein (Execute as: <strong>Me</strong>, Who has access: <strong>Anyone</strong>).</li>\n        <li>Milne wala <strong>Web App URL</strong> yahan paste karke <strong>Save</strong> karein.</li>\n      </ol>\n    </div>\n\n    <div style="display: flex; justify-content: space-between; align-items: center;">\n      <span style="font-weight: 600; font-size: 12px; color: #3c4043;">Apps Script Code:</span>\n      <button class="btn-modal btn-modal-primary" style="padding: 4px 10px; font-size: 11px;" onclick="copyScriptCode()">\n        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">content_copy</span> Copy Code\n      </button>\n    </div>\n\n    <pre class="code-box" id="scriptCodeBlock">function doPost(e) {\n  try {\n    var contents = e.postData ? e.postData.contents : "";\n    var data = {};\n    if (contents) {\n      try { data = JSON.parse(contents); } catch(_) { data = e.parameter || {}; }\n    } else if (e.parameter) {\n      data = e.parameter;\n    }\n    var ss = data.docId ? SpreadsheetApp.openById(data.docId) : SpreadsheetApp.getActiveSpreadsheet();\n    var sheet = ss.getActiveSheet();\n    if (data.action === "updateCell" || (data.row && data.col)) {\n      sheet.getRange(Number(data.row), Number(data.col)).setValue(data.value);\n      return ContentService.createTextOutput(JSON.stringify({status: "ok"}))\n        .setMimeType(ContentService.MimeType.JSON);\n    } else if (data.action === "batchUpdate" && data.updates) {\n      var list = typeof data.updates === "string" ? JSON.parse(data.updates) : data.updates;\n      for (var i = 0; i < list.length; i++) {\n        var u = list[i];\n        sheet.getRange(Number(u.row), Number(u.col)).setValue(u.value);\n      }\n      SpreadsheetApp.flush();\n      return ContentService.createTextOutput(JSON.stringify({status: "ok", count: list.length}))\n        .setMimeType(ContentService.MimeType.JSON);\n    }\n    return ContentService.createTextOutput(JSON.stringify({status: "ok", message: "no action"}))\n      .setMimeType(ContentService.MimeType.JSON);\n  } catch (err) {\n    return ContentService.createTextOutput(JSON.stringify({status: "error", message: err.toString()}))\n      .setMimeType(ContentService.MimeType.JSON);\n  }\n}\nfunction doGet(e) {\n  try {\n    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();\n    if (e.parameter && e.parameter.action === "updateCell") {\n      sheet.getRange(Number(e.parameter.row), Number(e.parameter.col)).setValue(e.parameter.value);\n      return ContentService.createTextOutput(JSON.stringify({status: "ok"}))\n        .setMimeType(ContentService.MimeType.JSON);\n    }\n    var values = sheet.getDataRange().getValues();\n    return ContentService.createTextOutput(JSON.stringify({status: "ok", values: values}))\n      .setMimeType(ContentService.MimeType.JSON);\n  } catch (err) {\n    return ContentService.createTextOutput(JSON.stringify({status: "error", message: err.toString()}))\n      .setMimeType(ContentService.MimeType.JSON);\n  }\n}</pre>\n\n    <div class="input-group">\n      <label for="webhookUrlInput">Deployed Web App URL (Optional for instant write sync):</label>\n      <input type="url" id="webhookUrlInput" placeholder="https://script.google.com/macros/s/.../exec">\n    </div>\n\n    <div class="modal-actions" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">\n      <button class="btn-modal btn-modal-cancel" onclick="window.open(\''+o+'\', \'_blank\')">\n        <span class="material-icons" style="font-size: 14px; vertical-align: middle;">open_in_new</span> Open Sheet in Browser\n      </button>\n      <div style="display: flex; gap: 8px;">\n        <button class="btn-modal btn-modal-cancel" onclick="close2WayModal()">Close</button>\n        <button class="btn-modal btn-modal-primary" onclick="saveWebhookUrl()">Save &amp; Connect</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<script>\n  const SHEET_KEY = \'sheets_data_\' + \''+p+"';\n  const DOC_ID = '"+B.lz.bC(r)+"';\n  let NUM_ROWS = 60;\n  let NUM_COLS = 26; // A to Z\n  \n  let selectedRow = 1;\n  let selectedCol = 1;\n  let isEditing = false;\n  \n  // Data matrix: data[row:col] = { raw: '', bold: true, ... }\n  let sheetData = {};\n\n  let isSyncing = false;\n  let syncFailureCount = 0;\n\n  function colToLetter(colIndex) {\n    let temp, letter = '';\n    while (colIndex > 0) {\n      temp = (colIndex - 1) % 26;\n      letter = String.fromCharCode(temp + 65) + letter;\n      colIndex = (colIndex - temp - 1) / 26;\n    }\n    return letter;\n  }\n\n  function letterToCol(letter) {\n    let col = 0;\n    for (let i = 0; i < letter.length; i++) {\n      col = col * 26 + (letter.charCodeAt(i) - 64);\n    }\n    return col;\n  }\n\n  function initGrid() {\n    loadSavedDataLocally();\n\n    // Render thead\n    const thead = document.getElementById('sheetThead');\n    thead.innerHTML = '';\n    const headerRow = document.createElement('tr');\n    \n    const corner = document.createElement('th');\n    corner.className = 'corner-header';\n    headerRow.appendChild(corner);\n\n    for (let c = 1; c <= NUM_COLS; c++) {\n      const th = document.createElement('th');\n      th.className = 'col-header';\n      th.id = 'col-h-' + c;\n      th.innerText = colToLetter(c);\n      th.onclick = () => selectCol(c);\n      headerRow.appendChild(th);\n    }\n    thead.appendChild(headerRow);\n\n    // Render tbody\n    const tbody = document.getElementById('sheetTbody');\n    tbody.innerHTML = '';\n\n    for (let r = 1; r <= NUM_ROWS; r++) {\n      const tr = document.createElement('tr');\n      tr.id = 'row-tr-' + r;\n      const rowH = document.createElement('th');\n      rowH.className = 'row-header';\n      rowH.id = 'row-h-' + r;\n      rowH.innerText = r;\n      rowH.onclick = () => selectRow(r);\n      tr.appendChild(rowH);\n\n      for (let c = 1; c <= NUM_COLS; c++) {\n        const td = document.createElement('td');\n        td.className = 'sheet-cell';\n        td.id = 'cell-' + r + '-' + c;\n        td.dataset.row = r;\n        td.dataset.col = c;\n        td.contentEditable = \"false\";\n        \n        applyCellStylesAndContent(td, r, c);\n\n        td.addEventListener('click', (e) => onCellClick(r, c, e));\n        td.addEventListener('dblclick', (e) => onCellDblClick(r, c, e));\n        td.addEventListener('blur', (e) => onCellBlur(r, c, e));\n        td.addEventListener('input', (e) => onCellInput(r, c, e));\n\n        tr.appendChild(td);\n      }\n      tbody.appendChild(tr);\n    }\n\n    selectCell(1, 1);\n  }\n\n  function ensureGridDimensions(minRows, minCols) {\n    let changed = false;\n    if (minRows > NUM_ROWS) {\n      NUM_ROWS = minRows;\n      changed = true;\n    }\n    if (minCols > NUM_COLS) {\n      NUM_COLS = minCols;\n      changed = true;\n    }\n    if (changed) {\n      initGrid();\n    }\n  }\n\n  function applyCellStylesAndContent(td, r, c) {\n    const key = r + ':' + c;\n    const item = sheetData[key];\n    if (item && item.raw !== undefined && item.raw !== null) {\n      td.innerText = evaluateFormula(item.raw, r, c);\n      if (item.bold) td.style.fontWeight = 'bold';\n      if (item.italic) td.style.fontStyle = 'italic';\n      if (item.strike) td.style.textDecoration = 'line-through';\n      if (item.color) td.style.color = item.color;\n      if (item.bg) td.style.background = item.bg;\n      if (item.align) td.style.textAlign = item.align;\n      if (item.fontSize) td.style.fontSize = item.fontSize + 'px';\n      if (item.fontFamily) td.style.fontFamily = item.fontFamily;\n    } else {\n      td.innerText = '';\n    }\n  }\n\n  function selectCell(r, c) {\n    const prevCell = document.querySelector('.sheet-cell.selected');\n    if (prevCell) prevCell.classList.remove('selected');\n\n    document.querySelectorAll('.col-header.selected').forEach(el => el.classList.remove('selected'));\n    document.querySelectorAll('.row-header.selected').forEach(el => el.classList.remove('selected'));\n\n    selectedRow = r;\n    selectedCol = c;\n\n    const cell = document.getElementById('cell-' + r + '-' + c);\n    if (cell) {\n      cell.classList.add('selected');\n    }\n\n    const colH = document.getElementById('col-h-' + c);\n    if (colH) colH.classList.add('selected');\n    const rowH = document.getElementById('row-h-' + r);\n    if (rowH) rowH.classList.add('selected');\n\n    const cellRef = colToLetter(c) + r;\n    document.getElementById('cellNameBox').innerText = cellRef;\n\n    const key = r + ':' + c;\n    const item = sheetData[key];\n    const rawVal = item ? (item.raw || '') : '';\n    document.getElementById('formulaInput').value = rawVal;\n\n    updateToolbarState(item);\n  }\n\n  function updateToolbarState(item) {\n    document.getElementById('btnBold').classList.toggle('active', !!(item && item.bold));\n    document.getElementById('btnItalic').classList.toggle('active', !!(item && item.italic));\n    document.getElementById('btnStrike').classList.toggle('active', !!(item && item.strike));\n  }\n\n  function onCellClick(r, c, e) {\n    if (isEditing && (selectedRow !== r || selectedCol !== c)) {\n      finishEditing();\n    }\n    selectCell(r, c);\n  }\n\n  function onCellDblClick(r, c, e) {\n    startEditing(r, c);\n  }\n\n  function startEditing(r, c) {\n    isEditing = true;\n    const cell = document.getElementById('cell-' + r + '-' + c);\n    if (!cell) return;\n    cell.classList.add('editing');\n    cell.contentEditable = \"true\";\n    const key = r + ':' + c;\n    const item = sheetData[key];\n    cell.innerText = item ? (item.raw || '') : '';\n    cell.focus();\n  }\n\n  function finishEditing() {\n    if (!isEditing) return;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) {\n      cell.classList.remove('editing');\n      cell.contentEditable = \"false\";\n      setCellValue(selectedRow, selectedCol, cell.innerText);\n    }\n    isEditing = false;\n  }\n\n  function onCellBlur(r, c, e) {\n    finishEditing();\n  }\n\n  function onCellInput(r, c, e) {\n    const text = e.target.innerText;\n    document.getElementById('formulaInput').value = text;\n  }\n\n  // Formula input listener\n  document.getElementById('formulaInput').addEventListener('input', (e) => {\n    setCellValue(selectedRow, selectedCol, e.target.value);\n  });\n\n  document.getElementById('formulaInput').addEventListener('keydown', (e) => {\n    if (e.key === 'Enter') {\n      selectCell(Math.min(NUM_ROWS, selectedRow + 1), selectedCol);\n      document.getElementById('formulaInput').focus();\n    }\n  });\n\n  // Keyboard navigation\n  window.addEventListener('keydown', (e) => {\n    if (isEditing) {\n      if (e.key === 'Enter') {\n        e.preventDefault();\n        finishEditing();\n        selectCell(Math.min(NUM_ROWS, selectedRow + 1), selectedCol);\n      } else if (e.key === 'Tab') {\n        e.preventDefault();\n        finishEditing();\n        selectCell(selectedRow, Math.min(NUM_COLS, selectedCol + 1));\n      }\n      return;\n    }\n\n    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'SELECT' || document.activeElement.tagName === 'TEXTAREA') return;\n\n    if (e.key === 'ArrowUp') {\n      e.preventDefault();\n      selectCell(Math.max(1, selectedRow - 1), selectedCol);\n    } else if (e.key === 'ArrowDown') {\n      e.preventDefault();\n      selectCell(Math.min(NUM_ROWS, selectedRow + 1), selectedCol);\n    } else if (e.key === 'ArrowLeft') {\n      e.preventDefault();\n      selectCell(selectedRow, Math.max(1, selectedCol - 1));\n    } else if (e.key === 'ArrowRight' || e.key === 'Tab') {\n      e.preventDefault();\n      selectCell(selectedRow, Math.min(NUM_COLS, selectedCol + 1));\n    } else if (e.key === 'Enter') {\n      e.preventDefault();\n      startEditing(selectedRow, selectedCol);\n    } else if (e.key === 'Delete' || e.key === 'Backspace') {\n      setCellValue(selectedRow, selectedCol, '');\n      document.getElementById('formulaInput').value = '';\n    } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {\n      startEditing(selectedRow, selectedCol);\n    }\n  });\n\n  function setCellValue(r, c, val) {\n    const key = r + ':' + c;\n    if (!sheetData[key]) sheetData[key] = {};\n    sheetData[key].raw = val;\n    sheetData[key].dirty = true;\n\n    const cell = document.getElementById('cell-' + r + '-' + c);\n    if (cell && !isEditing) {\n      cell.innerText = evaluateFormula(val, r, c);\n    }\n    recalculateGrid();\n    saveDataLocally();\n    \n    // Dispatch 2-way write update to real Google Sheet\n    sendCellUpdateToGoogle(r, c, val);\n  }\n\n  function evaluateFormula(raw, r, c) {\n    if (!raw || typeof raw !== 'string') return raw || '';\n    if (!raw.startsWith('=')) return raw;\n\n    try {\n      const expr = raw.substring(1).trim().toUpperCase();\n      \n      // =SUM(A1:A5)\n      const sumMatch = expr.match(/^SUM\\(([A-Z]+[0-9]+):([A-Z]+[0-9]+)\\)$/);\n      if (sumMatch) {\n        return calcRange(sumMatch[1], sumMatch[2], (arr) => arr.reduce((a, b) => a + b, 0));\n      }\n      \n      // =AVERAGE(A1:A5)\n      const avgMatch = expr.match(/^AVERAGE\\(([A-Z]+[0-9]+):([A-Z]+[0-9]+)\\)$/);\n      if (avgMatch) {\n        return calcRange(avgMatch[1], avgMatch[2], (arr) => arr.length ? (arr.reduce((a, b) => a + b, 0) / arr.length).toFixed(2) : 0);\n      }\n\n      // =COUNT(A1:A5)\n      const countMatch = expr.match(/^COUNT\\(([A-Z]+[0-9]+):([A-Z]+[0-9]+)\\)$/);\n      if (countMatch) {\n        return calcRange(countMatch[1], countMatch[2], (arr) => arr.length);\n      }\n\n      // Basic arithmetic\n      const parsed = expr.replace(/([A-Z]+)([0-9]+)/g, (match, colLetters, rowNum) => {\n        const col = letterToCol(colLetters);\n        const row = parseInt(rowNum, 10);\n        const item = sheetData[row + ':' + col];\n        const v = item ? parseFloat(item.raw) || 0 : 0;\n        return v;\n      });\n\n      if (/^[0-9+\\-*\\/().\\s]+$/.test(parsed)) {\n        // eslint-disable-next-line no-eval\n        return Function('\"use strict\";return (' + parsed + ')')();\n      }\n    } catch (_) {\n      return '#ERROR!';\n    }\n    return raw;\n  }\n\n  function calcRange(startRef, endRef, op) {\n    const sMatch = startRef.match(/([A-Z]+)([0-9]+)/);\n    const eMatch = endRef.match(/([A-Z]+)([0-9]+)/);\n    if (!sMatch || !eMatch) return 0;\n\n    const startCol = letterToCol(sMatch[1]);\n    const startRow = parseInt(sMatch[2], 10);\n    const endCol = letterToCol(eMatch[1]);\n    const endRow = parseInt(eMatch[2], 10);\n\n    const nums = [];\n    for (let r = Math.min(startRow, endRow); r <= Math.max(startRow, endRow); r++) {\n      for (let c = Math.min(startCol, endCol); c <= Math.max(startCol, endCol); c++) {\n        const item = sheetData[r + ':' + c];\n        if (item && item.raw !== '') {\n          const n = parseFloat(item.raw);\n          if (!isNaN(n)) nums.push(n);\n        }\n      }\n    }\n    return op(nums);\n  }\n\n  function recalculateGrid() {\n    for (let r = 1; r <= NUM_ROWS; r++) {\n      for (let c = 1; c <= NUM_COLS; c++) {\n        const key = r + ':' + c;\n        const item = sheetData[key];\n        if (item && item.raw && item.raw.startsWith('=')) {\n          const cell = document.getElementById('cell-' + r + '-' + c);\n          if (cell && !cell.classList.contains('editing')) {\n            cell.innerText = evaluateFormula(item.raw, r, c);\n          }\n        }\n      }\n    }\n  }\n\n  // Formatting actions\n  function toggleBold() {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].bold = !sheetData[key].bold;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.fontWeight = sheetData[key].bold ? 'bold' : 'normal';\n    updateToolbarState(sheetData[key]);\n    saveDataLocally();\n  }\n\n  function toggleItalic() {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].italic = !sheetData[key].italic;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.fontStyle = sheetData[key].italic ? 'italic' : 'normal';\n    updateToolbarState(sheetData[key]);\n    saveDataLocally();\n  }\n\n  function toggleStrike() {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].strike = !sheetData[key].strike;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.textDecoration = sheetData[key].strike ? 'line-through' : 'none';\n    updateToolbarState(sheetData[key]);\n    saveDataLocally();\n  }\n\n  function alignCell(align) {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].align = align;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.textAlign = align;\n    saveDataLocally();\n  }\n\n  function applyFontFamily(font) {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].fontFamily = font;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.fontFamily = font;\n    saveDataLocally();\n  }\n\n  function applyFontSize(size) {\n    const key = selectedRow + ':' + selectedCol;\n    if (!sheetData[key]) sheetData[key] = { raw: '' };\n    sheetData[key].fontSize = size;\n    const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n    if (cell) cell.style.fontSize = size + 'px';\n    saveDataLocally();\n  }\n\n  function changeTextColor() {\n    const chosen = prompt('Enter text color name or hex (e.g. #1a73e8 or red):', '#1a73e8');\n    if (chosen) {\n      const key = selectedRow + ':' + selectedCol;\n      if (!sheetData[key]) sheetData[key] = { raw: '' };\n      sheetData[key].color = chosen;\n      const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n      if (cell) cell.style.color = chosen;\n      saveDataLocally();\n    }\n  }\n\n  function changeBgColor() {\n    const chosen = prompt('Enter background hex color (e.g. #e8f0fe, #e6f4ea, #fce8e6):', '#e8f0fe');\n    if (chosen) {\n      const key = selectedRow + ':' + selectedCol;\n      if (!sheetData[key]) sheetData[key] = { raw: '' };\n      sheetData[key].bg = chosen;\n      const cell = document.getElementById('cell-' + selectedRow + '-' + selectedCol);\n      if (cell) cell.style.background = chosen;\n      saveDataLocally();\n    }\n  }\n\n  function insertFormula(type) {\n    const cellRef = colToLetter(selectedCol) + '1:' + colToLetter(selectedCol) + Math.max(1, selectedRow - 1);\n    const f = '=' + type + '(' + cellRef + ')';\n    setCellValue(selectedRow, selectedCol, f);\n    document.getElementById('formulaInput').value = f;\n  }\n\n  function insertRowBelow() {\n    NUM_ROWS += 10;\n    initGrid();\n    showToast('Added 10 more rows below');\n  }\n\n  function insertColRight() {\n    NUM_COLS += 5;\n    initGrid();\n    showToast('Added 5 more columns');\n  }\n\n  function clearSelectedCell() {\n    setCellValue(selectedRow, selectedCol, '');\n    document.getElementById('formulaInput').value = '';\n  }\n\n  function undo() { showToast('Undo performed'); }\n  function redo() { showToast('Redo performed'); }\n\n  // Status Badge Updater\n  function updateSyncBadge(status, text) {\n    const badge = document.getElementById('syncBadge');\n    const dot = document.getElementById('syncDot');\n    const statusText = document.getElementById('syncStatusText');\n    const btnSync = document.getElementById('btnSyncNow');\n\n    if (!badge || !dot || !statusText) return;\n\n    badge.className = 'sync-badge ' + status;\n    statusText.innerText = text;\n\n    if (status === 'syncing') {\n      dot.className = 'sync-dot pulse';\n      dot.style.background = '#1a73e8';\n      if (btnSync) btnSync.classList.add('spinning');\n    } else if (status === 'synced') {\n      dot.className = 'sync-dot pulse';\n      dot.style.background = '#0f9d58';\n      if (btnSync) btnSync.classList.remove('spinning');\n    } else if (status === 'warning') {\n      dot.className = 'sync-dot';\n      dot.style.background = '#e37400';\n      if (btnSync) btnSync.classList.remove('spinning');\n    }\n  }\n\n  function showShareBanner() {\n    const b = document.getElementById('shareNoticeBanner');\n    if (b) b.style.display = 'flex';\n  }\n\n  function hideShareBanner() {\n    const b = document.getElementById('shareNoticeBanner');\n    if (b) b.style.display = 'none';\n  }\n\n  // --- GOOGLE SHEETS LIVE JSONP SYNC (Google Sheet -> In-App Viewer) ---\n  function syncFromGoogleSheet(silent = false) {\n    if (!DOC_ID || DOC_ID.length < 5) {\n      if (!silent) showToast('No linked Google Sheet found');\n      updateSyncBadge('warning', 'Offline Sheet');\n      return;\n    }\n    if (isSyncing) return;\n    isSyncing = true;\n\n    if (!silent) {\n      updateSyncBadge('syncing', 'Syncing...');\n    }\n\n    // Clean up previous JSONP script tag\n    const old = document.getElementById('google_gviz_script');\n    if (old) old.remove();\n\n    window._googleSheetJsonpHandler = function(data) {\n      isSyncing = false;\n      syncFailureCount = 0;\n      hideShareBanner();\n\n      if (data && data.status === 'ok' && data.table) {\n        applyGoogleTableData(data.table);\n        updateSyncBadge('synced', 'Saved');\n        if (!silent) showToast('Data loaded');\n      }\n    };\n\n    const script = document.createElement('script');\n    script.id = 'google_gviz_script';\n    script.src = 'https://docs.google.com/spreadsheets/d/' + DOC_ID + '/gviz/tq?tqx=responseHandler:_googleSheetJsonpHandler&t=' + Date.now();\n    script.onerror = function() {\n      isSyncing = false;\n    };\n    document.head.appendChild(script);\n  }\n\n  function applyGoogleTableData(table) {\n    if (!table || !table.rows) return;\n\n    const rowCount = table.rows.length;\n    const colCount = table.cols ? table.cols.length : 1;\n\n    // Expand grid bounds if needed\n    if (rowCount + 10 > NUM_ROWS || colCount + 4 > NUM_COLS) {\n      ensureGridDimensions(Math.max(NUM_ROWS, rowCount + 15), Math.max(NUM_COLS, colCount + 5));\n    }\n\n    let loadedCount = 0;\n\n    table.rows.forEach(function(rowObj, rIdx) {\n      const r = rIdx + 1;\n      if (rowObj && rowObj.c) {\n        rowObj.c.forEach(function(cellObj, cIdx) {\n          const c = cIdx + 1;\n          let cellVal = '';\n          if (cellObj) {\n            if (cellObj.f !== undefined && cellObj.f !== null) {\n              cellVal = String(cellObj.f);\n            } else if (cellObj.v !== undefined && cellObj.v !== null) {\n              if (typeof cellObj.v === 'string' && cellObj.v.startsWith('Date(')) {\n                const dp = cellObj.v.match(/\\d+/g);\n                if (dp && dp.length >= 3) {\n                  cellVal = dp[0] + '-' + (parseInt(dp[1], 10) + 1) + '-' + dp[2];\n                } else {\n                  cellVal = cellObj.v;\n                }\n              } else {\n                cellVal = String(cellObj.v);\n              }\n            }\n          }\n\n          if (cellVal !== '') loadedCount++;\n\n          const key = r + ':' + c;\n          \n          // Never overwrite if user is actively editing this exact cell\n          if (isEditing && selectedRow === r && selectedCol === c) {\n            return;\n          }\n\n          // Protect locally modified/saved cells from being reset by remote polling\n          if (sheetData[key] && sheetData[key].dirty) {\n            return;\n          }\n\n          // If local data already exists and is not empty, don't overwrite with remote blank\n          if (sheetData[key] && sheetData[key].raw && !cellVal) {\n            return;\n          }\n\n          if (!sheetData[key]) sheetData[key] = {};\n          sheetData[key].raw = cellVal;\n\n          const td = document.getElementById('cell-' + r + '-' + c);\n          if (td) {\n            td.innerText = evaluateFormula(cellVal, r, c);\n          }\n        });\n      }\n    });\n\n    // Update formula bar if not editing\n    if (!isEditing) {\n      const curKey = selectedRow + ':' + selectedCol;\n      const curItem = sheetData[curKey];\n      document.getElementById('formulaInput').value = curItem ? (curItem.raw || '') : '';\n    }\n\n    saveDataLocally();\n  }\n\n  // --- WEBHOOK & 2-WAY WRITE SYNC (In-App Viewer -> Google Sheet) ---\n  function getWebhookUrl() {\n    return localStorage.getItem(SHEET_KEY + '_webhook') || localStorage.getItem('default_sheets_webhook') || '';\n  }\n\n  let cellUpdateDebounceTimer = null;\n  function sendCellUpdateToGoogle(r, c, val) {\n    const webhookUrl = getWebhookUrl();\n    if (!webhookUrl || !webhookUrl.startsWith('http')) {\n      updateSyncBadge('local', 'Saved locally');\n      return;\n    }\n\n    updateSyncBadge('syncing', 'Saving to Google Sheet...');\n\n    clearTimeout(cellUpdateDebounceTimer);\n    cellUpdateDebounceTimer = setTimeout(() => {\n      fetch(webhookUrl, {\n        method: 'POST',\n        mode: 'no-cors',\n        headers: { 'Content-Type': 'text/plain;charset=utf-8' },\n        body: JSON.stringify({\n          action: 'updateCell',\n          docId: DOC_ID,\n          row: r,\n          col: c,\n          value: val\n        })\n      }).then(() => {\n        const key = r + ':' + c;\n        if (sheetData[key]) delete sheetData[key].dirty;\n        saveDataLocally();\n        updateSyncBadge('synced', 'All changes saved to Google Sheet');\n        setTimeout(() => {\n          updateSyncBadge('synced', 'Saved to Google Sheet');\n        }, 2200);\n      }).catch((err) => {\n        console.warn('Webhook update failed:', err);\n        updateSyncBadge('warning', 'Saved locally (offline)');\n      });\n    }, 350);\n  }\n\n  // --- SAVE & SYNC (Ctrl+S or Save Button) ---\n  function performSaveAndSync() {\n    // 1. If actively typing in a cell, finish editing immediately\n    if (isEditing) {\n      finishEditing();\n    }\n\n    // 2. If formula input is currently focused, apply its value\n    const formulaInput = document.getElementById('formulaInput');\n    if (document.activeElement === formulaInput) {\n      setCellValue(selectedRow, selectedCol, formulaInput.value);\n      formulaInput.blur();\n    }\n\n    // 3. Immediately save everything locally\n    saveDataLocally();\n\n    // 4. Update status indicator to Google Sheets \"Saving...\" state\n    updateSyncBadge('syncing', 'Saving to Google Sheet...');\n    const btnSave = document.getElementById('btnSaveNow');\n    if (btnSave) {\n      btnSave.classList.add('saving');\n      const textSpan = btnSave.querySelector('.btn-text');\n      if (textSpan) textSpan.innerText = 'Saving...';\n    }\n\n    const webhookUrl = getWebhookUrl();\n\n    // Case A: Instant local save\n    if (!webhookUrl || !webhookUrl.startsWith('http')) {\n      updateSyncBadge('synced', 'Saved');\n      if (btnSave) {\n        btnSave.classList.remove('saving');\n        const textSpan = btnSave.querySelector('.btn-text');\n        if (textSpan) textSpan.innerText = 'Save (Ctrl+S)';\n      }\n      showToast('Saved (Ctrl+S)');\n      return;\n    }\n\n    // Case B: Webhook configured -> push all cell values to Google Sheet\n    const updates = [];\n    for (const k in sheetData) {\n      const parts = k.split(':');\n      const r = parseInt(parts[0], 10);\n      const c = parseInt(parts[1], 10);\n      const item = sheetData[k];\n      if (item && item.raw !== undefined && item.raw !== null && item.raw !== '') {\n        updates.push({ row: r, col: c, value: item.raw });\n      }\n    }\n\n    fetch(webhookUrl, {\n      method: 'POST',\n      mode: 'no-cors',\n      headers: { 'Content-Type': 'text/plain;charset=utf-8' },\n      body: JSON.stringify({\n        action: 'batchUpdate',\n        docId: DOC_ID,\n        updates: updates\n      })\n    }).then(() => {\n      // Clear all dirty flags\n      for (const k in sheetData) {\n        if (sheetData[k]) delete sheetData[k].dirty;\n      }\n      saveDataLocally();\n\n      updateSyncBadge('synced', 'All changes saved to Google Sheet');\n      if (btnSave) {\n        btnSave.classList.remove('saving');\n        const textSpan = btnSave.querySelector('.btn-text');\n        if (textSpan) textSpan.innerText = 'Save (Ctrl+S)';\n      }\n      showToast('All changes saved & synced to Google Sheet!');\n      setTimeout(() => {\n        updateSyncBadge('synced', 'Saved to Google Sheet');\n      }, 2500);\n    }).catch((err) => {\n      console.warn('Batch save failed:', err);\n      updateSyncBadge('warning', 'Saved locally (sync failed)');\n      if (btnSave) {\n        btnSave.classList.remove('saving');\n        const textSpan = btnSave.querySelector('.btn-text');\n        if (textSpan) textSpan.innerText = 'Save (Ctrl+S)';\n      }\n      showToast('Saved locally. Please check your Webhook URL.');\n    });\n  }\n\n  // Intercept Ctrl+S / Cmd+S globally to prevent browser Save dialog and run performSaveAndSync\n  function handleGlobalKeyDown(e) {\n    if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {\n      e.preventDefault();\n      e.stopPropagation();\n      performSaveAndSync();\n      return false;\n    }\n  }\n  window.addEventListener('keydown', handleGlobalKeyDown, true);\n  document.addEventListener('keydown', handleGlobalKeyDown, true);\n\n  // Listen for message from Flutter outer window\n  window.addEventListener('message', function(e) {\n    if (e.data === 'save_and_sync') {\n      performSaveAndSync();\n    }\n  });\n\n  // Modal Handlers\n  function open2WayModal() {\n    const saved = getWebhookUrl();\n    document.getElementById('webhookUrlInput').value = saved;\n    document.getElementById('syncModal').style.display = 'flex';\n  }\n\n  function close2WayModal() {\n    document.getElementById('syncModal').style.display = 'none';\n  }\n\n  function saveWebhookUrl() {\n    const val = document.getElementById('webhookUrlInput').value.trim();\n    if (val) {\n      localStorage.setItem(SHEET_KEY + '_webhook', val);\n      localStorage.setItem('default_sheets_webhook', val);\n      showToast('2-Way Sync Webhook connected! Changes will now write to Google Sheet.');\n      updateSyncBadge('synced', 'Connected to Google Sheet');\n      close2WayModal();\n      performSaveAndSync();\n    } else {\n      localStorage.removeItem(SHEET_KEY + '_webhook');\n      localStorage.removeItem('default_sheets_webhook');\n      showToast('Webhook removed.');\n      close2WayModal();\n    }\n  }\n\n  function copyScriptCode() {\n    const code = document.getElementById('scriptCodeBlock').innerText;\n    navigator.clipboard.writeText(code).then(() => {\n      showToast('Google Apps Script code copied to clipboard!');\n    }).catch(() => {\n      showToast('Please copy code manually.');\n    });\n  }\n\n  // Persistence\n  function saveDataLocally() {\n    try {\n      localStorage.setItem(SHEET_KEY, JSON.stringify(sheetData));\n    } catch (_) {}\n  }\n\n  function loadSavedDataLocally() {\n    try {\n      const raw = localStorage.getItem(SHEET_KEY);\n      if (raw) {\n        sheetData = JSON.parse(raw);\n      }\n    } catch (_) {}\n  }\n\n  // Export\n  function exportCsv() {\n    let csv = '';\n    let maxR = 1, maxC = 1;\n    for (const k in sheetData) {\n      const parts = k.split(':');\n      const r = parseInt(parts[0], 10);\n      const c = parseInt(parts[1], 10);\n      if (r > maxR) maxR = r;\n      if (c > maxC) maxC = c;\n    }\n\n    for (let r = 1; r <= Math.min(NUM_ROWS, Math.max(maxR, 20)); r++) {\n      const rowArr = [];\n      for (let c = 1; c <= Math.min(NUM_COLS, Math.max(maxC, 10)); c++) {\n        const item = sheetData[r + ':' + c];\n        const text = item ? (item.raw || '') : '';\n        rowArr.push('\"' + text.replace(/\"/g, '\"\"') + '\"');\n      }\n      csv += rowArr.join(',') + '\\n';\n    }\n\n    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });\n    const link = document.createElement('a');\n    link.href = URL.createObjectURL(blob);\n    link.download = (document.getElementById('docTitle').value || 'spreadsheet') + '.csv';\n    link.click();\n    showToast('Spreadsheet exported as CSV!');\n  }\n\n  function addNewTab() {\n    const list = document.getElementById('sheetTabsList');\n    const tabCount = list.children.length + 1;\n    const tab = document.createElement('div');\n    tab.className = 'sheet-tab';\n    tab.id = 'tab-' + tabCount;\n    tab.innerHTML = '<span class=\"material-icons\" style=\"font-size: 14px; color: #0f9d58;\">table_chart</span><span>Sheet' + tabCount + '</span>';\n    tab.onclick = () => switchTab(tabCount);\n    list.appendChild(tab);\n    switchTab(tabCount);\n  }\n\n  function switchTab(idx) {\n    document.querySelectorAll('.sheet-tab').forEach(t => t.classList.remove('active'));\n    const t = document.getElementById('tab-' + idx);\n    if (t) t.classList.add('active');\n    showToast('Switched to Sheet' + idx);\n  }\n\n  function showToast(msg) {\n    const t = document.getElementById('toastMsg');\n    t.innerText = msg;\n    t.style.display = 'flex';\n    setTimeout(() => { t.style.display = 'none'; }, 2600);\n  }\n\n  // Rename listener\n  document.getElementById('docTitle').addEventListener('change', (e) => {\n    localStorage.setItem(SHEET_KEY + '_title', e.target.value);\n    showToast('Spreadsheet title updated');\n  });\n\n  // Init on load\n  function startApp() {\n    initGrid();\n    \n    // Initial badge state - instant ready\n    updateSyncBadge('synced', 'Ready');\n\n    // 1. Initial live sync from Google Sheet with 3s safety timeout\n    if (DOC_ID && DOC_ID.length > 5) {\n      syncFromGoogleSheet(true);\n    }\n  }\n\n  if (document.readyState === 'loading') {\n    window.addEventListener('DOMContentLoaded', startApp);\n  } else {\n    startApp();\n  }\n</script>\n</body>\n</html>\n"}k=window
 k.toString
 A.a83(k,"keydown",new A.bgO(l),!1,t.ts)
 return l},
@@ -134649,7 +134649,7 @@ if(q===0)q=s.aot()
 else q=q===1?s.aox():s.aoJ()
 return new A.pn(B.k,0,r,r,B.ad,B.J,B.i,r,r,A.f_(!0,q,B.J,!0),!0,B.dw,r,r)},
 aot(){return A.is(new A.b6C(this))},
-aox(){var s,r,q=this,p=null,o=t.p,n=A.W(A.a([A.bf(p,p,p,B.fn,p,p,new A.b6E(q),p,p,p,p,p),B.axv,A.bf(p,p,p,B.rP,p,p,new A.b6F(q),p,p,p,p,p)],o),B.h,B.af,B.f,0,p),m=q.gaHl(),l=q.f,k=l?B.ac_:B.a99,j=l?B.am:B.x
+aox(){var s,r,q=this,p=null,o=t.p,n=A.W(A.a([A.bf(p,p,p,B.fn,p,p,new A.b6E(q),p,p,p,p,p),B.axx,A.bf(p,p,p,B.rP,p,p,new A.b6F(q),p,p,p,p,p)],o),B.h,B.af,B.f,0,p),m=q.gaHl(),l=q.f,k=l?B.ac_:B.a99,j=l?B.am:B.x
 j=j.bb(l?0.35:0.12)
 l=q.f
 s=l?16:8
@@ -134674,7 +134674,7 @@ aoJ(){var s,r,q=this,p=null,o=t.p,n=A.W(A.a([A.bf(p,p,p,B.fn,p,p,new A.b6J(q),p,
 m=A.aH(A.iR(p,new A.b6L(q),m,p,!1),1)
 s=A.bw(p,p,B.C,p,p,p,4,p,p,B.k,p,p,p,p,new A.af(A.r(27),B.o),p,p,p,p,p)
 r=q.r
-return new A.ah(B.ik,A.aa(A.a([n,B.ao,l,B.a5,m,A.bY(A.cU(A.W(A.a([B.a4M,B.G,A.w("Add "+new A.aD(r,new A.b6M(),A.a_(r).i("aD<1>")).gB(0)+" Tasks to List",p,p,p,p,B.bI,p,p,p)],o),B.h,B.bc,B.f,0,p),q.ganl(),s),54,1/0),B.ag],o),B.z,B.d,B.f,0,B.n),p)},
+return new A.ah(B.ik,A.aa(A.a([n,B.ao,l,B.a5,m,A.bY(A.cU(A.W(A.a([B.a4L,B.G,A.w("Add "+new A.aD(r,new A.b6M(),A.a_(r).i("aD<1>")).gB(0)+" Tasks to List",p,p,p,p,B.bI,p,p,p)],o),B.h,B.bc,B.f,0,p),q.ganl(),s),54,1/0),B.ag],o),B.z,B.d,B.f,0,B.n),p)},
 NJ(a,b,c,d){var s=null,r=A.r(14)
 return A.E(s,A.W(A.a([A.bc(b,c,s,22),B.em,A.w(d,s,s,s,s,B.apB,s,s,s)],t.p),B.h,B.d,B.f,0,s),B.i,s,s,new A.H(a,s,s,r,s,s,B.p),s,s,s,B.k1,s,s,1/0)},
 NK(a){var s=null,r=A.r(20),q=A.r(20)
@@ -134726,7 +134726,7 @@ s.d=2
 s.f=!1},
 $S:0}
 A.b6C.prototype={
-$2(a,b){var s=null,r=this.a,q=t.p,p=A.aa(A.a([new A.eb(B.f5,s,s,A.bf(s,B.bC,s,B.a4A,s,s,new A.b6B(a),B.J,s,s,s,s),s),B.ao,B.av6,B.at,B.aw8,B.a5,A.bt9(B.aDN,1.3),B.aI,r.NJ(B.b8,B.dJ,B.am,"Say what's on your mind."),B.Hq,r.NJ(B.eE,B.rq,B.C,"AI organizes your tasks."),B.Hq,r.NJ(B.lT,B.a_Z,B.jG,"Add them all at once.")],q),B.h,B.d,B.f,0,B.n),o=A.r(27),n=A.a([new A.b5(0,B.H,B.xB.bb(0.3),B.bW,10)],t.V)
+$2(a,b){var s=null,r=this.a,q=t.p,p=A.aa(A.a([new A.eb(B.f5,s,s,A.bf(s,B.bC,s,B.a4z,s,s,new A.b6B(a),B.J,s,s,s,s),s),B.ao,B.av6,B.at,B.aw8,B.a5,A.bt9(B.aDN,1.3),B.aI,r.NJ(B.b8,B.dJ,B.am,"Say what's on your mind."),B.Hq,r.NJ(B.eE,B.rq,B.C,"AI organizes your tasks."),B.Hq,r.NJ(B.lT,B.a_Y,B.jG,"Add them all at once.")],q),B.h,B.d,B.f,0,B.n),o=A.r(27),n=A.a([new A.b5(0,B.H,B.xB.bb(0.3),B.bW,10)],t.V)
 return A.es(new A.ed(new A.al(0,1/0,b.d,1/0),new A.ah(B.Yd,A.aa(A.a([p,B.a5,A.E(s,A.cU(B.awn,r.gaGn(),A.bw(s,s,B.B,s,s,s,s,s,s,s,s,s,s,B.B,new A.af(A.r(27),B.o),s,s,s,s,s)),B.i,s,s,new A.H(s,s,s,o,n,B.a74,B.p),s,54,s,s,s,s,1/0)],q),B.h,B.af,B.f,0,B.n),s),s),s,B.y,s,B.e2,s,B.a3)},
 $S:314}
 A.b6B.prototype={
@@ -134915,7 +134915,7 @@ s=b.b
 if(s==null||J.fv(s))return B.Th
 r=A.r(12)
 q=this.a
-return A.aa(A.a([B.agG,new A.ah(B.cs,A.ja(A.cz(p,p,p,B.Tz,p,new A.b7I(q),p,B.ax6,p,B.azj,B.rO),p,2,p,new A.af(r,B.o)),p),A.aH(A.iR(p,new A.b7J(q,s),J.bn(s),B.dq,!1),1)],t.p),B.z,B.d,B.f,0,B.n)},
+return A.aa(A.a([B.agG,new A.ah(B.cs,A.ja(A.cz(p,p,p,B.Tz,p,new A.b7I(q),p,B.ax7,p,B.azk,B.rO),p,2,p,new A.af(r,B.o)),p),A.aH(A.iR(p,new A.b7J(q,s),J.bn(s),B.dq,!1),1)],t.p),B.z,B.d,B.f,0,B.n)},
 $S:916}
 A.b7I.prototype={
 $0(){var s=this.a
@@ -134991,7 +134991,7 @@ s.f="team_member"},
 $S:0}
 A.b82.prototype={
 $1(a){var s=null,r=this.b,q=this.a
-return new A.ah(B.XX,A.aa(A.a([A.w("View Attendance for "+A.i(J.a7(r,"name")),s,s,s,s,B.cC,s,s,s),B.aI,A.cz(s,s,s,B.AV,s,new A.b80(q,a,r),s,s,s,B.awd,s),A.cz(s,s,s,B.AY,s,new A.b81(q,a,r),s,s,s,B.ayn,s)],t.p),B.h,B.d,B.w,0,B.n),s)},
+return new A.ah(B.XX,A.aa(A.a([A.w("View Attendance for "+A.i(J.a7(r,"name")),s,s,s,s,B.cC,s,s,s),B.aI,A.cz(s,s,s,B.AV,s,new A.b80(q,a,r),s,s,s,B.awd,s),A.cz(s,s,s,B.AY,s,new A.b81(q,a,r),s,s,s,B.ayp,s)],t.p),B.h,B.d,B.w,0,B.n),s)},
 $S:917}
 A.b80.prototype={
 $0(){A.V(this.b,!1).T(null)
@@ -135066,7 +135066,7 @@ if(b5===0){h=A.r(16)
 g=A.a([new A.b5(0,B.H,A.am(64,B.am.p()>>>16&255,B.am.p()>>>8&255,B.am.p()&255),B.bW,12)],t.V)
 f=b0.c
 e=t.p
-return A.E(b1,A.W(A.a([A.aa(A.a([B.ax8,B.aT,A.w(""+f+" Days",b1,b1,b1,b1,B.ND,b1,b1,b1)],e),B.h,B.d,B.f,0,B.n),A.E(b1,b1,B.i,B.e7,b1,b1,b1,36,b1,b1,b1,b1,1),A.aa(A.a([B.aAV,B.aT,A.w(B.j.ap(b0.a.a,1)+" hrs",b1,b1,b1,b1,B.ND,b1,b1,b1)],e),B.h,B.d,B.f,0,B.n),A.E(b1,b1,B.i,B.e7,b1,b1,b1,36,b1,b1,b1,b1,1),A.aa(A.a([B.avQ,B.aT,A.w(B.j.ap(f/30*100,0)+"%",b1,b1,b1,b1,B.aqD,b1,b1,b1)],e),B.h,B.d,B.f,0,B.n)],e),B.h,B.ej,B.f,0,b1),B.i,b1,b1,new A.H(b1,b1,b1,h,g,B.Bh,B.p),b1,b1,B.ys,B.aD,b1,b1,b1)}d=J.a7(b0.d,b5-1)
+return A.E(b1,A.W(A.a([A.aa(A.a([B.ax9,B.aT,A.w(""+f+" Days",b1,b1,b1,b1,B.ND,b1,b1,b1)],e),B.h,B.d,B.f,0,B.n),A.E(b1,b1,B.i,B.e7,b1,b1,b1,36,b1,b1,b1,b1,1),A.aa(A.a([B.aAV,B.aT,A.w(B.j.ap(b0.a.a,1)+" hrs",b1,b1,b1,b1,B.ND,b1,b1,b1)],e),B.h,B.d,B.f,0,B.n),A.E(b1,b1,B.i,B.e7,b1,b1,b1,36,b1,b1,b1,b1,1),A.aa(A.a([B.avQ,B.aT,A.w(B.j.ap(f/30*100,0)+"%",b1,b1,b1,b1,B.aqD,b1,b1,b1)],e),B.h,B.d,B.f,0,B.n)],e),B.h,B.ej,B.f,0,b1),B.i,b1,b1,new A.H(b1,b1,b1,h,g,B.Bh,B.p),b1,b1,B.ys,B.aD,b1,b1,b1)}d=J.a7(b0.d,b5-1)
 h=J.a6(d)
 g=t.Cc
 s=g.a(h.h(d,"checkIn"))
@@ -135121,7 +135121,7 @@ g=t.p
 f=A.a([],g)
 if(c!=null&&c.length!==0)f.push(A.eM(b1,A.f0(B.d6,A.a([A.AU(A.r(10),A.pH(B.bJ.bC(B.b.ga7(c.split(","))),b1,B.ey,44,44),B.bD),A.E(b1,B.azW,B.i,b1,b1,new A.H(B.C,b1,b1,A.r(4),b1,b1,B.p),b1,b1,b1,B.yV,b1,b1,b1)],g),B.q,B.bd,b1),B.y,!1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,new A.b7y(b0.b,b4,c,a0),b1,b1,b1,b1,b1,b1,!1,B.b5))
 else{e=A.r(10)
-f.push(A.E(b1,B.a4I,B.i,b1,b1,new A.H(B.ar,b1,A.aS(B.I,B.r,1),e,b1,b1,B.p),b1,44,b1,b1,b1,b1,44))}if(b!=null&&b.length!==0)B.b.I(f,A.a([B.at,A.eM(b1,A.f0(B.d6,A.a([A.AU(A.r(10),A.pH(B.bJ.bC(B.b.ga7(b.split(","))),b1,B.ey,44,44),B.bD),A.E(b1,B.azU,B.i,b1,b1,new A.H(B.aP,b1,b1,A.r(4),b1,b1,B.p),b1,b1,b1,B.yV,b1,b1,b1)],g),B.q,B.bd,b1),B.y,!1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,new A.b7z(b0.b,b4,b,a0),b1,b1,b1,b1,b1,b1,!1,B.b5)],g))
+f.push(A.E(b1,B.a4H,B.i,b1,b1,new A.H(B.ar,b1,A.aS(B.I,B.r,1),e,b1,b1,B.p),b1,44,b1,b1,b1,b1,44))}if(b!=null&&b.length!==0)B.b.I(f,A.a([B.at,A.eM(b1,A.f0(B.d6,A.a([A.AU(A.r(10),A.pH(B.bJ.bC(B.b.ga7(b.split(","))),b1,B.ey,44,44),B.bD),A.E(b1,B.azU,B.i,b1,b1,new A.H(B.aP,b1,b1,A.r(4),b1,b1,B.p),b1,b1,b1,B.yV,b1,b1,b1)],g),B.q,B.bd,b1),B.y,!1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,b1,new A.b7z(b0.b,b4,b,a0),b1,b1,b1,b1,b1,b1,!1,B.b5)],g))
 f=A.aa(f,B.h,B.d,B.w,0,B.n)
 e=A.a([A.w(J.f3(a0)?A.i(q)+" ("+A.i(a0)+")":q,b1,b1,b1,b1,B.uR,b1,b1,b1),B.at,A.W(A.a([B.a30,B.aS,A.w(p,b1,b1,b1,b1,B.MZ,b1,b1,b1),B.b_,B.a1X,B.aS,A.w(o,b1,b1,b1,b1,B.MZ,b1,b1,b1)],g),B.h,B.d,B.f,0,b1)],g)
 if(J.bn(n)!==0)B.b.I(e,A.a([B.aT,A.w(n,b1,b1,b1,b1,B.c0,b1,b1,b1)],g))
@@ -135329,9 +135329,9 @@ if(B.c.af(s.a.a).length===0)s.scF(0,"Voice Note ("+A.bO("dd MMM, h:mm a").ba(new
 $S:0}
 A.b9K.prototype={
 $1(a){var s,r=null,q=A.E(r,r,B.i,r,r,new A.H(B.c5,r,r,A.r(2),r,r,B.p),r,4,r,r,r,r,40),p=A.r(16),o=this.a
-p=A.cz(r,r,r,A.E(r,B.a4q,B.i,r,r,B.jt,r,r,r,B.cL,r,r,r),r,new A.b9I(o,a),new A.af(p,B.o),B.awo,B.b8,B.awX,B.a4o)
+p=A.cz(r,r,r,A.E(r,B.a4p,B.i,r,r,B.jt,r,r,r,B.cL,r,r,r),r,new A.b9I(o,a),new A.af(p,B.o),B.awo,B.b8,B.awY,B.a4n)
 s=A.r(16)
-return A.f_(!0,new A.ah(B.a_,A.aa(A.a([q,B.a5,B.ayE,B.aT,B.avd,B.aI,p,B.ag,A.cz(r,r,r,A.E(r,B.a1P,B.i,r,r,B.Qy,r,r,r,B.cL,r,r,r),r,new A.b9J(o,a),new A.af(s,B.o),B.avV,B.U,B.axd,B.a4l),B.ao],t.p),B.h,B.d,B.w,0,B.n),r),B.J,!0)},
+return A.f_(!0,new A.ah(B.a_,A.aa(A.a([q,B.a5,B.ayG,B.aT,B.avd,B.aI,p,B.ag,A.cz(r,r,r,A.E(r,B.a1P,B.i,r,r,B.Qy,r,r,r,B.cL,r,r,r),r,new A.b9J(o,a),new A.af(s,B.o),B.avV,B.U,B.axe,B.a4k),B.ao],t.p),B.h,B.d,B.w,0,B.n),r),B.J,!0)},
 $S:53}
 A.b9I.prototype={
 $0(){A.V(this.b,!1).T(null)
@@ -135359,7 +135359,7 @@ $S:143}
 A.b9e.prototype={
 $1(a){var s=null,r=A.ap(a,s,t.w).w,q=this.b,p=this.a
 q=A.Z(new A.R(q,new A.b9a(p,a),A.a_(q).i("R<1,h>")),t.l7)
-return A.f_(!0,new A.ah(new A.U(0,0,0,r.f.d),A.aa(A.a([B.agB,new A.fb(1,B.bN,A.es(A.aa(q,B.h,B.d,B.w,0,B.n),s,B.y,s,s,s,B.a3),s),B.q9,A.cz(s,s,s,B.a4f,s,new A.b9b(p,a),s,s,s,B.ayl,s)],t.p),B.h,B.d,B.w,0,B.n),s),B.J,!0)},
+return A.f_(!0,new A.ah(new A.U(0,0,0,r.f.d),A.aa(A.a([B.agB,new A.fb(1,B.bN,A.es(A.aa(q,B.h,B.d,B.w,0,B.n),s,B.y,s,s,s,B.a3),s),B.q9,A.cz(s,s,s,B.a4e,s,new A.b9b(p,a),s,s,s,B.ayn,s)],t.p),B.h,B.d,B.w,0,B.n),s),B.J,!0)},
 $S:53}
 A.b9a.prototype={
 $1(a){var s=null,r=A.w(a,s,s,s,s,s,s,s,s),q=this.a,p=q.f===a?B.fo:s
@@ -135407,14 +135407,14 @@ A.b9t.prototype={
 $1(a){return new A.hH(new A.b9s(this.a),null)},
 $S:38}
 A.b9s.prototype={
-$2(a,b){var s,r,q,p=null,o=this.a,n=o.Fb(a,0,"No Priority",B.a0x,B.E,B.ar),m=o.Fb(a,1,"Low Priority",B.rh,B.C,B.eE),l=o.Fb(a,2,"Medium Priority",B.db,B.aB,B.bM),k=o.Fb(a,3,"High Priority",B.db,B.aP,B.i9),j=t.Jd
+$2(a,b){var s,r,q,p=null,o=this.a,n=o.Fb(a,0,"No Priority",B.a0w,B.E,B.ar),m=o.Fb(a,1,"Low Priority",B.rh,B.C,B.eE),l=o.Fb(a,2,"Medium Priority",B.db,B.aB,B.bM),k=o.Fb(a,3,"High Priority",B.db,B.aP,B.i9),j=t.Jd
 j=A.Z(new A.R(A.a([0,25,50,75,100],t.t),new A.b9p(o,b),j),j.i("aj.E"))
 j=A.es(A.W(j,B.h,B.d,B.f,0,p),p,B.y,p,p,p,B.L)
 s=t.N
 r=t.K
 q=t.Cf
 o=A.Z(new A.R(A.a([A.a9(["id",1,"color",B.lF],s,r),A.a9(["id",2,"color",B.aB],s,r),A.a9(["id",3,"color",B.pv],s,r),A.a9(["id",4,"color",B.am],s,r),A.a9(["id",5,"color",B.C],s,r)],t.Mq),new A.b9q(o,b),q),q.i("aj.E"))
-return A.f_(!0,new A.ah(B.ct,A.aa(A.a([B.avT,B.bH,B.auL,B.bt,n,m,l,k,B.bH,B.azV,B.ag,j,B.bH,B.auQ,B.ag,A.es(A.W(o,B.h,B.d,B.f,0,p),p,B.y,p,p,p,B.L),B.dU,A.bY(A.cU(B.axJ,new A.b9r(a),A.bw(p,p,B.m,p,p,p,p,p,p,B.k,p,p,B.cZ,p,new A.af(A.r(12),B.o),p,p,p,p,p)),p,1/0)],t.p),B.z,B.d,B.w,0,B.n),p),B.J,!0)},
+return A.f_(!0,new A.ah(B.ct,A.aa(A.a([B.avT,B.bH,B.auL,B.bt,n,m,l,k,B.bH,B.azV,B.ag,j,B.bH,B.auQ,B.ag,A.es(A.W(o,B.h,B.d,B.f,0,p),p,B.y,p,p,p,B.L),B.dU,A.bY(A.cU(B.axL,new A.b9r(a),A.bw(p,p,B.m,p,p,p,p,p,p,B.k,p,p,B.cZ,p,new A.af(A.r(12),B.o),p,p,p,p,p)),p,1/0)],t.p),B.z,B.d,B.w,0,B.n),p),B.J,!0)},
 $S:922}
 A.b9p.prototype={
 $1(a){var s=null,r=this.a
@@ -135483,7 +135483,7 @@ return null},
 $S:0}
 A.b9C.prototype={
 $1(a){var s=null,r=A.r(10),q=A.aS(B.I,B.r,1)
-return A.E(s,A.W(A.a([B.a4p,B.G,A.aH(A.w(a.b,s,s,s,s,B.No,s,s,s),1),A.bU(!1,s,!0,B.a4E,s,!0,s,s,s,s,s,s,s,s,s,s,s,new A.b9A(this.a,a,this.b),s,s,s,s,s,s,s)],t.p),B.h,B.d,B.f,0,s),B.i,s,s,new A.H(B.U,s,q,r,s,s,B.p),s,s,B.yA,B.ij,s,s,s)},
+return A.E(s,A.W(A.a([B.a4o,B.G,A.aH(A.w(a.b,s,s,s,s,B.No,s,s,s),1),A.bU(!1,s,!0,B.a4D,s,!0,s,s,s,s,s,s,s,s,s,s,s,new A.b9A(this.a,a,this.b),s,s,s,s,s,s,s)],t.p),B.h,B.d,B.f,0,s),B.i,s,s,new A.H(B.U,s,q,r,s,s,B.p),s,s,B.yA,B.ij,s,s,s)},
 $S:925}
 A.b9A.prototype={
 $0(){var s=this.a
@@ -135667,7 +135667,7 @@ H(a1){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d=this,c=null,b=t.w,a=A.ap(a1,c,b).w,a0=
 b=A.ap(a1,c,b).w
 s=A.E(c,c,B.i,c,c,new A.H(B.c5,c,c,A.r(2),c,c,B.p),c,4,B.XF,c,c,c,40)
 r=t.p
-q=A.W(A.a([A.E(c,B.a26,B.i,c,c,new A.H(B.bE,c,c,A.r(10),c,c,B.p),c,c,c,B.au,c,c,c),B.b3,B.ax0,B.eV,A.bf(c,c,c,B.a1y,c,c,d.gaqk(),c,c,c,"Delete Task",c),A.bf(c,c,c,B.a2c,c,c,new A.bbB(a1),c,c,c,"Close",c)],r),B.h,B.d,B.f,0,c)
+q=A.W(A.a([A.E(c,B.a26,B.i,c,c,new A.H(B.bE,c,c,A.r(10),c,c,B.p),c,c,c,B.au,c,c,c),B.b3,B.ax1,B.eV,A.bf(c,c,c,B.a1y,c,c,d.gaqk(),c,c,c,"Delete Task",c),A.bf(c,c,c,B.a2c,c,c,new A.bbB(a1),c,c,c,"Close",c)],r),B.h,B.d,B.f,0,c)
 p=d.d
 p===$&&A.b()
 p=A.cI(c,B.ac,!1,c,!0,B.q,c,A.cP(),p,c,c,c,c,c,2,A.d_(c,new A.c0(4,A.r(12),B.d8),c,B.cr,c,c,c,c,!0,new A.c0(4,A.r(12),B.d8),c,c,c,c,c,B.U,!0,c,c,c,c,new A.c0(4,A.r(12),B.pa),c,c,c,c,c,c,c,c,c,"Enter task title...",c,c,c,c,c,c,c,c,c,!0,!0,!1,c,c,c,c,c,c,c,c,c,c,c,c,c,c),B.y,!0,c,!0,c,!1,c,B.a9,c,c,c,c,c,c,c,c,1,c,c,!1,"\u2022",c,c,c,c,c,!1,c,c,!1,c,!0,c,B.a_,c,c,c,c,c,c,c,c,c,c,c,B.apg,!0,B.P,c,B.al,c,c,c,c)
@@ -135726,7 +135726,7 @@ e=d.y
 o=A.fT(B.bk,A.a([l,j,h,A.bU(!1,o,!0,A.E(c,A.W(A.a([B.a2U,B.bj,A.w(e==null?"Set Duration":e,c,c,c,c,B.Np,c,c,c)],r),B.h,B.d,B.w,0,c),B.i,c,c,new A.H(B.U,c,k,i,c,c,B.p),c,c,c,B.cq,c,c,c),c,!0,c,c,c,c,c,c,c,c,c,c,c,d.gaFs(),c,c,c,c,c,c,c)],r),B.c8,8,8)
 m=d.Q
 m===$&&A.b()
-m=A.a([B.az4,B.at,p,B.a5,n,B.a5,B.ax7,B.ao,o,B.aI,A.W(A.a([A.w("Subtasks ("+m.length+")",c,c,c,c,B.hG,c,c,c)],r),B.h,B.af,B.f,0,c),B.ao],r)
+m=A.a([B.az5,B.at,p,B.a5,n,B.a5,B.ax8,B.ao,o,B.aI,A.W(A.a([A.w("Subtasks ("+m.length+")",c,c,c,c,B.hG,c,c,c)],r),B.h,B.af,B.f,0,c),B.ao],r)
 p=d.Q
 if(p.length!==0){p=new A.xd(p,A.a_(p).i("xd<1>"))
 o=t.l7
@@ -135932,10 +135932,10 @@ k=A.aS(n?B.m:B.I,B.r,1.2)
 j=q?22:26
 i=q?22:26
 h=n?B.m:B.E
-g=n?B.a0p:B.a0s
+g=n?B.a0o:B.a0r
 j=A.E(e,A.bc(g,B.k,e,q?14:17),B.i,e,e,new A.H(h,e,e,e,e,e,B.aa),e,i,e,e,e,e,j)
 i=q?14:17
-i=A.bc(B.a09,n?B.m:B.E,e,i)
+i=A.bc(B.a08,n?B.m:B.E,e,i)
 q=q?11:12
 return A.bU(!1,r,!0,A.E(e,A.W(A.a([j,B.bj,i,B.aS,A.w("Voice Note ("+s+")",e,e,e,e,A.aU(e,e,n?B.m:B.cJ,e,e,e,e,e,e,e,e,q,e,e,B.u,e,e,!0,e,e,e,e,e,e,e,e),e,e,e)],t.p),B.h,B.d,B.w,0,e),B.i,e,e,new A.H(m,e,k,l,e,e,B.p),e,e,e,new A.U(p,o,p,o),e,e,e),e,!0,e,e,e,e,e,e,e,e,e,e,e,new A.beR(f),e,e,e,e,e,e,e)}}
 A.beU.prototype={
@@ -136013,7 +136013,7 @@ m=A.kv(m,new A.beZ(p),o)
 s=A.E(o,o,B.i,o,o,B.wk,o,10,o,o,o,o,10)
 r=p.d
 q=t.p
-return A.E(o,A.f_(!0,A.aa(A.a([n,B.aI,B.axn,B.at,B.aw4,B.bH,m,B.fA,A.W(A.a([s,B.G,A.w(""+B.e.ag(r,60)+":"+B.c.ef(B.e.k(B.e.ao(r,60)),2,"0"),o,o,o,o,B.aqp,o,o,o)],q),B.h,B.bc,B.f,0,o),B.en,A.W(A.a([A.aH(A.La(B.awT,p.gaph(),A.fO(o,o,o,o,o,o,o,o,o,o,o,o,B.cZ,o,new A.af(A.r(16),B.o),B.d8,o,o,o,o)),1),B.l_,A.aH(A.dB(B.a37,B.aw1,p.gasA(),A.bw(o,o,B.m,o,o,o,2,o,o,B.k,o,o,B.cZ,o,new A.af(A.r(16),B.o),o,o,o,o,o)),1)],q),B.h,B.d,B.f,0,o)],q),B.h,B.d,B.w,0,B.n),B.J,!1),B.i,o,o,B.QJ,o,o,o,B.ct,o,o,o)}}
+return A.E(o,A.f_(!0,A.aa(A.a([n,B.aI,B.axp,B.at,B.aw4,B.bH,m,B.fA,A.W(A.a([s,B.G,A.w(""+B.e.ag(r,60)+":"+B.c.ef(B.e.k(B.e.ao(r,60)),2,"0"),o,o,o,o,B.aqp,o,o,o)],q),B.h,B.bc,B.f,0,o),B.en,A.W(A.a([A.aH(A.La(B.awU,p.gaph(),A.fO(o,o,o,o,o,o,o,o,o,o,o,o,B.cZ,o,new A.af(A.r(16),B.o),B.d8,o,o,o,o)),1),B.l_,A.aH(A.dB(B.a37,B.aw1,p.gasA(),A.bw(o,o,B.m,o,o,o,2,o,o,B.k,o,o,B.cZ,o,new A.af(A.r(16),B.o),o,o,o,o,o)),1)],q),B.h,B.d,B.f,0,o)],q),B.h,B.d,B.w,0,B.n),B.J,!1),B.i,o,o,B.QJ,o,o,o,B.ct,o,o,o)}}
 A.beX.prototype={
 $0(){this.a.d=0},
 $S:0}
@@ -140593,8 +140593,8 @@ B.T7=new A.vO(null)
 B.T8=new A.WL(null)
 B.X=new A.z(1,0.5803921568627451,0.6392156862745098,0.7215686274509804,B.l)
 B.Nc=new A.q(!0,B.X,null,null,null,null,15,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayY=new A.t("No tasks found",null,B.Nc,null,null,null,null,null,null,null,null)
-B.Ta=new A.ec(B.T,null,null,B.ayY,null)
+B.ayZ=new A.t("No tasks found",null,B.Nc,null,null,null,null,null,null,null,null)
+B.Ta=new A.ec(B.T,null,null,B.ayZ,null)
 B.uG=new A.q(!0,B.X,null,null,null,null,12,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.ax=new A.qB(2,"center")
 B.aAI=new A.t('No comments or activity log yet. Click "Add Note" to post updates.',null,B.uG,B.ax,null,null,null,null,null,null,null)
@@ -140606,17 +140606,17 @@ B.n=new A.aKr(1,"down")
 B.i=new A.AS(0,"none")
 B.Aq=new A.Y(984e3,"MaterialIcons",!1)
 B.aB=new A.z(1,0.9607843137254902,0.6196078431372549,0.043137254901960784,B.l)
-B.a4Q=new A.F(B.Aq,40,B.aB,null,null)
+B.a4P=new A.F(B.Aq,40,B.aB,null,null)
 B.ao=new A.cx(null,8,null,null)
 B.u=new A.im(700)
 B.cC=new A.q(!0,null,null,null,null,null,18,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.azl=new A.t("PRO Features Unlocked!",null,B.cC,null,null,null,null,null,null,null,null)
-B.aba=s([B.a4Q,B.ao,B.azl],t.p)
+B.azm=new A.t("PRO Features Unlocked!",null,B.cC,null,null,null,null,null,null,null,null)
+B.aba=s([B.a4P,B.ao,B.azm],t.p)
 B.W3=new A.fw(B.a3,B.d,B.f,B.h,null,B.n,null,0,B.aba,null)
 B.Tc=new A.ec(B.T,null,null,B.W3,null)
 B.bc=new A.tC(2,"center")
-B.a0H=new A.Y(983612,"MaterialIcons",!1)
-B.AH=new A.F(B.a0H,22,B.m,null,null)
+B.a0G=new A.Y(983612,"MaterialIcons",!1)
+B.AH=new A.F(B.a0G,22,B.m,null,null)
 B.G=new A.cx(8,null,null,null)
 B.aB3=new A.t("Focus Pomodoro Timer",null,B.cC,null,null,null,null,null,null,null,null)
 B.ab9=s([B.AH,B.G,B.aB3],t.p)
@@ -140631,8 +140631,8 @@ B.oa=new A.q(!0,B.E,null,null,null,null,null,null,null,null,null,null,null,null,
 B.aBD=new A.t("No attendance records found.",null,B.oa,null,null,null,null,null,null,null,null)
 B.agt=new A.ah(B.ct,B.aBD,null)
 B.Te=new A.ec(B.T,null,null,B.agt,null)
-B.axS=new A.t("No managers found in this department.",null,null,null,null,null,null,null,null,null,null)
-B.Tf=new A.ec(B.T,null,null,B.axS,null)
+B.axU=new A.t("No managers found in this department.",null,null,null,null,null,null,null,null,null,null)
+B.Tf=new A.ec(B.T,null,null,B.axU,null)
 B.fF=new A.q(!0,B.X,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.auy=new A.t("All current employees are already in this team.",null,B.fF,null,null,null,null,null,null,null,null)
 B.Tg=new A.ec(B.T,null,null,B.auy,null)
@@ -140650,15 +140650,15 @@ B.TD=new A.pf(null,B.m,null)
 B.wS=new A.ec(B.T,null,null,B.TD,null)
 B.aB0=new A.t("No team members found for this manager.",null,null,null,null,null,null,null,null,null,null)
 B.Tl=new A.ec(B.T,null,null,B.aB0,null)
-B.axU=new A.t("No employees found.",null,null,null,null,null,null,null,null,null,null)
-B.Tm=new A.ec(B.T,null,null,B.axU,null)
+B.axW=new A.t("No employees found.",null,null,null,null,null,null,null,null,null,null)
+B.Tm=new A.ec(B.T,null,null,B.axW,null)
 B.uM=new A.q(!0,null,null,null,null,null,11,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.avb=new A.t("Second Half (Afternoon)\n02:00 PM \u2013 06:30 PM",null,B.uM,B.ax,null,null,null,null,null,null,null)
 B.Tn=new A.ec(B.T,null,null,B.avb,null)
 B.av4=new A.t("First Half (Morning)\n09:30 AM \u2013 01:30 PM",null,B.uM,B.ax,null,null,null,null,null,null,null)
 B.To=new A.ec(B.T,null,null,B.av4,null)
-B.ayA=new A.t("Type something to search tasks",null,B.Nc,null,null,null,null,null,null,null,null)
-B.Tp=new A.ec(B.T,null,null,B.ayA,null)
+B.ayC=new A.t("Type something to search tasks",null,B.Nc,null,null,null,null,null,null,null,null)
+B.Tp=new A.ec(B.T,null,null,B.ayC,null)
 B.wU=new A.pf(null,B.k,null)
 B.wT=new A.ec(B.T,null,null,B.wU,null)
 B.Tq=new A.AH(null,null,null,null,null,null,null,null,null)
@@ -140882,7 +140882,7 @@ B.VW=new A.z(0.9411764705882353,0.7529411764705882,0.7529411764705882,0.75294117
 B.xW=new A.z(1,0.1843137254901961,0.5019607843137255,0.9294117647058824,B.l)
 B.z=new A.vX(0,"start")
 B.Ne=new A.q(!0,null,null,null,null,null,8,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axw=new A.t("Today",null,B.Ne,null,null,null,null,null,null,null,null)
+B.axy=new A.t("Today",null,B.Ne,null,null,null,null,null,null,null,null)
 B.aT=new A.cx(null,4,null,null)
 B.Ui=new A.z(1,0.39215686274509803,0.7098039215686275,0.9647058823529412,B.l)
 B.UA=new A.z(1,0.25882352941176473,0.6470588235294118,0.9607843137254902,B.l)
@@ -140891,7 +140891,7 @@ B.V1=new A.z(1,0.050980392156862744,0.2784313725490196,0.6313725490196078,B.l)
 B.aeL=new A.dd([50,B.wZ,100,B.xJ,200,B.xq,300,B.Ui,400,B.UA,500,B.xk,600,B.xz,700,B.xN,800,B.VM,900,B.V1],t.pl)
 B.dO=new A.mN(B.aeL,1,0.12941176470588237,0.5882352941176471,0.9529411764705882,B.l)
 B.aqq=new A.q(!0,B.dO,null,null,null,null,6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayi=new A.t("1. Have a glass of water.",null,B.aqq,null,null,null,null,null,null,null,null)
+B.ayk=new A.t("1. Have a glass of water.",null,B.aqq,null,null,null,null,null,null,null,null)
 B.Um=new A.z(1,0.7843137254901961,0.9019607843137255,0.788235294117647,B.l)
 B.VZ=new A.z(1,0.5058823529411764,0.7803921568627451,0.5176470588235295,B.l)
 B.Vb=new A.z(1,0.4,0.7333333333333333,0.41568627450980394,B.l)
@@ -140917,7 +140917,7 @@ B.Ub=new A.z(1,0.9019607843137255,0.3176470588235294,0,B.l)
 B.aeI=new A.dd([50,B.Ut,100,B.Vk,200,B.W_,300,B.TT,400,B.UL,500,B.Vf,600,B.Vw,700,B.UE,800,B.Vt,900,B.Ub],t.pl)
 B.iF=new A.mN(B.aeI,1,1,0.596078431372549,0,B.l)
 B.ape=new A.q(!0,B.iF,null,null,null,null,6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.az3=new A.t("3. Have lunch with Jenny",null,B.ape,null,null,null,null,null,null,null,null)
+B.az4=new A.t("3. Have lunch with Jenny",null,B.ape,null,null,null,null,null,null,null,null)
 B.V2=new A.z(1,0.9529411764705882,0.8980392156862745,0.9607843137254902,B.l)
 B.V5=new A.z(1,0.8823529411764706,0.7450980392156863,0.9058823529411765,B.l)
 B.Uc=new A.z(1,0.807843137254902,0.5764705882352941,0.8470588235294118,B.l)
@@ -140931,7 +140931,7 @@ B.aeN=new A.dd([50,B.V2,100,B.V5,200,B.Uc,300,B.VH,400,B.VE,500,B.pQ,600,B.UY,70
 B.aeW=new A.mN(B.aeN,1,0.611764705882353,0.15294117647058825,0.6901960784313725,B.l)
 B.atP=new A.q(!0,B.aeW,null,null,null,null,6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.aBm=new A.t("4. Send email to Tim",null,B.atP,null,null,null,null,null,null,null,null)
-B.aaA=s([B.axw,B.aT,B.ayi,B.aA9,B.az3,B.aBm],t.p)
+B.aaA=s([B.axy,B.aT,B.ayk,B.aA9,B.az4,B.aBm],t.p)
 B.W6=new A.fw(B.a3,B.d,B.f,B.z,null,B.n,null,0,B.aaA,null)
 B.af=new A.tC(3,"spaceBetween")
 B.fD=new A.q(!0,B.X,null,null,null,null,12,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
@@ -140953,9 +140953,9 @@ B.aA7=new A.t("Create tasks and assign team members under this project category.
 B.a8f=s([B.a56,B.a5,B.azS,B.at,B.aA7],t.p)
 B.Wa=new A.fw(B.a3,B.d,B.f,B.h,null,B.n,null,0,B.a8f,null)
 B.aun=new A.t("16",null,B.fD,null,null,null,null,null,null,null,null)
-B.awV=new A.t("8",null,B.fD,null,null,null,null,null,null,null,null)
+B.awW=new A.t("8",null,B.fD,null,null,null,null,null,null,null,null)
 B.aAw=new A.t("4",null,B.fD,null,null,null,null,null,null,null,null)
-B.a8s=s([B.aun,B.NI,B.awV,B.aAw,B.NU],t.p)
+B.a8s=s([B.aun,B.NI,B.awW,B.aAw,B.NU],t.p)
 B.Wc=new A.fw(B.a3,B.af,B.f,B.z,null,B.n,null,0,B.a8s,null)
 B.pT=new A.B5(0,"none")
 B.cb=new A.B5(1,"waiting")
@@ -141383,26 +141383,26 @@ B.qW=new A.wg(!1,!1,!1,!0)
 B.z3=new A.wh(!1,!1,!1,!1)
 B.z4=new A.wh(!1,!1,!1,!0)
 B.aX=new A.YI(0,"tight")
-B.az6=new A.t("Add Member to Team",null,B.cC,null,null,null,null,null,null,null,null)
-B.YI=new A.dw(1,B.aX,B.az6,null)
+B.az7=new A.t("Add Member to Team",null,B.cC,null,null,null,null,null,null,null,null)
+B.YI=new A.dw(1,B.aX,B.az7,null)
 B.MC=new A.a3C(null)
 B.YL=new A.dw(1,B.aX,B.MC,null)
-B.ayU=new A.t("Edit Department Name",null,B.bI,null,null,null,null,null,null,null,null)
-B.YM=new A.dw(1,B.aX,B.ayU,null)
+B.ayV=new A.t("Edit Department Name",null,B.bI,null,null,null,null,null,null,null,null)
+B.YM=new A.dw(1,B.aX,B.ayV,null)
 B.a6=new A.im(500)
 B.uF=new A.q(!0,B.E,null,null,null,null,12,B.a6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.a2=new A.Eg(2,"ellipsis")
 B.avY=new A.t("A quiet schedule this week.",null,B.uF,null,null,null,B.a2,null,1,null,null)
 B.YO=new A.dw(1,B.aX,B.avY,null)
 B.d4=new A.q(!0,B.F,null,null,null,null,18,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayP=new A.t("Daily Completed",null,B.d4,null,null,null,B.a2,null,1,null,null)
-B.YP=new A.dw(1,B.aX,B.ayP,null)
+B.ayQ=new A.t("Daily Completed",null,B.d4,null,null,null,B.a2,null,1,null,null)
+B.YP=new A.dw(1,B.aX,B.ayQ,null)
 B.xi=new A.z(1,0.11764705882352941,0.22745098039215686,0.5411764705882353,B.l)
 B.aq2=new A.q(!0,B.xi,null,null,null,null,14,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.azw=new A.t("Auto-Notify Staff on Policy Change",null,B.aq2,null,null,null,null,null,null,null,null)
+B.azx=new A.t("Auto-Notify Staff on Policy Change",null,B.aq2,null,null,null,null,null,null,null,null)
 B.arT=new A.q(!0,B.am,null,null,null,null,12,null,null,null,null,null,1.4,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.avy=new A.t("Jab aap Sunday ka status (Off / Half-Day / Full-Day) update karenge, tab har employee ke phone par instant notification bhej diya jayega.",null,B.arT,null,null,null,null,null,null,null,null)
-B.a9d=s([B.azw,B.aT,B.avy],t.p)
+B.a9d=s([B.azx,B.aT,B.avy],t.p)
 B.W7=new A.fw(B.a3,B.d,B.f,B.z,null,B.n,null,0,B.a9d,null)
 B.YQ=new A.dw(1,B.aX,B.W7,null)
 B.ai=new A.im(800)
@@ -141417,8 +141417,8 @@ B.zt=new A.Jj(null)
 B.YT=new A.dw(1,B.aX,B.zt,null)
 B.w=new A.a_s(0,"min")
 B.bN=new A.YI(1,"loose")
-B.az0=new A.t("Completed Tasks",null,B.d4,null,null,null,B.a2,null,1,null,null)
-B.ZO=new A.fb(1,B.bN,B.az0,null)
+B.az1=new A.t("Completed Tasks",null,B.d4,null,null,null,B.a2,null,1,null,null)
+B.ZO=new A.fb(1,B.bN,B.az1,null)
 B.iw=new A.Y(57496,"MaterialIcons",!1)
 B.a11=new A.F(B.iw,null,B.E,null,null)
 B.aaE=s([B.ZO,B.a11],t.p)
@@ -141465,18 +141465,18 @@ B.avZ=new A.t("Customize your display format, cloud backup, notifications, audio
 B.a8W=s([B.aB7,B.at,B.avZ],t.p)
 B.W8=new A.fw(B.a3,B.d,B.f,B.z,null,B.n,null,0,B.a8W,null)
 B.Z0=new A.dw(1,B.aX,B.W8,null)
-B.awW=new A.t("All Employees",null,B.cC,null,null,null,null,null,null,null,null)
-B.Z1=new A.dw(1,B.aX,B.awW,null)
+B.awX=new A.t("All Employees",null,B.cC,null,null,null,null,null,null,null,null)
+B.Z1=new A.dw(1,B.aX,B.awX,null)
 B.l7=new A.q(!0,B.F,null,null,null,null,18,B.ai,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.azJ=new A.t("Focus",null,B.l7,null,null,null,B.a2,null,1,null,null)
 B.Z3=new A.dw(1,B.aX,B.azJ,null)
 B.aEc=new A.a7m(null)
 B.z7=new A.dw(1,B.aX,B.aEc,null)
 B.aqY=new A.q(!0,null,null,null,null,null,17,B.ai,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayF=new A.t("Send Feedback",null,B.aqY,null,null,null,null,null,null,null,null)
+B.ayH=new A.t("Send Feedback",null,B.aqY,null,null,null,null,null,null,null,null)
 B.o4=new A.q(!0,B.E,null,null,null,null,11,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.avt=new A.t("Direct to: yadavsaurabh9333@gmail.com",null,B.o4,null,null,null,null,null,null,null,null)
-B.aaw=s([B.ayF,B.avt],t.p)
+B.aaw=s([B.ayH,B.avt],t.p)
 B.W2=new A.fw(B.a3,B.d,B.f,B.z,null,B.n,null,0,B.aaw,null)
 B.Z4=new A.dw(1,B.aX,B.W2,null)
 B.xe=new A.z(1,0.19215686274509805,0.1803921568627451,0.5058823529411764,B.l)
@@ -141487,8 +141487,8 @@ B.awz=new A.t("Attach Word, PDF, PPT, Excel, etc.",null,B.apY,null,null,null,nul
 B.abJ=s([B.aur,B.awz],t.p)
 B.W4=new A.fw(B.a3,B.d,B.f,B.z,null,B.n,null,0,B.abJ,null)
 B.Z5=new A.dw(1,B.aX,B.W4,null)
-B.ayb=new A.t("Create New Department",null,B.bI,null,null,null,null,null,null,null,null)
-B.Z6=new A.dw(1,B.aX,B.ayb,null)
+B.ayd=new A.t("Create New Department",null,B.bI,null,null,null,null,null,null,null,null)
+B.Z6=new A.dw(1,B.aX,B.ayd,null)
 B.Z7=new A.J0(null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.qX=new A.Yp(0,"auto")
 B.Z8=new A.Yp(1,"locked")
@@ -141669,7 +141669,7 @@ B.rj=new A.Y(62663,"MaterialIcons",!1)
 B.rk=new A.Y(62745,"MaterialIcons",!1)
 B.ke=new A.Y(62746,"MaterialIcons",!1)
 B.mJ=new A.Y(62784,"MaterialIcons",!1)
-B.a_S=new A.Y(62803,"MaterialIcons",!1)
+B.a_R=new A.Y(62803,"MaterialIcons",!1)
 B.zV=new A.Y(62811,"MaterialIcons",!1)
 B.rn=new A.Y(62845,"MaterialIcons",!0)
 B.mK=new A.Y(62848,"MaterialIcons",!1)
@@ -141679,32 +141679,32 @@ B.iA=new A.Y(62862,"MaterialIcons",!1)
 B.rq=new A.Y(62870,"MaterialIcons",!1)
 B.rr=new A.Y(62872,"MaterialIcons",!1)
 B.kf=new A.Y(62899,"MaterialIcons",!1)
-B.a_U=new A.Y(62959,"MaterialIcons",!1)
+B.a_T=new A.Y(62959,"MaterialIcons",!1)
 B.kg=new A.Y(62967,"MaterialIcons",!1)
 B.rt=new A.Y(62987,"MaterialIcons",!1)
 B.ru=new A.Y(62998,"MaterialIcons",!1)
 B.hf=new A.Y(63013,"MaterialIcons",!1)
 B.cx=new A.Y(63029,"MaterialIcons",!1)
 B.zZ=new A.Y(63031,"MaterialIcons",!1)
-B.a_Z=new A.Y(63032,"MaterialIcons",!1)
+B.a_Y=new A.Y(63032,"MaterialIcons",!1)
 B.A_=new A.Y(63034,"MaterialIcons",!0)
 B.mL=new A.Y(63035,"MaterialIcons",!0)
 B.rw=new A.Y(63052,"MaterialIcons",!1)
 B.A0=new A.Y(63059,"MaterialIcons",!1)
-B.a00=new A.Y(63117,"MaterialIcons",!1)
+B.a0_=new A.Y(63117,"MaterialIcons",!1)
 B.dI=new A.Y(63126,"MaterialIcons",!1)
 B.mM=new A.Y(63131,"MaterialIcons",!1)
 B.ry=new A.Y(63257,"MaterialIcons",!1)
 B.A2=new A.Y(63258,"MaterialIcons",!1)
-B.a07=new A.Y(63330,"MaterialIcons",!1)
+B.a06=new A.Y(63330,"MaterialIcons",!1)
 B.db=new A.Y(63336,"MaterialIcons",!1)
 B.rz=new A.Y(63358,"MaterialIcons",!1)
 B.rA=new A.Y(63360,"MaterialIcons",!1)
 B.A4=new A.Y(63389,"MaterialIcons",!1)
-B.a09=new A.Y(63421,"MaterialIcons",!1)
+B.a08=new A.Y(63421,"MaterialIcons",!1)
 B.A5=new A.Y(63427,"MaterialIcons",!1)
 B.rB=new A.Y(63428,"MaterialIcons",!1)
-B.a0a=new A.Y(63472,"MaterialIcons",!1)
+B.a09=new A.Y(63472,"MaterialIcons",!1)
 B.A7=new A.Y(63501,"MaterialIcons",!1)
 B.A8=new A.Y(63509,"MaterialIcons",!1)
 B.rC=new A.Y(63515,"MaterialIcons",!1)
@@ -141716,45 +141716,45 @@ B.dJ=new A.Y(63677,"MaterialIcons",!1)
 B.rD=new A.Y(983075,"MaterialIcons",!1)
 B.Ab=new A.Y(983078,"MaterialIcons",!1)
 B.rE=new A.Y(983079,"MaterialIcons",!1)
-B.a0m=new A.Y(983082,"MaterialIcons",!1)
+B.a0l=new A.Y(983082,"MaterialIcons",!1)
 B.Ac=new A.Y(983105,"MaterialIcons",!1)
-B.a0p=new A.Y(983126,"MaterialIcons",!1)
+B.a0o=new A.Y(983126,"MaterialIcons",!1)
 B.mQ=new A.Y(983130,"MaterialIcons",!1)
-B.a0q=new A.Y(983132,"MaterialIcons",!1)
+B.a0p=new A.Y(983132,"MaterialIcons",!1)
 B.kk=new A.Y(983148,"MaterialIcons",!1)
 B.mR=new A.Y(983153,"MaterialIcons",!1)
 B.mS=new A.Y(983190,"MaterialIcons",!1)
-B.a0s=new A.Y(983200,"MaterialIcons",!1)
+B.a0r=new A.Y(983200,"MaterialIcons",!1)
 B.Ae=new A.Y(983203,"MaterialIcons",!1)
 B.Af=new A.Y(983256,"MaterialIcons",!1)
-B.a0x=new A.Y(983275,"MaterialIcons",!1)
+B.a0w=new A.Y(983275,"MaterialIcons",!1)
 B.Ag=new A.Y(983287,"MaterialIcons",!1)
-B.a0z=new A.Y(983326,"MaterialIcons",!1)
-B.a0A=new A.Y(983339,"MaterialIcons",!1)
-B.a0B=new A.Y(983357,"MaterialIcons",!1)
-B.a0C=new A.Y(983396,"MaterialIcons",!1)
+B.a0y=new A.Y(983326,"MaterialIcons",!1)
+B.a0z=new A.Y(983339,"MaterialIcons",!1)
+B.a0A=new A.Y(983357,"MaterialIcons",!1)
+B.a0B=new A.Y(983396,"MaterialIcons",!1)
 B.mU=new A.Y(983445,"MaterialIcons",!1)
 B.rG=new A.Y(983503,"MaterialIcons",!1)
-B.a0E=new A.Y(983505,"MaterialIcons",!1)
+B.a0D=new A.Y(983505,"MaterialIcons",!1)
 B.kl=new A.Y(983508,"MaterialIcons",!1)
 B.Ai=new A.Y(983514,"MaterialIcons",!1)
 B.Aj=new A.Y(983540,"MaterialIcons",!1)
-B.a0F=new A.Y(983548,"MaterialIcons",!1)
+B.a0E=new A.Y(983548,"MaterialIcons",!1)
 B.mV=new A.Y(983559,"MaterialIcons",!1)
 B.hh=new A.Y(983567,"MaterialIcons",!1)
 B.Al=new A.Y(983569,"MaterialIcons",!1)
 B.Am=new A.Y(983574,"MaterialIcons",!1)
 B.rH=new A.Y(983578,"MaterialIcons",!1)
 B.An=new A.Y(983590,"MaterialIcons",!1)
-B.a0G=new A.Y(983605,"MaterialIcons",!1)
+B.a0F=new A.Y(983605,"MaterialIcons",!1)
 B.rI=new A.Y(983663,"MaterialIcons",!1)
-B.a0M=new A.Y(983688,"MaterialIcons",!1)
+B.a0L=new A.Y(983688,"MaterialIcons",!1)
 B.rJ=new A.Y(983712,"MaterialIcons",!1)
 B.mW=new A.Y(983726,"MaterialIcons",!1)
-B.a0O=new A.Y(983751,"MaterialIcons",!1)
+B.a0N=new A.Y(983751,"MaterialIcons",!1)
 B.rK=new A.Y(983822,"MaterialIcons",!1)
-B.a0T=new A.Y(983860,"MaterialIcons",!1)
-B.a0U=new A.Y(984351,"MaterialIcons",!1)
+B.a0S=new A.Y(983860,"MaterialIcons",!1)
+B.a0T=new A.Y(984351,"MaterialIcons",!1)
 B.Ar=new A.Y(984559,"MaterialIcons",!1)
 B.As=new A.e0(24,0,400,0,48,B.x,1,null,!1)
 B.dK=new A.e0(null,null,null,null,null,B.F,null,null,null)
@@ -141779,8 +141779,8 @@ B.a1b=new A.F(B.fm,12,B.X,null,null)
 B.rb=new A.Y(57424,"MaterialIcons",!1)
 B.a1c=new A.F(B.rb,null,null,null,null)
 B.a1d=new A.F(B.mJ,18,B.aB,null,null)
-B.a_R=new A.Y(62769,"MaterialIcons",!1)
-B.a1e=new A.F(B.a_R,null,B.C,null,null)
+B.a_Q=new A.Y(62769,"MaterialIcons",!1)
+B.a1e=new A.F(B.a_Q,null,B.C,null,null)
 B.a1g=new A.F(B.cx,18,null,null,null)
 B.UW=new A.z(1,0.9333333333333333,0.9333333333333333,0.9333333333333333,B.l)
 B.aem=new A.dd([50,B.xA,100,B.pJ,200,B.UW,300,B.lR,350,B.i8,400,B.h2,500,B.pO,600,B.fa,700,B.f8,800,B.f9,850,B.pE,900,B.x7],t.pl)
@@ -141801,8 +141801,8 @@ B.a1r=new A.F(B.kd,16,B.ab,null,null)
 B.a1s=new A.F(B.zU,null,B.m,null,null)
 B.rL=new A.F(B.eK,null,B.m,null,null)
 B.a1v=new A.F(B.dI,18,B.X,null,null)
-B.a06=new A.Y(63323,"MaterialIcons",!1)
-B.a1w=new A.F(B.a06,18,B.ab,null,null)
+B.a05=new A.Y(63323,"MaterialIcons",!1)
+B.a1w=new A.F(B.a05,18,B.ab,null,null)
 B.rm=new A.Y(62841,"MaterialIcons",!0)
 B.a1x=new A.F(B.rm,14,B.X,null,null)
 B.a1y=new A.F(B.dI,22,B.fr,null,null)
@@ -141813,15 +141813,15 @@ B.a1F=new A.F(B.iA,12,B.E,null,null)
 B.a_a=new A.Y(57527,"MaterialIcons",!1)
 B.a1G=new A.F(B.a_a,28,B.jG,null,null)
 B.Av=new A.F(B.rK,18,B.E,null,null)
-B.a0S=new A.Y(983852,"MaterialIcons",!1)
-B.Aw=new A.F(B.a0S,48,B.X,null,null)
+B.a0R=new A.Y(983852,"MaterialIcons",!1)
+B.Aw=new A.F(B.a0R,48,B.X,null,null)
 B.Ax=new A.F(B.mN,null,B.m,null,null)
 B.mT=new A.Y(983367,"MaterialIcons",!0)
 B.a1H=new A.F(B.mT,16,null,null,null)
 B.a1I=new A.F(B.rw,18,B.e6,null,null)
 B.Ay=new A.F(B.dI,20,B.Y,null,null)
-B.rF=new A.Y(983092,"MaterialIcons",!0)
-B.a1J=new A.F(B.rF,15,null,null,null)
+B.a0U=new A.Y(985181,"MaterialIcons",!1)
+B.a1J=new A.F(B.a0U,15,null,null,null)
 B.a1K=new A.F(B.rB,22,B.am,null,null)
 B.rM=new A.F(B.he,20,null,null,null)
 B.Az=new A.F(B.he,null,null,null,null)
@@ -141839,11 +141839,11 @@ B.a_c=new A.Y(57634,"MaterialIcons",!1)
 B.a1R=new A.F(B.a_c,null,null,null,null)
 B.a1S=new A.F(B.Ao,22,B.bb,null,null)
 B.a1U=new A.F(B.ri,19,B.E,null,null)
-B.a_Q=new A.Y(62766,"MaterialIcons",!1)
-B.a1W=new A.F(B.a_Q,16,null,null,null)
+B.a_P=new A.Y(62766,"MaterialIcons",!1)
+B.a1W=new A.F(B.a_P,16,null,null,null)
 B.a1X=new A.F(B.hg,15,B.aP,null,null)
-B.a0j=new A.Y(63728,"MaterialIcons",!1)
-B.a1Y=new A.F(B.a0j,18,null,null,null)
+B.a0i=new A.Y(63728,"MaterialIcons",!1)
+B.a1Y=new A.F(B.a0i,18,null,null,null)
 B.mY=new A.F(B.rc,null,null,null,null)
 B.a2_=new A.F(B.hh,20,null,null,null)
 B.a20=new A.F(B.rE,null,B.E,null,null)
@@ -141871,11 +141871,12 @@ B.a2g=new A.F(B.ru,16,null,null,null)
 B.a2i=new A.F(B.ix,null,B.E,null,null)
 B.a2j=new A.F(B.ki,80,B.m,null,null)
 B.a2k=new A.F(B.rv,null,B.m,null,null)
-B.a_W=new A.Y(62996,"MaterialIcons",!1)
-B.a2l=new A.F(B.a_W,20,B.k,null,null)
+B.a_V=new A.Y(62996,"MaterialIcons",!1)
+B.a2l=new A.F(B.a_V,20,B.k,null,null)
 B.AE=new A.F(B.ee,null,null,null,null)
 B.a2m=new A.F(B.cx,20,B.k,null,null)
 B.AF=new A.F(B.he,null,B.k,null,null)
+B.rF=new A.Y(983092,"MaterialIcons",!0)
 B.a2n=new A.F(B.rF,20,B.ab,null,null)
 B.a2o=new A.F(B.rt,20,B.k,null,null)
 B.iC=new A.F(B.he,18,null,null,null)
@@ -141885,14 +141886,14 @@ B.mZ=new A.F(B.kh,16,B.m,null,null)
 B.a2r=new A.F(B.ro,24,B.m,null,null)
 B.Ad=new A.Y(983143,"MaterialIcons",!1)
 B.n_=new A.F(B.Ad,null,B.m,null,null)
-B.a0c=new A.Y(63531,"MaterialIcons",!1)
-B.a2s=new A.F(B.a0c,16,B.E,null,null)
+B.a0b=new A.Y(63531,"MaterialIcons",!1)
+B.a2s=new A.F(B.a0b,16,B.E,null,null)
 B.a2t=new A.F(B.mG,18,B.C,null,null)
 B.a2u=new A.F(B.kf,26,B.m,null,null)
 B.zF=new A.Y(57882,"MaterialIcons",!1)
 B.a2v=new A.F(B.zF,20,B.cM,null,null)
-B.a0r=new A.Y(983133,"MaterialIcons",!1)
-B.a2w=new A.F(B.a0r,48,B.X,null,null)
+B.a0q=new A.Y(983133,"MaterialIcons",!1)
+B.a2w=new A.F(B.a0q,48,B.X,null,null)
 B.a2x=new A.F(B.zW,null,null,null,null)
 B.AG=new A.F(B.fl,36,null,null,null)
 B.a2y=new A.F(B.hf,54,B.bb,null,null)
@@ -141904,8 +141905,8 @@ B.AI=new A.F(B.ee,null,B.k,null,null)
 B.a2E=new A.F(B.dI,null,B.Y,null,null)
 B.a2F=new A.F(B.eL,18,B.m,null,null)
 B.a2G=new A.F(B.mF,18,null,null,null)
-B.a08=new A.Y(63357,"MaterialIcons",!1)
-B.a2H=new A.F(B.a08,20,null,null,null)
+B.a07=new A.Y(63357,"MaterialIcons",!1)
+B.a2H=new A.F(B.a07,20,null,null,null)
 B.a2I=new A.F(B.hg,18,B.aP,null,null)
 B.a_J=new A.Y(61764,"MaterialIcons",!1)
 B.a2J=new A.F(B.a_J,null,null,null,null)
@@ -141914,8 +141915,8 @@ B.a2L=new A.F(B.kc,18,B.k,null,null)
 B.a2M=new A.F(B.mI,20,B.m,null,null)
 B.rs=new A.Y(62972,"MaterialIcons",!1)
 B.AJ=new A.F(B.rs,22,B.dD,null,null)
-B.a_V=new A.Y(62968,"MaterialIcons",!1)
-B.a2N=new A.F(B.a_V,18,B.m,null,null)
+B.a_U=new A.Y(62968,"MaterialIcons",!1)
+B.a2N=new A.F(B.a_U,18,B.m,null,null)
 B.a2O=new A.F(B.rE,48,B.m,null,null)
 B.a2Q=new A.F(B.eL,20,B.m,null,null)
 B.AK=new A.F(B.eK,12,B.bb,null,null)
@@ -141923,15 +141924,15 @@ B.AL=new A.F(B.kj,24,B.Y,null,null)
 B.a2S=new A.F(B.zN,22,B.m,null,null)
 B.a2T=new A.F(B.kk,18,B.C,null,null)
 B.a2U=new A.F(B.eK,15,B.ab,null,null)
-B.a_P=new A.Y(62764,"MaterialIcons",!1)
-B.a2V=new A.F(B.a_P,28,B.m,null,null)
-B.a04=new A.Y(63288,"MaterialIcons",!1)
-B.a2W=new A.F(B.a04,20,B.k,null,null)
+B.a_O=new A.Y(62764,"MaterialIcons",!1)
+B.a2V=new A.F(B.a_O,28,B.m,null,null)
+B.a03=new A.Y(63288,"MaterialIcons",!1)
+B.a2W=new A.F(B.a03,20,B.k,null,null)
 B.a2X=new A.F(B.rt,20,null,null,null)
-B.a03=new A.Y(63260,"MaterialIcons",!1)
-B.a2Y=new A.F(B.a03,16,B.aP,null,null)
-B.a0I=new A.Y(983613,"MaterialIcons",!1)
-B.AM=new A.F(B.a0I,null,B.m,null,null)
+B.a02=new A.Y(63260,"MaterialIcons",!1)
+B.a2Y=new A.F(B.a02,16,B.aP,null,null)
+B.a0H=new A.Y(983613,"MaterialIcons",!1)
+B.AM=new A.F(B.a0H,null,B.m,null,null)
 B.a2Z=new A.F(B.rI,15,B.C,null,null)
 B.a3_=new A.F(B.eK,11,B.bb,null,null)
 B.a30=new A.F(B.mO,15,B.C,null,null)
@@ -141961,36 +141962,36 @@ B.a3n=new A.F(B.iz,null,B.m,null,null)
 B.Aa=new A.Y(63708,"MaterialIcons",!1)
 B.a3o=new A.F(B.Aa,20,B.ab,null,null)
 B.a3p=new A.F(B.mL,18,B.X,null,null)
-B.a0y=new A.Y(983307,"MaterialIcons",!1)
-B.a3q=new A.F(B.a0y,16,null,null,null)
+B.a0x=new A.Y(983307,"MaterialIcons",!1)
+B.a3q=new A.F(B.a0x,16,null,null,null)
 B.a3r=new A.F(B.fm,22,B.m,null,null)
 B.a3s=new A.F(B.rD,11,B.lQ,null,null)
-B.a0h=new A.Y(63670,"MaterialIcons",!1)
-B.a3t=new A.F(B.a0h,26,B.E,null,null)
+B.a0g=new A.Y(63670,"MaterialIcons",!1)
+B.a3t=new A.F(B.a0g,26,B.E,null,null)
 B.a3v=new A.F(B.rp,20,B.m,null,null)
 B.a3w=new A.F(B.ry,18,B.m,null,null)
-B.a0d=new A.Y(63548,"MaterialIcons",!0)
-B.AQ=new A.F(B.a0d,null,null,null,null)
+B.a0c=new A.Y(63548,"MaterialIcons",!0)
+B.AQ=new A.F(B.a0c,null,null,null,null)
 B.a3y=new A.F(B.ka,null,B.E,null,null)
 B.a3z=new A.F(B.dI,null,B.cM,null,null)
 B.a3A=new A.F(B.hf,20,B.k,null,null)
 B.a3B=new A.F(B.Ad,22,B.m,null,null)
 B.a3C=new A.F(B.he,24,null,null,null)
-B.a0k=new A.Y(63734,"MaterialIcons",!1)
-B.a3D=new A.F(B.a0k,22,B.k,null,null)
-B.a0l=new A.Y(983072,"MaterialIcons",!1)
-B.a3E=new A.F(B.a0l,18,null,null,null)
+B.a0j=new A.Y(63734,"MaterialIcons",!1)
+B.a3D=new A.F(B.a0j,22,B.k,null,null)
+B.a0k=new A.Y(983072,"MaterialIcons",!1)
+B.a3E=new A.F(B.a0k,18,null,null,null)
 B.a3F=new A.F(B.zE,24,B.E,null,null)
 B.a3G=new A.F(B.kf,16,B.m,null,null)
 B.a3H=new A.F(B.dJ,null,B.jG,null,null)
 B.AR=new A.F(B.iA,18,null,null,null)
-B.a0D=new A.Y(983397,"MaterialIcons",!1)
-B.a3K=new A.F(B.a0D,34,B.k,null,null)
+B.a0C=new A.Y(983397,"MaterialIcons",!1)
+B.a3K=new A.F(B.a0C,34,B.k,null,null)
 B.a3L=new A.F(B.ee,22,B.X,null,null)
 B.Ah=new A.Y(983464,"MaterialIcons",!0)
 B.a3M=new A.F(B.Ah,22,B.ab,null,null)
-B.a0t=new A.Y(983202,"MaterialIcons",!1)
-B.a3N=new A.F(B.a0t,16,null,null,null)
+B.a0s=new A.Y(983202,"MaterialIcons",!1)
+B.a3N=new A.F(B.a0s,16,null,null,null)
 B.a3O=new A.F(B.hf,22,B.fb,null,null)
 B.a3R=new A.F(B.ix,22,B.E,null,null)
 B.a3T=new A.F(B.rb,18,null,null,null)
@@ -142005,83 +142006,82 @@ B.a_I=new A.Y(61728,"MaterialIcons",!1)
 B.a41=new A.F(B.a_I,null,B.am,null,null)
 B.rN=new A.F(B.fl,null,B.X,null,null)
 B.a43=new A.F(B.kk,12,B.h4,null,null)
-B.a0K=new A.Y(983658,"MaterialIcons",!1)
-B.a44=new A.F(B.a0K,20,B.k,null,null)
+B.a0J=new A.Y(983658,"MaterialIcons",!1)
+B.a44=new A.F(B.a0J,20,B.k,null,null)
 B.a45=new A.F(B.hf,40,B.m,null,null)
 B.a_F=new A.Y(61358,"MaterialIcons",!1)
 B.a46=new A.F(B.a_F,null,B.C,null,null)
-B.a0o=new A.Y(983123,"MaterialIcons",!1)
-B.a49=new A.F(B.a0o,16,null,null,null)
+B.a0n=new A.Y(983123,"MaterialIcons",!1)
+B.a49=new A.F(B.a0n,16,null,null,null)
 B.a4a=new A.F(B.mT,20,B.k,null,null)
 B.a4b=new A.F(B.cx,null,B.k,null,null)
 B.AS=new A.F(B.ka,null,null,null,null)
-B.a_O=new A.Y(62493,"MaterialIcons",!1)
-B.a4d=new A.F(B.a_O,14,null,null,null)
 B.A1=new A.Y(63199,"MaterialIcons",!1)
 B.AT=new A.F(B.A1,null,B.m,null,null)
 B.a_e=new A.Y(57657,"MaterialIcons",!1)
-B.a4e=new A.F(B.a_e,null,null,null,null)
-B.a4f=new A.F(B.rb,null,B.m,null,null)
-B.a4g=new A.F(B.mI,null,B.m,null,null)
-B.a4i=new A.F(B.rs,20,B.fb,null,null)
-B.a4k=new A.F(B.kg,36,B.m,null,null)
-B.a4l=new A.F(B.rm,16,B.X,null,null)
+B.a4d=new A.F(B.a_e,null,null,null,null)
+B.a4e=new A.F(B.rb,null,B.m,null,null)
+B.a4f=new A.F(B.mI,null,B.m,null,null)
+B.a4h=new A.F(B.rs,20,B.fb,null,null)
+B.a4j=new A.F(B.kg,36,B.m,null,null)
+B.a4k=new A.F(B.rm,16,B.X,null,null)
 B.AV=new A.F(B.fl,null,B.m,null,null)
-B.a0R=new A.Y(983838,"MaterialIcons",!1)
-B.a4m=new A.F(B.a0R,64,B.m,null,null)
-B.a4n=new A.F(B.mF,16,B.m,null,null)
-B.a4o=new A.F(B.rm,16,B.m,null,null)
-B.a_Y=new A.Y(63026,"MaterialIcons",!1)
-B.a4p=new A.F(B.a_Y,18,B.X,null,null)
+B.a0Q=new A.Y(983838,"MaterialIcons",!1)
+B.a4l=new A.F(B.a0Q,64,B.m,null,null)
+B.a4m=new A.F(B.mF,16,B.m,null,null)
+B.a4n=new A.F(B.rm,16,B.m,null,null)
+B.a_X=new A.Y(63026,"MaterialIcons",!1)
+B.a4o=new A.F(B.a_X,18,B.X,null,null)
 B.a_u=new A.Y(58602,"MaterialIcons",!1)
 B.AW=new A.F(B.a_u,18,null,null,null)
-B.a4q=new A.F(B.dJ,22,B.k,null,null)
-B.a4r=new A.F(B.eL,20,B.am,null,null)
-B.a4s=new A.F(B.Ab,28,B.k,null,null)
+B.a4p=new A.F(B.dJ,22,B.k,null,null)
+B.a4q=new A.F(B.eL,20,B.am,null,null)
+B.a4r=new A.F(B.Ab,28,B.k,null,null)
 B.rx=new A.Y(63128,"MaterialIcons",!1)
-B.a4t=new A.F(B.rx,18,B.aP,null,null)
-B.a4u=new A.F(B.cx,22,B.k,null,null)
-B.a4v=new A.F(B.ka,28,B.k,null,null)
-B.a4w=new A.F(B.km,null,B.m,null,null)
-B.a4x=new A.F(B.ki,22,B.k,null,null)
-B.a4y=new A.F(B.mO,18,B.C,null,null)
-B.a4z=new A.F(B.ix,null,null,null,null)
-B.a4A=new A.F(B.ee,26,B.cJ,null,null)
+B.a4s=new A.F(B.rx,18,B.aP,null,null)
+B.a4t=new A.F(B.cx,22,B.k,null,null)
+B.a4u=new A.F(B.ka,28,B.k,null,null)
+B.a4v=new A.F(B.km,null,B.m,null,null)
+B.a4w=new A.F(B.ki,22,B.k,null,null)
+B.a4x=new A.F(B.mO,18,B.C,null,null)
+B.a4y=new A.F(B.ix,null,null,null,null)
+B.a4z=new A.F(B.ee,26,B.cJ,null,null)
 B.Ap=new A.Y(983640,"MaterialIcons",!1)
-B.a4B=new A.F(B.Ap,20,B.ab,null,null)
-B.a4C=new A.F(B.km,22,B.aB,null,null)
-B.a4D=new A.F(B.iA,16,null,null,null)
-B.a4E=new A.F(B.ee,18,B.aP,null,null)
+B.a4A=new A.F(B.Ap,20,B.ab,null,null)
+B.a4B=new A.F(B.km,22,B.aB,null,null)
+B.a4C=new A.F(B.iA,16,null,null,null)
+B.a4D=new A.F(B.ee,18,B.aP,null,null)
 B.a_9=new A.Y(57500,"MaterialIcons",!0)
 B.rO=new A.F(B.a_9,16,null,null,null)
 B.AX=new A.F(B.mW,null,B.aB,null,null)
 B.fn=new A.F(B.rl,null,B.F,null,null)
-B.a4G=new A.F(B.mI,18,null,null,null)
-B.a4H=new A.F(B.hf,48,B.bb,null,null)
+B.a4F=new A.F(B.mI,18,null,null,null)
+B.a4G=new A.F(B.hf,48,B.bb,null,null)
 B.UF=new A.z(0.5333333333333333,0.5803921568627451,0.6392156862745098,0.7215686274509804,B.l)
-B.a4I=new A.F(B.fl,24,B.UF,null,null)
-B.a4J=new A.F(B.mO,18,null,null,null)
-B.a4K=new A.F(B.A1,18,null,null,null)
-B.a4L=new A.F(B.kh,18,null,null,null)
-B.a0u=new A.Y(983207,"MaterialIcons",!1)
-B.a4M=new A.F(B.a0u,22,null,null,null)
-B.a4N=new A.F(B.eL,20,B.E,null,null)
-B.a4O=new A.F(B.kk,16,B.cM,null,null)
-B.a4P=new A.F(B.eL,28,B.k,null,null)
-B.a4R=new A.F(B.Aa,null,B.X,null,null)
-B.a4S=new A.F(B.cx,22,B.C,null,null)
+B.a4H=new A.F(B.fl,24,B.UF,null,null)
+B.a4I=new A.F(B.mO,18,null,null,null)
+B.a4J=new A.F(B.A1,18,null,null,null)
+B.a4K=new A.F(B.kh,18,null,null,null)
+B.a0t=new A.Y(983207,"MaterialIcons",!1)
+B.a4L=new A.F(B.a0t,22,null,null,null)
+B.a4M=new A.F(B.eL,20,B.E,null,null)
+B.a4N=new A.F(B.kk,16,B.cM,null,null)
+B.a4O=new A.F(B.eL,28,B.k,null,null)
+B.a4Q=new A.F(B.Aa,null,B.X,null,null)
+B.a4R=new A.F(B.cx,22,B.C,null,null)
 B.a_l=new A.Y(58012,"MaterialIcons",!1)
-B.a4T=new A.F(B.a_l,28,B.k,null,null)
-B.a4U=new A.F(B.dI,56,B.X,null,null)
-B.a4W=new A.F(B.hh,48,B.e6,null,null)
-B.a4X=new A.F(B.iB,null,B.bb,null,null)
+B.a4S=new A.F(B.a_l,28,B.k,null,null)
+B.a4T=new A.F(B.dI,56,B.X,null,null)
+B.a4V=new A.F(B.hh,48,B.e6,null,null)
+B.a4W=new A.F(B.iB,null,B.bb,null,null)
 B.a_v=new A.Y(58648,"MaterialIcons",!1)
-B.a4Y=new A.F(B.a_v,20,B.fr,null,null)
-B.a4Z=new A.F(B.dI,20,B.fr,null,null)
-B.a50=new A.F(B.zJ,20,B.E,null,null)
+B.a4X=new A.F(B.a_v,20,B.fr,null,null)
+B.a4Y=new A.F(B.dI,20,B.fr,null,null)
+B.a5_=new A.F(B.zJ,20,B.E,null,null)
+B.a51=new A.F(B.rF,14,null,null,null)
 B.a52=new A.F(B.fl,40,B.X,null,null)
-B.a0w=new A.Y(983273,"MaterialIcons",!1)
-B.a53=new A.F(B.a0w,20,B.ab,null,null)
+B.a0v=new A.Y(983273,"MaterialIcons",!1)
+B.a53=new A.F(B.a0v,20,B.ab,null,null)
 B.fo=new A.F(B.mF,null,B.m,null,null)
 B.a54=new A.F(B.mR,34,B.m,null,null)
 B.a57=new A.F(B.mK,null,B.m,null,null)
@@ -142091,14 +142091,14 @@ B.a5a=new A.F(B.kg,24,B.m,null,null)
 B.a5b=new A.F(B.km,18,null,null,null)
 B.a5d=new A.F(B.kb,null,B.m,null,null)
 B.a5e=new A.F(B.rF,13,null,null,null)
-B.a05=new A.Y(63305,"MaterialIcons",!1)
-B.a5f=new A.F(B.a05,48,B.m,null,null)
+B.a04=new A.Y(63305,"MaterialIcons",!1)
+B.a5f=new A.F(B.a04,48,B.m,null,null)
 B.n0=new A.F(B.ee,18,B.E,null,null)
 B.a5g=new A.F(B.he,30,B.k,null,null)
-B.a0i=new A.Y(63705,"MaterialIcons",!1)
-B.a5h=new A.F(B.a0i,null,B.cM,null,null)
-B.a02=new A.Y(63227,"MaterialIcons",!1)
-B.a5j=new A.F(B.a02,20,B.m,null,null)
+B.a0h=new A.Y(63705,"MaterialIcons",!1)
+B.a5h=new A.F(B.a0h,null,B.cM,null,null)
+B.a01=new A.Y(63227,"MaterialIcons",!1)
+B.a5j=new A.F(B.a01,20,B.m,null,null)
 B.k9=new A.Y(57415,"MaterialIcons",!1)
 B.a5k=new A.F(B.k9,30,B.m,null,null)
 B.a5m=new A.F(B.ke,null,B.E,null,null)
@@ -142369,9 +142369,9 @@ B.Bp=s([B.a9p,B.a7C,B.abh,B.abk,B.a8Q,B.a96,B.aaf,B.a9A,B.a9Z,B.a8Y,B.a9q],t.zg)
 B.a8J=s(["AM","PM"],t.s)
 B.Bq=s(["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],t.s)
 B.Ak=new A.Y(983546,"MaterialIcons",!1)
-B.a4F=new A.F(B.Ak,null,B.m,null,null)
+B.a4E=new A.F(B.Ak,null,B.m,null,null)
 B.awf=new A.t("Transfer / Re-assign Task",null,B.uB,null,null,null,null,null,null,null,null)
-B.a8L=s([B.a4F,B.G,B.awf],t.p)
+B.a8L=s([B.a4E,B.G,B.awf],t.p)
 B.Pc=new A.GX(0,"server")
 B.a8N=s([B.Pc],A.aE("P<GX>"))
 B.a8O=s(["Arial"],t.s)
@@ -142484,13 +142484,13 @@ B.aC_=new A.cc(21,0)
 B.aC0=new A.cc(22,0)
 B.aC1=new A.cc(23,0)
 B.a9f=s([B.O3,B.O9,B.Oa,B.Ob,B.Oc,B.Od,B.Oe,B.Of,B.Og,B.Oh,B.O4,B.O5,B.O6,B.aBU,B.O7,B.aBV,B.O8,B.aBW,B.aBX,B.aBY,B.aBZ,B.aC_,B.aC0,B.aC1],t.JN)
-B.a4h=new A.F(B.mV,14,B.C,null,null)
+B.a4g=new A.F(B.mV,14,B.C,null,null)
 B.aS=new A.cx(4,null,null,null)
 B.arq=new A.q(!0,B.C,null,null,null,null,12,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.avU=new A.t("Current Month",null,B.arq,null,null,null,null,null,null,null,null)
-B.a9i=s([B.a4h,B.aS,B.avU],t.p)
-B.axP=new A.t("Festival / Public Holiday",null,null,null,null,null,null,null,null,null,null)
-B.WZ=new A.eE("Festival / Public Holiday",B.axP,B.c3,null,t.b7)
+B.a9i=s([B.a4g,B.aS,B.avU],t.p)
+B.axR=new A.t("Festival / Public Holiday",null,null,null,null,null,null,null,null,null,null)
+B.WZ=new A.eE("Festival / Public Holiday",B.axR,B.c3,null,t.b7)
 B.avv=new A.t("Company Event / Off",null,null,null,null,null,null,null,null,null,null)
 B.X2=new A.eE("Company Event / Off",B.avv,B.c3,null,t.b7)
 B.aAc=new A.t("Emergency / Gov Holiday",null,null,null,null,null,null,null,null,null,null)
@@ -142590,10 +142590,10 @@ B.di=new A.nk(1,"title")
 B.fO=new A.nk(2,"subtitle")
 B.jj=new A.nk(3,"trailing")
 B.aac=s([B.fN,B.di,B.fO,B.jj],A.aE("P<nk>"))
-B.a0g=new A.Y(63620,"MaterialIcons",!1)
-B.a5_=new A.F(B.a0g,null,B.C,null,null)
+B.a0f=new A.Y(63620,"MaterialIcons",!1)
+B.a4Z=new A.F(B.a0f,null,B.C,null,null)
 B.aBj=new A.t("Set Office Location",null,B.uB,null,null,null,null,null,null,null,null)
-B.aae=s([B.a5_,B.G,B.aBj],t.p)
+B.aae=s([B.a4Z,B.G,B.aBj],t.p)
 B.aal=s([B.h5,B.fd,B.jS,B.h6],A.aE("P<nI>"))
 B.a3f=new A.F(B.zF,18,null,null,null)
 B.avC=new A.t("Edit",null,null,null,null,null,null,null,null,null,null)
@@ -142625,10 +142625,10 @@ B.aE9=new A.qU(B.OB,B.OA)
 B.aax=s([B.aE7,B.aEa,B.aE8,B.aE9],A.aE("P<qU>"))
 B.aaD=s([35,30,20,25,30,35,30,25,25],t.n)
 B.Nj=new A.q(!0,B.E,null,null,null,null,12,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axI=new A.t("Company Joining Date",null,B.Nj,null,null,null,null,null,null,null,null)
+B.axK=new A.t("Company Joining Date",null,B.Nj,null,null,null,null,null,null,null,null)
 B.bj=new A.cx(6,null,null,null)
-B.a51=new A.F(B.rK,14,B.m,null,null)
-B.aaF=s([B.axI,B.bj,B.a51],t.p)
+B.a50=new A.F(B.rK,14,B.m,null,null)
+B.aaF=s([B.axK,B.bj,B.a50],t.p)
 B.ji=new A.oQ(0,"hour")
 B.oA=new A.oQ(1,"minute")
 B.BE=s([B.ji,B.oA],A.aE("P<oQ>"))
@@ -142645,24 +142645,24 @@ B.xb=new A.z(1,0.08235294117647059,0.5019607843137255,0.23921568627450981,B.l)
 B.VD=new A.z(1,0.13333333333333333,0.7725490196078432,0.3686274509803922,B.l)
 B.Uy=new A.z(1,0.5254901960784314,0.9372549019607843,0.6745098039215687,B.l)
 B.a7l=s([B.xb,B.VD,B.Uy],t.g)
-B.a0n=new A.Y(983118,"MaterialIcons",!1)
-B.aeG=new A.cK(B.iN,["Green Meadow","Fresh natural greenery",B.a7l,B.a0n],t.yf)
+B.a0m=new A.Y(983118,"MaterialIcons",!1)
+B.aeG=new A.cK(B.iN,["Green Meadow","Fresh natural greenery",B.a7l,B.a0m],t.yf)
 B.Uz=new A.z(1,0.9921568627450981,0.8784313725490196,0.2784313725490196,B.l)
 B.abm=s([B.jM,B.lM,B.Uz],t.g)
-B.a0e=new A.Y(63550,"MaterialIcons",!1)
-B.aeC=new A.cK(B.iN,["Mountain Sunrise","Morning warm sunrise",B.abm,B.a0e],t.yf)
+B.a0d=new A.Y(63550,"MaterialIcons",!1)
+B.aeC=new A.cK(B.iN,["Mountain Sunrise","Morning warm sunrise",B.abm,B.a0d],t.yf)
 B.UR=new A.z(1,0.050980392156862744,0.5803921568627451,0.5333333333333333,B.l)
 B.a7Z=s([B.UR,B.x0,B.eD],t.g)
 B.aeD=new A.cK(B.iN,["Sunny Beach","Ocean water & golden sand",B.a7Z,B.kf],t.yf)
 B.UT=new A.z(1,0.49411764705882355,0.13333333333333333,0.807843137254902,B.l)
 B.TS=new A.z(1,0.9137254901960784,0.8352941176470589,1,B.l)
 B.ac5=s([B.UT,B.jG,B.TS],t.g)
-B.a0f=new A.Y(63596,"MaterialIcons",!1)
-B.aeB=new A.cK(B.iN,["Lavender Valley","Soft floral purple fields",B.ac5,B.a0f],t.yf)
+B.a0e=new A.Y(63596,"MaterialIcons",!1)
+B.aeB=new A.cK(B.iN,["Lavender Valley","Soft floral purple fields",B.ac5,B.a0e],t.yf)
 B.U2=new A.z(1,0.996078431372549,0.8431372549019608,0.6666666666666666,B.l)
 B.aa3=s([B.ia,B.bb,B.U2],t.g)
-B.a01=new A.Y(63218,"MaterialIcons",!1)
-B.aeE=new A.cK(B.iN,["Golden Autumn","Warm maple forest",B.aa3,B.a01],t.yf)
+B.a00=new A.Y(63218,"MaterialIcons",!1)
+B.aeE=new A.cK(B.iN,["Golden Autumn","Warm maple forest",B.aa3,B.a00],t.yf)
 B.aaO=s([B.aeF,B.aeG,B.aeC,B.aeD,B.aeB,B.aeE],t.l)
 B.T5=new A.ih("all","All",B.mE,B.xW)
 B.T6=new A.ih("work","Work",B.rf,B.am)
@@ -142701,8 +142701,8 @@ B.aBo=new A.t("Employee",null,null,null,null,null,null,null,null,null,null)
 B.X1=new A.eE("employee",B.aBo,B.c3,null,t.b7)
 B.aB6=new A.t("Manager",null,null,null,null,null,null,null,null,null,null)
 B.WY=new A.eE("manager",B.aB6,B.c3,null,t.b7)
-B.ayW=new A.t("Super Admin",null,null,null,null,null,null,null,null,null,null)
-B.X0=new A.eE("super_admin",B.ayW,B.c3,null,t.b7)
+B.ayX=new A.t("Super Admin",null,null,null,null,null,null,null,null,null,null)
+B.X0=new A.eE("super_admin",B.ayX,B.c3,null,t.b7)
 B.abj=s([B.X1,B.WY,B.X0],t.FG)
 B.cA=new A.p(0,2)
 B.QX=new A.b5(0.75,B.H,B.xm,B.cA,1.5)
@@ -143896,8 +143896,8 @@ B.Yt=new A.U(40,40,40,40)
 B.ao1=new A.q(!0,B.aF,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.avf=new A.t("Failed to load image",null,B.ao1,null,null,null,null,null,null,null,null)
 B.Ho=new A.ah(B.Yt,B.avf,null)
-B.azu=new A.t("Select Priority",null,B.bI,null,null,null,null,null,null,null,null)
-B.agu=new A.ah(B.dE,B.azu,null)
+B.azv=new A.t("Select Priority",null,B.bI,null,null,null,null,null,null,null,null)
+B.agu=new A.ah(B.dE,B.azv,null)
 B.zX=new A.Y(62842,"MaterialIcons",!0)
 B.a3I=new A.F(B.zX,24,B.m,null,null)
 B.agv=new A.ah(B.cu,B.a3I,null)
@@ -143906,21 +143906,21 @@ B.Hp=new A.ah(B.qm,B.a3c,null)
 B.agx=new A.ah(B.ih,B.mf,null)
 B.av0=new A.t("Set Reminder Time",null,B.bI,null,null,null,null,null,null,null,null)
 B.agy=new A.ah(B.dE,B.av0,null)
-B.a_T=new A.Y(62837,"MaterialIcons",!1)
-B.a3P=new A.F(B.a_T,18,B.dl,null,null)
+B.a_S=new A.Y(62837,"MaterialIcons",!1)
+B.a3P=new A.F(B.a_S,18,B.dl,null,null)
 B.Hq=new A.ah(B.yz,B.a3P,null)
-B.a4j=new A.F(B.k9,20,B.m,null,null)
-B.agz=new A.ah(B.yF,B.a4j,null)
+B.a4i=new A.F(B.k9,20,B.m,null,null)
+B.agz=new A.ah(B.yF,B.a4i,null)
 B.yO=new A.U(20,0,0,0)
 B.ep=new A.q(!0,B.E,null,null,null,null,11,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.awU=new A.t("Sun ",null,B.ep,null,null,null,null,null,null,null,null)
+B.awV=new A.t("Sun ",null,B.ep,null,null,null,null,null,null,null,null)
 B.NV=new A.t("Mon ",null,B.ep,null,null,null,null,null,null,null,null)
 B.NP=new A.t("Tue ",null,B.ep,null,null,null,null,null,null,null,null)
 B.NJ=new A.t("Wed ",null,B.ep,null,null,null,null,null,null,null,null)
 B.NG=new A.t("Thu ",null,B.ep,null,null,null,null,null,null,null,null)
 B.NO=new A.t("Fri ",null,B.ep,null,null,null,null,null,null,null,null)
 B.aBr=new A.t("Sat",null,B.ep,null,null,null,null,null,null,null,null)
-B.a9S=s([B.awU,B.NV,B.NP,B.NJ,B.NG,B.NO,B.aBr],t.p)
+B.a9S=s([B.awV,B.NV,B.NP,B.NJ,B.NG,B.NO,B.aBr],t.p)
 B.aj6=new A.cm(B.L,B.ej,B.f,B.h,null,B.n,null,0,B.a9S,null)
 B.ZK=new A.BN(B.dA,B.aj6,null)
 B.agA=new A.ah(B.yO,B.ZK,null)
@@ -143932,21 +143932,21 @@ B.aAm=new A.t("OPERATIONS & HR",null,B.N9,null,null,null,null,null,null,null,nul
 B.agC=new A.ah(B.yE,B.aAm,null)
 B.yH=new A.U(12,12,12,6)
 B.N6=new A.q(!0,B.X,null,null,null,null,11,B.u,null,0.8,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ays=new A.t("MANAGEMENT",null,B.N6,null,null,null,null,null,null,null,null)
-B.agD=new A.ah(B.yH,B.ays,null)
+B.ayu=new A.t("MANAGEMENT",null,B.N6,null,null,null,null,null,null,null,null)
+B.agD=new A.ah(B.yH,B.ayu,null)
 B.aAQ=new A.t("Repeat Task",null,B.bI,null,null,null,null,null,null,null,null)
 B.agE=new A.ah(B.dE,B.aAQ,null)
 B.a1t=new A.F(B.k9,22,B.m,null,null)
 B.asS=new A.q(!0,B.m,null,null,null,null,15,B.a6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ax2=new A.t("Add Sub-task",null,B.asS,null,null,null,null,null,null,null,null)
-B.a8l=s([B.a1t,B.G,B.ax2],t.p)
+B.ax3=new A.t("Add Sub-task",null,B.asS,null,null,null,null,null,null,null,null)
+B.a8l=s([B.a1t,B.G,B.ax3],t.p)
 B.ajk=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a8l,null)
 B.agF=new A.ah(B.h9,B.ajk,null)
 B.c_=new A.q(!0,B.F,null,null,null,null,16,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayJ=new A.t("Select Category",null,B.c_,null,null,null,null,null,null,null,null)
-B.Hr=new A.ah(B.dE,B.ayJ,null)
-B.ayL=new A.t("Select Department",null,B.cC,null,null,null,null,null,null,null,null)
-B.agG=new A.ah(B.aD,B.ayL,null)
+B.ayL=new A.t("Select Category",null,B.c_,null,null,null,null,null,null,null,null)
+B.Hr=new A.ah(B.dE,B.ayL,null)
+B.ayM=new A.t("Select Department",null,B.cC,null,null,null,null,null,null,null,null)
+B.agG=new A.ah(B.aD,B.ayM,null)
 B.aAa=new A.t("Sat ",null,B.ep,null,null,null,null,null,null,null,null)
 B.aBk=new A.t("Sun",null,B.ep,null,null,null,null,null,null,null,null)
 B.a98=s([B.NV,B.NP,B.NJ,B.NG,B.NO,B.aAa,B.aBk],t.p)
@@ -144003,26 +144003,26 @@ B.ahz=new A.D0(4,"unknown")
 B.apw=new A.q(!0,B.Y,null,null,null,null,14,B.a6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.awM=new A.t("Delete",null,B.apw,null,null,null,null,null,null,null,null)
 B.ahA=new A.eh("delete",!0,B.awM,null,t.wI)
-B.axB=new A.t("Clear Filters",null,null,null,null,null,null,null,null,null,null)
-B.ahB=new A.eh("clear",!0,B.axB,null,t.wI)
+B.axD=new A.t("Clear Filters",null,null,null,null,null,null,null,null,null,null)
+B.ahB=new A.eh("clear",!0,B.axD,null,t.wI)
 B.a47=new A.F(B.zC,20,B.m,null,null)
-B.ayC=new A.t("Export Tasks Report",null,null,null,null,null,null,null,null,null,null)
-B.a9r=s([B.a47,B.G,B.ayC],t.p)
+B.ayE=new A.t("Export Tasks Report",null,null,null,null,null,null,null,null,null,null)
+B.a9r=s([B.a47,B.G,B.ayE],t.p)
 B.aiI=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a9r,null)
 B.ahC=new A.eh("tasks",!0,B.aiI,null,t.wI)
 B.dX=new A.q(!0,null,null,null,null,null,14,B.a6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axY=new A.t("Manage Categories",null,B.dX,null,null,null,null,null,null,null,null)
-B.ahD=new A.eh("categories",!0,B.axY,null,t.wI)
+B.ay_=new A.t("Manage Categories",null,B.dX,null,null,null,null,null,null,null,null)
+B.ahD=new A.eh("categories",!0,B.ay_,null,t.wI)
 B.a5i=new A.F(B.A5,18,B.C,null,null)
 B.fC=new A.q(!0,null,null,null,null,null,13,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.aA_=new A.t("Full Spreadsheet",null,B.fC,null,null,null,null,null,null,null,null)
 B.acf=s([B.a5i,B.G,B.aA_],t.p)
 B.aje=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.acf,null)
 B.ahE=new A.eh(!1,!0,B.aje,null,t.Lw)
-B.aze=new A.t("Duplicate Task",null,B.dX,null,null,null,null,null,null,null,null)
-B.ahF=new A.eh("duplicate",!0,B.aze,null,t.wI)
-B.ayH=new A.t("Select Tasks",null,B.dX,null,null,null,null,null,null,null,null)
-B.ahG=new A.eh("select",!0,B.ayH,null,t.wI)
+B.azf=new A.t("Duplicate Task",null,B.dX,null,null,null,null,null,null,null,null)
+B.ahF=new A.eh("duplicate",!0,B.azf,null,t.wI)
+B.ayJ=new A.t("Select Tasks",null,B.dX,null,null,null,null,null,null,null,null)
+B.ahG=new A.eh("select",!0,B.ayJ,null,t.wI)
 B.auO=new A.t("Share",null,B.dX,null,null,null,null,null,null,null,null)
 B.ahH=new A.eh("share",!0,B.auO,null,t.wI)
 B.azX=new A.t("Search",null,B.dX,null,null,null,null,null,null,null,null)
@@ -144035,12 +144035,12 @@ B.awy=new A.t("Export Attendance Report",null,null,null,null,null,null,null,null
 B.a9_=s([B.a58,B.G,B.awy],t.p)
 B.aiX=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a9_,null)
 B.ahK=new A.eh("attendance",!0,B.aiX,null,t.wI)
-B.axt=new A.t("Delete Project",null,B.uP,null,null,null,null,null,null,null,null)
-B.ab7=s([B.Ay,B.G,B.axt],t.p)
+B.axv=new A.t("Delete Project",null,B.uP,null,null,null,null,null,null,null,null)
+B.ab7=s([B.Ay,B.G,B.axv],t.p)
 B.ajf=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.ab7,null)
 B.ahL=new A.eh("delete",!0,B.ajf,null,t.wI)
-B.a0N=new A.Y(983731,"MaterialIcons",!1)
-B.a3x=new A.F(B.a0N,18,B.m,null,null)
+B.a0M=new A.Y(983731,"MaterialIcons",!1)
+B.a3x=new A.F(B.a0M,18,B.m,null,null)
 B.o3=new A.q(!0,null,null,null,null,null,13,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.auq=new A.t("Raw Web Embed",null,B.o3,null,null,null,null,null,null,null,null)
 B.a9z=s([B.a3x,B.G,B.auq],t.p)
@@ -144052,10 +144052,10 @@ B.aw6=new A.t("Transfer / Re-assign Task",null,B.o6,null,null,null,null,null,nul
 B.abs=s([B.a14,B.G,B.aw6],t.p)
 B.aiV=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.abs,null)
 B.ahO=new A.eh("transfer",!0,B.aiV,null,t.wI)
-B.axs=new A.t("Start Focus Timer (Pomodoro)",null,B.dX,null,null,null,null,null,null,null,null)
-B.ahP=new A.eh("focus",!0,B.axs,null,t.wI)
-B.axm=new A.t("Today Review",null,B.dX,null,null,null,null,null,null,null,null)
-B.ahQ=new A.eh("today_review",!0,B.axm,null,t.wI)
+B.axu=new A.t("Start Focus Timer (Pomodoro)",null,B.dX,null,null,null,null,null,null,null,null)
+B.ahP=new A.eh("focus",!0,B.axu,null,t.wI)
+B.axo=new A.t("Today Review",null,B.dX,null,null,null,null,null,null,null,null)
+B.ahQ=new A.eh("today_review",!0,B.axo,null,t.wI)
 B.avN=new A.t("Print Preview",null,B.dX,null,null,null,null,null,null,null,null)
 B.ahS=new A.eh("print",!0,B.avN,null,t.wI)
 B.auM=new A.t("Print",null,B.dX,null,null,null,null,null,null,null,null)
@@ -144143,32 +144143,32 @@ B.a8t=s([B.a1n,B.bj,B.aAF],t.p)
 B.aiH=new A.cm(B.L,B.ei,B.f,B.h,null,B.n,null,0,B.a8t,null)
 B.a1Q=new A.F(B.dJ,16,B.m,null,null)
 B.j7=new A.q(!0,B.m,null,null,null,null,12,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.aym=new A.t("+ Attach Voice Instructions (Audio)",null,B.j7,null,null,null,null,null,null,null,null)
-B.abE=s([B.a1Q,B.bj,B.aym],t.p)
+B.ayo=new A.t("+ Attach Voice Instructions (Audio)",null,B.j7,null,null,null,null,null,null,null,null)
+B.abE=s([B.a1Q,B.bj,B.ayo],t.p)
 B.aiJ=new A.cm(B.L,B.d,B.w,B.h,null,B.n,null,0,B.abE,null)
 B.a2A=new A.F(B.rr,20,null,null,null)
-B.axC=new A.t("Organize Tasks with AI",null,B.bI,null,null,null,null,null,null,null,null)
-B.a91=s([B.a2A,B.G,B.axC],t.p)
+B.axE=new A.t("Organize Tasks with AI",null,B.bI,null,null,null,null,null,null,null,null)
+B.a91=s([B.a2A,B.G,B.axE],t.p)
 B.aiK=new A.cm(B.L,B.bc,B.f,B.h,null,B.n,null,0,B.a91,null)
-B.a0v=new A.Y(983232,"MaterialIcons",!1)
-B.AZ=new A.F(B.a0v,null,B.m,null,null)
-B.ayQ=new A.t("Print Task List",null,null,null,null,null,null,null,null,null,null)
-B.ac3=s([B.AZ,B.G,B.ayQ],t.p)
+B.a0u=new A.Y(983232,"MaterialIcons",!1)
+B.AZ=new A.F(B.a0u,null,B.m,null,null)
+B.ayR=new A.t("Print Task List",null,null,null,null,null,null,null,null,null,null)
+B.ac3=s([B.AZ,B.G,B.ayR],t.p)
 B.aiL=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.ac3,null)
 B.a5l=new A.F(B.k9,16,B.m,null,null)
 B.avH=new A.t("Add Task",null,B.j7,null,null,null,null,null,null,null,null)
 B.aam=s([B.a5l,B.aS,B.avH],t.p)
 B.aiM=new A.cm(B.L,B.d,B.w,B.h,null,B.n,null,0,B.aam,null)
-B.a0L=new A.Y(983662,"MaterialIcons",!1)
-B.a1V=new A.F(B.a0L,16,B.m,null,null)
+B.a0K=new A.Y(983662,"MaterialIcons",!1)
+B.a1V=new A.F(B.a0K,16,B.m,null,null)
 B.aBA=new A.t("Version 1.03.30 (Desktop)",null,B.j7,null,null,null,null,null,null,null,null)
 B.abZ=s([B.a1V,B.bj,B.aBA],t.p)
 B.aiN=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.abZ,null)
 B.a_E=new A.Y(61293,"MaterialIcons",!1)
 B.a3V=new A.F(B.a_E,20,B.m,null,null)
 B.Nf=new A.q(!0,B.bq,null,null,null,null,16,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axa=new A.t("Task Comments & Activity",null,B.Nf,null,null,null,null,null,null,null,null)
-B.abb=s([B.a3V,B.G,B.axa],t.p)
+B.axb=new A.t("Task Comments & Activity",null,B.Nf,null,null,null,null,null,null,null,null)
+B.abb=s([B.a3V,B.G,B.axb],t.p)
 B.aiP=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.abb,null)
 B.TN=new A.z(1,0.9882352941176471,0.8941176470588236,0.9254901960784314,B.l)
 B.U4=new A.z(1,0.9725490196078431,0.7333333333333333,0.8156862745098039,B.l)
@@ -144184,40 +144184,40 @@ B.aeJ=new A.dd([50,B.TN,100,B.U4,200,B.VO,300,B.Uk,400,B.VA,500,B.Uo,600,B.UI,70
 B.aeX=new A.mN(B.aeJ,1,0.9137254901960784,0.11764705882352941,0.38823529411764707,B.l)
 B.a1l=new A.F(B.rg,20,B.aeX,null,null)
 B.fE=new A.q(!0,null,null,null,null,null,12,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.az9=new A.t("Mom's Birthday",null,B.fE,null,null,null,null,null,null,null,null)
+B.aza=new A.t("Mom's Birthday",null,B.fE,null,null,null,null,null,null,null,null)
 B.MW=new A.q(!0,B.X,null,null,null,null,10,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.auE=new A.t("2026/08/15",null,B.MW,null,null,null,null,null,null,null,null)
-B.a8F=s([B.az9,B.auE],t.p)
+B.a8F=s([B.aza,B.auE],t.p)
 B.W1=new A.fw(B.a3,B.d,B.f,B.z,null,B.n,null,0,B.a8F,null)
 B.eV=new A.a3j(null)
 B.lb=new A.q(!0,B.F,null,null,null,null,18,B.aR,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axz=new A.t("123 D",null,B.lb,null,null,null,null,null,null,null,null)
-B.a8z=s([B.a1l,B.G,B.W1,B.eV,B.axz],t.p)
+B.axB=new A.t("123 D",null,B.lb,null,null,null,null,null,null,null,null)
+B.a8z=s([B.a1l,B.G,B.W1,B.eV,B.axB],t.p)
 B.aiQ=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a8z,null)
 B.a5s=new A.F(B.hh,20,B.e6,null,null)
 B.c0=new A.q(!0,B.E,null,null,null,null,12,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axQ=new A.t("Google Sheet, Doc, YouTube ya koi bhi link add karein",null,B.c0,null,null,null,null,null,null,null,null)
-B.a7m=s([B.a5s,B.b3,B.axQ],t.p)
+B.axS=new A.t("Google Sheet, Doc, YouTube ya koi bhi link add karein",null,B.c0,null,null,null,null,null,null,null,null)
+B.a7m=s([B.a5s,B.b3,B.axS],t.p)
 B.aiS=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a7m,null)
 B.awh=new A.t("Total focus time this week ",null,B.j6,null,null,null,B.a2,null,null,null,null)
 B.ZN=new A.fb(1,B.bN,B.awh,null)
 B.arX=new A.q(!0,B.am,null,null,null,null,13,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayR=new A.t("0 min",null,B.arX,null,null,null,null,null,null,null,null)
-B.aay=s([B.ZN,B.ayR],t.p)
+B.ayS=new A.t("0 min",null,B.arX,null,null,null,null,null,null,null,null)
+B.aay=s([B.ZN,B.ayS],t.p)
 B.aiT=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.aay,null)
 B.ap_=new A.q(!0,null,null,null,null,null,17,B.ai,null,0.8,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.azc=new A.t("CONTINUE",null,B.ap_,null,null,null,null,null,null,null,null)
+B.azd=new A.t("CONTINUE",null,B.ap_,null,null,null,null,null,null,null,null)
 B.atG=new A.q(!0,null,null,null,null,null,16,B.u,null,-1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.aAE=new A.t(">>>",null,B.atG,null,null,null,null,null,null,null,null)
-B.ac4=s([B.azc,B.G,B.aAE],t.p)
+B.ac4=s([B.azd,B.G,B.aAE],t.p)
 B.aiU=new A.cm(B.L,B.bc,B.f,B.h,null,B.n,null,0,B.ac4,null)
-B.azt=new A.t("Print Preview",null,null,null,null,null,null,null,null,null,null)
-B.aan=s([B.AZ,B.G,B.azt],t.p)
+B.azu=new A.t("Print Preview",null,null,null,null,null,null,null,null,null,null)
+B.aan=s([B.AZ,B.G,B.azu],t.p)
 B.aiZ=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.aan,null)
 B.a2f=new A.F(B.rl,18,B.bq,null,null)
 B.aph=new A.q(!0,B.bq,null,null,null,null,14,B.ae,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.azr=new A.t("Back to Workspace",null,B.aph,null,null,null,null,null,null,null,null)
-B.a9u=s([B.a2f,B.G,B.azr],t.p)
+B.azs=new A.t("Back to Workspace",null,B.aph,null,null,null,null,null,null,null,null)
+B.a9u=s([B.a2f,B.G,B.azs],t.p)
 B.aj_=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a9u,null)
 B.uJ=new A.q(!0,null,null,null,null,null,15,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.awg=new A.t("Awesome! Let's Continue",null,B.uJ,null,null,null,null,null,null,null,null)
@@ -144233,8 +144233,8 @@ B.a3W=new A.F(B.zZ,24,B.m,null,null)
 B.avM=new A.t("Sub-tasks Checklist",null,B.d4,null,null,null,null,null,null,null,null)
 B.aas=s([B.a3W,B.G,B.avM],t.p)
 B.aj2=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.aas,null)
-B.a0_=new A.Y(63097,"MaterialIcons",!1)
-B.a21=new A.F(B.a0_,24,B.m,null,null)
+B.a_Z=new A.Y(63097,"MaterialIcons",!1)
+B.a21=new A.F(B.a_Z,24,B.m,null,null)
 B.aq5=new A.q(!0,null,null,null,null,null,18,B.aR,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.avO=new A.t("Create or Attach File",null,B.aq5,null,null,null,null,null,null,null,null)
 B.a8A=s([B.a21,B.b3,B.avO],t.p)
@@ -144251,46 +144251,46 @@ B.a10=new A.F(B.rD,22,B.m,null,null)
 B.auo=new A.t("Remarks & Notes",null,B.cC,null,null,null,null,null,null,null,null)
 B.ac7=s([B.a10,B.G,B.auo],t.p)
 B.aj8=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.ac7,null)
-B.a0Q=new A.Y(983784,"MaterialIcons",!1)
-B.a2R=new A.F(B.a0Q,null,B.m,null,null)
+B.a0P=new A.Y(983784,"MaterialIcons",!1)
+B.a2R=new A.F(B.a0P,null,B.m,null,null)
 B.avP=new A.t("Account Sync",null,null,null,null,null,null,null,null,null,null)
 B.a9K=s([B.a2R,B.G,B.avP],t.p)
 B.aj9=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a9K,null)
 B.a3d=new A.F(B.iA,18,B.F,null,null)
-B.azx=new A.t("Project Attachments (PDF / Docs)",null,B.o7,null,null,null,null,null,null,null,null)
-B.aaP=s([B.a3d,B.bj,B.azx],t.p)
+B.azy=new A.t("Project Attachments (PDF / Docs)",null,B.o7,null,null,null,null,null,null,null,null)
+B.aaP=s([B.a3d,B.bj,B.azy],t.p)
 B.aja=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.aaP,null)
 B.a33=new A.F(B.mT,20,null,null,null)
 B.aAZ=new A.t("Assign Task Now",null,B.bI,null,null,null,null,null,null,null,null)
 B.a8R=s([B.a33,B.G,B.aAZ],t.p)
 B.ajb=new A.cm(B.L,B.bc,B.f,B.h,null,B.n,null,0,B.a8R,null)
-B.a_X=new A.Y(63012,"MaterialIcons",!1)
-B.a48=new A.F(B.a_X,null,B.m,null,null)
-B.azv=new A.t("Manage Categories",null,null,null,null,null,null,null,null,null,null)
-B.a90=s([B.a48,B.G,B.azv],t.p)
+B.a_W=new A.Y(63012,"MaterialIcons",!1)
+B.a48=new A.F(B.a_W,null,B.m,null,null)
+B.azw=new A.t("Manage Categories",null,null,null,null,null,null,null,null,null,null)
+B.a90=s([B.a48,B.G,B.azw],t.p)
 B.ajc=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a90,null)
 B.AU=new A.F(B.iB,null,B.m,null,null)
 B.asM=new A.q(!0,null,null,null,null,null,null,B.ai,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.aB5=new A.t("Add Link",null,B.asM,null,null,null,null,null,null,null,null)
 B.aaj=s([B.AU,B.b3,B.aB5],t.p)
 B.ajd=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.aaj,null)
-B.a0J=new A.Y(983621,"MaterialIcons",!1)
-B.a4V=new A.F(B.a0J,16,B.m,null,null)
+B.a0I=new A.Y(983621,"MaterialIcons",!1)
+B.a4U=new A.F(B.a0I,16,B.m,null,null)
 B.aBs=new A.t("Click to open workspace (Sheets, Files & Tasks)",null,B.j7,null,null,null,null,null,null,null,null)
-B.abP=s([B.a4V,B.bj,B.aBs],t.p)
+B.abP=s([B.a4U,B.bj,B.aBs],t.p)
 B.ajg=new A.cm(B.L,B.bc,B.f,B.h,null,B.n,null,0,B.abP,null)
 B.a19=new A.F(B.cx,12,B.dC,null,null)
 B.asK=new A.q(!0,B.dC,null,null,null,null,11,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ax9=new A.t("Auto-Saved",null,B.asK,null,null,null,null,null,null,null,null)
-B.ab8=s([B.a19,B.aS,B.ax9],t.p)
+B.axa=new A.t("Auto-Saved",null,B.asK,null,null,null,null,null,null,null,null)
+B.ab8=s([B.a19,B.aS,B.axa],t.p)
 B.ajh=new A.cm(B.L,B.d,B.w,B.h,null,B.n,null,0,B.ab8,null)
 B.a1B=new A.F(B.zH,18,B.bb,null,null)
 B.asq=new A.q(!0,B.jO,null,null,null,null,12,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.awQ=new A.t("No team members found under this manager.",null,B.asq,null,null,null,null,null,null,null,null)
 B.a8I=s([B.a1B,B.G,B.awQ],t.p)
 B.aji=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a8I,null)
-B.a0P=new A.Y(983758,"MaterialIcons",!1)
-B.a3k=new A.F(B.a0P,16,B.E,null,null)
+B.a0O=new A.Y(983758,"MaterialIcons",!1)
+B.a3k=new A.F(B.a0O,16,B.E,null,null)
 B.auK=new A.t("Pinch / scroll to zoom & drag to pan",null,B.c0,null,null,null,null,null,null,null,null)
 B.aa1=s([B.a3k,B.bj,B.auK],t.p)
 B.Lc=new A.cm(B.L,B.bc,B.f,B.h,null,B.n,null,0,B.aa1,null)
@@ -144301,8 +144301,8 @@ B.aqy=new A.q(!0,B.ca,null,null,null,null,15,B.ai,null,null,null,null,null,null,
 B.NN=new A.t("--",null,B.aqy,null,null,null,null,null,null,null,null)
 B.abW=s([B.YK,B.G,B.NN],t.p)
 B.ajl=new A.cm(B.L,B.af,B.f,B.h,null,B.n,null,0,B.abW,null)
-B.ayt=new A.t("Empty Recycle Bin?",null,B.bI,null,null,null,null,null,null,null,null)
-B.ac1=s([B.At,B.G,B.ayt],t.p)
+B.ayv=new A.t("Empty Recycle Bin?",null,B.bI,null,null,null,null,null,null,null,null)
+B.ac1=s([B.At,B.G,B.ayv],t.p)
 B.ajm=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.ac1,null)
 B.a1A=new A.F(B.rq,18,B.am,null,null)
 B.auF=new A.t("Spoken Words / Voice Input",null,B.df,null,null,null,null,null,null,null,null)
@@ -144312,32 +144312,32 @@ B.ap6=new A.q(!0,null,null,null,null,null,18,B.ai,null,null,null,null,null,null,
 B.awC=new A.t("Add Google Sheet / Link",null,B.ap6,null,null,null,null,null,null,null,null)
 B.aaz=s([B.AU,B.b3,B.awC],t.p)
 B.ajo=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.aaz,null)
-B.a0b=new A.Y(63520,"MaterialIcons",!1)
-B.a1z=new A.F(B.a0b,null,B.m,null,null)
-B.azD=new A.t("Today Review",null,null,null,null,null,null,null,null,null,null)
-B.a9w=s([B.a1z,B.G,B.azD],t.p)
+B.a0a=new A.Y(63520,"MaterialIcons",!1)
+B.a1z=new A.F(B.a0a,null,B.m,null,null)
+B.azE=new A.t("Today Review",null,null,null,null,null,null,null,null,null,null)
+B.a9w=s([B.a1z,B.G,B.azE],t.p)
 B.ajp=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.a9w,null)
 B.aBz=new A.t("Tasks Completion Rate",null,B.N5,null,null,null,B.a2,null,1,null,null)
 B.YY=new A.dw(1,B.aX,B.aBz,null)
 B.a97=s([B.YY,B.G,B.NN],t.p)
 B.ajq=new A.cm(B.L,B.af,B.f,B.h,null,B.n,null,0,B.a97,null)
 B.ar2=new A.q(!0,B.ab,null,null,null,null,6,null,null,null,null,null,1.3,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayx=new A.t("< August 2026 >\nS M T W T F S\n1 2 3 4 5 6 7\n8 9 10 11 12 13 14\n15 16 17 18 19 20 21",null,B.ar2,null,null,null,null,null,null,null,null)
-B.YN=new A.dw(1,B.aX,B.ayx,null)
+B.ayz=new A.t("< August 2026 >\nS M T W T F S\n1 2 3 4 5 6 7\n8 9 10 11 12 13 14\n15 16 17 18 19 20 21",null,B.ar2,null,null,null,null,null,null,null,null)
+B.YN=new A.dw(1,B.aX,B.ayz,null)
 B.aDH=new A.On(10,null,null)
 B.auY=new A.t("20 Wed",null,B.Ne,null,null,null,null,null,null,null,null)
 B.NA=new A.q(!0,null,null,null,null,null,6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axl=new A.t(" Grandma's Birthday",null,B.NA,null,null,null,null,null,null,null,null)
-B.azn=new A.t(" Send Email",null,B.NA,null,null,null,null,null,null,null,null)
+B.axn=new A.t(" Grandma's Birthday",null,B.NA,null,null,null,null,null,null,null,null)
+B.azo=new A.t(" Send Email",null,B.NA,null,null,null,null,null,null,null,null)
 B.ap4=new A.q(!0,B.cM,null,null,null,null,6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 B.aAs=new A.t(" Morning Jogging",null,B.ap4,null,null,null,null,null,null,null,null)
-B.aar=s([B.auY,B.axl,B.azn,B.aAs],t.p)
+B.aar=s([B.auY,B.axn,B.azo,B.aAs],t.p)
 B.W5=new A.fw(B.a3,B.d,B.f,B.z,null,B.n,null,0,B.aar,null)
 B.YJ=new A.dw(1,B.aX,B.W5,null)
 B.aa0=s([B.YN,B.aDH,B.YJ],t.p)
 B.ajr=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.aa0,null)
-B.ay_=new A.t("Estimated Time / Duration",null,B.bI,null,null,null,null,null,null,null,null)
-B.aai=s([B.rL,B.G,B.ay_],t.p)
+B.ay1=new A.t("Estimated Time / Duration",null,B.bI,null,null,null,null,null,null,null,null)
+B.aai=s([B.rL,B.G,B.ay1],t.p)
 B.ajs=new A.cm(B.L,B.d,B.f,B.h,null,B.n,null,0,B.aai,null)
 B.aju=new A.Mp(1333)
 B.tH=new A.Mp(2222)
@@ -144654,12 +144654,12 @@ B.am8=new A.ov(3,"hide")
 B.aGc=new A.ov(4,"remove")
 B.am9=new A.ov(5,"timeout")
 B.ama=new A.DU(null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayo=new A.t("Project deleted",null,null,null,null,null,null,null,null,null,null)
-B.amb=new A.cM(B.ayo,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.ayq=new A.t("Project deleted",null,null,null,null,null,null,null,null,null,null)
+B.amb=new A.cM(B.ayq,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.av7=new A.t("Staff role, department & manager updated!",null,null,null,null,null,null,null,null,null,null)
 B.amc=new A.cM(B.av7,B.C,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.aya=new A.t("Default category set to Last Viewed.",null,null,null,null,null,null,null,null,null,null)
-B.amd=new A.cM(B.aya,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.ayc=new A.t("Default category set to Last Viewed.",null,null,null,null,null,null,null,null,null,null)
+B.amd=new A.cM(B.ayc,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.avA=new A.t("Sort order: Previous, Today, Future",null,null,null,null,null,null,null,null,null,null)
 B.ame=new A.cM(B.avA,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.aAf=new A.t("Please write your feedback message.",null,null,null,null,null,null,null,null,null,null)
@@ -144668,32 +144668,32 @@ B.azK=new A.t("Signed in successfully! All tasks synced to cloud.",null,null,nul
 B.amg=new A.cM(B.azK,B.C,null,null,null,null,null,null,B.dV,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.avo=new A.t("Recycle bin emptied successfully!",null,null,null,null,null,null,null,null,null,null)
 B.amh=new A.cM(B.avo,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.azh=new A.t("Punch In Cancelled: Verification selfie lena anivarya hai!",null,null,null,null,null,null,null,null,null,null)
-B.ami=new A.cM(B.azh,B.aP,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.axb=new A.t("Notification deleted",null,null,null,null,null,null,null,null,null,null)
-B.amj=new A.cM(B.axb,null,null,null,null,null,null,null,B.dV,null,null,null,null,B.fh,!1,null,null,null,B.q,null)
+B.azi=new A.t("Punch In Cancelled: Verification selfie lena anivarya hai!",null,null,null,null,null,null,null,null,null,null)
+B.ami=new A.cM(B.azi,B.aP,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.axc=new A.t("Notification deleted",null,null,null,null,null,null,null,null,null,null)
+B.amj=new A.cM(B.axc,null,null,null,null,null,null,null,B.dV,null,null,null,null,B.fh,!1,null,null,null,B.q,null)
 B.aAP=new A.t("Task updated successfully",null,null,null,null,null,null,null,null,null,null)
 B.amk=new A.cM(B.aAP,B.C,null,null,null,null,null,null,null,null,null,null,null,B.fh,!1,null,null,null,B.q,null)
 B.aBF=new A.t("Subtasks are visible on task list.",null,null,null,null,null,null,null,null,null,null)
 B.aml=new A.cM(B.aBF,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.azC=new A.t("Link added successfully!",null,null,null,null,null,null,null,null,null,null)
-B.amm=new A.cM(B.azC,B.C,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.ay7=new A.t("No other employee available to transfer task.",null,null,null,null,null,null,null,null,null,null)
-B.amn=new A.cM(B.ay7,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.azD=new A.t("Link added successfully!",null,null,null,null,null,null,null,null,null,null)
+B.amm=new A.cM(B.azD,B.C,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.ay9=new A.t("No other employee available to transfer task.",null,null,null,null,null,null,null,null,null,null)
+B.amn=new A.cM(B.ay9,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.auA=new A.t("Generating Tasks Report...",null,null,null,null,null,null,null,null,null,null)
 B.amo=new A.cM(B.auA,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.ayM=new A.t("Please enter reason for leave",null,null,null,null,null,null,null,null,null,null)
-B.amp=new A.cM(B.ayM,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.axF=new A.t("Microphone permission required to record voice message.",null,null,null,null,null,null,null,null,null,null)
-B.amq=new A.cM(B.axF,B.aP,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.ayN=new A.t("Please enter reason for leave",null,null,null,null,null,null,null,null,null,null)
+B.amp=new A.cM(B.ayN,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.axH=new A.t("Microphone permission required to record voice message.",null,null,null,null,null,null,null,null,null,null)
+B.amq=new A.cM(B.axH,B.aP,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.avs=new A.t("Task deleted forever!",null,null,null,null,null,null,null,null,null,null)
 B.amr=new A.cM(B.avs,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.awk=new A.t("Please fill all fields",null,null,null,null,null,null,null,null,null,null)
 B.uk=new A.cM(B.awk,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.aAY=new A.t("Please enter a task title or record voice instructions",null,null,null,null,null,null,null,null,null,null)
 B.ams=new A.cM(B.aAY,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.axD=new A.t("Checklist sent to printer successfully!",null,null,null,null,null,null,null,null,null,null)
-B.amt=new A.cM(B.axD,null,null,null,null,null,null,null,B.dV,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.axF=new A.t("Checklist sent to printer successfully!",null,null,null,null,null,null,null,null,null,null)
+B.amt=new A.cM(B.axF,null,null,null,null,null,null,null,B.dV,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.aAM=new A.t("Task deleted",null,null,null,null,null,null,null,null,null,null)
 B.amu=new A.cM(B.aAM,B.fr,null,null,null,null,null,null,null,null,null,null,null,B.fh,!1,null,null,null,B.q,null)
 B.avE=new A.t("Password reset link sent to your email! Check your inbox.",null,null,null,null,null,null,null,null,null,null)
@@ -144708,16 +144708,16 @@ B.aw5=new A.t("Please enter your email address",null,null,null,null,null,null,nu
 B.amy=new A.cM(B.aw5,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.aAr=new A.t("Default due date is set to Today.",null,null,null,null,null,null,null,null,null,null)
 B.amz=new A.cM(B.aAr,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.ay8=new A.t("Profile updated successfully!",null,null,null,null,null,null,null,null,null,null)
-B.amA=new A.cM(B.ay8,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.aya=new A.t("Profile updated successfully!",null,null,null,null,null,null,null,null,null,null)
+B.amA=new A.cM(B.aya,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.avm=new A.t("Department updated!",null,null,null,null,null,null,null,null,null,null)
 B.amB=new A.cM(B.avm,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.azA=new A.t("Perfect Day celebrations enabled!",null,null,null,null,null,null,null,null,null,null)
-B.amC=new A.cM(B.azA,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.azk=new A.t("Please enter holiday title",null,null,null,null,null,null,null,null,null,null)
-B.amD=new A.cM(B.azk,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.ay6=new A.t("Punched In! Welcome back from Hourly Leave.",null,null,null,null,null,null,null,null,null,null)
-B.amE=new A.cM(B.ay6,B.C,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.azB=new A.t("Perfect Day celebrations enabled!",null,null,null,null,null,null,null,null,null,null)
+B.amC=new A.cM(B.azB,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.azl=new A.t("Please enter holiday title",null,null,null,null,null,null,null,null,null,null)
+B.amD=new A.cM(B.azl,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.ay8=new A.t("Punched In! Welcome back from Hourly Leave.",null,null,null,null,null,null,null,null,null,null)
+B.amE=new A.cM(B.ay8,B.C,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.awm=new A.t("Document sent to printer successfully!",null,null,null,null,null,null,null,null,null,null)
 B.amF=new A.cM(B.awm,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.auZ=new A.t("No attendance data available to export.",null,null,null,null,null,null,null,null,null,null)
@@ -144730,20 +144730,20 @@ B.awc=new A.t("Please enter reason for rejection",null,null,null,null,null,null,
 B.amJ=new A.cM(B.awc,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.aw9=new A.t("Punch Out Cancelled: Exit verification selfie lena anivarya hai!",null,null,null,null,null,null,null,null,null,null)
 B.amK=new A.cM(B.aw9,B.aP,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.azd=new A.t("Office Location & Geofence updated successfully for all employees!",null,null,null,null,null,null,null,null,null,null)
-B.amL=new A.cM(B.azd,B.C,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.aze=new A.t("Office Location & Geofence updated successfully for all employees!",null,null,null,null,null,null,null,null,null,null)
+B.amL=new A.cM(B.aze,B.C,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.avc=new A.t("Project created successfully with all attachments!",null,null,null,null,null,null,null,null,null,null)
 B.amM=new A.cM(B.avc,B.C,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.aBv=new A.t("Please select a manager or team member to assign this task to",null,null,null,null,null,null,null,null,null,null)
 B.amN=new A.cM(B.aBv,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.axf=new A.t("All notifications cleared successfully!",null,null,null,null,null,null,null,null,null,null)
-B.amO=new A.cM(B.axf,B.C,null,null,null,null,null,null,B.dV,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.axg=new A.t("All notifications cleared successfully!",null,null,null,null,null,null,null,null,null,null)
+B.amO=new A.cM(B.axg,B.C,null,null,null,null,null,null,B.dV,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.awt=new A.t("Perfect Day celebrations are enabled!",null,null,null,null,null,null,null,null,null,null)
 B.amP=new A.cM(B.awt,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.aB8=new A.t("Punched Out for Hourly Leave! Have a safe break.",null,null,null,null,null,null,null,null,null,null)
 B.amQ=new A.cM(B.aB8,B.bL,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
-B.ax4=new A.t("Notifications are active!",null,null,null,null,null,null,null,null,null,null)
-B.amR=new A.cM(B.ax4,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
+B.ax5=new A.t("Notifications are active!",null,null,null,null,null,null,null,null,null,null)
+B.amR=new A.cM(B.ax5,null,null,null,null,null,null,null,null,null,null,null,null,B.D,!1,null,null,null,B.q,null)
 B.Mk=new A.Nb(0,"permissive")
 B.amS=new A.Nb(1,"normal")
 B.amT=new A.Nb(2,"forced")
@@ -145398,131 +145398,131 @@ B.ase=new A.q(!0,B.jD,null,null,null,null,10,B.u,null,null,null,null,null,null,n
 B.awL=new A.t("PUNCH IN",null,B.ase,null,null,null,null,null,null,null,null)
 B.awP=new A.t("All premium features including AI Voice Task Creation, Custom Themes, Widgets, Subtasks, Cloud Backup, and Attachments are 100% FREE for you forever!",null,B.uL,B.ax,null,null,null,null,null,null,null)
 B.awR=new A.t("Assign to this Manager",null,null,null,null,null,null,null,null,null,null)
-B.awS=new A.t("Delete Holiday?",null,null,null,null,null,null,null,null,null,null)
-B.awT=new A.t("Cancel",null,B.o5,null,null,null,null,null,null,null,null)
+B.awS=new A.t("New Tab",null,null,null,null,null,null,null,null,null,null)
+B.awT=new A.t("Delete Holiday?",null,null,null,null,null,null,null,null,null,null)
+B.awU=new A.t("Cancel",null,B.o5,null,null,null,null,null,null,null,null)
 B.arx=new A.q(!0,B.xi,null,null,null,null,15,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.awX=new A.t("Record Voice Message (Audio)",null,B.arx,null,null,null,null,null,null,null,null)
+B.awY=new A.t("Record Voice Message (Audio)",null,B.arx,null,null,null,null,null,null,null,null)
 B.atk=new A.q(!0,B.xb,null,null,null,null,11,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.awY=new A.t("Current",null,B.atk,null,null,null,null,null,null,null,null)
-B.awZ=new A.t("Add Task",null,null,null,null,null,null,null,null,null,null)
-B.ax_=new A.t("Delete Forever",null,B.fG,null,null,null,null,null,null,null,null)
-B.ax0=new A.t("Edit Task",null,B.d4,null,null,null,null,null,null,null,null)
+B.awZ=new A.t("Current",null,B.atk,null,null,null,null,null,null,null,null)
+B.ax_=new A.t("Add Task",null,null,null,null,null,null,null,null,null,null)
+B.ax0=new A.t("Delete Forever",null,B.fG,null,null,null,null,null,null,null,null)
+B.ax1=new A.t("Edit Task",null,B.d4,null,null,null,null,null,null,null,null)
 B.uA=new A.q(!0,B.ab,null,null,null,null,13,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ax1=new A.t("3. Select Team Member (Employee)",null,B.uA,null,null,null,null,null,null,null,null)
-B.ax3=new A.t("Assign User Role",null,B.df,null,null,null,null,null,null,null,null)
+B.ax2=new A.t("3. Select Team Member (Employee)",null,B.uA,null,null,null,null,null,null,null,null)
+B.ax4=new A.t("Assign User Role",null,B.df,null,null,null,null,null,null,null,null)
 B.od=new A.q(!0,B.F,null,null,null,null,20,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ax5=new A.t("Settings",null,B.od,null,null,null,null,null,null,null,null)
-B.ax6=new A.t("View and assign departments",null,null,null,null,null,null,null,null,null,null)
-B.ax7=new A.t("Details",null,B.hG,null,null,null,null,null,null,null,null)
-B.ax8=new A.t("Total Days",null,B.uH,null,null,null,null,null,null,null,null)
-B.axc=new A.t("Document / PDF / Media File",null,null,null,null,null,null,null,null,null,null)
-B.axd=new A.t("Voice to Text (AI Transcribe)",null,B.uI,null,null,null,null,null,null,null,null)
-B.axe=new A.t("Hourly Punch In (Resume)",null,B.fE,null,null,null,null,null,null,null,null)
+B.ax6=new A.t("Settings",null,B.od,null,null,null,null,null,null,null,null)
+B.ax7=new A.t("View and assign departments",null,null,null,null,null,null,null,null,null,null)
+B.ax8=new A.t("Details",null,B.hG,null,null,null,null,null,null,null,null)
+B.ax9=new A.t("Total Days",null,B.uH,null,null,null,null,null,null,null,null)
+B.axd=new A.t("Document / PDF / Media File",null,null,null,null,null,null,null,null,null,null)
+B.axe=new A.t("Voice to Text (AI Transcribe)",null,B.uI,null,null,null,null,null,null,null,null)
+B.axf=new A.t("Hourly Punch In (Resume)",null,B.fE,null,null,null,null,null,null,null,null)
 B.uZ=new A.t("Add Link",null,null,null,null,null,null,null,null,null,null)
-B.axg=new A.t("Save Remark",null,null,null,null,null,null,null,null,null,null)
-B.axh=new A.t("Show Subtask",null,B.Nr,null,null,null,null,null,null,null,null)
+B.axh=new A.t("Save Remark",null,null,null,null,null,null,null,null,null,null)
+B.axi=new A.t("Show Subtask",null,B.Nr,null,null,null,null,null,null,null,null)
 B.atE=new A.q(!0,B.k,null,null,null,null,10,B.aR,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axi=new A.t("ACTIVE",null,B.atE,null,null,null,null,null,null,null,null)
-B.axj=new A.t("ADD",null,B.fE,null,null,null,null,null,null,null,null)
-B.axk=new A.t("Directly assign task to this person",null,null,null,null,null,null,null,null,null,null)
-B.axn=new A.t("Recording Voice Message",null,B.l7,null,null,null,null,null,null,null,null)
-B.axo=new A.t("Pure Color",null,B.c_,null,null,null,null,null,null,null,null)
-B.axp=new A.t("Holiday & Sunday Policy",null,B.l5,null,null,null,null,null,null,null,null)
-B.axq=new A.t("Thank You! Proud to be Here",null,B.j8,null,null,null,null,null,null,null,null)
-B.axr=new A.t("Notifications",null,B.l5,null,null,null,null,null,null,null,null)
-B.axu=new A.t("Tap  for Quick Work / Role change",null,B.o4,null,null,null,null,null,null,null,null)
-B.axv=new A.t("AI Voice Recognition",null,B.d4,null,null,null,null,null,null,null,null)
-B.axx=new A.t("Sign in with Google to backup and sync your tasks across all your phones and tablets seamlessly.",null,B.uL,null,null,null,null,null,null,null,null)
-B.axy=new A.t("Assigned Tasks",null,B.d4,null,null,null,null,null,null,null,null)
-B.axA=new A.t(u.G,null,B.uF,B.ax,null,null,null,null,null,null,null)
+B.axj=new A.t("ACTIVE",null,B.atE,null,null,null,null,null,null,null,null)
+B.axk=new A.t("Open & Edit",null,null,null,null,null,null,null,null,null,null)
+B.axl=new A.t("ADD",null,B.fE,null,null,null,null,null,null,null,null)
+B.axm=new A.t("Directly assign task to this person",null,null,null,null,null,null,null,null,null,null)
+B.axp=new A.t("Recording Voice Message",null,B.l7,null,null,null,null,null,null,null,null)
+B.axq=new A.t("Pure Color",null,B.c_,null,null,null,null,null,null,null,null)
+B.axr=new A.t("Holiday & Sunday Policy",null,B.l5,null,null,null,null,null,null,null,null)
+B.axs=new A.t("Thank You! Proud to be Here",null,B.j8,null,null,null,null,null,null,null,null)
+B.axt=new A.t("Notifications",null,B.l5,null,null,null,null,null,null,null,null)
+B.axw=new A.t("Tap  for Quick Work / Role change",null,B.o4,null,null,null,null,null,null,null,null)
+B.axx=new A.t("AI Voice Recognition",null,B.d4,null,null,null,null,null,null,null,null)
+B.axz=new A.t("Sign in with Google to backup and sync your tasks across all your phones and tablets seamlessly.",null,B.uL,null,null,null,null,null,null,null,null)
+B.axA=new A.t("Assigned Tasks",null,B.d4,null,null,null,null,null,null,null,null)
+B.axC=new A.t(u.G,null,B.uF,B.ax,null,null,null,null,null,null,null)
 B.aoR=new A.q(!0,null,null,null,null,null,20,B.aR,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axE=new A.t("Projects",null,B.aoR,null,null,null,null,null,null,null,null)
-B.axG=new A.t("Priority",null,null,null,null,null,null,null,null,null,null)
-B.axH=new A.t("Photo / Image",null,null,null,null,null,null,null,null,null,null)
-B.axJ=new A.t("Done",null,B.bI,null,null,null,null,null,null,null,null)
-B.axK=new A.t("You haven't submitted any leave requests, or all historical applications are archived. Need time off?",null,B.uy,B.ax,null,null,null,null,null,null,null)
-B.axL=new A.t("Add Member to Team",null,null,null,null,null,null,null,null,null,null)
-B.axM=new A.t("Attach reference link",null,B.fG,null,null,null,null,null,null,null,null)
-B.axN=new A.t("Add New Employee",null,B.bQ,null,null,null,null,null,null,null,null)
-B.axO=new A.t("Scenery",null,B.c_,null,null,null,null,null,null,null,null)
-B.axR=new A.t("Enter the department name. You will be able to assign staff and team members to it right away.",null,B.uD,null,null,null,null,null,null,null,null)
-B.axT=new A.t("Assign Work / Task",null,B.l9,null,null,null,null,null,null,null,null)
+B.axG=new A.t("Projects",null,B.aoR,null,null,null,null,null,null,null,null)
+B.axI=new A.t("Priority",null,null,null,null,null,null,null,null,null,null)
+B.axJ=new A.t("Photo / Image",null,null,null,null,null,null,null,null,null,null)
+B.axL=new A.t("Done",null,B.bI,null,null,null,null,null,null,null,null)
+B.axM=new A.t("You haven't submitted any leave requests, or all historical applications are archived. Need time off?",null,B.uy,B.ax,null,null,null,null,null,null,null)
+B.axN=new A.t("Add Member to Team",null,null,null,null,null,null,null,null,null,null)
+B.axO=new A.t("Attach reference link",null,B.fG,null,null,null,null,null,null,null,null)
+B.axP=new A.t("Add New Employee",null,B.bQ,null,null,null,null,null,null,null,null)
+B.axQ=new A.t("Scenery",null,B.c_,null,null,null,null,null,null,null,null)
+B.axT=new A.t("Enter the department name. You will be able to assign staff and team members to it right away.",null,B.uD,null,null,null,null,null,null,null,null)
+B.axV=new A.t("Assign Work / Task",null,B.l9,null,null,null,null,null,null,null,null)
 B.asv=new A.q(!0,B.E,null,null,null,null,13,B.ai,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axV=new A.t("Or Create / Compose New:",null,B.asv,null,null,null,null,null,null,null,null)
-B.axW=new A.t("Add to Team",null,B.fE,null,null,null,null,null,null,null,null)
+B.axX=new A.t("Or Create / Compose New:",null,B.asv,null,null,null,null,null,null,null,null)
+B.axY=new A.t("Add to Team",null,B.fE,null,null,null,null,null,null,null,null)
 B.atm=new A.q(!0,B.xI,null,null,null,null,14,B.a6,null,null,null,null,1.4,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.axX=new A.t("Click ADD button to add widget to your Home Screen. Widget is a quick and easy way to check and create your tasks.",null,B.atm,null,null,null,null,null,null,null,null)
-B.axZ=new A.t("Attach existing Word, PDF, Excel, PPT, or Image files from your device, or create new files directly.",null,B.eZ,B.ax,null,null,null,null,null,null,null)
-B.ay0=new A.t("Reminder",null,B.oe,null,null,null,null,null,null,null,null)
-B.ay1=new A.t("Leave Duration Mode",null,B.df,null,null,null,null,null,null,null,null)
-B.ay2=new A.t("Attach photo or gallery image",null,B.fG,null,null,null,null,null,null,null,null)
-B.ay3=new A.t("Add Sub-task",null,null,null,null,null,null,null,null,null,null)
-B.ay4=new A.t("Default (Creation Time)",null,null,null,null,null,null,null,null,null,null)
-B.ay5=new A.t("End Date (Same for single day)",null,B.j5,null,null,null,null,null,null,null,null)
+B.axZ=new A.t("Click ADD button to add widget to your Home Screen. Widget is a quick and easy way to check and create your tasks.",null,B.atm,null,null,null,null,null,null,null,null)
+B.ay0=new A.t("Attach existing Word, PDF, Excel, PPT, or Image files from your device, or create new files directly.",null,B.eZ,B.ax,null,null,null,null,null,null,null)
+B.ay2=new A.t("Reminder",null,B.oe,null,null,null,null,null,null,null,null)
+B.ay3=new A.t("Leave Duration Mode",null,B.df,null,null,null,null,null,null,null,null)
+B.ay4=new A.t("Attach photo or gallery image",null,B.fG,null,null,null,null,null,null,null,null)
+B.ay5=new A.t("Add Sub-task",null,null,null,null,null,null,null,null,null,null)
+B.ay6=new A.t("Default (Creation Time)",null,null,null,null,null,null,null,null,null,null)
+B.ay7=new A.t("End Date (Same for single day)",null,B.j5,null,null,null,null,null,null,null,null)
 B.NK=new A.t("Create",null,null,null,null,null,null,null,null,null,null)
-B.ay9=new A.t("Subtasks:",null,B.bQ,null,null,null,null,null,null,null,null)
+B.ayb=new A.t("Subtasks:",null,B.bQ,null,null,null,null,null,null,null,null)
 B.aoy=new A.q(!0,B.aP,null,null,null,null,13,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayc=new A.t("Clear All",null,B.aoy,null,null,null,null,null,null,null,null)
+B.aye=new A.t("Clear All",null,B.aoy,null,null,null,null,null,null,null,null)
 B.o8=new A.q(!0,B.ab,null,null,null,null,16,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayd=new A.t("Don't have an account?",null,B.o8,null,null,null,null,null,null,null,null)
-B.aye=new A.t("Attach File",null,null,null,null,null,null,null,null,null,null)
+B.ayf=new A.t("Don't have an account?",null,B.o8,null,null,null,null,null,null,null,null)
+B.ayg=new A.t("Attach File",null,null,null,null,null,null,null,null,null,null)
 B.NL=new A.t("All tasks, data and manager mappings associated with this employee will be deleted. This action cannot be undone.",null,B.uD,null,null,null,null,null,null,null,null)
-B.ayf=new A.t("Department / Team",null,B.uW,null,null,null,null,null,null,null,null)
-B.ayg=new A.t("Select from Team",null,null,null,null,null,null,null,null,null,null)
+B.ayh=new A.t("Department / Team",null,B.uW,null,null,null,null,null,null,null,null)
+B.ayi=new A.t("Select from Team",null,null,null,null,null,null,null,null,null,null)
 B.aqJ=new A.q(!0,B.m,null,null,null,null,13,B.u,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayh=new A.t("Apply Hourly Pass / Half Day Leave \u2192",null,B.aqJ,null,null,null,null,null,null,null,null)
+B.ayj=new A.t("Apply Hourly Pass / Half Day Leave \u2192",null,B.aqJ,null,null,null,null,null,null,null,null)
 B.arF=new A.q(!0,B.k,null,null,null,null,9,B.aR,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.ayj=new A.t("NEW",null,B.arF,null,null,null,null,null,null,null,null)
-B.ayk=new A.t("Time",null,B.oe,null,null,null,null,null,null,null,null)
-B.ayl=new A.t("Create New Category",null,B.uU,null,null,null,null,null,null,null,null)
-B.ayn=new A.t("View Team Attendance",null,null,null,null,null,null,null,null,null,null)
-B.ayp=new A.t("Login to Account",null,B.bQ,null,null,null,null,null,null,null,null)
-B.ayq=new A.t("Theme",null,B.od,null,null,null,null,null,null,null,null)
-B.ayr=new A.t("Create Task",null,B.uS,null,null,null,null,null,null,null,null)
-B.ayu=new A.t("No Files Attached Yet",null,B.c_,null,null,null,null,null,null,null,null)
-B.ayv=new A.t("Create a new task and set the due date to organize your day.",null,B.la,B.ax,null,null,null,null,null,null,null)
-B.ayw=new A.t("Open Themes",null,B.fC,null,null,null,null,null,null,null,null)
-B.ayy=new A.t('Apne current office par khade hokar "Detect Current GPS" dabayein ya coordinates enter karein.',null,B.c0,null,null,null,null,null,null,null,null)
-B.ayz=new A.t("CANCEL",null,B.o5,null,null,null,null,null,null,null,null)
-B.ayB=new A.t("Add Link Attachment",null,null,null,null,null,null,null,null,null,null)
-B.ayD=new A.t("Log Out",null,B.Ng,null,null,null,null,null,null,null,null)
-B.ayE=new A.t("Voice Message Options",null,B.l7,null,null,null,null,null,null,null,null)
-B.ayG=new A.t("Recycle Bin",null,B.d4,null,null,null,null,null,null,null,null)
-B.ayI=new A.t("Texture",null,B.c_,null,null,null,null,null,null,null,null)
-B.ayK=new A.t("Open & Edit in Google Sheets",null,null,null,null,null,null,null,null,null,null)
-B.ayN=new A.t("Save Changes",null,null,null,null,null,null,null,null,null,null)
+B.ayl=new A.t("NEW",null,B.arF,null,null,null,null,null,null,null,null)
+B.aym=new A.t("Time",null,B.oe,null,null,null,null,null,null,null,null)
+B.ayn=new A.t("Create New Category",null,B.uU,null,null,null,null,null,null,null,null)
+B.ayp=new A.t("View Team Attendance",null,null,null,null,null,null,null,null,null,null)
+B.ayr=new A.t("Login to Account",null,B.bQ,null,null,null,null,null,null,null,null)
+B.ays=new A.t("Theme",null,B.od,null,null,null,null,null,null,null,null)
+B.ayt=new A.t("Create Task",null,B.uS,null,null,null,null,null,null,null,null)
+B.ayw=new A.t("No Files Attached Yet",null,B.c_,null,null,null,null,null,null,null,null)
+B.ayx=new A.t("Create a new task and set the due date to organize your day.",null,B.la,B.ax,null,null,null,null,null,null,null)
+B.ayy=new A.t("Open Themes",null,B.fC,null,null,null,null,null,null,null,null)
+B.ayA=new A.t('Apne current office par khade hokar "Detect Current GPS" dabayein ya coordinates enter karein.',null,B.c0,null,null,null,null,null,null,null,null)
+B.ayB=new A.t("CANCEL",null,B.o5,null,null,null,null,null,null,null,null)
+B.ayD=new A.t("Add Link Attachment",null,null,null,null,null,null,null,null,null,null)
+B.ayF=new A.t("Log Out",null,B.Ng,null,null,null,null,null,null,null,null)
+B.ayG=new A.t("Voice Message Options",null,B.l7,null,null,null,null,null,null,null,null)
+B.ayI=new A.t("Recycle Bin",null,B.d4,null,null,null,null,null,null,null,null)
+B.ayK=new A.t("Texture",null,B.c_,null,null,null,null,null,null,null,null)
+B.ayO=new A.t("Save Changes",null,null,null,null,null,null,null,null,null,null)
 B.NM=new A.t("Cancel",null,B.Nv,null,null,null,null,null,null,null,null)
-B.ayO=new A.t("Start the discussion by typing a message below!",null,B.c0,null,null,null,null,null,null,null,null)
-B.ayS=new A.t("Voice Memo / Audio",null,null,null,null,null,null,null,null,null,null)
-B.ayT=new A.t("Transfer Task",null,B.eq,null,null,null,null,null,null,null,null)
-B.ayV=new A.t("All Employees & Role Controller",null,B.c_,null,null,null,null,null,null,null,null)
-B.ayX=new A.t("Select Format / Type:",null,B.o9,null,null,null,null,null,null,null,null)
-B.ayZ=new A.t("Repeat",null,B.oe,null,null,null,null,null,null,null,null)
-B.az_=new A.t("Wishing you great health, massive success, and lots of happiness from the whole team!",null,B.Nx,B.ax,null,null,null,null,null,null,null)
-B.az1=new A.t("Hourly Punch Out",null,B.fE,null,null,null,null,null,null,null,null)
-B.az2=new A.t("Apply Leave",null,B.eq,null,null,null,null,null,null,null,null)
-B.az4=new A.t("Task Title",null,B.hG,null,null,null,null,null,null,null,null)
-B.az5=new A.t("Select All",null,B.uC,null,null,null,null,null,null,null,null)
+B.ayP=new A.t("Start the discussion by typing a message below!",null,B.c0,null,null,null,null,null,null,null,null)
+B.ayT=new A.t("Voice Memo / Audio",null,null,null,null,null,null,null,null,null,null)
+B.ayU=new A.t("Transfer Task",null,B.eq,null,null,null,null,null,null,null,null)
+B.ayW=new A.t("All Employees & Role Controller",null,B.c_,null,null,null,null,null,null,null,null)
+B.ayY=new A.t("Select Format / Type:",null,B.o9,null,null,null,null,null,null,null,null)
+B.az_=new A.t("Repeat",null,B.oe,null,null,null,null,null,null,null,null)
+B.az0=new A.t("Wishing you great health, massive success, and lots of happiness from the whole team!",null,B.Nx,B.ax,null,null,null,null,null,null,null)
+B.az2=new A.t("Hourly Punch Out",null,B.fE,null,null,null,null,null,null,null,null)
+B.az3=new A.t("Apply Leave",null,B.eq,null,null,null,null,null,null,null,null)
+B.az5=new A.t("Task Title",null,B.hG,null,null,null,null,null,null,null,null)
+B.az6=new A.t("Select All",null,B.uC,null,null,null,null,null,null,null,null)
 B.as6=new A.q(!0,B.m,null,null,null,null,14,B.a6,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.az7=new A.t("Create New",null,B.as6,null,null,null,null,null,null,null,null)
+B.az8=new A.t("Create New",null,B.as6,null,null,null,null,null,null,null,null)
 B.ar7=new A.q(!0,B.F,null,null,null,null,20,B.ai,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
-B.az8=new A.t("No Leave Applications Yet",null,B.ar7,null,null,null,null,null,null,null,null)
-B.aza=new A.t("Project Files & Documents",null,B.ob,null,null,null,null,null,null,null,null)
-B.azb=new A.t("Widget",null,B.od,null,null,null,null,null,null,null,null)
-B.azf=new A.t("Save Location",null,B.eq,null,null,null,null,null,null,null,null)
-B.azg=new A.t("Record and attach real voice note",null,B.fG,null,null,null,null,null,null,null,null)
-B.azi=new A.t("Clear All",null,B.eq,null,null,null,null,null,null,null,null)
-B.azj=new A.t("All Employees",null,B.bQ,null,null,null,null,null,null,null,null)
-B.azm=new A.t("Assign to Manager / Team Leader",null,B.df,null,null,null,null,null,null,null,null)
-B.azo=new A.t("Log in to continue your productive day",null,B.o8,B.ax,null,null,null,null,null,null,null)
-B.azp=new A.t("Great!",null,null,null,null,null,null,null,null,null,null)
-B.azq=new A.t("Check In",null,B.MT,null,null,null,null,null,null,null,null)
-B.azs=new A.t("Enjoy VIP Free Access",null,B.bQ,null,null,null,null,null,null,null,null)
-B.azy=new A.t("Post Comment",null,B.eq,null,null,null,null,null,null,null,null)
-B.azz=new A.t("Delete Department",null,null,null,null,null,null,null,null,null,null)
-B.azB=new A.t("Check employees reporting to this manager",null,null,null,null,null,null,null,null,null,null)
-B.azE=new A.t("Task Details",null,B.oc,null,null,null,null,null,null,null,null)
-B.azF=new A.t("In-App Preview",null,null,null,null,null,null,null,null,null,null)
+B.az9=new A.t("No Leave Applications Yet",null,B.ar7,null,null,null,null,null,null,null,null)
+B.azb=new A.t("Project Files & Documents",null,B.ob,null,null,null,null,null,null,null,null)
+B.azc=new A.t("Widget",null,B.od,null,null,null,null,null,null,null,null)
+B.azg=new A.t("Save Location",null,B.eq,null,null,null,null,null,null,null,null)
+B.azh=new A.t("Record and attach real voice note",null,B.fG,null,null,null,null,null,null,null,null)
+B.azj=new A.t("Clear All",null,B.eq,null,null,null,null,null,null,null,null)
+B.azk=new A.t("All Employees",null,B.bQ,null,null,null,null,null,null,null,null)
+B.azn=new A.t("Assign to Manager / Team Leader",null,B.df,null,null,null,null,null,null,null,null)
+B.azp=new A.t("Log in to continue your productive day",null,B.o8,B.ax,null,null,null,null,null,null,null)
+B.azq=new A.t("Great!",null,null,null,null,null,null,null,null,null,null)
+B.azr=new A.t("Check In",null,B.MT,null,null,null,null,null,null,null,null)
+B.azt=new A.t("Enjoy VIP Free Access",null,B.bQ,null,null,null,null,null,null,null,null)
+B.azz=new A.t("Post Comment",null,B.eq,null,null,null,null,null,null,null,null)
+B.azA=new A.t("Delete Department",null,null,null,null,null,null,null,null,null,null)
+B.azC=new A.t("Check employees reporting to this manager",null,null,null,null,null,null,null,null,null,null)
+B.azF=new A.t("Task Details",null,B.oc,null,null,null,null,null,null,null,null)
 B.azG=new A.t("Daily Completed",null,B.l5,null,null,null,null,null,null,null,null)
 B.azH=new A.t("Department / Team",null,B.df,null,null,null,null,null,null,null,null)
 B.azI=new A.t("Already have an account?",null,B.o8,null,null,null,null,null,null,null,null)

@@ -844,10 +844,11 @@ String _buildGoogleSheetsHtml({
     } else if (e.parameter) {
       data = e.parameter;
     }
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var ss = data.docId ? SpreadsheetApp.openById(data.docId) : SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getActiveSheet();
     if (data.action === "updateCell" || (data.row && data.col)) {
       sheet.getRange(Number(data.row), Number(data.col)).setValue(data.value);
-      return ContentService.createTextOutput(JSON.stringify({status: "ok", row: data.row, col: data.col, value: data.value}))
+      return ContentService.createTextOutput(JSON.stringify({status: "ok"}))
         .setMimeType(ContentService.MimeType.JSON);
     } else if (data.action === "batchUpdate" && data.updates) {
       var list = typeof data.updates === "string" ? JSON.parse(data.updates) : data.updates;
@@ -1541,6 +1542,7 @@ function doGet(e) {
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           action: 'updateCell',
+          docId: DOC_ID,
           row: r,
           col: c,
           value: val
@@ -1618,6 +1620,7 @@ function doGet(e) {
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({
         action: 'batchUpdate',
+        docId: DOC_ID,
         updates: updates
       })
     }).then(() => {

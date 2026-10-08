@@ -621,9 +621,16 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       ElevatedButton.icon(
-                        onPressed: () => _launchUrlLink(link.url),
-                        icon: const Icon(Icons.open_in_new_rounded, size: 15),
-                        label: const Text('Open & Edit in Google Sheets'),
+                        onPressed: () {
+                          InAppSheetViewerScreen.open(
+                            context,
+                            title: link.title,
+                            url: link.url,
+                            project: _project,
+                          );
+                        },
+                        icon: const Icon(Icons.edit_document, size: 15),
+                        label: const Text('Open & Edit'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF0F9D58),
                           foregroundColor: Colors.white,
@@ -634,16 +641,9 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
                         ),
                       ),
                       OutlinedButton.icon(
-                        onPressed: () {
-                          InAppSheetViewerScreen.open(
-                            context,
-                            title: link.title,
-                            url: link.url,
-                            project: _project,
-                          );
-                        },
-                        icon: const Icon(Icons.table_chart_outlined, size: 14),
-                        label: const Text('In-App Preview'),
+                        onPressed: () => _launchUrlLink(link.url),
+                        icon: const Icon(Icons.open_in_new_rounded, size: 14),
+                        label: const Text('New Tab'),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: const Color(0xFF64748B),
                           side: const BorderSide(color: Color(0xFFCBD5E1)),
