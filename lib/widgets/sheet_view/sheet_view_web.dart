@@ -1428,26 +1428,16 @@ function doGet(e) {
 
       if (data && data.status === 'ok' && data.table) {
         applyGoogleTableData(data.table);
-        updateSyncBadge('synced', 'Live Synced');
-        if (!silent) showToast('Synced data from Google Sheet!');
-      } else if (data && data.status === 'error') {
-        const msg = data.errors && data.errors[0] ? data.errors[0].message : 'Access denied';
-        updateSyncBadge('warning', 'Share Access Needed');
-        showShareBanner();
+        updateSyncBadge('synced', 'Saved');
+        if (!silent) showToast('Data loaded');
       }
     };
 
     const script = document.createElement('script');
     script.id = 'google_gviz_script';
-    // Google Visualization API JSONP callback avoids all CORS restrictions
     script.src = 'https://docs.google.com/spreadsheets/d/' + DOC_ID + '/gviz/tq?tqx=responseHandler:_googleSheetJsonpHandler&t=' + Date.now();
     script.onerror = function() {
       isSyncing = false;
-      syncFailureCount++;
-      if (syncFailureCount >= 1) {
-        showShareBanner();
-        updateSyncBadge('warning', 'Check Google Share Permission');
-      }
     };
     document.head.appendChild(script);
   }
@@ -1598,17 +1588,15 @@ function doGet(e) {
 
     const webhookUrl = getWebhookUrl();
 
-    // Case A: Webhook not configured
+    // Case A: Instant local save
     if (!webhookUrl || !webhookUrl.startsWith('http')) {
-      setTimeout(() => {
-        updateSyncBadge('local', 'Saved locally');
-        if (btnSave) {
-          btnSave.classList.remove('saving');
-          const textSpan = btnSave.querySelector('.btn-text');
-          if (textSpan) textSpan.innerText = 'Save (Ctrl+S)';
-        }
-        showToast('Saved successfully! (Ctrl+S)');
-      }, 250);
+      updateSyncBadge('synced', 'Saved');
+      if (btnSave) {
+        btnSave.classList.remove('saving');
+        const textSpan = btnSave.querySelector('.btn-text');
+        if (textSpan) textSpan.innerText = 'Save (Ctrl+S)';
+      }
+      showToast('Saved (Ctrl+S)');
       return;
     }
 
