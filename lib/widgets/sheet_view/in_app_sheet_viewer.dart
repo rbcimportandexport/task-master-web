@@ -136,16 +136,52 @@ class _InAppSheetViewerScreenState extends State<InAppSheetViewerScreen> {
           const SizedBox(width: 4),
         ],
       ),
-      body: SizedBox.expand(
-        child: KeyedSubtree(
-          key: ValueKey('sheet-$_reloadKey-$_directGoogleEmbed-$effectiveUrl'),
-          child: platform_sheet.buildPlatformSheetView(
-            url: effectiveUrl,
-            viewId: 'sheet_$_reloadKey',
-            title: widget.title,
-            directGoogleEmbed: _directGoogleEmbed,
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            decoration: const BoxDecoration(
+              color: Color(0xFFE6F4EA),
+              border: Border(bottom: BorderSide(color: Color(0xFFCEEAD6))),
+            ),
+            child: Row(
+              children: [
+                const Icon(Icons.cloud_done_rounded, color: Color(0xFF0F9D58), size: 18),
+                const SizedBox(width: 8),
+                const Expanded(
+                  child: Text(
+                    'Direct Google Drive Save: Open in Google Sheets to edit live on Google Drive with 0 setup.',
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Color(0xFF137333)),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                ElevatedButton.icon(
+                  onPressed: _openExternal,
+                  icon: const Icon(Icons.open_in_new_rounded, size: 13),
+                  label: const Text('Open Google Sheet'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF0F9D58),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 11),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+          Expanded(
+            child: KeyedSubtree(
+              key: ValueKey('sheet-$_reloadKey-$_directGoogleEmbed-$effectiveUrl'),
+              child: platform_sheet.buildPlatformSheetView(
+                url: effectiveUrl,
+                viewId: 'sheet_$_reloadKey',
+                title: widget.title,
+                directGoogleEmbed: _directGoogleEmbed,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

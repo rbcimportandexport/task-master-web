@@ -699,9 +699,9 @@ String _buildGoogleSheetsHtml({
         <span class="btn-text">2-Way Sync</span>
       </button>
 
-      <a href="$safeRawUrl" target="_blank" rel="noopener noreferrer" class="btn-action btn-open-google" title="Open live Google Sheets in full tab to edit directly">
+      <a href="$safeRawUrl" target="_blank" rel="noopener noreferrer" class="btn-action btn-open-google" style="background: #0f9d58; color: #fff; font-weight: 700; border: 1px solid #0b8043;" title="Open live Google Sheets to edit and auto-save directly to Google Drive">
         <span class="material-icons" style="font-size: 15px;">open_in_new</span>
-        <span class="btn-text">Google Sheets</span>
+        <span class="btn-text">Edit in Google Sheets (Live Drive Sync)</span>
       </a>
 
       <button class="btn-action btn-export" onclick="exportCsv()" title="Download as CSV">

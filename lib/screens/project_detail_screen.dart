@@ -621,6 +621,19 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       ElevatedButton.icon(
+                        onPressed: () => _launchUrlLink(link.url),
+                        icon: const Icon(Icons.open_in_new_rounded, size: 15),
+                        label: const Text('Open & Edit in Google Sheets'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF0F9D58),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                          elevation: 0,
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+                          textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                        ),
+                      ),
+                      OutlinedButton.icon(
                         onPressed: () {
                           InAppSheetViewerScreen.open(
                             context,
@@ -629,20 +642,8 @@ class _ProjectDetailScreenState extends State<ProjectDetailScreen> with SingleTi
                             project: _project,
                           );
                         },
-                        icon: const Icon(Icons.edit_document, size: 15),
-                        label: const Text('Open & Edit'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: linkColor,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                        ),
-                      ),
-                      OutlinedButton.icon(
-                        onPressed: () => _launchUrlLink(link.url),
-                        icon: const Icon(Icons.open_in_new_rounded, size: 14),
-                        label: const Text('New Tab'),
+                        icon: const Icon(Icons.table_chart_outlined, size: 14),
+                        label: const Text('In-App Preview'),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: const Color(0xFF64748B),
                           side: const BorderSide(color: Color(0xFFCBD5E1)),
