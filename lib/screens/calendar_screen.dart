@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/task_provider.dart';
 import '../theme/app_theme.dart';
-import '../widgets/custom_illustrations.dart';
+import '../widgets/task_edit_sheet.dart';
+import '../widgets/task_add_sheet.dart';
 
 class CalendarScreen extends StatefulWidget {
   const CalendarScreen({super.key});
@@ -239,6 +240,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                           child: InkWell(
                                             onTap: () {
                                               taskProvider.setSelectedCalendarDate(dateForCell);
+                                              if (dateForCell.month != _currentMonth.month || dateForCell.year != _currentMonth.year) {
+                                                setState(() {
+                                                  _currentMonth = DateTime(dateForCell.year, dateForCell.month, 1);
+                                                });
+                                              }
                                             },
                                             borderRadius: BorderRadius.circular(20),
                                             child: Center(
@@ -330,6 +336,42 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             ),
                           ),
                         ),
+                        const Spacer(),
+                        // Add Task specifically for this date
+                        InkWell(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              builder: (_) => TaskAddSheet(initialDate: selectedDate),
+                            );
+                          },
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFEFF6FF),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: const Color(0xFFBFDBFE)),
+                            ),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.add, size: 16, color: AppTheme.primaryBlue),
+                                SizedBox(width: 4),
+                                Text(
+                                  'Add Task',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppTheme.primaryBlue,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -348,26 +390,46 @@ class _CalendarScreenState extends State<CalendarScreen> {
                               borderRadius: BorderRadius.circular(16),
                               border: Border.all(color: const Color(0xFFE2E8F0)),
                             ),
-                            child: const Column(
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.event_available_rounded, size: 48, color: Color(0xFF94A3B8)),
-                                SizedBox(height: 12),
+                                const Icon(Icons.event_available_rounded, size: 48, color: Color(0xFF94A3B8)),
+                                const SizedBox(height: 12),
                                 Text(
-                                  'No tasks scheduled for this date',
-                                  style: TextStyle(
+                                  'No tasks scheduled for ${DateFormat('EEE, d MMM').format(selectedDate)}',
+                                  style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,
                                     color: Color(0xFF475569),
                                   ),
                                 ),
-                                SizedBox(height: 4),
-                                Text(
+                                const SizedBox(height: 4),
+                                const Text(
                                   'Create a new task and set the due date to organize your day.',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: Color(0xFF94A3B8),
+                                  ),
+                                ),
+                                const SizedBox(height: 14),
+                                ElevatedButton.icon(
+                                  onPressed: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      builder: (_) => TaskAddSheet(initialDate: selectedDate),
+                                    );
+                                  },
+                                  icon: const Icon(Icons.add_rounded, size: 18),
+                                  label: const Text('Add Task for this Date'),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: AppTheme.primaryBlue,
+                                    foregroundColor: Colors.white,
+                                    elevation: 1,
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                                   ),
                                 ),
                               ],
@@ -393,6 +455,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                   ],
                                 ),
                                 child: ListTile(
+                                  contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                                  onTap: () {
+                                    showModalBottomSheet(
+                                      context: context,
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      builder: (_) => TaskEditSheet(task: task),
+                                    );
+                                  },
                                   leading: Checkbox(
                                     value: task.isCompleted,
                                     activeColor: AppTheme.primaryBlue,
@@ -405,40 +476,151 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                       decoration: task.isCompleted ? TextDecoration.lineThrough : null,
                                       color: task.isCompleted ? const Color(0xFF94A3B8) : AppTheme.textPrimary,
                                       fontWeight: FontWeight.w600,
+                                      fontSize: 15,
                                     ),
                                   ),
-                                  subtitle: Row(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xFFF1F5F9),
-                                          borderRadius: BorderRadius.circular(6),
-                                        ),
-                                        child: Text(
-                                          task.category,
-                                          style: const TextStyle(fontSize: 11, color: Color(0xFF64748B)),
-                                        ),
-                                      ),
-                                      if (task.priority > 0) ...[
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          task.priority == 3 ? '• HIGH' : (task.priority == 2 ? '• MEDIUM' : '• LOW'),
-                                          style: TextStyle(
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.bold,
-                                            color: task.priority == 3 ? Colors.red : (task.priority == 2 ? Colors.orange : Colors.blue),
+                                  subtitle: Padding(
+                                    padding: const EdgeInsets.only(top: 6),
+                                    child: Wrap(
+                                      spacing: 6,
+                                      runSpacing: 4,
+                                      crossAxisAlignment: WrapCrossAlignment.center,
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFFF1F5F9),
+                                            borderRadius: BorderRadius.circular(6),
+                                          ),
+                                          child: Text(
+                                            task.category,
+                                            style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: Color(0xFF64748B)),
                                           ),
                                         ),
+                                        if (task.isCompleted) ...[
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xFFD1FAE5),
+                                              borderRadius: BorderRadius.circular(6),
+                                            ),
+                                            child: const Text(
+                                              'DONE',
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF059669),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        if (task.priority > 0) ...[
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: task.priority == 3
+                                                  ? const Color(0xFFFEE2E2)
+                                                  : (task.priority == 2 ? const Color(0xFFFEF3C7) : const Color(0xFFDBEAFE)),
+                                              borderRadius: BorderRadius.circular(6),
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(
+                                                  Icons.flag_rounded,
+                                                  size: 11,
+                                                  color: task.priority == 3
+                                                      ? Colors.red
+                                                      : (task.priority == 2 ? Colors.orange : Colors.blue),
+                                                ),
+                                                const SizedBox(width: 3),
+                                                Text(
+                                                  task.priority == 3 ? 'HIGH' : (task.priority == 2 ? 'MED' : 'LOW'),
+                                                  style: TextStyle(
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: task.priority == 3
+                                                        ? Colors.red
+                                                        : (task.priority == 2 ? Colors.orange : Colors.blue),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                        if (task.assignedBy != null && task.assignedBy!.isNotEmpty) ...[
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xFFF0FDF4),
+                                              borderRadius: BorderRadius.circular(6),
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Icon(Icons.person_outline_rounded, size: 12, color: Color(0xFF16A34A)),
+                                                const SizedBox(width: 3),
+                                                Text(
+                                                  task.assignedBy!,
+                                                  style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500, color: Color(0xFF16A34A)),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                        if (task.estimatedTime != null && task.estimatedTime!.isNotEmpty) ...[
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xFFFEF3C7),
+                                              borderRadius: BorderRadius.circular(6),
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Icon(Icons.timer_outlined, size: 12, color: Color(0xFFD97706)),
+                                                const SizedBox(width: 3),
+                                                Text(
+                                                  task.estimatedTime!,
+                                                  style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Color(0xFFD97706)),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ],
-                                    ],
-                                  ),
-                                  trailing: IconButton(
-                                    icon: Icon(
-                                      task.isStarred ? Icons.star_rounded : Icons.star_border_rounded,
-                                      color: task.isStarred ? const Color(0xFFFBBF24) : const Color(0xFF94A3B8),
                                     ),
-                                    onPressed: () => taskProvider.toggleTaskStar(task.id),
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      // Star button
+                                      IconButton(
+                                        icon: Icon(
+                                          task.isStarred ? Icons.star_rounded : Icons.star_border_rounded,
+                                          color: task.isStarred ? const Color(0xFFFBBF24) : const Color(0xFF94A3B8),
+                                          size: 22,
+                                        ),
+                                        onPressed: () => taskProvider.toggleTaskStar(task.id),
+                                      ),
+                                      // Edit button
+                                      IconButton(
+                                        icon: const Icon(
+                                          Icons.edit_outlined,
+                                          color: AppTheme.primaryBlue,
+                                          size: 20,
+                                        ),
+                                        tooltip: 'Edit Task',
+                                        onPressed: () {
+                                          showModalBottomSheet(
+                                            context: context,
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            builder: (_) => TaskEditSheet(task: task),
+                                          );
+                                        },
+                                      ),
+                                    ],
                                   ),
                                 ),
                               );

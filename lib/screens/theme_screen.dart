@@ -277,7 +277,7 @@ class _ThemeScreenState extends State<ThemeScreen> {
                   taskProvider.setThemeColor(primaryColor);
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('✨ ${scene['title']} Wallpaper Theme Applied!'),
+                      content: Text(' ${scene['title']} Wallpaper Theme Applied!'),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                     ),

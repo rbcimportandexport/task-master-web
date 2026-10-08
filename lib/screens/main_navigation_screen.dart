@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
+import '../services/notification_service.dart';
 import '../theme/app_theme.dart';
 import '../providers/task_provider.dart';
 import '../widgets/app_drawer.dart';
@@ -16,6 +19,8 @@ import 'notifications_screen.dart';
 import 'settings_screen.dart';
 import 'theme_screen.dart';
 import 'profile_screen.dart';
+import 'team_chat_screen.dart';
+import 'projects_screen.dart';
 import '../widgets/assign_task_sheet.dart';
 
 class MainNavigationScreen extends StatefulWidget {
@@ -26,18 +31,458 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _currentIndex = 0;
+  static int _persistedCurrentIndex = 0;
+  late int _currentIndex;
   bool _isSidebarCollapsed = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  static bool _hasShownHolidayPopupToday = false;
+  static bool _hasShownBirthdayPopupToday = false;
+  static bool _hasShownAnniversaryPopupToday = false;
+
+  void _changeTab(int index) {
+    if (_currentIndex != index) {
+      setState(() {
+        _currentIndex = index;
+        _persistedCurrentIndex = index;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = _persistedCurrentIndex;
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await NotificationService().scheduleDailyReminders();
+      await _checkAndShowHolidayAlert();
+      await _checkAndShowBirthdayAlert();
+      await _checkAndShowWorkAnniversaryAlert();
+    });
+  }
+
+  Future<void> _checkAndShowBirthdayAlert() async {
+    if (_hasShownBirthdayPopupToday) return;
+    try {
+      final today = DateTime.now();
+      final todayMonth = today.month;
+      final todayDay = today.day;
+      final List<Map<String, dynamic>> birthdayUsers = [];
+
+      final usersSnap = await FirebaseFirestore.instance.collection('users').get();
+      for (var doc in usersSnap.docs) {
+        final data = doc.data();
+        DateTime? dob;
+        if (data.containsKey('dob') && data['dob'] != null) {
+          final rawDob = data['dob'];
+          if (rawDob is Timestamp) {
+            dob = rawDob.toDate();
+          } else if (rawDob is String && rawDob.trim().isNotEmpty) {
+            dob = DateTime.tryParse(rawDob);
+          }
+        }
+
+        if (dob != null && dob.month == todayMonth && dob.day == todayDay) {
+          birthdayUsers.add({
+            'name': data['name'] ?? 'Teammate',
+            'role': data['role'] ?? 'employee',
+            'profilePic': data['profilePic'] ?? '',
+          });
+        }
+      }
+
+      if (birthdayUsers.isNotEmpty && mounted) {
+        _hasShownBirthdayPopupToday = true;
+        _showBirthdayPopup(birthdayUsers);
+      }
+    } catch (e) {
+      debugPrint('Error checking birthday alert: $e');
+    }
+  }
+
+  void _showBirthdayPopup(List<Map<String, dynamic>> birthdayUsers) {
+    final names = birthdayUsers.map((u) => u['name'].toString()).join(', ');
+    final isMultiple = birthdayUsers.length > 1;
+
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (ctx) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        backgroundColor: Colors.white,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(22),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFFDF2F8), Color(0xFFFCE7F3)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFFFBCFE8), width: 3),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFDB2777).withOpacity(0.25),
+                      blurRadius: 18,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.cake_rounded, color: Color(0xFFDB2777), size: 54),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFDF2F8),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: const Color(0xFFFBCFE8)),
+                ),
+                child: const Text(
+                  'TODAY\'S BIRTHDAY CELEBRATION',
+                  style: TextStyle(color: Color(0xFFBE185D), fontSize: 12, fontWeight: FontWeight.w900, letterSpacing: 0.5),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Text(
+                'Happy Birthday',
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF0F172A)),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Aaj hamare ${isMultiple ? "saathiyon" : "bhai"} $names ka Birthday hai!',
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFFDB2777), height: 1.3),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Wishing you great health, massive success, and lots of happiness from the whole team!',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 13, color: Color(0xFF64748B), height: 1.4),
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.favorite_rounded, color: Colors.white, size: 20),
+                  label: const Text('Wish Happy Birthday!', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFDB2777),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    elevation: 3,
+                  ),
+                  onPressed: () => Navigator.pop(ctx),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _checkAndShowWorkAnniversaryAlert() async {
+    if (_hasShownAnniversaryPopupToday) return;
+    try {
+      final taskProvider = context.read<TaskProvider>();
+      final createdAt = taskProvider.userCreatedAt;
+      if (createdAt == null) return;
+
+      final now = DateTime.now();
+      final diffDays = now.difference(createdAt).inDays;
+      if (diffDays < 0) return;
+
+      String? milestoneTitle;
+      String? milestoneSubtitle;
+      String? milestoneBadge;
+
+      // Check milestones: 1 Year (365 days / date match), 6 Months (180-183 days), 1 Month (30-31 days)
+      final sameDay = now.day == createdAt.day;
+      final monthsDiff = (now.year - createdAt.year) * 12 + (now.month - createdAt.month);
+
+      if (now.year > createdAt.year && now.month == createdAt.month && sameDay) {
+        final years = now.year - createdAt.year;
+        milestoneBadge = '$years YEAR WORK ANNIVERSARY';
+        milestoneTitle = 'Congratulations on Completing $years Year${years > 1 ? "s" : ""}!';
+        milestoneSubtitle = 'Aapne company me shandaar $years saal pure kar liye hain! Thank you for your dedication, loyalty, and hard work.';
+      } else if (monthsDiff == 6 && sameDay) {
+        milestoneBadge = '6 MONTHS MILESTONE';
+        milestoneTitle = 'Congratulations on Completing 6 Months!';
+        milestoneSubtitle = 'Aapne company me safalta-purvak 6 mahine pure kar liye hain! Your contribution and dedication are truly valued.';
+      } else if (monthsDiff == 1 && sameDay) {
+        milestoneBadge = '1 MONTH MILESTONE';
+        milestoneTitle = 'Congratulations on Completing 1 Month!';
+        milestoneSubtitle = 'Aapka company me 1 mahina pura ho chuka hai! We are glad to have you in the team. Keep shining!';
+      } else if (diffDays == 30) {
+        milestoneBadge = '1 MONTH MILESTONE';
+        milestoneTitle = 'Congratulations on Completing 1 Month!';
+        milestoneSubtitle = 'Aapne company me successfully 1 month complete kiya hai! Keep up the awesome momentum!';
+      } else if (diffDays == 180) {
+        milestoneBadge = '6 MONTHS MILESTONE';
+        milestoneTitle = 'Congratulations on Completing 6 Months!';
+        milestoneSubtitle = 'Aapne company me 6 months successfully complete kar liye hain! Keep rocking!';
+      } else if (diffDays == 365) {
+        milestoneBadge = '1 YEAR WORK ANNIVERSARY';
+        milestoneTitle = 'Congratulations on Completing 1 Year!';
+        milestoneSubtitle = 'Aapne company me shandaar 1 year complete kiya hai! Proud to have you with us.';
+      }
+
+      if (milestoneTitle != null && mounted) {
+        _hasShownAnniversaryPopupToday = true;
+        _showWorkAnniversaryPopup(
+          badge: milestoneBadge ?? 'COMPANY MILESTONE',
+          title: milestoneTitle,
+          subtitle: milestoneSubtitle ?? 'Keep up the great work!',
+        );
+      }
+    } catch (e) {
+      debugPrint('Error checking work anniversary alert: $e');
+    }
+  }
+
+  void _showWorkAnniversaryPopup({
+    required String badge,
+    required String title,
+    required String subtitle,
+  }) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (ctx) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        backgroundColor: Colors.white,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(22),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFFEF3C7), Color(0xFFFDE68A)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFFF59E0B), width: 3),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFD97706).withOpacity(0.25),
+                      blurRadius: 20,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.workspace_premium_rounded, color: Color(0xFFB45309), size: 56),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFEF3C7),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: const Color(0xFFFCD34D)),
+                ),
+                child: Text(
+                  badge,
+                  style: const TextStyle(color: Color(0xFF92400E), fontSize: 12, fontWeight: FontWeight.w900, letterSpacing: 0.5),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF0F172A), height: 1.25),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                subtitle,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 14, color: Color(0xFF64748B), height: 1.45),
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.celebration_rounded, color: Colors.white, size: 20),
+                  label: const Text('Thank You! Proud to be Here', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFD97706),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    elevation: 3,
+                  ),
+                  onPressed: () => Navigator.pop(ctx),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _checkAndShowHolidayAlert() async {
+    if (_hasShownHolidayPopupToday) return;
+    try {
+      final today = DateTime.now();
+      final todayDateOnly = DateTime(today.year, today.month, today.day);
+      String? holidayTitle;
+      String? holidayDesc;
+
+      // 1. Check Public Holidays in Firestore
+      final snap = await FirebaseFirestore.instance.collection('public_holidays').get();
+      for (var doc in snap.docs) {
+        final data = doc.data();
+        DateTime? sDate;
+        DateTime? eDate;
+
+        // Parse startDate
+        final startRaw = data['startDate'];
+        if (startRaw is Timestamp) {
+          sDate = DateTime(startRaw.toDate().year, startRaw.toDate().month, startRaw.toDate().day);
+        } else if (startRaw is String && startRaw.trim().isNotEmpty) {
+          final sStr = startRaw.trim();
+          sDate = DateTime.tryParse(sStr.length >= 10 ? sStr.substring(0, 10) : sStr);
+        }
+
+        // Parse endDate
+        final endRaw = data['endDate'];
+        if (endRaw is Timestamp) {
+          eDate = DateTime(endRaw.toDate().year, endRaw.toDate().month, endRaw.toDate().day);
+        } else if (endRaw is String && endRaw.trim().isNotEmpty) {
+          final eStr = endRaw.trim();
+          eDate = DateTime.tryParse(eStr.length >= 10 ? eStr.substring(0, 10) : eStr);
+        }
+
+        eDate ??= sDate;
+
+        if (sDate != null && eDate != null) {
+          if (!todayDateOnly.isBefore(sDate) && !todayDateOnly.isAfter(eDate)) {
+            holidayTitle = (data['title'] ?? 'Company Holiday').toString();
+            final desc = (data['description'] ?? '').toString().trim();
+            holidayDesc = desc.isNotEmpty ? desc : 'Aaj company ki taraf se public holiday / chutti ghoshit ki gayi hai.';
+            break;
+          }
+        }
+      }
+
+      // 2. Check Sunday Policy
+      if (holidayTitle == null && today.weekday == DateTime.sunday) {
+        try {
+          final policyDoc = await FirebaseFirestore.instance.collection('company_settings').doc('holiday_policy').get();
+          final policy = policyDoc.data()?['sundayPolicy'] ?? 'Full Day Off';
+          if (policy != 'Normal Working Day') {
+            holidayTitle = 'Sunday Off ($policy)';
+            holidayDesc = 'Aaj Ravivar (Sunday) hai. Company policy ke anusaar aaj $policy hai.';
+          }
+        } catch (_) {}
+      }
+
+      if (holidayTitle != null && mounted) {
+        _hasShownHolidayPopupToday = true;
+        _showHolidayPopup(holidayTitle, holidayDesc ?? 'Enjoy your day off!');
+      }
+    } catch (e) {
+      debugPrint('Error checking holiday in MainNavigation: $e');
+    }
+  }
+
+  void _showHolidayPopup(String title, String description) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // User must press button to close
+      builder: (ctx) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        backgroundColor: Colors.white,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(22),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFEF3C7),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFFFDE68A), width: 3),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFF59E0B).withOpacity(0.25),
+                      blurRadius: 16,
+                      offset: const Offset(0, 6),
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.celebration_rounded, color: Color(0xFFD97706), size: 54),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFEF3C7),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: const Color(0xFFFDE68A)),
+                ),
+                child: const Text(
+                  'AAJ CHUTTI / HOLIDAY HAI',
+                  style: TextStyle(color: Color(0xFFB45309), fontSize: 12, fontWeight: FontWeight.w900, letterSpacing: 0.5),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF0F172A), height: 1.2),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                description,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 14, color: Color(0xFF64748B), height: 1.5),
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.check_circle_rounded, color: Colors.white, size: 22),
+                  label: const Text('OK, Samajh Gaya (Got It)', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFD97706),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    elevation: 3,
+                  ),
+                  onPressed: () => Navigator.pop(ctx),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
   void _openAddTaskModal() {
+    final taskProvider = context.read<TaskProvider>();
+    final initialDate = _currentIndex == 1 ? taskProvider.selectedCalendarDate : null;
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       isDismissible: true,
       enableDrag: true,
-      builder: (_) => const TaskAddSheet(),
+      builder: (_) => TaskAddSheet(initialDate: initialDate),
     );
   }
 
@@ -249,20 +694,32 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                         icon: Icons.article_rounded,
                         label: 'Tasks & Boards',
                         isSelected: _currentIndex == 0,
-                        onTap: () => setState(() => _currentIndex = 0),
+                        onTap: () => _changeTab(0),
                         badgeCount: taskProvider.pendingTasksCount,
                       ),
                       _buildDesktopSidebarItem(
                         icon: Icons.calendar_month_rounded,
                         label: 'Calendar Schedule',
                         isSelected: _currentIndex == 1,
-                        onTap: () => setState(() => _currentIndex = 1),
+                        onTap: () => _changeTab(1),
+                      ),
+                      _buildDesktopSidebarItem(
+                        icon: Icons.folder_special_rounded,
+                        label: 'Projects & Workspaces',
+                        iconColor: const Color(0xFF4F46E5),
+                        isSelected: false,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const ProjectsScreen()),
+                          );
+                        },
                       ),
                       _buildDesktopSidebarItem(
                         icon: Icons.person_rounded,
                         label: 'My Profile & Stats',
                         isSelected: _currentIndex == 2,
-                        onTap: () => setState(() => _currentIndex = 2),
+                        onTap: () => _changeTab(2),
                       ),
 
                       const SizedBox(height: 12),
@@ -284,14 +741,26 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                         label: 'Attendance & Punch',
                         iconColor: const Color(0xFF10B981),
                         isSelected: _currentIndex == 3,
-                        onTap: () => setState(() => _currentIndex = 3),
+                        onTap: () => _changeTab(3),
                       ),
                       _buildDesktopSidebarItem(
                         icon: Icons.event_busy_rounded,
                         label: 'Leave Requests',
                         iconColor: const Color(0xFFF59E0B),
                         isSelected: _currentIndex == 4,
-                        onTap: () => setState(() => _currentIndex = 4),
+                        onTap: () => _changeTab(4),
+                      ),
+                      _buildDesktopSidebarItem(
+                        icon: Icons.forum_rounded,
+                        label: 'Team Discussion & Chat',
+                        iconColor: const Color(0xFF6366F1),
+                        isSelected: false,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const TeamChatScreen()),
+                          );
+                        },
                       ),
 
                       if (isManagerOrAdmin) ...[
@@ -417,7 +886,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                           MaterialPageRoute(builder: (_) => const ProfileScreen()),
                         );
                       } else {
-                        setState(() => _currentIndex = 2); // Switch to Mine & Profile view
+                        _changeTab(2); // Switch to Mine & Profile view
                       }
                     },
                     hoverColor: const Color(0xFFEFF6FF),
@@ -521,37 +990,29 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   }
 
   Widget _buildCurrentDesktopScreen() {
-    switch (_currentIndex) {
-      case 0:
-        return const TasksScreen();
-      case 1:
-        return const CalendarScreen();
-      case 2:
-        return const MineScreen();
-      case 3:
-        return const AttendanceScreen();
-      case 4:
-        return const LeavesScreen();
-      default:
-        return const TasksScreen();
-    }
+    return IndexedStack(
+      index: _currentIndex.clamp(0, 4),
+      children: const [
+        TasksScreen(),
+        CalendarScreen(),
+        MineScreen(),
+        AttendanceScreen(),
+        LeavesScreen(),
+      ],
+    );
   }
 
   Widget _buildCurrentMobileScreen() {
-    switch (_currentIndex) {
-      case 0:
-        return const TasksScreen();
-      case 1:
-        return const CalendarScreen();
-      case 2:
-        return const MineScreen();
-      case 3:
-        return const AttendanceScreen();
-      case 4:
-        return const LeavesScreen();
-      default:
-        return const TasksScreen();
-    }
+    return IndexedStack(
+      index: _currentIndex.clamp(0, 4),
+      children: const [
+        TasksScreen(),
+        CalendarScreen(),
+        MineScreen(),
+        AttendanceScreen(),
+        LeavesScreen(),
+      ],
+    );
   }
 
   Widget _buildDesktopSidebarItem({
@@ -744,11 +1205,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     final bgColor = isSelected ? AppTheme.primaryBlue.withValues(alpha: 0.1) : Colors.transparent;
 
     return InkWell(
-      onTap: () {
-        setState(() {
-          _currentIndex = index;
-        });
-      },
+      onTap: () => _changeTab(index),
       borderRadius: BorderRadius.circular(20),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),

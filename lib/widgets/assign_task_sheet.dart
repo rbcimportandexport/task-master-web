@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/task_provider.dart';
-import '../models/task.dart';
 import '../theme/app_theme.dart';
-import 'custom_date_picker_modal.dart';
 import 'voice_record_sheet.dart';
 import 'voice_note_player.dart';
 
@@ -19,7 +17,6 @@ class AssignTaskSheet extends StatefulWidget {
 class _AssignTaskSheetState extends State<AssignTaskSheet> {
   final _titleController = TextEditingController();
   final _categoryController = TextEditingController(text: 'Work');
-  final _descriptionController = TextEditingController();
   final _estimatedTimeController = TextEditingController();
   
   DateTime? _dueDate = DateTime.now();
@@ -34,7 +31,6 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
   List<Map<String, dynamic>> _allUsers = [];
 
   String _selectedDept = 'All';
-  String _selectedAssignType = 'direct'; // 'direct', 'manager', 'employee'
   String? _selectedManagerId;
   String? _selectedTargetUserId;
   String? _selectedTargetUserName;
@@ -129,9 +125,6 @@ class _AssignTaskSheetState extends State<AssignTaskSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final taskProvider = context.watch<TaskProvider>();
-    final currentRole = taskProvider.userRole;
-
     // Filter managers
     List<Map<String, dynamic>> availableManagers = _allUsers.where((u) {
       final role = (u['role'] ?? '').toString().toLowerCase();

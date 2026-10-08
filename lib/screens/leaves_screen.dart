@@ -103,7 +103,7 @@ class _LeavesScreenState extends State<LeavesScreen> {
                                 ),
                                 alignment: Alignment.center,
                                 child: Text(
-                                  '📅 Full Day',
+                                  ' Full Day',
                                   style: TextStyle(
                                     fontWeight: durationMode == 'Full Day' ? FontWeight.w800 : FontWeight.w600,
                                     fontSize: 13,
@@ -131,7 +131,7 @@ class _LeavesScreenState extends State<LeavesScreen> {
                                 ),
                                 alignment: Alignment.center,
                                 child: Text(
-                                  '🌗 Half Day',
+                                  ' Half Day',
                                   style: TextStyle(
                                     fontWeight: durationMode == 'Half Day' ? FontWeight.w800 : FontWeight.w600,
                                     fontSize: 13,
@@ -159,7 +159,7 @@ class _LeavesScreenState extends State<LeavesScreen> {
                                 ),
                                 alignment: Alignment.center,
                                 child: Text(
-                                  '⏱️ Hourly',
+                                  ' Hourly',
                                   style: TextStyle(
                                     fontWeight: durationMode == 'Hourly' ? FontWeight.w800 : FontWeight.w600,
                                     fontSize: 13,
@@ -837,7 +837,7 @@ class _LeavesScreenState extends State<LeavesScreen> {
                                 const Icon(Icons.timer_outlined, size: 12, color: Color(0xFF4F46E5)),
                                 const SizedBox(width: 4),
                                 Text(
-                                  '⏱️ Hourly: ${hourlyHours ?? 1}h ${hourlyTimeSlot != null ? "($hourlyTimeSlot)" : ""}',
+                                  ' Hourly: ${hourlyHours ?? 1}h ${hourlyTimeSlot != null ? "($hourlyTimeSlot)" : ""}',
                                   style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Color(0xFF4F46E5)),
                                 ),
                               ],
@@ -856,7 +856,7 @@ class _LeavesScreenState extends State<LeavesScreen> {
                                 const Icon(Icons.tonality_rounded, size: 12, color: Color(0xFFD97706)),
                                 const SizedBox(width: 4),
                                 Text(
-                                  '🌗 Half Day (${halfDayType ?? "First Half"})',
+                                  ' Half Day (${halfDayType ?? "First Half"})',
                                   style: const TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Color(0xFFD97706)),
                                 ),
                               ],

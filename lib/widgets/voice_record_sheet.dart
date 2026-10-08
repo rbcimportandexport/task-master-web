@@ -13,7 +13,6 @@ class VoiceRecordSheet extends StatefulWidget {
 class _VoiceRecordSheetState extends State<VoiceRecordSheet> with SingleTickerProviderStateMixin {
   int _seconds = 0;
   Timer? _timer;
-  bool _isRecording = false;
   late AnimationController _pulseController;
 
   @override
@@ -38,7 +37,6 @@ class _VoiceRecordSheetState extends State<VoiceRecordSheet> with SingleTickerPr
     final success = await VoiceService.startRecording();
     if (success && mounted) {
       setState(() {
-        _isRecording = true;
         _seconds = 0;
       });
       _timer = Timer.periodic(const Duration(seconds: 1), (_) {

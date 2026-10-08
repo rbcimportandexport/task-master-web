@@ -95,14 +95,18 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  Future<String?> updateProfile(String name) async {
+  Future<String?> updateProfile(String name, {String? dob}) async {
     try {
       if (_user != null) {
         await _user!.updateDisplayName(name);
-        await _firestore.collection('users').doc(_user!.uid).set({   
+        final Map<String, dynamic> updateData = {   
           'name': name,
           'email': _user!.email,
-        }, SetOptions(merge: true));
+        };
+        if (dob != null) {
+          updateData['dob'] = dob;
+        }
+        await _firestore.collection('users').doc(_user!.uid).set(updateData, SetOptions(merge: true));
         notifyListeners();
       }
       return null;

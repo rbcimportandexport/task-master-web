@@ -62,8 +62,5 @@ class CategoryItem {
   static const List<CategoryItem> defaultCategories = [
     CategoryItem(id: 'all', name: 'All', icon: Icons.all_inclusive, color: Color(0xFF2F80ED)),
     CategoryItem(id: 'work', name: 'Work', icon: Icons.work_outline, color: Color(0xFF3B82F6)),
-    CategoryItem(id: 'personal', name: 'Personal', icon: Icons.person_outline, color: Color(0xFF10B981)),
-    CategoryItem(id: 'wishlist', name: 'Wishlist', icon: Icons.favorite_border, color: Color(0xFFEC4899)),
-    CategoryItem(id: 'birthday', name: 'Birthday', icon: Icons.cake_outlined, color: Color(0xFFF59E0B)),
   ];
 }

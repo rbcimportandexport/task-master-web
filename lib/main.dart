@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide AuthProvider;
 import 'providers/task_provider.dart';
@@ -57,13 +58,18 @@ void main() async {
     }
   });
 
+  //  FIX: Pre-load welcome screen flag BEFORE app starts
+  // Isse Welcome Screen sirf pehli baar dikhegi, baar baar nahi
+  final prefs = await SharedPreferences.getInstance();
+  final hasSeenWelcome = prefs.getBool('has_seen_welcome_screen') ?? false;
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-  runApp(const TodoApp());
+  runApp(TodoApp(hasSeenWelcome: hasSeenWelcome));
 }
 
 class SmoothAppScrollBehavior extends MaterialScrollBehavior {
@@ -84,7 +90,8 @@ class SmoothAppScrollBehavior extends MaterialScrollBehavior {
 }
 
 class TodoApp extends StatelessWidget {
-  const TodoApp({super.key});
+  final bool hasSeenWelcome;
+  const TodoApp({super.key, required this.hasSeenWelcome});
 
   @override
   Widget build(BuildContext context) {
@@ -93,33 +100,48 @@ class TodoApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => TaskProvider()),
       ],
-      child: Consumer2<AuthProvider, TaskProvider>(
-        builder: (context, authProvider, taskProvider, child) {
+      child: Selector<TaskProvider, Color>(
+        selector: (_, provider) => provider.selectedThemeColor,
+        builder: (context, themeColor, _) {
           return MaterialApp(
             title: 'RM',
             debugShowCheckedModeBanner: false,
             scrollBehavior: const SmoothAppScrollBehavior(),
-            theme: AppTheme.dynamicTheme(taskProvider.selectedThemeColor),
+            theme: AppTheme.dynamicTheme(themeColor),
             builder: (context, child) {
               return child!;
             },
-            home: StreamBuilder<User?>(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Scaffold(body: Center(child: CircularProgressIndicator()));
-                }
-                if (snapshot.hasData) {
-                  return taskProvider.isFirstLaunch
-                      ? const WelcomeScreen()
-                      : const MainNavigationScreen();
-                }
-                return const LoginScreen();
-              },
-            ),
+            home: AppAuthGate(hasSeenWelcome: hasSeenWelcome),
           );
         },
       ),
+    );
+  }
+}
+
+class AppAuthGate extends StatelessWidget {
+  final bool hasSeenWelcome;
+  const AppAuthGate({super.key, required this.hasSeenWelcome});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        }
+        if (snapshot.hasData) {
+          //  FIX: Pehle pre-loaded flag use karo, phir provider ka state bhi check karo
+          // Dono mein se agar kisi ne bhi 'seen' mark kiya hai to Welcome Screen nahi dikhegi
+          final providerFirstLaunch = context.select<TaskProvider, bool>((p) => p.isFirstLaunch);
+          final showWelcome = !hasSeenWelcome && providerFirstLaunch;
+          return showWelcome
+              ? const WelcomeScreen()
+              : const MainNavigationScreen();
+        }
+        return const LoginScreen();
+      },
     );
   }
 }

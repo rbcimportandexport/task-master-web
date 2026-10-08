@@ -1,0 +1,15 @@
+# Snyk Security Configuration File
+# https://docs.snyk.io/features/snyk-cli/cli-reference/snyk-configuration-file
+
+version: v1.25.0
+
+# Exclude directories from scanning
+exclude:
+  - build/
+  - .dart_tool/
+  - .git/
+
+# Language specific settings
+language-settings:
+  dart:
+    scan-dev-deps: false

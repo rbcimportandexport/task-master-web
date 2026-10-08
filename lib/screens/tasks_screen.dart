@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../providers/task_provider.dart';
 import '../models/task.dart';
-import '../models/category.dart';
 import '../theme/app_theme.dart';
 import '../widgets/custom_illustrations.dart';
 import '../widgets/pie_progress_indicator.dart';
@@ -22,13 +22,151 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  
   bool _showCoachmark = false;
   bool _isPreviousExpanded = true;
   bool _isTodayExpanded = true;
   bool _isFutureExpanded = true;
   bool _isNoDateExpanded = true;
   bool _isCompletedExpanded = true;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkAndShowHolidayAlert();
+    });
+  }
+
+  Future<void> _checkAndShowHolidayAlert() async {
+    try {
+      final today = DateTime.now();
+      final todayDateOnly = DateTime(today.year, today.month, today.day);
+      String? holidayTitle;
+      String? holidayDesc;
+
+      // 1. Check Public Holidays in Firestore
+      final snap = await FirebaseFirestore.instance.collection('public_holidays').get();
+      for (var doc in snap.docs) {
+        final data = doc.data();
+        DateTime? sDate;
+        DateTime? eDate;
+
+        // Parse startDate
+        final startRaw = data['startDate'];
+        if (startRaw is Timestamp) {
+          sDate = DateTime(startRaw.toDate().year, startRaw.toDate().month, startRaw.toDate().day);
+        } else if (startRaw is String && startRaw.trim().isNotEmpty) {
+          final sStr = startRaw.trim();
+          sDate = DateTime.tryParse(sStr.length >= 10 ? sStr.substring(0, 10) : sStr);
+        }
+
+        // Parse endDate
+        final endRaw = data['endDate'];
+        if (endRaw is Timestamp) {
+          eDate = DateTime(endRaw.toDate().year, endRaw.toDate().month, endRaw.toDate().day);
+        } else if (endRaw is String && endRaw.trim().isNotEmpty) {
+          final eStr = endRaw.trim();
+          eDate = DateTime.tryParse(eStr.length >= 10 ? eStr.substring(0, 10) : eStr);
+        }
+
+        eDate ??= sDate;
+
+        if (sDate != null && eDate != null) {
+          if (!todayDateOnly.isBefore(sDate) && !todayDateOnly.isAfter(eDate)) {
+            holidayTitle = (data['title'] ?? 'Company Holiday').toString();
+            final desc = (data['description'] ?? '').toString().trim();
+            holidayDesc = desc.isNotEmpty ? desc : 'Aaj company ki taraf se public holiday / chutti ghoshit ki gayi hai.';
+            break;
+          }
+        }
+      }
+
+      // 2. Check Sunday Policy
+      if (holidayTitle == null && today.weekday == DateTime.sunday) {
+        try {
+          final policyDoc = await FirebaseFirestore.instance.collection('company_settings').doc('holiday_policy').get();
+          final policy = policyDoc.data()?['sundayPolicy'] ?? 'Full Day Off';
+          if (policy != 'Normal Working Day') {
+            holidayTitle = 'Sunday Off ($policy)';
+            holidayDesc = 'Aaj Ravivar (Sunday) hai. Company policy ke anusaar aaj $policy hai.';
+          }
+        } catch (_) {}
+      }
+
+      if (holidayTitle != null && mounted) {
+        _showHolidayPopup(holidayTitle, holidayDesc ?? 'Enjoy your day off!');
+      }
+    } catch (e) {
+      debugPrint('Error checking holiday: $e');
+    }
+  }
+
+  void _showHolidayPopup(String title, String description) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // Must tap button to dismiss
+      builder: (ctx) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        backgroundColor: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFEF3C7),
+                  shape: BoxShape.circle,
+                  border: Border.all(color: const Color(0xFFFDE68A), width: 2),
+                ),
+                child: const Icon(Icons.celebration_rounded, color: Color(0xFFD97706), size: 48),
+              ),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFEF3C7),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Text(
+                  ' TODAY IS A HOLIDAY / CHUTTI',
+                  style: TextStyle(color: Color(0xFFB45309), fontSize: 12, fontWeight: FontWeight.w900, letterSpacing: 0.5),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF0F172A)),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                description,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 14, color: Color(0xFF64748B), height: 1.5),
+              ),
+              const SizedBox(height: 24),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.check_circle_rounded, color: Colors.white, size: 20),
+                  label: const Text('OK, Got It (Samajh Gaya)', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFD97706),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    elevation: 2,
+                  ),
+                  onPressed: () => Navigator.pop(ctx),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
   void _openAddTaskModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -263,37 +401,7 @@ class _TasksScreenState extends State<TasksScreen> {
     );
   }
 
-  void _showFeedbackDialog() {
-    final controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text('Send Feedback'),
-        content: TextField(
-          controller: controller,
-          maxLines: 4,
-          decoration: const InputDecoration(
-            hintText: 'Share feedback or feature suggestions...',
-            border: OutlineInputBorder(),
-          ),
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryBlue, foregroundColor: Colors.white),
-            onPressed: () {
-              Navigator.pop(ctx);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Thank you! Your feedback has been received.')),
-              );
-            },
-            child: const Text('Send'),
-          ),
-        ],
-      ),
-    );
-  }
+
 
   void _showFilterDialog(TaskProvider provider) {
     showDialog(
@@ -413,7 +521,9 @@ class _TasksScreenState extends State<TasksScreen> {
                                   ),
                                   const SizedBox(height: 2),
                                   Text(
-                                    '${taskProvider.pendingTasksCount} pending • ${taskProvider.completedTasksCount} completed',
+                                    taskProvider.completedTasksCount > 0
+                                        ? '${taskProvider.pendingTasksCount} pending • ${taskProvider.completedTasksCount} done (in Calendar)'
+                                        : '${taskProvider.pendingTasksCount} pending',
                                     style: const TextStyle(
                                       fontSize: 12,
                                       color: Color(0xFF64748B),
@@ -632,7 +742,9 @@ class _TasksScreenState extends State<TasksScreen> {
                                     ),
                                     const SizedBox(height: 2),
                                     Text(
-                                      '${taskProvider.pendingTasksCount} pending • ${taskProvider.completedTasksCount} completed',
+                                      taskProvider.completedTasksCount > 0
+                                          ? '${taskProvider.pendingTasksCount} pending • ${taskProvider.completedTasksCount} done (in Calendar)'
+                                          : '${taskProvider.pendingTasksCount} pending',
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
@@ -734,6 +846,49 @@ class _TasksScreenState extends State<TasksScreen> {
                                   final isSelected = cat.name.toLowerCase() == currentCategory.toLowerCase();
                                   return InkWell(
                                     onTap: () => taskProvider.setSelectedCategory(cat.name),
+                                    onLongPress: cat.name.toLowerCase() == 'all'
+                                        ? null
+                                        : () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (ctx) => AlertDialog(
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                                title: Row(
+                                                  children: [
+                                                    const Icon(Icons.delete_outline_rounded, color: Colors.red),
+                                                    const SizedBox(width: 8),
+                                                    Text('Delete "${cat.name}"?'),
+                                                  ],
+                                                ),
+                                                content: Text(
+                                                  'Are you sure you want to delete the category "${cat.name}" permanently?',
+                                                ),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () => Navigator.pop(ctx),
+                                                    child: const Text('Cancel'),
+                                                  ),
+                                                  ElevatedButton(
+                                                    style: ElevatedButton.styleFrom(
+                                                      backgroundColor: Colors.red,
+                                                      foregroundColor: Colors.white,
+                                                    ),
+                                                    onPressed: () {
+                                                      taskProvider.deleteCategory(cat.id);
+                                                      Navigator.pop(ctx);
+                                                      ScaffoldMessenger.of(context).showSnackBar(
+                                                        SnackBar(
+                                                          content: Text('Category "${cat.name}" deleted permanently.'),
+                                                          backgroundColor: Colors.red,
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: const Text('Delete'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
                                     borderRadius: BorderRadius.circular(24),
                                     mouseCursor: SystemMouseCursors.click,
                                     child: Container(
@@ -806,9 +961,6 @@ class _TasksScreenState extends State<TasksScreen> {
                                 case 'print':
                                   _showPrintAllTasksDialog(tasks);
                                   break;
-                                case 'feedback':
-                                  _showFeedbackDialog();
-                                  break;
                                 case 'pro':
                                   _showFreeProUnlockedDialog();
                                   break;
@@ -864,10 +1016,6 @@ class _TasksScreenState extends State<TasksScreen> {
                                   ],
                                 ),
                               ),
-                              const PopupMenuItem(
-                                value: 'feedback',
-                                child: Text('Feedback', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                              ),
                             ],
                           ),
                         ],
@@ -906,6 +1054,16 @@ class _TasksScreenState extends State<TasksScreen> {
                                 }
                               }
 
+                              final hasVisibleTasks = previousTasks.isNotEmpty ||
+                                  todayTasks.isNotEmpty ||
+                                  futureTasks.isNotEmpty ||
+                                  noDateTasks.isNotEmpty ||
+                                  (completedTasks.isNotEmpty && taskProvider.filterStatus == 'completed');
+
+                              if (!hasVisibleTasks) {
+                                return _buildEmptyState(currentCategory);
+                              }
+
                               final isDesktop = MediaQuery.of(context).size.width >= 950;
 
                               Widget buildTaskListSection(List<Task> sectionTasks) {
@@ -939,6 +1097,97 @@ class _TasksScreenState extends State<TasksScreen> {
                                   isDesktop ? 32 : 100,
                                 ),
                                 children: [
+                                  // ── Live Birthday Announcement Banner (Common to all employees) ──
+                                  StreamBuilder<QuerySnapshot>(
+                                    stream: FirebaseFirestore.instance.collection('users').snapshots(),
+                                    builder: (context, snapshot) {
+                                      if (!snapshot.hasData) return const SizedBox.shrink();
+                                      final today = DateTime.now();
+                                      final birthdayUsers = <Map<String, dynamic>>[];
+                                      
+                                      for (var doc in snapshot.data!.docs) {
+                                        final data = doc.data() as Map<String, dynamic>;
+                                        DateTime? dob;
+                                        if (data.containsKey('dob') && data['dob'] != null) {
+                                          final rawDob = data['dob'];
+                                          if (rawDob is Timestamp) {
+                                            dob = rawDob.toDate();
+                                          } else if (rawDob is String && rawDob.trim().isNotEmpty) {
+                                            dob = DateTime.tryParse(rawDob);
+                                          }
+                                        }
+                                        if (dob != null && dob.month == today.month && dob.day == today.day) {
+                                          birthdayUsers.add({
+                                            'name': data['name'] ?? 'Teammate',
+                                            'role': data['role'] ?? 'employee',
+                                          });
+                                        }
+                                      }
+
+                                      if (birthdayUsers.isEmpty) return const SizedBox.shrink();
+
+                                      final bNames = birthdayUsers.map((u) => u['name']).join(', ');
+                                      return Container(
+                                        margin: const EdgeInsets.only(bottom: 12),
+                                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                        decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                            colors: [Color(0xFFFDF2F8), Color(0xFFFCE7F3)],
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                          ),
+                                          borderRadius: BorderRadius.circular(16),
+                                          border: Border.all(color: const Color(0xFFFBCFE8), width: 1.5),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: const Color(0xFFDB2777).withOpacity(0.08),
+                                              blurRadius: 10,
+                                              offset: const Offset(0, 4),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets.all(10),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                shape: BoxShape.circle,
+                                                border: Border.all(color: const Color(0xFFFBCFE8)),
+                                              ),
+                                              child: const Icon(Icons.cake_rounded, color: Color(0xFFDB2777), size: 22),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            Expanded(
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  const Text(
+                                                    ' TODAY\'S BIRTHDAY ',
+                                                    style: TextStyle(
+                                                      color: Color(0xFF9D174D),
+                                                      fontSize: 11,
+                                                      fontWeight: FontWeight.w900,
+                                                      letterSpacing: 0.5,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 2),
+                                                  Text(
+                                                    'Aaj $bNames ka Birthday hai! Sabhi wish karein ',
+                                                    style: const TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight: FontWeight.w800,
+                                                      color: Color(0xFF0F172A),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
                                   if (previousTasks.isNotEmpty) ...[
                                     _buildDateSectionHeader(
                                       title: 'Previous',
@@ -982,7 +1231,7 @@ class _TasksScreenState extends State<TasksScreen> {
                                     ),
                                     if (_isNoDateExpanded) buildTaskListSection(noDateTasks),
                                   ],
-                                  if (completedTasks.isNotEmpty) ...[
+                                  if (completedTasks.isNotEmpty && taskProvider.filterStatus == 'completed') ...[
                                     _buildDateSectionHeader(
                                       title: 'Done',
                                       count: completedTasks.length,
@@ -1061,6 +1310,7 @@ class _TasksScreenState extends State<TasksScreen> {
   }
 
   Widget _buildEmptyState(String currentCategory) {
+    final taskProvider = context.watch<TaskProvider>();
     final isAll = currentCategory.toLowerCase() == 'all';
     final isDesktop = MediaQuery.of(context).size.width >= 950;
     final screenHeight = MediaQuery.of(context).size.height;
@@ -1088,7 +1338,11 @@ class _TasksScreenState extends State<TasksScreen> {
               const SizedBox(height: 18),
 
               Text(
-                isAll ? 'No Tasks in Workspace' : 'No tasks in "$currentCategory"',
+                isAll
+                    ? (taskProvider.completedTasksCount > 0
+                        ? 'All Pending Tasks Done! '
+                        : 'No Tasks in Workspace')
+                    : 'No tasks in "$currentCategory"',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: isDesktop ? 22 : 20,
@@ -1100,7 +1354,9 @@ class _TasksScreenState extends State<TasksScreen> {
               const SizedBox(height: 8),
               Text(
                 isAll
-                    ? 'Your workspace is all clear! Create your first task to plan, track, and manage your day effortlessly.'
+                    ? (taskProvider.completedTasksCount > 0
+                        ? 'Completed tasks are saved in Calendar. Create a new task whenever you have more work!'
+                        : 'Your workspace is all clear! Create your first task to plan, track, and manage your day effortlessly.')
                     : 'Add tasks to this category or select "All" from the categories above.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -1372,6 +1628,29 @@ class _TasksScreenState extends State<TasksScreen> {
                               Text(
                                 task.estimatedTime!,
                                 style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Color(0xFF92400E)),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    if (task.notes.isNotEmpty)
+                      Padding(
+                        padding: EdgeInsets.only(top: 4, left: isSuperNarrow ? 2 : 4),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFEDE9FE),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(color: const Color(0xFFDDD6FE)),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.notes_rounded, size: 11, color: Color(0xFF7C3AED)),
+                              const SizedBox(width: 3),
+                              Text(
+                                task.notes.length > 18 ? '${task.notes.substring(0, 18)}...' : task.notes,
+                                style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: Color(0xFF6D28D9)),
                               ),
                             ],
                           ),

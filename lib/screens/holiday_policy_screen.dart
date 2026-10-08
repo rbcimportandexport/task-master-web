@@ -280,7 +280,7 @@ class _HolidayPolicyScreenState extends State<HolidayPolicyScreen> with SingleTi
                   // Broadcast notification to all staff
                   final notifMsg = 'Holiday Announcement: "$title" from ${DateFormat('d MMM').format(startDate)} to ${DateFormat('d MMM yyyy').format(endDate)} ($daysCount day${daysCount > 1 ? "s" : ""}).';
                   await context.read<TaskProvider>().broadcastNotificationToAllUsers(
-                    title: '🎉 Public Holiday: $title',
+                    title: ' Public Holiday: $title',
                     message: notifMsg,
                   );
 
@@ -398,7 +398,10 @@ class _HolidayPolicyScreenState extends State<HolidayPolicyScreen> with SingleTi
             ],
           ),
         ),
-        const SizedBox(height: 24),
+        if (_isLoadingSunday) ...[
+          const LinearProgressIndicator(minHeight: 4),
+          const SizedBox(height: 16),
+        ],
 
         const Text('Select Active Sunday Policy', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Color(0xFF0F172A))),
         const SizedBox(height: 12),
@@ -613,7 +616,7 @@ class _HolidayPolicyScreenState extends State<HolidayPolicyScreen> with SingleTi
                 if (startStr == endStr) {
                   formattedDateRange = DateFormat('EEEE, d MMMM yyyy').format(sDt);
                 } else {
-                  formattedDateRange = '${DateFormat('d MMM yyyy').format(sDt)}  ➔  ${DateFormat('d MMM yyyy').format(eDt)}';
+                  formattedDateRange = '${DateFormat('d MMM yyyy').format(sDt)}    ${DateFormat('d MMM yyyy').format(eDt)}';
                 }
               } catch (_) {}
 
@@ -682,6 +685,12 @@ class _HolidayPolicyScreenState extends State<HolidayPolicyScreen> with SingleTi
                                 );
                                 if (confirm == true) {
                                   await _firestore.collection('public_holidays').doc(doc.id).delete();
+                                  if (context.mounted) {
+                                    await context.read<TaskProvider>().broadcastNotificationToAllUsers(
+                                      title: ' Holiday Update: $title Cancelled',
+                                      message: 'Public holiday "$title" has been removed by Admin.',
+                                    );
+                                  }
                                 }
                               }
                             },

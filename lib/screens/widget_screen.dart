@@ -435,9 +435,9 @@ class WidgetScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('20 Wed', style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold)),
-                Text('☐ Grandma\'s Birthday', style: TextStyle(fontSize: 6)),
-                Text('☐ Send Email', style: TextStyle(fontSize: 6)),
-                Text('☑ Morning Jogging', style: TextStyle(fontSize: 6, color: Colors.grey)),
+                Text(' Grandma\'s Birthday', style: TextStyle(fontSize: 6)),
+                Text(' Send Email', style: TextStyle(fontSize: 6)),
+                Text(' Morning Jogging', style: TextStyle(fontSize: 6, color: Colors.grey)),
               ],
             ),
           ),

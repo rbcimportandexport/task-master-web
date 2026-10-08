@@ -32,8 +32,6 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
   Future<void> _loadDepartments() async {
     final provider = context.read<TaskProvider>();
     final depts = await provider.getDepartments();
-    // Add default ones if empty for demonstration
-    if (depts.isEmpty) depts.addAll(['Marketing', 'IT', 'Sales']);
     if (mounted) {
       setState(() {
         _departments = depts;
@@ -208,9 +206,10 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
               if (formKey.currentState?.validate() ?? false) {
                 final newDept = controller.text.trim();
                 Navigator.pop(context);
-                setState(() {
-                  _departments.add(newDept);
-                });
+                setState(() => _isLoading = true);
+                final provider = context.read<TaskProvider>();
+                await provider.createDepartment(newDept);
+                await _loadDepartments();
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -233,6 +232,68 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             ),
             child: const Text('Create Department'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _showDeleteDepartmentDialog(String dept) async {
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Icon(Icons.delete_forever_rounded, color: Colors.red, size: 20),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Text(
+                'Delete Department',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          'Are you sure you want to delete the department "$dept"?\n\nAll employees and managers assigned to this department will have their department reset to "Unassigned".',
+          style: const TextStyle(fontSize: 13, color: Color(0xFF475569), height: 1.4),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel', style: TextStyle(color: Color(0xFF64748B))),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              Navigator.pop(context);
+              setState(() => _isLoading = true);
+              final provider = context.read<TaskProvider>();
+              final success = await provider.deleteDepartment(dept);
+              await _loadDepartments();
+
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(success ? 'Department "$dept" deleted successfully!' : 'Failed to delete department.'),
+                    backgroundColor: success ? Colors.red : Colors.grey,
+                  ),
+                );
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
+            child: const Text('Delete Department'),
           ),
         ],
       ),
@@ -355,11 +416,27 @@ class _SuperAdminDashboardState extends State<SuperAdminDashboard> {
                         Positioned(
                           top: 4,
                           right: 4,
-                          child: IconButton(
-                            icon: const Icon(Icons.edit_note_rounded, size: 20, color: Color(0xFF94A3B8)),
-                            tooltip: 'Rename Department',
-                            splashRadius: 18,
-                            onPressed: () => _showEditDepartmentDialog(dept),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.edit_note_rounded, size: 20, color: Color(0xFF64748B)),
+                                tooltip: 'Rename Department',
+                                splashRadius: 16,
+                                padding: const EdgeInsets.all(4),
+                                constraints: const BoxConstraints(),
+                                onPressed: () => _showEditDepartmentDialog(dept),
+                              ),
+                              const SizedBox(width: 2),
+                              IconButton(
+                                icon: const Icon(Icons.delete_outline_rounded, size: 19, color: Color(0xFFEF4444)),
+                                tooltip: 'Delete Department',
+                                splashRadius: 16,
+                                padding: const EdgeInsets.all(4),
+                                constraints: const BoxConstraints(),
+                                onPressed: () => _showDeleteDepartmentDialog(dept),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -392,10 +469,10 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
 
   Future<void> _loadManagers() async {
     final provider = context.read<TaskProvider>();
-    final managers = await provider.getManagersByDepartment(widget.department);
+    final staff = await provider.getStaffByDepartment(widget.department);
     if (mounted) {
       setState(() {
-        _managers = managers;
+        _managers = staff;
         _isLoading = false;
       });
     }
@@ -780,8 +857,11 @@ class _DepartmentManagersScreenState extends State<DepartmentManagersScreen> {
                     final staff = _managers[index];
                     final role = (staff['role'] ?? 'employee').toString().toLowerCase();
                     Color roleColor = const Color(0xFF10B981);
-                    if (role == 'super_admin') roleColor = const Color(0xFF8B5CF6);
-                    else if (role == 'manager') roleColor = const Color(0xFF3B82F6);
+                    if (role == 'super_admin') {
+                      roleColor = const Color(0xFF8B5CF6);
+                    } else if (role == 'manager') {
+                      roleColor = const Color(0xFF3B82F6);
+                    }
 
                     return Card(
                       margin: const EdgeInsets.only(bottom: 12),
@@ -862,7 +942,6 @@ class _ManagerTeamScreenState extends State<ManagerTeamScreen> {
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (ctx) => StatefulBuilder(
         builder: (context, setSheetState) {
-          String searchQuery = '';
           return Container(
             height: MediaQuery.of(context).size.height * 0.75,
             padding: const EdgeInsets.all(20),

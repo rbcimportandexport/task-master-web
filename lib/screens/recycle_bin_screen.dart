@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../providers/task_provider.dart';
-import '../models/task.dart';
 import '../theme/app_theme.dart';
 
 class RecycleBinScreen extends StatelessWidget {

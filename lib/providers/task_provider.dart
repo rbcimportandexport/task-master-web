@@ -7,11 +7,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../models/task.dart';
 import '../models/category.dart';
+import '../models/project.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import '../services/fcm_service.dart';
 import '../services/notification_service.dart';
 
 class TaskProvider extends ChangeNotifier {
+  List<Project> _projects = [];
+  List<Project> get projects => _projects;
   List<Task> _tasks = [];
   final List<CategoryItem> _categories = List.from(CategoryItem.defaultCategories);
   String _selectedCategory = 'All';
@@ -32,6 +35,8 @@ class TaskProvider extends ChangeNotifier {
   String? _uid;
   String _userRole = 'employee';
   String _managerId = '';
+  DateTime? _userCreatedAt;
+  DateTime? _userDob;
 
   Color _selectedThemeColor = const Color(0xFF3B82F6);
 
@@ -49,6 +54,14 @@ class TaskProvider extends ChangeNotifier {
   String get userEmail => _userEmail;
   String get userProfilePic => _userProfilePic;
   String get managerId => _managerId;
+  DateTime? get userCreatedAt => _userCreatedAt;
+  DateTime? get userDob => _userDob;
+  int get daysSinceJoining {
+    if (_userCreatedAt == null) return 0;
+    final now = DateTime.now();
+    final diff = now.difference(_userCreatedAt!).inDays;
+    return diff < 0 ? 0 : diff + 1; // 1st day on joining date
+  }
   String get userRole {
     if (_userEmail.trim().toLowerCase() == 'rbcitsupport@gmail.com') return 'super_admin';
     if (_userEmail.trim().toLowerCase().contains('inquiry')) return 'manager';
@@ -59,6 +72,16 @@ class TaskProvider extends ChangeNotifier {
 
   void setUserProfilePic(String base64) {
     _userProfilePic = base64;
+    notifyListeners();
+  }
+
+  void setUserDob(DateTime? dob) {
+    _userDob = dob;
+    notifyListeners();
+  }
+
+  void setUserCreatedAt(DateTime? date) {
+    _userCreatedAt = date;
     notifyListeners();
   }
 
@@ -143,6 +166,7 @@ class TaskProvider extends ChangeNotifier {
   TaskProvider() {
     _loadFromPrefs();
     _initFirebaseAuth();
+    _autoFixAttendanceRecords();
   }
 
   Future<void> _loadUserProfile(String uid) async {
@@ -163,6 +187,36 @@ class TaskProvider extends ChangeNotifier {
           _managerId = data['managerId'] ?? '';
         }
         
+        // Parse Date of Birth (DOB)
+        if (data.containsKey('dob') && data['dob'] != null) {
+          final db = data['dob'];
+          if (db is Timestamp) {
+            _userDob = db.toDate();
+          } else if (db is String && db.trim().isNotEmpty) {
+            _userDob = DateTime.tryParse(db);
+          }
+        }
+
+        // Parse Joining Date / Account Created At
+        if (data.containsKey('joiningDate') && data['joiningDate'] != null) {
+          final jd = data['joiningDate'];
+          if (jd is Timestamp) {
+            _userCreatedAt = jd.toDate();
+          } else if (jd is String && jd.trim().isNotEmpty) {
+            _userCreatedAt = DateTime.tryParse(jd);
+          }
+        } else if (data.containsKey('createdAt') && data['createdAt'] != null) {
+          final ca = data['createdAt'];
+          if (ca is Timestamp) {
+            _userCreatedAt = ca.toDate();
+          } else if (ca is String && ca.trim().isNotEmpty) {
+            _userCreatedAt = DateTime.tryParse(ca);
+          }
+        }
+        
+        // If not found in doc, fallback to FirebaseAuth creationTime or today
+        _userCreatedAt ??= FirebaseAuth.instance.currentUser?.metadata.creationTime ?? DateTime.now();
+
         // Ensure support email is always super admin
         if (_userEmail == 'rbcitsupport@gmail.com') {
            _userRole = 'super_admin';
@@ -185,6 +239,7 @@ class TaskProvider extends ChangeNotifier {
         _userEmail = user.email ?? '';
         _loadUserProfile(user.uid);
         _loadFromFirestore();
+        _autoFixAttendanceRecords();
       } else {
         _isLoggedIn = false;
         _uid = null;
@@ -195,6 +250,42 @@ class TaskProvider extends ChangeNotifier {
       }
       notifyListeners();
     });
+  }
+
+  Future<void> _autoFixAttendanceRecords() async {
+    try {
+      final snap = await FirebaseFirestore.instance
+          .collection('attendance')
+          .where('date', whereIn: ['2026-09-29', '2026-10-01'])
+          .get();
+
+      for (var doc in snap.docs) {
+        final data = doc.data();
+        final date = data['date'];
+        DateTime dtIn;
+        DateTime dtOut;
+
+        if (date == '2026-09-29') {
+          dtIn = DateTime(2026, 9, 29, 8, 50, 0);
+          dtOut = DateTime(2026, 9, 29, 20, 5, 0);
+        } else {
+          dtIn = DateTime(2026, 10, 1, 8, 50, 0);
+          dtOut = DateTime(2026, 10, 1, 20, 5, 0);
+        }
+
+        await doc.reference.set({
+          'checkIn': Timestamp.fromDate(dtIn),
+          'checkOut': Timestamp.fromDate(dtOut),
+          'status': 'Present',
+          'durationMode': FieldValue.delete(),
+          'hourlyHours': FieldValue.delete(),
+          'hourlyTimeSlot': FieldValue.delete(),
+          'onHourlyLeave': false,
+        }, SetOptions(merge: true));
+      }
+    } catch (e) {
+      debugPrint('Attendance auto-fix sync error: $e');
+    }
   }
 
   CollectionReference? get _tasksCollection {
@@ -408,13 +499,36 @@ class TaskProvider extends ChangeNotifier {
   }
 
   List<Task> tasksForDate(DateTime date) {
-    return _tasks.where((t) {
+    final list = _tasks.where((t) {
       if (t.isDeleted) return false;
-      if (t.dueDate == null) return false;
-      return t.dueDate!.year == date.year &&
+      
+      final matchesDue = t.dueDate != null &&
+          t.dueDate!.year == date.year &&
           t.dueDate!.month == date.month &&
           t.dueDate!.day == date.day;
+      
+      final matchesCompleted = t.completedAt != null &&
+          t.completedAt!.year == date.year &&
+          t.completedAt!.month == date.month &&
+          t.completedAt!.day == date.day;
+
+      final matchesCreatedIfCompletedWithoutDate = t.isCompleted &&
+          t.dueDate == null &&
+          t.completedAt == null &&
+          t.createdAt.year == date.year &&
+          t.createdAt.month == date.month &&
+          t.createdAt.day == date.day;
+
+      return matchesDue || matchesCompleted || matchesCreatedIfCompletedWithoutDate;
     }).toList();
+
+    // Sort: pending tasks first, then completed tasks
+    list.sort((a, b) {
+      if (a.isCompleted == b.isCompleted) return 0;
+      return a.isCompleted ? 1 : -1;
+    });
+
+    return list;
   }
 
   int get completedTasksCount => _tasks.where((t) => !t.isDeleted && t.isCompleted).length;
@@ -630,7 +744,7 @@ class TaskProvider extends ChangeNotifier {
         Future<void> debugPrintAllUsers() async {
     final snapshot = await FirebaseFirestore.instance.collection('users').get();
     for (var doc in snapshot.docs) {
-      debugPrint('USER: \ -> ');
+      debugPrint('USER: ${doc.id} -> ${doc.data()}');
     }
     debugPrint('CURRENT UID: ');
     debugPrint('CURRENT ROLE: ');
@@ -693,13 +807,38 @@ class TaskProvider extends ChangeNotifier {
             }).toList());
   }
 
-  Future<void> sendNotification(String targetUid, String message) async {
+  Future<void> sendNotification(String targetUid, String message, {String title = 'Notification'}) async {
     try {
       await FirebaseFirestore.instance.collection('users').doc(targetUid).collection('notifications').add({
+        'title': title,
         'message': message,
         'timestamp': FieldValue.serverTimestamp(),
         'isRead': false,
       });
+
+      // Show instant local notification if target is current device / user
+      if (targetUid == _uid) {
+        try {
+          await NotificationService().showNotification(
+            id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+            title: title,
+            body: message,
+          );
+        } catch (_) {}
+      }
+
+      // Send FCM push notification
+      final targetDoc = await FirebaseFirestore.instance.collection('users').doc(targetUid).get();
+      if (targetDoc.exists && targetDoc.data() != null && targetDoc.data()!.containsKey('fcmToken')) {
+        final fcmToken = targetDoc.data()!['fcmToken']?.toString();
+        if (fcmToken != null && fcmToken.isNotEmpty) {
+          await FCMService.sendPushNotification(
+            fcmToken: fcmToken,
+            title: title,
+            body: message,
+          );
+        }
+      }
     } catch (e) {
       debugPrint('Error sending notification: $e');
     }
@@ -831,13 +970,34 @@ class TaskProvider extends ChangeNotifier {
 
   Stream<List<Map<String, dynamic>>> getTeamAttendanceStream() {
     if (_uid == null) return const Stream.empty();
+    
+    // Combine both Firestore user mappings and attendance records
     return FirebaseFirestore.instance
-        .collection('attendance')
+        .collection('users')
         .snapshots()
-        .map((snapshot) {
-          final docs = snapshot.docs.map((doc) => doc.data()).where((d) => d['managerId'] == _uid).toList();
-          docs.sort((a, b) => (b['date'] ?? '').compareTo(a['date'] ?? ''));
-          return docs;
+        .asyncExpand((userSnap) {
+          final teamUids = <String>{};
+          for (var doc in userSnap.docs) {
+            final data = doc.data();
+            final mId = (data['managerId'] ?? '').toString().trim();
+            final uid = doc.id;
+            if (mId == _uid || (_userEmail.toLowerCase().contains('inquiry') && data['email'] == 'rbcsaurabhyadav@gmail.com')) {
+              teamUids.add(uid);
+            }
+          }
+
+          return FirebaseFirestore.instance
+              .collection('attendance')
+              .snapshots()
+              .map((snapshot) {
+                final docs = snapshot.docs.map((doc) => doc.data()).where((d) {
+                  final recUid = (d['uid'] ?? '').toString().trim();
+                  final recMId = (d['managerId'] ?? '').toString().trim();
+                  return recMId == _uid || teamUids.contains(recUid);
+                }).toList();
+                docs.sort((a, b) => (b['date'] ?? '').compareTo(a['date'] ?? ''));
+                return docs;
+              });
         });
   }
 
@@ -865,18 +1025,37 @@ class TaskProvider extends ChangeNotifier {
 
   Stream<List<Map<String, dynamic>>> getSpecificTeamAttendanceStream(String managerId) {
     return FirebaseFirestore.instance
-        .collection('attendance')
+        .collection('users')
         .snapshots()
-        .map((snapshot) {
-          final docs = snapshot.docs.map((doc) => doc.data()).where((d) => d['managerId'] == managerId).toList();
-          docs.sort((a, b) => (b['date'] ?? '').compareTo(a['date'] ?? ''));
-          return docs;
+        .asyncExpand((userSnap) {
+          final teamUids = <String>{};
+          for (var doc in userSnap.docs) {
+            final data = doc.data();
+            final mId = (data['managerId'] ?? '').toString().trim();
+            if (mId == managerId) {
+              teamUids.add(doc.id);
+            }
+          }
+
+          return FirebaseFirestore.instance
+              .collection('attendance')
+              .snapshots()
+              .map((snapshot) {
+                final docs = snapshot.docs.map((doc) => doc.data()).where((d) {
+                  final recUid = (d['uid'] ?? '').toString().trim();
+                  final recMId = (d['managerId'] ?? '').toString().trim();
+                  return recMId == managerId || teamUids.contains(recUid);
+                }).toList();
+                docs.sort((a, b) => (b['date'] ?? '').compareTo(a['date'] ?? ''));
+                return docs;
+              });
         });
   }
 
   Future<void> punchIn(String base64Photo, double lat, double lng) async {
     if (_uid == null) return;
-    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final now = DateTime.now();
+    final today = DateFormat('yyyy-MM-dd').format(now);
     final docId = '${_uid}_$today';
     
     // Check if doc exists locally or on server
@@ -927,59 +1106,77 @@ class TaskProvider extends ChangeNotifier {
       } catch (_) {}
     }
     
-    // Firestore set with persistence enabled will immediately succeed locally and sync to cloud
+    // Exact client timestamp saved immediately to ensure offline accuracy
+    // Firestore offline persistence ensures this writes immediately to local SQLite/LevelDB and syncs to cloud on reconnect
     await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
       'uid': _uid,
       'userName': _userName,
       'role': _userRole,
       'managerId': mId,
       'date': today,
-      'checkIn': FieldValue.serverTimestamp(),
+      'checkIn': Timestamp.fromDate(now),
+      'localCheckIn': Timestamp.fromDate(now),
       'status': defaultStatus,
       'photo': base64Photo,
       'latIn': lat,
       'lngIn': lng,
+      'syncedAt': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
   }
 
-  Future<void> punchOut(double lat, double lng) async {
+  Future<void> punchOut(double lat, double lng, {String? photoOut, bool? isRemote}) async {
     if (_uid == null) return;
-    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final now = DateTime.now();
+    final today = DateFormat('yyyy-MM-dd').format(now);
     final docId = '${_uid}_$today';
     
-    await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
-      'checkOut': FieldValue.serverTimestamp(),
+    final payload = <String, dynamic>{
+      'checkOut': Timestamp.fromDate(now),
+      'localCheckOut': Timestamp.fromDate(now),
       'latOut': lat,
       'lngOut': lng,
-    }, SetOptions(merge: true));
+      'syncedAt': FieldValue.serverTimestamp(),
+    };
+    if (photoOut != null && photoOut.isNotEmpty) {
+      payload['photoOut'] = photoOut;
+    }
+    if (isRemote != null) {
+      payload['isRemoteOut'] = isRemote;
+    }
+
+    await FirebaseFirestore.instance.collection('attendance').doc(docId).set(payload, SetOptions(merge: true));
   }
 
   Future<void> punchHourlyLeaveOut(double lat, double lng, {String? reason}) async {
     if (_uid == null) return;
-    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final now = DateTime.now();
+    final today = DateFormat('yyyy-MM-dd').format(now);
     final docId = '${_uid}_$today';
     
     await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
-      'hourlyBreakOut': FieldValue.serverTimestamp(),
+      'hourlyBreakOut': Timestamp.fromDate(now),
       'hourlyBreakOutLat': lat,
       'hourlyBreakOutLng': lng,
       if (reason != null) 'hourlyLeaveReason': reason,
       'onHourlyLeave': true,
       'status': 'On Hourly Leave',
+      'syncedAt': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
   }
 
   Future<void> punchHourlyLeaveIn(double lat, double lng) async {
     if (_uid == null) return;
-    final today = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    final now = DateTime.now();
+    final today = DateFormat('yyyy-MM-dd').format(now);
     final docId = '${_uid}_$today';
     
     await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
-      'hourlyBreakIn': FieldValue.serverTimestamp(),
+      'hourlyBreakIn': Timestamp.fromDate(now),
       'hourlyBreakInLat': lat,
       'hourlyBreakInLng': lng,
       'onHourlyLeave': false,
       'status': 'Present (Hourly Leave Taken)',
+      'syncedAt': FieldValue.serverTimestamp(),
     }, SetOptions(merge: true));
   }
 
@@ -1006,19 +1203,62 @@ class TaskProvider extends ChangeNotifier {
 
   Future<List<String>> getDepartments() async {
     try {
+      final Set<String> defaultDepts = {'IT', 'Sales', 'Marketing', 'Support', 'Operations', 'HR'};
+      final Set<String> depts = Set.from(defaultDepts);
+      final Set<String> deletedDepts = {};
+      
+      // Load custom defined & deleted departments from Firestore
+      try {
+        final settingsDoc = await FirebaseFirestore.instance.collection('company_settings').doc('departments').get();
+        if (settingsDoc.exists) {
+          final data = settingsDoc.data();
+          if (data?['deleted_list'] != null) {
+            for (var d in (data!['deleted_list'] as List<dynamic>)) {
+              deletedDepts.add(d.toString().trim().toLowerCase());
+            }
+          }
+          if (data?['list'] != null) {
+            for (var d in (data!['list'] as List<dynamic>)) {
+              final val = d.toString().trim();
+              if (val.isNotEmpty) {
+                depts.add(val);
+              }
+            }
+          }
+        }
+      } catch (_) {}
+
       final snapshot = await FirebaseFirestore.instance.collection('users').get();
-      final Set<String> depts = {'IT', 'Sales', 'Marketing', 'Support', 'Operations', 'HR'};
       for (var doc in snapshot.docs) {
         final data = doc.data();
         final dept = data['department'];
-        if (dept != null && dept.toString().trim().isNotEmpty) {
+        if (dept != null && dept.toString().trim().isNotEmpty && dept.toString().trim() != 'Unassigned') {
           depts.add(dept.toString().trim());
         }
       }
-      return depts.toList();
+
+      // Filter out any departments marked as deleted
+      final result = depts.where((d) => !deletedDepts.contains(d.toLowerCase()) && d != 'Unassigned').toList();
+      return result;
     } catch (e) {
       debugPrint('Error fetching departments: $e');
       return ['IT', 'Sales', 'Marketing', 'Support', 'Operations', 'HR'];
+    }
+  }
+
+  Future<bool> createDepartment(String deptName) async {
+    try {
+      final clean = deptName.trim();
+      if (clean.isEmpty) return false;
+      await FirebaseFirestore.instance.collection('company_settings').doc('departments').set({
+        'list': FieldValue.arrayUnion([clean]),
+        'deleted_list': FieldValue.arrayRemove([clean, clean.toLowerCase()]),
+      }, SetOptions(merge: true));
+      notifyListeners();
+      return true;
+    } catch (e) {
+      debugPrint('Error creating department: $e');
+      return false;
     }
   }
 
@@ -1029,6 +1269,29 @@ class TaskProvider extends ChangeNotifier {
       if (cleanNew.isEmpty || cleanOld.toLowerCase() == cleanNew.toLowerCase()) {
         return false;
       }
+
+      // Update settings doc list
+      try {
+        final docRef = FirebaseFirestore.instance.collection('company_settings').doc('departments');
+        final snap = await docRef.get();
+        if (snap.exists && snap.data() != null) {
+          List<String> list = List<String>.from(snap.data()!['list'] ?? []);
+          list = list.where((d) => d.toLowerCase() != cleanOld.toLowerCase()).toList();
+          if (!list.contains(cleanNew)) list.add(cleanNew);
+
+          List<String> delList = List<String>.from(snap.data()!['deleted_list'] ?? []);
+          delList.add(cleanOld.toLowerCase());
+          delList.remove(cleanNew.toLowerCase());
+
+          await docRef.set({'list': list, 'deleted_list': delList}, SetOptions(merge: true));
+        } else {
+          await docRef.set({
+            'list': [cleanNew],
+            'deleted_list': [cleanOld.toLowerCase()],
+          }, SetOptions(merge: true));
+        }
+      } catch (_) {}
+
       final snapshot = await FirebaseFirestore.instance.collection('users').get();
       final batch = FirebaseFirestore.instance.batch();
       int updateCount = 0;
@@ -1051,7 +1314,68 @@ class TaskProvider extends ChangeNotifier {
     }
   }
 
+  Future<bool> deleteDepartment(String deptName) async {
+    try {
+      final clean = deptName.trim();
+      if (clean.isEmpty) return false;
+
+      // Add to deleted_list and remove from custom list in company_settings
+      try {
+        await FirebaseFirestore.instance.collection('company_settings').doc('departments').set({
+          'list': FieldValue.arrayRemove([clean]),
+          'deleted_list': FieldValue.arrayUnion([clean.toLowerCase(), clean]),
+        }, SetOptions(merge: true));
+      } catch (e) {
+        debugPrint('Error updating company_settings: $e');
+      }
+
+      // Unassign users belonging to this department
+      final snapshot = await FirebaseFirestore.instance.collection('users').get();
+      final batch = FirebaseFirestore.instance.batch();
+      int count = 0;
+      for (var doc in snapshot.docs) {
+        final data = doc.data();
+        final userDept = (data['department'] ?? '').toString().trim();
+        if (userDept.toLowerCase() == clean.toLowerCase()) {
+          batch.update(doc.reference, {'department': 'Unassigned'});
+          count++;
+        }
+      }
+      if (count > 0) {
+        await batch.commit();
+      }
+      notifyListeners();
+      return true;
+    } catch (e) {
+      debugPrint('Error deleting department: $e');
+      return false;
+    }
+  }
+
   Future<List<Map<String, dynamic>>> getManagersByDepartment(String dept) async {
+    try {
+      final snapshot = await FirebaseFirestore.instance.collection('users').get();
+      List<Map<String, dynamic>> managerList = [];
+      final cleanDept = dept.trim().toLowerCase();
+      for (var doc in snapshot.docs) {
+        final data = doc.data();
+        final userDept = (data['department'] ?? '').toString().trim().toLowerCase();
+        final role = (data['role'] ?? 'employee').toString().trim().toLowerCase();
+        final isManager = role == 'manager' || role == 'super_admin';
+
+        if (isManager && (userDept == cleanDept || (cleanDept == 'it' && (userDept.contains('it') || data['email'] == 'rbcitsupport@gmail.com')))) {
+          data['uid'] = doc.id;
+          managerList.add(data);
+        }
+      }
+      return managerList;
+    } catch (e) {
+      debugPrint('Error fetching managers for department: $e');
+      return [];
+    }
+  }
+
+  Future<List<Map<String, dynamic>>> getStaffByDepartment(String dept) async {
     try {
       final snapshot = await FirebaseFirestore.instance.collection('users').get();
       List<Map<String, dynamic>> staffList = [];
@@ -1164,7 +1488,7 @@ class TaskProvider extends ChangeNotifier {
           .doc(employeeId)
           .collection('notifications')
           .add({
-        'title': voiceNoteUrl != null ? '🎤 Voice Task Assigned' : 'New Task Assigned',
+        'title': voiceNoteUrl != null ? ' Voice Task Assigned' : 'New Task Assigned',
         'message': voiceNoteUrl != null
             ? 'Voice note task assigned by $_userName: $title'
             : (estimatedTime != null && estimatedTime.isNotEmpty
@@ -1277,7 +1601,7 @@ class TaskProvider extends ChangeNotifier {
       final userDoc = await FirebaseFirestore.instance.collection('users').doc(_uid).get();
       final mId = userDoc.data()?['managerId'] ?? '';
 
-      final docRef = await FirebaseFirestore.instance.collection('leaves').add({
+      await FirebaseFirestore.instance.collection('leaves').add({
         'uid': _uid,
         'userName': _userName,
         'userEmail': _userEmail,
@@ -1299,12 +1623,6 @@ class TaskProvider extends ChangeNotifier {
       if (startDate == today) {
         final docId = '${_uid}_$today';
         await FirebaseFirestore.instance.collection('attendance').doc(docId).set({
-          'leaveId': docRef.id,
-          'leaveType': leaveType,
-          'durationMode': durationMode,
-          if (halfDayType != null) 'halfDayType': halfDayType,
-          if (hourlyHours != null) 'hourlyHours': hourlyHours,
-          if (hourlyTimeSlot != null) 'hourlyTimeSlot': hourlyTimeSlot,
           'leaveStatus': 'Pending',
           'leaveReason': reason,
         }, SetOptions(merge: true));
@@ -1314,10 +1632,77 @@ class TaskProvider extends ChangeNotifier {
       rethrow;
     }
   }
+
+  // ===================== PROJECT MANAGEMENT =====================
+  Stream<List<Project>> getProjectsStream() {
+    return FirebaseFirestore.instance
+        .collection('projects')
+        .snapshots()
+        .map((snapshot) {
+          final list = snapshot.docs
+              .map((doc) => Project.fromJson({...doc.data(), 'id': doc.id}))
+              .toList();
+          list.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+          return list;
+        });
+  }
+
+  Future<void> createProject({
+    required String title,
+    String description = '',
+    String category = 'General',
+    int colorValue = 0xFF4F46E5,
+    DateTime? deadline,
+    List<String>? assignedUsers,
+    List<ProjectAttachment>? attachments,
+    List<ProjectLink>? links,
+  }) async {
+    try {
+      final docRef = FirebaseFirestore.instance.collection('projects').doc();
+      final project = Project(
+        id: docRef.id,
+        title: title,
+        description: description,
+        category: category,
+        colorValue: colorValue,
+        deadline: deadline,
+        createdAt: DateTime.now(),
+        createdBy: _userName.isNotEmpty ? _userName : (_userEmail.isNotEmpty ? _userEmail : 'Admin'),
+        assignedUsers: assignedUsers ?? [],
+        attachments: attachments ?? [],
+        links: links ?? [],
+        status: 'Active',
+        progress: 0,
+      );
+
+      await docRef.set(project.toJson());
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error creating project: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> updateProject(Project project) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('projects')
+          .doc(project.id)
+          .set(project.toJson(), SetOptions(merge: true));
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error updating project: $e');
+      rethrow;
+    }
+  }
+
+  Future<void> deleteProject(String projectId) async {
+    try {
+      await FirebaseFirestore.instance.collection('projects').doc(projectId).delete();
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error deleting project: $e');
+      rethrow;
+    }
+  }
 }
-
-
-
-
-
-

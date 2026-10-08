@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../providers/task_provider.dart';
 import '../theme/app_theme.dart';
-import '../widgets/annual_heatmap.dart';
 import '../widgets/analytics_charts.dart';
 import 'profile_screen.dart';
 
@@ -40,121 +40,193 @@ class MineScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: isDesktop ? 84 : 56,
-                      height: isDesktop ? 84 : 56,
-                      decoration: BoxDecoration(
-                        color: taskProvider.isLoggedIn ? const Color(0xFFEEF2FF) : const Color(0xFFF1F5F9),
-                        shape: BoxShape.circle,
-                        border: Border.all(color: taskProvider.isLoggedIn ? const Color(0xFFC7D2FE) : const Color(0xFFE2E8F0), width: 2.5),
-                      ),
-                      child: taskProvider.isLoggedIn
-                          ? (taskProvider.userProfilePic.isNotEmpty
-                              ? ClipOval(
-                                  child: Image.memory(
-                                    base64Decode(taskProvider.userProfilePic),
-                                    fit: BoxFit.cover,
-                                    width: isDesktop ? 84 : 56,
-                                    height: isDesktop ? 84 : 56,
-                                  ),
-                                )
-                              : Center(
-                                  child: Text(
-                                    taskProvider.userName.isNotEmpty ? taskProvider.userName.substring(0, 1).toUpperCase() : 'U',
-                                    style: TextStyle(
-                                      fontSize: isDesktop ? 28 : 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppTheme.primaryBlue,
-                                    ),
-                                  ),
-                                ))
-                          : Icon(
-                              Icons.person_rounded,
-                              size: isDesktop ? 40 : 34,
-                              color: const Color(0xFF94A3B8),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Avatar
+                        Container(
+                          width: isDesktop ? 76 : 58,
+                          height: isDesktop ? 76 : 58,
+                          decoration: BoxDecoration(
+                            color: taskProvider.isLoggedIn ? const Color(0xFFEEF2FF) : const Color(0xFFF1F5F9),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: taskProvider.isLoggedIn ? const Color(0xFF818CF8) : const Color(0xFFE2E8F0),
+                              width: 2.5,
                             ),
-                    ),
-                    const SizedBox(width: 18),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  taskProvider.isLoggedIn ? taskProvider.userName : 'Kept to your plan for 1 day!',
-                                  style: TextStyle(
-                                    fontSize: isDesktop ? 22 : 18,
-                                    fontWeight: FontWeight.w800,
-                                    color: AppTheme.textPrimary,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
+                          ),
+                          child: taskProvider.isLoggedIn
+                              ? (taskProvider.userProfilePic.isNotEmpty
+                                  ? ClipOval(
+                                      child: Image.memory(
+                                        base64Decode(taskProvider.userProfilePic),
+                                        fit: BoxFit.cover,
+                                        width: isDesktop ? 76 : 58,
+                                        height: isDesktop ? 76 : 58,
+                                      ),
+                                    )
+                                  : Center(
+                                      child: Text(
+                                        taskProvider.userName.isNotEmpty ? taskProvider.userName.substring(0, 1).toUpperCase() : 'U',
+                                        style: TextStyle(
+                                          fontSize: isDesktop ? 26 : 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppTheme.primaryBlue,
+                                        ),
+                                      ),
+                                    ))
+                              : Icon(
+                                  Icons.person_rounded,
+                                  size: isDesktop ? 36 : 30,
+                                  color: const Color(0xFF94A3B8),
                                 ),
-                              ),
-                              if (taskProvider.isLoggedIn && isDesktop) ...[
-                                const SizedBox(width: 10),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFEEF2FF),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Text(
-                                    taskProvider.userRole.toUpperCase(),
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppTheme.primaryBlue,
+                        ),
+                        const SizedBox(width: 14),
+
+                        // Name, Role Badge, and Email
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      taskProvider.isLoggedIn ? taskProvider.userName : 'Kept to your plan!',
+                                      style: TextStyle(
+                                        fontSize: isDesktop ? 20 : 17,
+                                        fontWeight: FontWeight.w800,
+                                        color: AppTheme.textPrimary,
+                                      ),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
+                                  if (taskProvider.isLoggedIn) ...[
+                                    const SizedBox(width: 8),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2.5),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xFFEEF2FF),
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(color: const Color(0xFFC7D2FE)),
+                                      ),
+                                      child: Text(
+                                        taskProvider.userRole.toUpperCase(),
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w800,
+                                          color: Color(0xFF4F46E5),
+                                          letterSpacing: 0.5,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ],
+                              ),
+                              const SizedBox(height: 3),
+                              Text(
+                                taskProvider.isLoggedIn ? taskProvider.userEmail : 'Click to login',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xFF64748B),
                                 ),
-                              ],
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ],
                           ),
-                          const SizedBox(height: 4),
-                          Text(
-                            taskProvider.isLoggedIn ? taskProvider.userEmail : 'Click to login',
-                            style: TextStyle(
-                              fontSize: isDesktop ? 15 : 14,
-                              fontWeight: FontWeight.w500,
-                              color: taskProvider.isLoggedIn ? const Color(0xFF64748B) : AppTheme.primaryBlue,
+                        ),
+
+                        const SizedBox(width: 8),
+
+                        // Edit Button / Login Button
+                        if (taskProvider.isLoggedIn)
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+                            },
+                            borderRadius: BorderRadius.circular(12),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF1F5F9),
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: const Color(0xFFE2E8F0)),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: const [
+                                  Icon(Icons.edit_outlined, size: 16, color: Color(0xFF334155)),
+                                  SizedBox(width: 4),
+                                  Text(
+                                    'Edit',
+                                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 13, color: Color(0xFF334155)),
+                                  ),
+                                ],
+                              ),
                             ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                          )
+                        else
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppTheme.primaryBlue,
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                            ),
+                            onPressed: () => _showLoginDialog(context, taskProvider),
+                            child: const Text('Login', style: TextStyle(fontWeight: FontWeight.bold)),
                           ),
-                        ],
-                      ),
+                      ],
                     ),
-                    if (taskProvider.isLoggedIn)
-                      ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFF1F5F9),
-                          foregroundColor: const Color(0xFF334155),
-                          elevation: 0,
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+
+                    // Joining Details Row (Full Width Below)
+                    if (taskProvider.isLoggedIn && taskProvider.userCreatedAt != null) ...[
+                      const SizedBox(height: 14),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF8FAFC),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: const Color(0xFFE2E8F0)),
                         ),
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
-                        },
-                        icon: const Icon(Icons.edit_outlined, size: 18),
-                        label: const Text('Edit Profile', style: TextStyle(fontWeight: FontWeight.w700)),
-                      )
-                    else
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppTheme.primaryBlue,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.verified_user_rounded, size: 15, color: Color(0xFF10B981)),
+                            const SizedBox(width: 6),
+                            Text(
+                              'Joined: ${DateFormat('d MMM yyyy').format(taskProvider.userCreatedAt!)}',
+                              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xFF0F172A)),
+                            ),
+                            const Spacer(),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFEFF6FF),
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(color: const Color(0xFFBFDBFE)),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(Icons.timer_outlined, size: 12, color: Color(0xFF2563EB)),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                    '${taskProvider.daysSinceJoining} Days in Company',
+                                    style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w800, color: Color(0xFF1D4ED8)),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                        onPressed: () => _showLoginDialog(context, taskProvider),
-                        child: const Text('Login', style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
+                    ],
                   ],
                 ),
               ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/task_provider.dart';
 import '../widgets/custom_illustrations.dart';
-import '../widgets/habit_dialog.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});

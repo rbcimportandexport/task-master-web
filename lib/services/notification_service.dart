@@ -24,11 +24,15 @@ class NotificationService {
       if (offset.inMinutes == 330) {
         tz.setLocalLocation(tz.getLocation('Asia/Kolkata'));
       } else {
-        // Find matching location or fallback
         final locations = tz.timeZoneDatabase.locations;
         bool found = false;
         for (var loc in locations.values) {
-          if (loc.currentTimeZone.offset == offset.inMilliseconds) {
+          final dynamic tzOffset = loc.currentTimeZone.offset;
+          if (tzOffset is int && Duration(milliseconds: tzOffset) == offset) {
+            tz.setLocalLocation(loc);
+            found = true;
+            break;
+          } else if (tzOffset is Duration && tzOffset == offset) {
             tz.setLocalLocation(loc);
             found = true;
             break;
@@ -60,7 +64,7 @@ class NotificationService {
     await _notificationsPlugin.initialize(
       settings: initializationSettings,
       onDidReceiveNotificationResponse: (NotificationResponse response) {
-        debugPrint('Notification clicked: ' + (response.payload ?? ''));
+        debugPrint('Notification clicked: ${response.payload ?? ""}');
       },
     );
 
@@ -129,19 +133,19 @@ class NotificationService {
       iOS: iosDetails,
     );
 
-    // 1. Morning Reminder: 09:00 AM
+    // 1. Morning Shift Punch In Alert: 08:55 AM
     await _scheduleDailyAtTime(
-      0,
-      '🌅 Good Morning!',
-      'Aaj ka kaam likho aur apna din plan karo!',
-      9, 0,
+      855,
+      ' Punch-In Reminder (08:55 AM)',
+      'Aapki duty 09:00 AM par start hoti hai. Salary penalty se bachne ke liye please selfie punch-in karein!',
+      8, 55,
       notificationDetails,
     );
 
     // 2. Manager Daily Attendance Alert: 10:30 AM
     await _scheduleDailyAtTime(
       1030,
-      '📊 Daily Team Attendance Alert (10:30 AM)',
+      ' Daily Team Attendance Alert (10:30 AM)',
       'Manager Alert: Team attendance status check karein aur pending tasks assign/re-assign karein!',
       10, 30,
       notificationDetails,
@@ -150,18 +154,18 @@ class NotificationService {
     // 3. Afternoon Reminder: 02:00 PM (14:00)
     await _scheduleDailyAtTime(
       1,
-      '☀️ Afternoon Check-in!',
+      ' Afternoon Check-in (02:00 PM)',
       'Kya aaj ke tasks update kiye? Check karo!',
       14, 0,
       notificationDetails,
     );
 
-    // 4. Evening Reminder: 07:00 PM (19:00)
+    // 4. Evening Shift Punch-Out Alert: 08:00 PM (20:00)
     await _scheduleDailyAtTime(
-      2,
-      '🌙 Evening Wrap-up!',
-      'Apne aaj ke pending tasks review karein aur kal ke liye plan karein!',
-      19, 0,
+      2000,
+      ' Shift End Punch-Out Alert (08:00 PM)',
+      'Duty time 8:00 PM poora ho gaya hai! Shift complete karne ke liye Punch-Out karein.',
+      20, 0,
       notificationDetails,
     );
   }
@@ -184,7 +188,7 @@ class NotificationService {
 
     await _scheduleDailyAtTime(
       1030,
-      '👥 Team Attendance Alert (10:30 AM)',
+      ' Team Attendance Alert (10:30 AM)',
       'Aaj aapki team ke $totalTeam me se $presentCount log present hain.',
       10, 30,
       notificationDetails,

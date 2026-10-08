@@ -19,7 +19,10 @@ import '../screens/profile_screen.dart';
 import '../screens/recycle_bin_screen.dart';
 import '../screens/holiday_policy_screen.dart';
 import '../screens/manage_users_screen.dart';
+import '../screens/team_chat_screen.dart';
+import '../screens/projects_screen.dart';
 import 'assign_task_sheet.dart';
+import 'feedback_dialog.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({super.key});
@@ -262,6 +265,19 @@ class _AppDrawerState extends State<AppDrawer> {
 
           const SizedBox(height: 12),
 
+          // Projects & PDF Workspace
+          _buildDrawerItem(
+            icon: Icons.folder_special_rounded,
+            iconColor: const Color(0xFF4F46E5),
+            title: 'Projects & Files',
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProjectsScreen()),
+              );
+            },
+          ),
 
           // Attendance
           _buildDrawerItem(
@@ -441,6 +457,20 @@ class _AppDrawerState extends State<AppDrawer> {
             ),
           ],
 
+          // Team Discussion & Chat Channel
+          _buildDrawerItem(
+            icon: Icons.forum_rounded,
+            iconColor: const Color(0xFF6366F1),
+            title: 'Team Discussion & Chat',
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const TeamChatScreen()),
+              );
+            },
+          ),
+
           // 3.5. Manager Dashboard (Only for managers)
           if (taskProvider.userRole == 'manager')
             _buildDrawerItem(
@@ -458,6 +488,18 @@ class _AppDrawerState extends State<AppDrawer> {
             
           // Super Admin Dashboard & Controls
           if (taskProvider.userRole == 'super_admin') ...[
+            _buildDrawerItem(
+              icon: Icons.business_center_rounded,
+              iconColor: const Color(0xFF6366F1),
+              title: 'All Departments (Edit / Delete)',
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SuperAdminDashboard()),
+                );
+              },
+            ),
             _buildDrawerItem(
               icon: Icons.admin_panel_settings_rounded,
               iconColor: const Color(0xFFF59E0B),
@@ -524,16 +566,6 @@ class _AppDrawerState extends State<AppDrawer> {
             },
           ),
 
-          // 6. FAQ
-          _buildDrawerItem(
-            icon: Icons.help_outline_rounded,
-            iconColor: const Color(0xFF60A5FA),
-            title: 'FAQ',
-            onTap: () {
-              Navigator.pop(context);
-              _showFaqDialog(context);
-            },
-          ),
 
           // 7. Recycle Bin (Restore Deleted Tasks)
           _buildDrawerItem(
@@ -563,7 +595,19 @@ class _AppDrawerState extends State<AppDrawer> {
               );
             },
           ),
-          const SizedBox(height: 16),
+
+          // Send Feedback
+          _buildDrawerItem(
+            icon: Icons.feedback_outlined,
+            iconColor: const Color(0xFF6366F1),
+            title: 'Send Feedback',
+            onTap: () {
+              Navigator.pop(context);
+              FeedbackDialog.show(context);
+            },
+          ),
+
+          const SizedBox(height: 8),
           const Divider(),
           const SizedBox(height: 8),
 
@@ -627,217 +671,6 @@ class _AppDrawerState extends State<AppDrawer> {
     );
   }
 
-  void _showSaleDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Row(
-          children: [
-            Icon(Icons.workspace_premium, color: Color(0xFFFFA000)),
-            SizedBox(width: 8),
-            Text('Special PRO Offer'),
-          ],
-        ),
-        content: const Text('Get Unlimited Cloud Sync, Widgets, Custom Themes & Subtasks at 60% OFF today!'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Later')),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppTheme.primaryBlue,
-              foregroundColor: Colors.white,
-            ),
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text('Claim Offer'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showFaqDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('FAQ'),
-        content: const Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Q: How to add a task?\nA: Tap the "+" button at the bottom right.', style: TextStyle(fontSize: 14)),
-            SizedBox(height: 12),
-            Text('Q: How to set due dates?\nA: Tap the calendar icon in task creation sheet.', style: TextStyle(fontSize: 14)),
-          ],
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Close')),
-        ],
-      ),
-    );
-  }
-
-  void _showFeedbackDialog(BuildContext context) {
-    final controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Send Feedback'),
-        content: TextField(
-          controller: controller,
-          maxLines: 3,
-          decoration: const InputDecoration(
-            hintText: 'Share your thoughts or report a bug...',
-            border: OutlineInputBorder(),
-          ),
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(ctx);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Thank you for your feedback!')),
-              );
-            },
-            child: const Text('Submit'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showFollowUsSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (ctx) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Follow Us', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 16),
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(color: Color(0xFFE1306C), shape: BoxShape.circle),
-                  child: const Icon(Icons.camera_alt, color: Colors.white, size: 20),
-                ),
-                title: const Text('Instagram (@todolist.app)'),
-                onTap: () async {
-                  Navigator.pop(ctx);
-                  final url = Uri.parse('https://instagram.com');
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  }
-                },
-              ),
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(color: Color(0xFF1877F2), shape: BoxShape.circle),
-                  child: const Icon(Icons.facebook, color: Colors.white, size: 20),
-                ),
-                title: const Text('Facebook Page'),
-                onTap: () async {
-                  Navigator.pop(ctx);
-                  final url = Uri.parse('https://facebook.com');
-                  if (await canLaunchUrl(url)) {
-                    await launchUrl(url);
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  void _showDonateDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Row(
-          children: [
-            Icon(Icons.coffee_rounded, color: Color(0xFFD97706)),
-            SizedBox(width: 8),
-            Text('Support Development'),
-          ],
-        ),
-        content: const Text(
-          'If you enjoy using To-Do List, consider buying us a coffee! Your support keeps the app free and updated.',
-          style: TextStyle(color: Color(0xFF64748B), height: 1.4),
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Maybe Later')),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFD97706), foregroundColor: Colors.white),
-            onPressed: () {
-              Navigator.pop(ctx);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Thank you so much for your generosity!'),
-                  behavior: SnackBarBehavior.floating,
-                  backgroundColor: Color(0xFF10B981),
-                ),
-              );
-            },
-            child: const Text('Buy a Coffee (\$3)'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showFamilyAppsDialog(BuildContext context) {
-    final apps = [
-      {'name': 'Habit Tracker Pro', 'desc': 'Build good daily routines', 'icon': Icons.track_changes_rounded, 'color': Colors.green},
-      {'name': 'Focus Pomodoro Timer', 'desc': 'Boost productivity with timers', 'icon': Icons.timer_rounded, 'color': Colors.orange},
-      {'name': 'Daily Journal & Diary', 'desc': 'Keep your private thoughts safe', 'icon': Icons.book_rounded, 'color': Colors.purple},
-    ];
-
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (ctx) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Family Apps', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 12),
-              ...apps.map(
-                (a) => ListTile(
-                  leading: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(color: (a['color'] as Color).withValues(alpha: 0.15), borderRadius: BorderRadius.circular(10)),
-                    child: Icon(a['icon'] as IconData, color: a['color'] as Color),
-                  ),
-                  title: Text(a['name'] as String, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-                  subtitle: Text(a['desc'] as String, style: const TextStyle(fontSize: 12, color: Color(0xFF64748B))),
-                  trailing: OutlinedButton(
-                    onPressed: () {
-                      Navigator.pop(ctx);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Opening ${a['name']} in Store...')),
-                      );
-                    },
-                    child: const Text('Get'),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 

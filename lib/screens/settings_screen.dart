@@ -100,144 +100,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     );
   }
 
-  void _showFaqDialog() {
-    final faqs = [
-      {'q': 'How to create a task?', 'a': 'Tap the big blue + button at the bottom or use the Mic voice create.'},
-      {'q': 'How to set a reminder?', 'a': 'Tap any task to open its details, then click on Time & Reminder.'},
-      {'q': 'Can I change theme colors?', 'a': 'Go to Drawer or Settings > Theme to pick any color or wallpaper.'},
-      {'q': 'How to add home screen widgets?', 'a': 'Open Settings > Widget, preview any widget and tap ADD.'},
-    ];
 
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (ctx) => DraggableScrollableSheet(
-        initialChildSize: 0.7,
-        maxChildSize: 0.9,
-        minChildSize: 0.5,
-        expand: false,
-        builder: (_, scrollController) => ListView(
-          controller: scrollController,
-          padding: const EdgeInsets.all(20),
-          children: [
-            const Center(
-              child: Text(
-                'Frequently Asked Questions',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
-              ),
-            ),
-            const SizedBox(height: 16),
-            ...faqs.map(
-              (f) => Card(
-                elevation: 0,
-                color: const Color(0xFFF8FAFC),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12), side: const BorderSide(color: Color(0xFFE2E8F0))),
-                margin: const EdgeInsets.only(bottom: 12),
-                child: ExpansionTile(
-                  title: Text(f['q']!, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                      child: Text(f['a']!, style: const TextStyle(color: Color(0xFF64748B), height: 1.4)),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
-  void _showFeedbackDialog() {
-    final controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text('Send Feedback'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('We would love to hear your suggestions to improve the app!', style: TextStyle(fontSize: 13, color: Color(0xFF64748B))),
-            const SizedBox(height: 12),
-            TextField(
-              controller: controller,
-              maxLines: 4,
-              decoration: const InputDecoration(
-                hintText: 'Type your feedback here...',
-                border: OutlineInputBorder(),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryBlue, foregroundColor: Colors.white),
-            onPressed: () {
-              Navigator.pop(ctx);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Thank you! Your feedback has been sent.')),
-              );
-            },
-            child: const Text('Send'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _showFollowUsSheet() {
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (ctx) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text('Follow Us', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 16),
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(color: Color(0xFFE1306C), shape: BoxShape.circle),
-                  child: const Icon(Icons.camera_alt, color: Colors.white, size: 20),
-                ),
-                title: const Text('Instagram (@todolist.app)'),
-                onTap: () {
-                  Navigator.pop(ctx);
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Opening Instagram...')));
-                },
-              ),
-              ListTile(
-                leading: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: const BoxDecoration(color: Color(0xFF1877F2), shape: BoxShape.circle),
-                  child: const Icon(Icons.facebook, color: Colors.white, size: 20),
-                ),
-                title: const Text('Facebook Page'),
-                onTap: () {
-                  Navigator.pop(ctx);
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Opening Facebook...')));
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -722,27 +586,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         },
                                       ),
                                       _buildDesktopSettingRow(
-                                        icon: Icons.help_outline_rounded,
-                                        title: 'FAQ & Knowledge Base',
-                                        subtitle: 'Tips, shortcuts, and troubleshooting guides',
-                                        actionWidget: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF94A3B8)),
-                                        onTap: _showFaqDialog,
-                                      ),
-                                      _buildDesktopSettingRow(
-                                        icon: Icons.feedback_outlined,
-                                        title: 'Send Feedback',
-                                        subtitle: 'Send bug reports or feature requests directly to team',
-                                        actionWidget: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF94A3B8)),
-                                        onTap: _showFeedbackDialog,
-                                      ),
-                                      _buildDesktopSettingRow(
-                                        icon: Icons.share_rounded,
-                                        title: 'Follow Community',
-                                        subtitle: 'Join Instagram & Facebook updates',
-                                        actionWidget: const Icon(Icons.arrow_forward_ios_rounded, size: 14, color: Color(0xFF94A3B8)),
-                                        onTap: _showFollowUsSheet,
-                                      ),
-                                      _buildDesktopSettingRow(
                                         icon: Icons.verified_user_outlined,
                                         title: 'Privacy & Data Policy',
                                         subtitle: 'Local-first encrypted storage & zero-tracking',
@@ -1022,21 +865,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               );
             },
           ),
-          _buildSettingItem(
-            icon: Icons.help_outline_rounded,
-            title: 'FAQ',
-            onTap: _showFaqDialog,
-          ),
-          _buildSettingItem(
-            icon: Icons.feedback_outlined,
-            title: 'Feedback',
-            onTap: _showFeedbackDialog,
-          ),
-          _buildSettingItem(
-            icon: Icons.share_rounded,
-            title: 'Follow Us',
-            onTap: _showFollowUsSheet,
-          ),
+
           _buildSettingItem(
             icon: Icons.verified_user_outlined,
             title: 'Privacy Policy',

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import '../providers/task_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/assign_task_sheet.dart';
@@ -38,6 +39,39 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
 
     final departmentController = TextEditingController(text: currentDepartment);
     bool isCustomDept = currentDepartment.isNotEmpty && !availableDepts.contains(currentDepartment);
+
+    DateTime? currentJoiningDate;
+    if (userData.containsKey('joiningDate') && userData['joiningDate'] != null) {
+      final jd = userData['joiningDate'];
+      if (jd is Timestamp) {
+        currentJoiningDate = jd.toDate();
+      } else if (jd is String && jd.trim().isNotEmpty) {
+        currentJoiningDate = DateTime.tryParse(jd);
+      }
+    } else if (userData.containsKey('createdAt') && userData['createdAt'] != null) {
+      final ca = userData['createdAt'];
+      if (ca is Timestamp) {
+        currentJoiningDate = ca.toDate();
+      } else if (ca is String && ca.trim().isNotEmpty) {
+        currentJoiningDate = DateTime.tryParse(ca);
+      }
+    }
+    currentJoiningDate ??= DateTime.now();
+
+    DateTime? currentDob;
+    if (userData.containsKey('dob') && userData['dob'] != null) {
+      final db = userData['dob'];
+      if (db is Timestamp) {
+        currentDob = db.toDate();
+      } else if (db is String && db.trim().isNotEmpty) {
+        currentDob = DateTime.tryParse(db);
+      }
+    } else if (userData.containsKey('dobTimestamp') && userData['dobTimestamp'] != null) {
+      final dbTs = userData['dobTimestamp'];
+      if (dbTs is Timestamp) {
+        currentDob = dbTs.toDate();
+      }
+    }
 
     showModalBottomSheet(
       context: context,
@@ -171,6 +205,97 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
                       },
                     ),
 
+                    const SizedBox(height: 18),
+                    // Joining Date Picker for SuperAdmin
+                    const Text('Company Joining Date (Edit / Fix)', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF334155))),
+                    const SizedBox(height: 8),
+                    InkWell(
+                      onTap: () async {
+                        final picked = await showDatePicker(
+                          context: context,
+                          initialDate: currentJoiningDate ?? DateTime.now(),
+                          firstDate: DateTime(2015),
+                          lastDate: DateTime.now().add(const Duration(days: 30)),
+                          helpText: 'Select Official Joining Date',
+                        );
+                        if (picked != null) {
+                          setModalState(() {
+                            currentJoiningDate = picked;
+                          });
+                        }
+                      },
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF8FAFC),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: const Color(0xFFCBD5E1)),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.calendar_month_rounded, color: AppTheme.primaryBlue, size: 20),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                currentJoiningDate != null
+                                    ? DateFormat('d MMMM yyyy').format(currentJoiningDate!)
+                                    : 'Select Joining Date',
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF0F172A)),
+                              ),
+                            ),
+                            const Icon(Icons.edit_calendar_rounded, color: Color(0xFF64748B), size: 18),
+                          ],
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 18),
+                    // Birthday (Date of Birth) Picker for SuperAdmin
+                    const Text('Birthday / Date of Birth (Edit / Fix)', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13, color: Color(0xFF334155))),
+                    const SizedBox(height: 8),
+                    InkWell(
+                      onTap: () async {
+                        final now = DateTime.now();
+                        final picked = await showDatePicker(
+                          context: context,
+                          initialDate: currentDob ?? DateTime(now.year - 22, now.month, now.day),
+                          firstDate: DateTime(1960),
+                          lastDate: DateTime(now.year - 10, now.month, now.day),
+                          helpText: 'Select Employee Birthday',
+                        );
+                        if (picked != null) {
+                          setModalState(() {
+                            currentDob = picked;
+                          });
+                        }
+                      },
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF8FAFC),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: const Color(0xFFCBD5E1)),
+                        ),
+                        child: Row(
+                          children: [
+                            const Icon(Icons.cake_rounded, color: Color(0xFFEC4899), size: 20),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                currentDob != null
+                                    ? DateFormat('d MMMM yyyy').format(currentDob!)
+                                    : 'Select Birthday (DOB)',
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF0F172A)),
+                              ),
+                            ),
+                            const Icon(Icons.edit_calendar_rounded, color: Color(0xFF64748B), size: 18),
+                          ],
+                        ),
+                      ),
+                    ),
+
                     const SizedBox(height: 24),
                     SizedBox(
                       width: double.infinity,
@@ -178,11 +303,20 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
                         onPressed: () async {
                           try {
                             final finalDept = isCustomDept ? departmentController.text.trim() : currentDepartment.trim();
-                            await _firestore.collection('users').doc(uid).update({
+                            final updatePayload = <String, dynamic>{
                               'role': currentRole,
                               'department': finalDept,
                               'managerId': currentManagerId,
-                            });
+                            };
+                            if (currentJoiningDate != null) {
+                              updatePayload['joiningDate'] = Timestamp.fromDate(currentJoiningDate!);
+                              updatePayload['createdAt'] = Timestamp.fromDate(currentJoiningDate!);
+                            }
+                            if (currentDob != null) {
+                              updatePayload['dob'] = DateFormat('yyyy-MM-dd').format(currentDob!);
+                              updatePayload['dobTimestamp'] = Timestamp.fromDate(currentDob!);
+                            }
+                            await _firestore.collection('users').doc(uid).update(updatePayload);
                             if (ctx.mounted) Navigator.pop(ctx);
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -201,7 +335,7 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         ),
-                        child: const Text('Save Role, Department & Team', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
+                        child: const Text('Save Changes', style: TextStyle(fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold)),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -440,7 +574,7 @@ class _ManageUsersScreenState extends State<ManageUsersScreen> {
                       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: Color(0xFF475569), letterSpacing: 0.5),
                     ),
                     const Text(
-                      'Tap ⚡ for Quick Work / Role change',
+                      'Tap  for Quick Work / Role change',
                       style: TextStyle(fontSize: 11, color: Color(0xFF64748B)),
                     ),
                   ],

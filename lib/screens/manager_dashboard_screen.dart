@@ -77,8 +77,20 @@ class _ManagerDashboardScreenState extends State<ManagerDashboardScreen> {
         elevation: 0,
         iconTheme: const IconThemeData(color: Color(0xFF0F172A)),
         actions: [
+          if (userRole == 'super_admin')
+            IconButton(
+              icon: const Icon(Icons.business_center_rounded, color: AppTheme.primaryBlue),
+              tooltip: 'Manage All Departments',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SuperAdminDashboard()),
+                ).then((_) => _loadData());
+              },
+            ),
           IconButton(
             icon: const Icon(Icons.person_add_alt_1_rounded, color: AppTheme.primaryBlue),
+            tooltip: 'Add Staff / Manager',
             onPressed: _showAddEmployeeDialog,
           ),
         ],

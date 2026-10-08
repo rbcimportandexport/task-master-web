@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "sonarsource.sonarlint-vscode",
+    "dbaeumer.vscode-eslint",
+    "usernamehw.errorlens",
+    "aaron-bond.better-comments",
+    "dart-code.flutter",
+    "dart-code.dart-code",
+    "github.vscode-codeql",
+    "snyk-security.snyk-vulnerability-scanner",
+    "gitguardian.gitguardian"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "errorLens.enabled": true,
+  "errorLens.followCursor": "allLines",
+  "errorLens.delay": 100,
+  "errorLens.fontSize": "12px",
+  "errorLens.fontWeight": "bold",
+  "errorLens.fontStyleItalic": false,
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D55",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#34C759",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#8E8E93",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo",
+      "color": "#FF9500",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#007AFF",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    }
+  ],
+  "sonarlint.rules": {
+    "dart:S1186": {
+      "level": "on"
+    }
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.env": false,
+    "**/.env.*": false
+  },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.dart_tool/**": true,
+    "**/build/**": true
+  },
+  "gitguardian.checkOnSave": true,
+  "snyk.features.openSource": true,
+  "snyk.features.code": true,
+  "snyk.features.iac": true
+}

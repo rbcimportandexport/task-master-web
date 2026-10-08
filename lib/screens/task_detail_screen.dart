@@ -302,25 +302,36 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Task Notes'),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Row(
+          children: [
+            Icon(Icons.notes_rounded, color: AppTheme.primaryBlue, size: 22),
+            SizedBox(width: 8),
+            Text('Remarks & Notes', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+          ],
+        ),
         content: TextField(
           controller: notesController,
           maxLines: 6,
           decoration: const InputDecoration(
-            hintText: 'Type your notes or description here...',
-            border: OutlineInputBorder(),
+            hintText: 'Type task remark, note, or instructions here...',
+            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
           ),
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cancel')),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.primaryBlue, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppTheme.primaryBlue,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            ),
             onPressed: () {
               setState(() => _notes = notesController.text.trim());
               _saveChanges();
               Navigator.pop(ctx);
             },
-            child: const Text('Save Notes'),
+            child: const Text('Save Remark'),
           ),
         ],
       ),
@@ -440,12 +451,14 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                       _voiceDurationSeconds = res['duration'] as int?;
                     });
                     _saveChanges();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Voice note recorded & attached successfully!'),
-                        backgroundColor: Color(0xFF10B981),
-                      ),
-                    );
+                    if (mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Voice note recorded & attached successfully!'),
+                          backgroundColor: Color(0xFF10B981),
+                        ),
+                      );
+                    }
                   }
                 },
               ),
@@ -785,10 +798,10 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
             onTap: _showRepeatPicker,
           ),
 
-          // 4. Notes
+          // 4. Notes / Remarks
           _buildPropertyTile(
-            icon: Icons.chat_bubble_outline_rounded,
-            title: 'Notes',
+            icon: Icons.notes_rounded,
+            title: 'Remarks / Notes',
             value: _notes.isEmpty ? 'Add' : (_notes.length > 15 ? '${_notes.substring(0, 15)}...' : _notes),
             onTap: _showNotesDialog,
           ),
@@ -819,12 +832,14 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                   _voiceDurationSeconds = res['duration'] as int?;
                 });
                 _saveChanges();
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Voice note recorded & attached successfully!'),
-                    backgroundColor: Color(0xFF10B981),
-                  ),
-                );
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Voice note recorded & attached successfully!'),
+                      backgroundColor: Color(0xFF10B981),
+                    ),
+                  );
+                }
               }
             },
           ),
@@ -888,7 +903,7 @@ class _TaskDetailScreenState extends State<TaskDetailScreen> {
                         final f = File(file);
                         if (await f.exists()) {
                           await Share.shareXFiles([XFile(file)], text: 'Attachment: $displayName');
-                        } else {
+                        } else if (mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('File path: $file')),
                           );

@@ -12,7 +12,8 @@ import 'voice_note_player.dart';
 
 class TaskAddSheet extends StatefulWidget {
   final String? targetEmployeeId;
-  const TaskAddSheet({super.key, this.targetEmployeeId});
+  final DateTime? initialDate;
+  const TaskAddSheet({super.key, this.targetEmployeeId, this.initialDate});
 
   @override
   State<TaskAddSheet> createState() => _TaskAddSheetState();
@@ -22,7 +23,7 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   String _selectedCategory = 'No Category';
-  DateTime? _selectedDate = DateTime.now();
+  DateTime? _selectedDate;
   int _priority = 0;
   int _progress = 0;
   int _flagColor = 0;
@@ -33,6 +34,7 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
   @override
   void initState() {
     super.initState();
+    _selectedDate = widget.initialDate ?? DateTime.now();
     _controller.addListener(_onTextChanged);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _focusNode.requestFocus();
@@ -339,6 +341,14 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
                   const Text('Task Details', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: Color(0xFF0F172A))),
                   const SizedBox(height: 24),
                   
+                  const Text('Priority Level', style: TextStyle(color: Color(0xFF94A3B8), fontWeight: FontWeight.bold, fontSize: 13)),
+                  const SizedBox(height: 10),
+                  _buildPriorityOption(ctx, 0, 'No Priority', Icons.remove_circle_outline_rounded, const Color(0xFF64748B), const Color(0xFFF1F5F9)),
+                  _buildPriorityOption(ctx, 1, 'Low Priority', Icons.flag_outlined, const Color(0xFF10B981), const Color(0xFFECFDF5)),
+                  _buildPriorityOption(ctx, 2, 'Medium Priority', Icons.flag_rounded, const Color(0xFFF59E0B), const Color(0xFFFEF3C7)),
+                  _buildPriorityOption(ctx, 3, 'High Priority', Icons.flag_rounded, const Color(0xFFEF4444), const Color(0xFFFEE2E2)),
+                  const SizedBox(height: 24),
+
                   const Text('Progress', style: TextStyle(color: Color(0xFF94A3B8), fontWeight: FontWeight.bold, fontSize: 13)),
                   const SizedBox(height: 12),
                   SingleChildScrollView(
@@ -645,7 +655,7 @@ class _TaskAddSheetState extends State<TaskAddSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Top Bar: Drag Handle & Quick Close ("✕") Button
+            // Top Bar: Drag Handle & Quick Close ("") Button
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

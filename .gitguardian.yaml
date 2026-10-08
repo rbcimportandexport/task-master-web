@@ -1,0 +1,15 @@
+# GitGuardian Secret Detection Configuration
+# https://docs.gitguardian.com/ggshield-docs/configuration
+
+version: 2
+
+secret:
+  # Exclude non-secret or test files from scanning
+  ignored-paths:
+    - "**/.git/**"
+    - "**/build/**"
+    - "**/.dart_tool/**"
+    - "test/**"
+
+  # Enforce protection on pull requests and commits
+  show-secrets: false

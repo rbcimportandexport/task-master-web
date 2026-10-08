@@ -415,7 +415,7 @@ class _SmartVoiceCreateDialogState extends State<SmartVoiceCreateDialog> {
             ),
             const SizedBox(height: 8),
             Text(
-              _isListening ? '🎤 Listening... Speak into your microphone' : 'Tap mic or click sample tasks below',
+              _isListening ? ' Listening... Speak into your microphone' : 'Tap mic or click sample tasks below',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w500,

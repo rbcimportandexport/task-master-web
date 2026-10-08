@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csv/csv.dart';
 import 'package:share_plus/share_plus.dart';
@@ -76,7 +76,7 @@ class ExportService {
       
       await Share.shareXFiles([xFile], text: 'Tasks Report');
     } catch (e) {
-      print('Error exporting tasks report: $e');
+      debugPrint('Error exporting tasks report: $e');
       rethrow;
     }
   }
@@ -147,7 +147,7 @@ class ExportService {
       
       await Share.shareXFiles([xFile], text: 'Monthly Attendance Report');
     } catch (e) {
-      print('Error exporting report: ');
+      debugPrint('Error exporting report: $e');
       rethrow;
     }
   }
